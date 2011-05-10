@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Book Results</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>		
+		<link rel="stylesheet" href="bookex.css"/>		
+		<script src="jquery.js"></script>
+		<script src="bookex.js">
+			
+		</script>		
+	</head>
+	<body>
+		<div id="bookexbackground">
+			<div id="top">
+				<div id="logo">
+					<h1 id="bookexword">
+						BookEX
+					</h1>
+				</div>
+				<div>
+					<div id="searchbox">
+						<form action="post">
+							<select>
+								<option value="">Title</option>
+								<option value="">Author Last Name</option>
+								<option value="">Author First Name</option>
+								<option value="">Student Last Name</option>
+								<option value="">Student First Name</option>
+								<option value="">ISBN</option>
+								<option value="">UW NetID</option>
+								<option value="">E-mail</option>	
+							</select>
+							<input type="text" name="searchkeyword" value="" id="searchkeyword" size="40"/>
+							<input type="submit" id="search" value="Search"/>
+						</form>
+					</div>
+					<div id="topnavigation">
+						<a href="">Dashboard</a>
+						<a href="">My Books</a>
+						<a href="">My Profile</a>
+						<a href="">logout</a>
+					</div>
+				</div>
+			</div>
+			<div id="contentbackground">			
+				<h2 id="pagetitle">Search Results for "JavaScript Programming" </h2>								
+				<div id="bookresultslist">
+					<h4 id="booklist">BOOK FOUND</h4>
+					<table>
+							<tr class="stripeheader"><th>Title</th><th>Author</th><th>Year</th><th>ISBN</th><td>Owner</td></tr>
+							<tr class="stripe"><td class="title">Social Programming Facebook, Twitter,.</td><td class="author">Lary Isenberg</td><td class="year">2011</td><td class="isbn">978-1409952172</td><td class="owner">John King</td><td><input type="submit" id="request" value="Request"/></td></tr>
+							<tr class="stripe"><td class="title">Information Architecture</td><td class="author">Troy Maker</td><td class="year">2010</td><td class="isbn">978-1409952327</td><td class="owner">Salamon Crazy</td><td><input type="submit" id="request" value="Request"/></td></tr>
+							<tr class="stripe"><td class="title"><a href="bookdetails.html">Introduction to Javascript Programming</a></td><td class="author">Mike Dean</td><td class="year">2011</td><td class="isbn">978-1409952172</td><td class="owner">Johson Me</td><td><input type="submit" id="request" value="Request"/></td></tr>
+							<tr class="stripe"><td class="title">Romeo and Juliet</td><td class="author">Jessi Ka</td><td class="year">2010</td><td class="isbn">978-1079952141</td><td class="owner">Book Owner</td><td><input type="submit" id="request" value="Request"/></td></tr>
+							<tr class="stripe"><td class="title">The Girl Who Kick A*...</td><td class="author">Jered Spool</td><td class="year">2009</td><td class="isbn">978-4509952176</td><td class="owner">Girl Author</td><td><input type="submit" id="request" value="Request"/></td></tr>
+							<!--<tr class="stripe"><td></td><td></td><td></td><td></td><td></td></tr>
+							<tr class="stripe"><td></td><td></td><td></td><td></td><td></td></tr> -->
+								
+					</table>
+
+				</div>
+				
+			</div>
+			<div id="bottomnavigation">
+					<a href="">Privacy</a>
+					<a href="">Term</a>
+					<a href="">Contact</a>
+					<a href="">Help</a>
+					<a href="">Out Story</a>					
+					<p>@2001 All Rights Reserved by BookEX</p>
+			</div>
+		</div>
+		
+		
+			
+	</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>People Results</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>		
+		<link rel="stylesheet" href="bookex.css"/>		
+		<script src="jquery.js"></script>
+		<script src="bookex.js">
+			
+		</script>		
+	</head>
+	<body>
+		<div id="bookexbackground">
+			
+			<div id="top">
+				<div id="logo">
+					<h1 id="bookexword">
+						BookEX
+					</h1>
+				</div>
+				
+				<div id="searchbox">
+					<form action="post">
+						<select name="search">
+							<option value="">Title</option>
+							<option value="">Author Last Name</option>
+							<option value="">Author First Name</option>
+							<option value="">Student Last Name</option>
+							<option value="">Student First Name</option>
+							<option value="">ISBN</option>
+							<option value="">UW NetID</option>
+							<option value="">E-mail</option>	
+						</select>
+						<input type="text" name="searchkeyword" value="" id="searchkeyword" size="40"/>
+						<input type="submit" id="search" value="Search"/>
+					</form>
+				</div>
+				<div id="topnavigation">
+					<a href="">Dashboard</a>
+					<a href="">My Books</a>
+					<a href="">My Profile</a>
+					<a href="">logout</a>
+				</div>
+			</div>
+			
+			<div id="contentbackground">			
+				<h2 id="pagetitle">People Search Results</h2>								
+				<div id="peopleresultslist">
+					<h4 id="booklist">PEOPLE FOUND</h4>
+					<table>
+							<tr class="stripeheader"><th>Name</th><th>E-mail</th><th>Book</th></tr>
+							<tr class="stripe">
+								<td class="name">Alex John</td>								
+								<td class="email">alexj@uw.edu</td>
+								<td class="book">7</td>
+							</tr>
+							<tr class="stripe">
+								<td class="name">Kaven Smith</td>
+								<td class="email">kavens@uw.edu</td>
+								<td class="book">7</td>
+							</tr>
+							<tr class="stripe">
+								<td class="name">Randy Orton</td>
+								<td class="email">ramdup@gmail.com</td>
+								<td class="book">7</td>
+							</tr>				
+							<tr class="stripe">
+								<td class="name">Jered Spool</td>
+								<td class="email">jereds@gmail.com</td>
+								<td class="book">7</td>
+							</tr>								
+							<!--<tr class="stripe"><td></td><td></td><td></td><td></td><td></td></tr>
+							<tr class="stripe"><td></td><td></td><td></td><td></td><td></td></tr> -->
+								
+					</table>
+
+				</div>
+				
+			</div>
+			<div id="bottomnavigation">
+					<a href="">Privacy</a>
+					<a href="">Term</a>
+					<a href="">Contact</a>
+					<a href="">Help</a>
+					<a href="">Out Story</a>					
+					<p>@2001 All Rights Reserved by BookEX</p>
+			</div>
+		</div>
+		
+		
+			
+	</body>
+</html>
