@@ -28,7 +28,7 @@
 					<option>Person-Student Last Name</option>
 					<option>Person-Student First Name</option>
 				</select>
-				<input type="text" name="question" size="10"/>
+				<input type="text" name="question" size="40"/>
 				<input type="submit" value="Search"/>
 			</form>	
 		</div>
@@ -47,52 +47,39 @@
 		<div class="pageTitle">Search Results for ""</div>
 		<div id="maincontent">
 			<div id="searchresultsarea" class="contentarea">
-					<div id="booksearchresults">
-						<div class="pageSubTitle">Books Found</div>
-						<table id="booksearchresultstable">
-							<thead>
-								<tr>
-									<td class="header">Title</td>
-									<td class="header">Author</td>
-									<td class="header">Year</td>
-									<td class="header">ISBN</td>
-									<td class="header">Owner</td>
-									<td class="header"></td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="booktitle">Introduction to JavaScript Programming</td>
-									<td class="bookauthor">...</td>
-									<td class="bookyear">...</td>
-									<td class="bookisbn">...</td>
-									<td class="bookowner">Alex John</td>
-									<td class="requestbutton"><button>Request</button></td>
-								</tr>						
-							</tbody>
-						</table>
-				</div> 
-				<div id="peoplesearchresults">
-						<div class="pageSubTitle">People Found</div>
-						<table id="peoplesearchresults">
-							<thead>
-								<tr>
-									<td class="header">Name</td>
-									<td class="header">UW NetID</td>
-									<td class="header">E-mail</td>
-									<td class="header">Books</td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="personsname">Introduction to JavaScript Programming</td>
-									<td class="personsnetid">...</td>
-									<td class="personsemail">...</td>
-									<td class="personsbooknumber">...</td>
-								</tr>						
-							</tbody>
-						</table>
-				</div>
+				<div id="booksearchresults">
+					<div class="pageSubTitle">Books Found</div>
+					<table id="booksearchresultstable">
+						<thead>
+							<tr>
+								<td class="header">Title</td>
+								<td class="header">Author</td>
+								<td class="header">Year</td>
+								<td class="header">ISBN</td>
+								<td class="header">Owner</td>
+								<td class="header"></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="booktitle">Introduction to JavaScript Programming</td>
+								<td class="bookauthor">John Larry</td>
+								<td class="bookyear">2001</td>
+								<td class="bookisbn">123456789</td>
+								<td class="bookowner">Alex John</td>
+								<td class="requestbutton"><button>Request</button></td>
+							</tr>						
+							<tr>
+								<td class="booktitle">Introduction to PHP Programming</td>
+								<td class="bookauthor">How is?</td>
+								<td class="bookyear">2001</td>
+								<td class="bookisbn">123456789</td>
+								<td class="bookowner">Miller King</td>
+								<td class="requestbutton"><button>Request</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div> 				
 			</div>
 		</div>
 	</div>

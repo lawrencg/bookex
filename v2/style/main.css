@@ -100,7 +100,7 @@
 }
 
 #centeringtextarea {
-	width: 80%;
+	/*width: 60%;*/
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -138,8 +138,8 @@
 
 #bookImagePhoto {
 	margin-left: 25px;
-	width: 150px;
-	height: 200px;
+	width: 130px;
+	height: 180px;
 	border: 1px solid black;
 }
 
@@ -248,7 +248,7 @@ button {
 #additionalinfotextareas input[type='text'] {
 	float: left;
 	text-align: left;
-	width: 40em;
+	width: 30em;
 	margin: 5px;
 }
 
