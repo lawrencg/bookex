@@ -1,11 +1,16 @@
 <?php
+	# Author: Lawrence Gabriel
+	# Email: shanzha@uw.edu
+	# Date: May 10, 2011
+	# Title: Add a book to the BookEx web application.
+	
+	# menu.php include must be before any HTML. The PHP session can only be started before any HTML is output.
+	# Might need to change this configuration later becasue menu.php will not be the first include. 
+	# menu.php was the easiest palce to start the session globally so that bug submission could have a previous page URL.
 	include 'menu.php';
+	# Database connection parameters
+	include 'database_info.php';
 	include 'greeting.php';
-
-	$DATABASE = "larry_test";
-	$DB_USER = "shanzha";
-	$DB_PASSWORD = "lawrence";
-	$DB_CONNECT_STRING = "host=vergil.u.washington.edu port=10450 dbname=" . $DATABASE . " user=" . $DB_USER . " password=" . $DB_PASSWORD;
 	
 	$owner_id = pg_escape_string($_POST['ownerid']);
 	$bookex_id = pg_escape_string($_POST['bookexid']);
@@ -14,7 +19,7 @@
 	$authorlast = pg_escape_string($_POST['authorlast']); 
 	$isbn10 = remove_non_numeric($_POST['isbn10']); 
 	$isbn13 = remove_non_numeric($_POST['isbn13']); 
-        $course = pg_escape_string($_POST['course']);	
+    $course = pg_escape_string($_POST['course']);	
 	$cond = pg_escape_string($_POST['condition']);
 	$note = pg_escape_string($_POST['description']); 
 	$status = pg_escape_string($_POST['available']);
@@ -29,31 +34,16 @@
 		echo "<p><form action='mybooks.php' id='book' name='book' method='POST'>
 		<h2>Are you sure you want to remove this book from your BookEx account?<br />This cannot be undone.</h2>
 		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
-		<b>Title:</b>&nbsp;" . $title . "<br />
-		<b>Author Firstname</b>:&nbsp;" . $authorfirst . "<br /> 
-		<b>Author Lastname</b>:&nbsp;" . $authorlast . "<br /> ";
-		echo "<b>ISBN-10:</b>&nbsp;" .$isbn10 . "<br />
-		<b>ISBN-13:</b>&nbsp;" .$isbn13 . "<br />
-		<b>Course:</b>&nbsp;" . $course . "<br />
-		<b>Condition:</b>&nbsp;<select name='dropdown' disabled>";
-		//START CONDTION OPTIONS DROP DOWN
-		#$dbconn = pg_connect($DB_CONNECT_STRING)
-		#    or die('Could not connect: ' . pg_last_error());
-		#$conditions = pg_query("SELECT * FROM condition ORDER BY rank") 
-		#	or die('Query failed: ' . pg_last_error()); 
-		#while($records = pg_fetch_array($conditions)) {
-		#	if($records[0] == $cond){
-				echo "<option value='$cond' selected='selected'>" . $cond . "</option>";
-		#	} else {
-		#		echo "<option value='$records[0]'>" . $records[0] . "</option>";
-		#	}
-		#}
-		#pg_close($dbconn);
-		//END DROPDOWN
-		echo "</select><br /><br />
+		<b>Title:</b>&nbsp;{$title}<br />
+		<b>Author Firstname</b>:&nbsp;{$authorfirst}<br /> 
+		<b>Author Lastname</b>:&nbsp;{$authorlast}<br /> ";
+		echo "<b>ISBN-10:</b>&nbsp;{$isbn10}<br />
+		<b>ISBN-13:</b>&nbsp;{$isbn13}<br />
+		<b>Course:</b>&nbsp;{$course}<br />
+		<b>Condition:</b>&nbsp;<select name='dropdown' disabled>
+		<option value='{$cond}' selected='selected'>{$cond}</option></select><br /><br />
 		<b>Description:</b>&nbsp;
-		<textarea cols='40' rows='5' id='frame' name='frame' style='vertical-align:text-top;' virtual disabled />" . $note . 
-		"</textarea><br /><br />
+		<textarea cols='40' rows='5' id='frame' name='frame' style='vertical-align:text-top;' virtual disabled />{$note}</textarea><br /><br />
 		<b>Available for loan?</b>&nbsp;<input type='checkbox' id='box' name='box' {$status} disabled />";
 		$user = $_SERVER['REMOTE_USER'];
 		if($owner_id == $user){
@@ -70,21 +60,13 @@
 		<input type='hidden' value='{$owner_id}' id='ownerid' name='ownerid' />
 		<b>Title:</b>&nbsp;" . $title . "<br />
 		<input type='hidden' value='{$title}' id='title' name='title' />
-		<b>Author Firstname</b>:&nbsp;" . $authorfirst . "<br /> 
+		<b>Author Firstname</b>:&nbsp;{$authorfirst . "<br /> 
 		<input type='hidden' value='{$authorfirst}' id='authorfirst' name='authorfirst' />
-		<b>Author Lastname</b>:&nbsp;" . $authorlast . "<br /> 
-		<input type='hidden' value='{$authorlast}' id='authorlast' name='authorlast' />";
-		echo "<b>ISBN-10:</b>&nbsp;" .$isbn10 . "<br />
+		<b>Author Lastname</b>:&nbsp;{$authorlast . "<br /> 
+		<input type='hidden' value='{$authorlast}' id='authorlast' name='authorlast' /><b>ISBN-10:</b>&nbsp;" .$isbn10 . "<br />
 		<input type='hidden' value='{$isbn10}' id='isbn10' name='isbn10' />
 		<b>ISBN-13:</b>&nbsp;" .$isbn13 . "<br />
-		<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />";
-		#<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
-		#<b>Title (required):</b>&nbsp;<input type='text' value='{$title}' id='title' name='title' size='40' /><br />
-		#<b>Author Firstname:</b>&nbsp;<input type='text' value='{$authorfirst}' id='authorfirst' name='authorfirst' size='30' /><br />
-		#<b>Author Lastname:</b>&nbsp;<input type='text' value='{$authorlast}' id='authorlast' name='authorlast' size='30' /><br />
-		#<b>ISBN-10:</b>&nbsp;<input type='text' value='{$isbn10}' id='isbn10' name='isbn10' size='13' /><br />
-		#<b>ISBN-13:</b>&nbsp;<input type='text' value='{$isbn13}' id='isbn13' name='isbn13' size='13' /><br />
-		echo "
+		<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />
 		<b>Course:</b>&nbsp;<input type='text' value='{$course}' id='course' name='course' size='8' /><br /><br />
 		<b>Condition:</b>&nbsp;<select name='condition'>";
 		//START CONDTION OPTIONS DROP DOWN
@@ -94,9 +76,9 @@
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($conditions)) {
 			if($records[0] == $cond){
-				echo "<option value='$records[0]' selected='selected'>" . $records[0] . "</option>";
+				echo "<option value='$records[0]' selected='selected'>{$records[0] . "</option>";
 			} else {
-				echo "<option value='$records[0]'>" . $records[0] . "</option>";
+				echo "<option value='$records[0]'>{$records[0] . "</option>";
 			}
 		}
 		pg_close($dbconn);
@@ -116,38 +98,22 @@
 		echo "<p><form action='' id='book' name='book' method='POST'>
 		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
 		<input type='hidden' value='{$owner_id}' id='ownerid' name='ownerid' />
-		<b>Title:</b>&nbsp;" . $title . "<br />
+		<b>Title:</b>&nbsp;{$title}<br />
 		<input type='hidden' value='{$title}' id='title' name='title' />
-		<b>Author Firstname</b>:&nbsp;" . $authorfirst . "<br /> 
+		<b>Author Firstname</b>:&nbsp;{$authorfirst}<br /> 
 		<input type='hidden' value='{$authorfirst}' id='authorfirst' name='authorfirst' />
-		<b>Author Lastname</b>:&nbsp;" . $authorlast . "<br /> 
-		<input type='hidden' value='{$authorlast}' id='authorlast' name='authorlast' />";
-		echo "<b>ISBN-10:</b>&nbsp;" .$isbn10 . "<br />
+		<b>Author Lastname</b>:&nbsp;{$authorlast}<br /> 
+		<input type='hidden' value='{$authorlast}' id='authorlast' name='authorlast' />
+		<b>ISBN-10:</b>&nbsp;{$isbn10}<br />
 		<input type='hidden' value='{$isbn10}' id='isbn10' name='isbn10' />
-		<b>ISBN-13:</b>&nbsp;" .$isbn13 . "<br />
+		<b>ISBN-13:</b>&nbsp;{$isbn13}<br />
 		<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />
-		<b>Course:</b>&nbsp;" . $course . "<br />
+		<b>Course:</b>&nbsp;{$course}<br />
 		<input type='hidden' value='{$course}' id='course' name='course' />
-		<b>Condition:</b>&nbsp;<select name='dropdown' disabled>";
-		//START CONDTION OPTIONS DROP DOWN
-		#$dbconn = pg_connect($DB_CONNECT_STRING)
-		#    or die('Could not connect: ' . pg_last_error());
-		#$conditions = pg_query("SELECT * FROM condition ORDER BY rank") 
-		#	or die('Query failed: ' . pg_last_error()); 
-		#while($records = pg_fetch_array($conditions)) {
-		#	if($records[0] == $cond){
-				echo "<option value='$cond' selected='selected'>" . $cond . "</option>";
-		#	} else {
-		#		echo "<option value='$records[0]'>" . $records[0] . "</option>";
-		#	}
-		#}
-		#pg_close($dbconn);
-		//END DROPDOWN
-		echo "</select><br /><br />
+		<b>Condition:</b>&nbsp;<select name='dropdown' disabled><option value='$cond' selected='selected'>{$cond}</option></select><br /><br />
 		<input type='hidden' value='{$cond}' id='condition' name='condition' />
 		<b>Description:</b>&nbsp;
-		<textarea cols='40' rows='5' id='frame' name='frame' style='vertical-align:text-top;' virtual disabled />" . $note . 
-		"</textarea><br /><br />
+		<textarea cols='40' rows='5' id='frame' name='frame' style='vertical-align:text-top;' virtual disabled />{$note}</textarea><br /><br />
 		<input type='hidden' value='{$note}' id='description' name='description' />
 		<b>Available for loan?</b>&nbsp;<input type='checkbox' id='box' name='box' {$status} disabled />
 		<input type='hidden' id='available' name='available' value='{$status}' /><br /><br />";
