@@ -1,12 +1,18 @@
 <?php
+	# Author: Lawrence Gabriel
+	# Email: shanzha@uw.edu
+	# Date: May 11, 2011
+	# Title: The main user interface for the BookEx web application. This page displays all of the 
+	#        books that a user is invloced with, both lending and borrowing.
+	
+	# menu.php include must be before any HTML. The PHP session can only be started before any HTML is output.
+	# Might need to change this configuration later becasue menu.php will not be the first include. 
+	# menu.php was the easiest palce to start the session globally so that bug submission could have a previous page URL.
 	include 'menu.php';
+	# Database connection parameters
+	include 'database_info.php';
 	include "search.php";
 	include 'greeting.php';
-	
-	$DATABASE = "larry_test";
-	$DB_USER = "shanzha";
-	$DB_PASSWORD = "lawrence";
-	$DB_CONNECT_STRING = "host=vergil.u.washington.edu port=10450 dbname=" . $DATABASE . " user=" . $DB_USER . " password=" . $DB_PASSWORD;
 	
 	$user = $_SERVER['REMOTE_USER'];
 	
@@ -15,19 +21,16 @@
 	#	.button-container form div {
 	#	    display: inline;
 	#	}
-
 	#	.button-container button {
 	#	    display: inline;
 	#	    vertical-align: middle;
 	#	}
-
 	#	<div class="button-container">
 	#	    <form action="confirm.php" method="post">
 	#		<div>
 	#			<button type="submit">Confirm</button>
 	#		</div>
 	#	    </form>
-
 	#	    <form action="cancel.php" method="post">
 	#		<div>
 	#			<button type="submit">Cancel</button>
@@ -35,15 +38,20 @@
 	#	    </form>
 	#	</div>
 	}
-
+	# Accepts a BookEx book id, input button name, and button label to create different types of buttons.
+	# All buttons submit back to this page.
 	function createbutton($name, $label, $bookid){
 		echo "<form action='' id='form_98' name='form_98' method='POST'>";
 		echo "<input type='hidden' value='{$bookid}' id='transid' name='transid' />";
 		echo "<input type='submit' id='{$name}' name='{$name}' value='{$label}' />";
 		echo "</form>";	
 	}
+	# Books I have requested
 	function myrequests(){
+		# Global variables
+		# Only need to get the username from the server once.
 		global $user;
+		# Might need to create the table and print the table headers.
 		$firsttime = true;
 		$yourequested = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND transstatus = 'Requested'") 
 			or die('Query failed: ' . pg_last_error()); 
@@ -61,11 +69,15 @@
 			}
 		}
 	}
+	# Books others have requested
 	function othersrequests(){
+		# Global variables
+		# Only need to get the username from the server once.
 		global $user;
+		# Might need to create the table and print the table headers.
+		$firsttime = true;
 		$theyrequested = pg_query("SELECT * FROM detailedtransactions WHERE myid = '" . $user . "' AND transstatus = 'Requested'") 
 			or die('Query failed: ' . pg_last_error()); 
-		$firsttime = true;
 		while($records = pg_fetch_array($theyrequested)) {
 			if ($firsttime){
 				echo "<h3>Others have Requested</h3>\n";
@@ -84,11 +96,15 @@
 			}
 		}
 	}
+	# Books I need to deliver
 	function deliveryconfirmations(){
+		# Global variables
+		# Only need to get the username from the server once.
 		global $user;
-		$awaiting = pg_query("SELECT * FROM detailedtransactions WHERE myid = '" . $user . "' AND transstatus = 'Awaiting Delivery'") 
-		or die('Query failed: ' . pg_last_error()); 
+		# Might need to create the table and print the table headers.
 		$firsttime = true;
+		$awaiting = pg_query("SELECT * FROM detailedtransactions WHERE myid = '" . $user . "' AND transstatus = 'Awaiting Delivery'") 
+			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($awaiting)) {
 			if ($firsttime) {
 				echo "<h3>Delivery Confirmations</h3>\n";
@@ -107,8 +123,12 @@
 			}
 		}
 	}
+	# Books I have received
 	function receiptconfirmations(){
+		# Global variables
+		# Only need to get the username from the server once.
 		global $user;
+		# Might need to create the table and print the table headers.
 		$firsttime = true;
 		$delivered = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND transstatus = 'Delivered'") 
 			or die('Query failed: ' . pg_last_error()); 
@@ -126,8 +146,12 @@
 			}
 		}
 	}
+	# Books someone has returned to me
 	function returnconfirmations(){
+		# Global variables
+		# Only need to get the username from the server once.
 		global $user;
+		# Might need to create the table and print the table headers.
 		$firsttime = true;
 		$returned = pg_query("SELECT * FROM detailedtransactions WHERE myid = '" . $user . "' AND transstatus = 'Returned'") 
 			or die('Query failed: ' . pg_last_error()); 
@@ -145,8 +169,18 @@
 			}
 		}
 	}
+	# HTML to display system notifications
+	function notifications(){
+		echo "<h3>Notifications</h3>\n";
+		echo "<p style='color:red'><i>&nbsp;&nbsp;&nbsp;BookEx is currently under maintenance. Some features may be temporarily unavailable."; 
+		echo "</i></p>\n";
+	}
+	# HTML to display the books that the user needs to return after they are done.
 	function imborrowing(){
+		# Global variables
+		# Only need to get the username from the server once.
 		global $user;
+		# Might need to create the table and print the table headers.
 		$firsttime = true;	
 		echo "<h3>Books I'm borrowing</h3>\n";
 		$returned = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND transstatus = 'Received'") 
@@ -155,76 +189,81 @@
 			if ($firsttime) {
 				echo "<table border='2px'>";
 				echo "<th>Title</th><th>Lender</th><th>Due Date</th><th></th>";
+				# Book title
 				echo "<tr><td>{$records[3]}</td>";
+				# Book owner
 				echo "<td>{$records[6]}</td>";
+				# BookEx does not currently store a 'Due' date
 				echo "<td>".date("F j, Y")."</td><td>";
 				createbutton('return','Return',$records[0]);
 				echo "</td></tr>";
 				$firsttime = false;
 			} else {
+				# Book title
 				echo "<tr><td>{$records[3]}</td>";
+				# Book owner
 				echo "<td>{$records[6]}</td>";
+				# BookEx does not currently store a 'Due' date
 				echo "<td>".date("F j, Y")."</td><td>";
 				createbutton('return','Return',$records[0]);
 				echo "</td></tr>";
 			}
 		}
-		if($firsttime)
+		if($firsttime){
 			echo "<p><i>&nbsp;&nbsp;&nbsp;You are currently not borrwing and books.</i></p>"; 
-		else
+		} else {
 			echo "</table>";
+		}
 	}
-	function notifications(){
-		global $user;
-		#$awaiting = pg_query("SELECT * FROM detailedtransactions WHERE myid = '" . $user . "' AND transstatus = 'Awaiting Delivery'") 
-		#or die('Query failed: ' . pg_last_error()); 
-		#$firsttime = true;
-		#while($records = pg_fetch_array($awaiting)) {
-		#	if ($firsttime) {
-				echo "<h3>Notifications</h3>\n";
-				echo "<p style='color:red'><i>&nbsp;&nbsp;&nbsp;BookEx is currently under maintenance. Some features may be temporarily unavailable."; 
-				echo "</i></p>\n";
-		#		$firsttime = false;
-		#	} else {
-		#		echo "<p>Have you delivered \"{$records[3]}\" to {$records[5]}? "; 
-		#		createbutton('delivered','Delivered',$records[0]);
-		#		echo "</p>\n";
-		#	}
-	}
+	# Connect to database
 	$dbconn = pg_connect($DB_CONNECT_STRING)
     		or die('Could not connect: ' . pg_last_error());
+    # Process requests that come from this page.
+    # This is majority of the borrow and loaning process. Initial requests are the only thing missing.
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+		# The user accepeted a book request.
 		if(isset($_POST['accept'])){
 				pg_query("SELECT acceptbookrequest('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
 					or die('Query failed: ' . pg_last_error()); 
+		# The owner has delivered the book to the requestor			
 		} else if (isset($_POST['delivered'])){
 				pg_query("SELECT deliverbook('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
 					or die('Query failed: ' . pg_last_error()); 
+		# The requestor now has the book			
 		} else if (isset($_POST['confirmdelivery'])){
 				pg_query("SELECT confirmdelivery('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
 					or die('Query failed: ' . pg_last_error()); 
+		# The user returned the book to the owner
 		} else if (isset($_POST['return'])){
 				pg_query("SELECT returnbooktoowner('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
 					or die('Query failed: ' . pg_last_error()); 
+		# The user confirmed that the book was returned to them.				
 		} else if (isset($_POST['confirmreturnedbook'])){
 				pg_query("SELECT confirmreturnedbook('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
 					or die('Query failed: ' . pg_last_error()); 
+		# The user canceled a book request.			
 		} else if (isset($_POST['cancelrequest'])){
 				pg_query("SELECT cancelrequest('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
 					or die('Query failed: ' . pg_last_error()); 
+		# The user denied a book request.			
 		} else if (isset($_POST['deny'])){
 				pg_query("SELECT denybookrequest('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
 					or die('Query failed: ' . pg_last_error()); 
 		} else {
 		}
-	}	
+	}
+	# Display the things we want in the order we want them.
+	# All of these functions need a database connection.	
 	myrequests();
 	othersrequests();
 	deliveryconfirmations();
 	receiptconfirmations();
 	returnconfirmations();
+	# System notifications are always displayed. Might be the first if there is no activity for the current user.
 	notifications();
+	# From user testing, this is where we should have the book that people are going to return when they are done.
+	# mybooks was not intuitive
 	imborrowing();
-	
-pg_close($dbconn);
+	# Close the database
+	pg_close($dbconn);
 ?>
