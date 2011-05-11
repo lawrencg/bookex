@@ -1,7 +1,7 @@
 <?php
 	# Author: Lawrence Gabriel
 	# Email: shanzha@uw.edu
-	# Date: May 10, 2011
+	# Date: May 11, 2011
 	# Title: Used to request a book from multiple locations of the BookEx web application.
 	# MUST BE INCLUDED IN THE CORRECT SPOT. MUST BE AFTER DATABASE_INFO.PHP SO THAT THE 
 	# GLOBAL VARABLES EXIST.
