@@ -1,4 +1,12 @@
 <?php
+	# Author: Lawrence Gabriel
+	# Email: shanzha@uw.edu
+	# Date: May 10, 2011
+	# Title: Allows users to send feedback to the slcap@u.washington.edu email list about the BookEx web application.
+	
+	# menu.php include must be before any HTML. The PHP session can only be started before any HTML is output.
+	# Might need to change this configuration later becasue menu.php will not be the first include. 
+	# menu.php was the easiest palce to start the session globally so that bug submission could have a previous page URL.
 	include 'menu.php';
 	include 'greeting.php';
 
