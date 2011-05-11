@@ -6,6 +6,7 @@
 	
 	$dbconn = pg_connect($DB_CONNECT_STRING)
 	    or die('Could not connect: ' . pg_last_error());
+	# Get the current UW NetID from the server via pubcookie
 	$user = $_SERVER['REMOTE_USER'];
 	//$user = 'shanzha2';
 	/*$result = pg_query("SELECT isabookexuser('" . $user . "')") or die('Query failed: ' . pg_last_error()); 
