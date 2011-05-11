@@ -1,4 +1,0 @@
-AuthType UWNetID
-AuthName "BookEX"
-PubcookieAppID "BookEX"
-require valid-user
