@@ -2,16 +2,14 @@
 	# Author: Lawrence Gabriel
 	# Email: shanzha@uw.edu
 	# Date: May 11, 2011
-	# Title: The main user interface for the BookEx web application. This page displays all of the 
-	#        books that a user is invloced with, both lending and borrowing.
+	# Title: The main user interface for the BookEx web application. This page displays all of the books that a user is invloced with, both lending and borrowing.
 	
-	# menu.php include must be before any HTML. The PHP session can only be started before any HTML is output.
-	# Might need to change this configuration later becasue menu.php will not be the first include. 
-	# menu.php was the easiest palce to start the session globally so that bug submission could have a previous page URL.
-	include 'menu.php';
+	# Session tracking for the bug submission form. Needs to be before ANY HTML.
+	include 'session_track.php'
 	# Database connection parameters
 	include 'database_info.php';
-	include "search.php";
+	include 'menu.php';
+	include 'search.php';
 	include 'greeting.php';
 	
 	$user = $_SERVER['REMOTE_USER'];
