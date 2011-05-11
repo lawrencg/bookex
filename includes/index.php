@@ -5,7 +5,7 @@
 	# Title: Test landing page.
 	
 	# Session tracking for the bug submission form. Needs to be before ANY HTML.
-	include 'session_track.php'
+	include 'session_track.php';
 	# Database connection parameters
 	include 'database_info.php';
 	

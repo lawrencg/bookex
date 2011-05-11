@@ -5,7 +5,7 @@
 	# Title: The main user interface for the BookEx web application. This page displays all of the books that a user is invloced with, both lending and borrowing.
 	
 	# Session tracking for the bug submission form. Needs to be before ANY HTML.
-	include 'session_track.php'
+	include 'session_track.php';
 	# Database connection parameters
 	include 'database_info.php';
 	include 'menu.php';

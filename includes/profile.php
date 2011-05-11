@@ -5,7 +5,7 @@
 	# Title: Display a users information. Will be displayed differently if the user is looking at their own profile.
 	
 	# Session tracking for the bug submission form. Needs to be before ANY HTML.
-	include 'session_track.php'
+	include 'session_track.php';
 	# Database connection parameters
 	include 'database_info.php';
 	include 'menu.php';

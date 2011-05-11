@@ -5,7 +5,7 @@
 	# Title: Allows users to send feedback to the slcap@u.washington.edu email list about the BookEx web application.
 	
 	# Session tracking for the bug submission form. Needs to be before ANY HTML.
-	include 'session_track.php'
+	include 'session_track.php';
 	include 'menu.php';
 	include 'greeting.php';
 
