@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Profile</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>		
+		<link rel="stylesheet" href="style/main.css"/>		
+		<script src="jquery.js"></script>
+		<script src="bookex.js">
+			
+		</script>		
+	</head>
+	<body>
+		<div id="pagecontainer">
+			<!-- Top Div, this is included in every page.  Should be pulled out into a header file, use PHP include feature so we don't repeat code -->
+			<div id="top">
+				<div id="header">
+					<div id="bookexlogo">
+						BookEX
+					</div>
+				</div>
+				<div id="search">
+					<form id="searchbox" method="Get" Action="/search">
+						<select name="SearchType">
+							<option>Book-Title</option>
+							<option>Book-ISBN</option>
+							<option>Book-Author First Name</option>
+							<option>Book-Author Last Name</option>
+							<option>Person-UW NetID</option>
+							<option>Person-Email</option>
+							<option>Person-Student Last Name</option>
+							<option>Person-Student First Name</option>
+						</select>
+						<input type="text" name="question" size="40"/>
+						<input type="submit" value="Search"/>
+					</form>	
+				</div>
+				<div id="navigation">
+					<ul id="topnavigationlist">
+						<li id="dashboard"><a href="/dashboard">Dashboard</a></li>
+						<li id="mybooks"><a href="/mybooks">My Books</a></li>
+						<li id="myprofile"><a href="/myprofile">My Profile</a></li>
+						<li id="logout"><a href="/logout">Logout</a></li>
+					</ul>
+				</div>
+			</div>	
+			<!-- End Top Div -->
+			
+			<div id="page">
+				<div class="pageTitle">Profile</div>
+				<div class="pageSubTitle">Steward Mill</div>
+
+				<div id="maincontent">
+					<div id="" class="contentarea">
+						<div class="leftContent">
+							<div id="bookImageContent">
+								<div id="bookImagePhoto"></div>								
+							</div>
+						</div>
+						
+						<div class="rightContent contentarea">
+							<form id="addBookForm">
+								<div><label>First Name:</label><div>Kane</div></div>
+								<div><label>Last Name:</label><div>King</div></div>
+								<div><label>UW NetID:</label><div>kanek</div></div>
+								<div><label>E-mail:</label><div>kanek@uw.edu</div></div>
+								<div><label>Major:</label><div>Computer Science</div></div>								
+							</form>
+						</div>					
+						<div class="clear"></div>
+					</div>
+					
+					<div id="maincontent">
+						<div id="searchresultsarea" class="contentarea">
+							<div id="booksearchresults">
+								<div class="pageSubTitle">Books List</div>
+								<table id="booksearchresultstable">
+									<thead>
+										<tr>
+											<td class="header">Title</td>
+											<td class="header">Author</td>
+											<td class="header">Year</td>
+											<td class="header">ISBN</td>											
+											<td class="header"></td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="booktitle">Introduction to JavaScript Programming</td>
+											<td class="bookauthor">John Larry</td>
+											<td class="bookyear">2001</td>
+											<td class="bookisbn">123456789</td>											
+											<td class="requestbutton"><button>Request</button></td>
+										</tr>						
+										<tr>
+											<td class="booktitle">Introduction to PHP Programming</td>
+											<td class="bookauthor">How is?</td>
+											<td class="bookyear">2001</td>
+											<td class="bookisbn">123456789</td>											
+											<td class="requestbutton"><button>Request</button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div> 				
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			<!-- Footer, this should be the same across every page.  Consider pulling out into an include -->
+			<div id="footer">
+				<ul id="footernavigation">
+					<li id="privacy"><a href="/privacy">Privacy</a></li>
+					<li id="terms"><a href="/terms">Terms</a></li>
+					<li id="contact"><a href="/contact">Contact</a></li>
+					<li id="help"><a href="/help">Help</a></li>
+					<li id="ourstory"><a href="/ourstory">Our Story</a></li>
+				</ul>
+				<div id="copyrightstatement">
+						&copy; 2011 All Rights Reserved by BookEX
+				</div>
+			</div>
+			<!-- End Footer -->
+			
+		</div>
+		
+	</body>
+</html>
