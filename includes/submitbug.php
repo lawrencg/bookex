@@ -31,6 +31,7 @@
 		txt+= \"Previous Page: {$_SESSION['previouspage'][1]}\" + \"\\n\";
 		txt+= \"Date: ".date("F j, Y")."\" + \"\\n\";
 		txt+= \"Time: ".date("G:i:s \(T\)")."\" + \"\\n\";
+		txt+= \"User Domain: {$_SERVER['REMOTE_HOST']}\" + \"\\n\";
 		document.getElementById(\"display\").innerHTML=txt;
 		document.getElementById(\"data\").value=txt;
 		</script>";
