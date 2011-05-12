@@ -51,6 +51,17 @@
 	# ex input: "Tom L. Welling, Mark Weiss, "
 	# ex output: ("Welling Tom L.","Weiss Mark")
 	function splitauthors($param1){
+	
+		/*
+		 *  $string = " a b c d e f ";
+		 *  $string = implode($string, " ");
+		 *  $f = $string[count($string)];
+		 *  array_unset($string, count($string));
+		 *  foreach($string as $index=>$piece) {
+		 *  	if ($index < count($string)) $f[] = $piece;
+		 *  }
+		 */
+	
 		global $authors;
 		# Remove space after commas and before the next authors name.
 		$authors = preg_replace('/,\ /',',',$param1);
