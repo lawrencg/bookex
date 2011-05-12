@@ -42,12 +42,17 @@
 		<input type='submit' name='cancel' value='Cancel' style='margin-left:10px' /></form>";
 	}
 	function submitbug(){
-		$note = pg_escape_string($_POST['description']); 
-		$info = pg_escape_string($_POST['data']); 
-		$header = "This is a bug submission from BookEx.";
-		$message = $header . "\n\n--USER INPUT--\n" . $note . "\n\n--BROWSER INFO--\n" . $info;
-		exec("echo -e \"{$message}\" | mail -s \"BookEx Bug\" slcap@uw.edu");
-		#exec(echo {$message} | mail -s \"BookEx Bug\");
+		$note = htmlspecialchars($_POST['description']); 
+		$info = htmlspecialchars($_POST['data']); 
+		$system_message = "This is a bug submission from BookEx.";
+		$from = 'bookex@u.washington.edu';
+		$message = $system_message . "\n\n--USER INPUT--\n" . $note . "\n\n--BROWSER INFO--\n" . $info;
+		$subject = 'BookEx Bug Report';
+		$to = 'shanzha@washington.edu';
+		$headers = 'From: BookEx<' . $from . '>' . "\r\n" .
+		'Reply-To: BookEx<bookex@u.washington.edu>' . "\r\n" .
+		'X-Mailer: PHP/' . phpversion();		
+		mail($to,$subject,$message,$headers);
 		echo "<p>Thank you for your input. Your report has been submitted.</p>";
 		echo "<a href='dashboard.php'>Return to Dashboard</a>";
 	}
