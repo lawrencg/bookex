@@ -7,7 +7,7 @@
 	# Session tracking for the bug submission form. Needs to be before ANY HTML.
 	include 'session_track.php';
 	# Database connection parameters
-	include 'database_info.php';
+	require 'database_info.php';
 	
 	echo "<h1>Welcome to BookEx!</h1><br /><a href='dashboard.php'>Go to My Dashboard</a>";
 	
