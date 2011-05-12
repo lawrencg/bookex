@@ -17,7 +17,7 @@
 			name='description' style='vertical-align:text-top;' virtual /></textarea><br /><br />
 		<p><b>The following information will also be sent:</b></p>
 		<input type='hidden' id='data' name='data' />
-		<textarea cols='100' rows='10' id='display' 
+		<textarea cols='100' rows='12' id='display' 
 			name='display' style='vertical-align:text-top;' virtual disabled /></textarea><br /><br />";
 		$user = $_SERVER['REMOTE_USER'];
 		echo "<script type=\"text/javascript\">
