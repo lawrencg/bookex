@@ -1,6 +1,18 @@
 <?php 
-header("Location: dashboard.php");
-exit();
+
+	include 'includes/database_info.php';
+	
+	$dbconn = pg_connect($DB_CONNECT_STRING)
+	    or die('Could not connect: ' . pg_last_error());
+	# Get the current UW NetID from the server via pubcookie
+	$user = $_SERVER['REMOTE_USER'];
+	$result = pg_query("SELECT isabookexuser('" . $user . "')") or die('Query failed: ' . pg_last_error()); 
+	$userExists = pg_fetch_array($result);
+	pg_close($dbconn);
+	if ($userExists[0] == t) {
+		header("Location: dashboard.php");
+		exit();
+	}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
  "http://www.w3.org/TR/html4/strict.dtd" author and creator: Jessica Pardee>
