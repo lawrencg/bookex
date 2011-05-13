@@ -1,6 +1,6 @@
 <?php
 
-	echo "<p><form action='includes/searchResults.php' id='search' name='search' method='POST'>";
+	echo "<p><form action='searchResults.php' id='search' name='search' method='POST'>";
 	echo "<select name='searchDropdown'>";
 	echo "<option value='searchTitle'>Search by Book Title</option>";
 	echo "<option value='searchISBN'>Search by Book ISBN</option>";
