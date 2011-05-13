@@ -4,9 +4,9 @@
 		<title>BookEx Disagreement Redirect</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
         <meta name="author" content="BookEx" /> 
-        <meta http-equiv="REFRESH" content="0;url=https://bookex.info" />
+        <meta http-equiv="REFRESH" content="0;url=https://students.washington.edu/shanzha" />
 	</head>
 	<body>
-		<p><a href='https://bookex.info'>Returning to BookEx</a></p>
+		<p><a href='https://students.washington.edu/shanzha'>Returning to BookEx</a></p>
 	</body>
 </html>
