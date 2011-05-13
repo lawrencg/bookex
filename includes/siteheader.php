@@ -7,15 +7,13 @@
 		</div>
 		<div id="search">
 			<form id="searchbox" method="POST" Action="searchResults.php">
-				<select name="searchDropdown">
-					<option>Book-Title</option>
-					<option>Book-ISBN</option>
-					<option>Book-Author First Name</option>
-					<option>Book-Author Last Name</option>
-					<option>Person-UW NetID</option>
-					<option>Person-Email</option>
-					<option>Person-Student Last Name</option>
-					<option>Person-Student First Name</option>
+				<select name="searchDropdown">		
+					<option value='searchTitle'>Title</option>
+					<option value='searchISBN'>ISBN</option>
+					<option value='searchAuthor'>Author</option>
+					<option value='searchStudentName'>Real Name</option>
+					<option value='searchNetID'>UW NetID</option>
+					<option value='searchEmail'>Email</option>
 				</select>
 				<input type="text" name="searchTerm" size="40"/>
 				<input type="submit" name="searchButton" value="Search"/>
