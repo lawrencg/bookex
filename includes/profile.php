@@ -90,8 +90,6 @@
 		<input type='hidden' value='{$myMajor}' id='myMajor' name='myMajor' />
 		<b>Major: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myMajor . "' id='myMajor' name='myMajor' size='40' /><br />";
 		
-		pg_close($dbconn);
-		
 		echo "<input type='submit' name='saveID' value='Save Changes' />";
 		
 		}
@@ -136,7 +134,7 @@
 	
 	
 	
-	if(!isset($_GET['id'])){
+	if(!isset($_GET['id']) || !isset($_POST['']) || !isset($_GET[''])){
 		echo "No user choosen.";
 	} else {
 		$dbconn = pg_connect($DB_CONNECT_STRING)
@@ -405,9 +403,10 @@
 			getinfofromBookEx($user);
 			//filledProfile();	
 			
+			echo "<form action='' id='profile' name='profile' method='POST'>";			
 			//echo "<a href='editprofile.php'>-->Edit My Information</a>\n";
 			echo "<input type='submit' name='edit' value='Edit Information' />";
-			echo "<input type='submit' name='saveID' value='Save' />";	
+			//echo "<input type='submit' name='saveID' value='Save' />";	
 			
 			//if($_SERVER['REQUEST_METHOD'] == 'POST'){ 
 			//	if(isset($_POST['edit'])) {
@@ -415,14 +414,10 @@
 			//	}
 			//}
 			
-			if (pg_escape_string($_POST['edit'])){
-				echo "test";
+			if (pg_escape_string(isset($_POST['edit']))){
+				editProfile();
 			}
-			
-			if (pg_escape_string($_POST['saveID'])){
-				echo "save works";
-			}
-			
+			echo "</form>";
 			
 			//if (pg_escape_string($_POST['saveID'])){
 			//	savemyinfo();
@@ -433,7 +428,7 @@
 			
 			}
 				//pg_close($dbconn);
-					echo "</table>";	
+				echo "</table>";	
 		}
 		
 		
