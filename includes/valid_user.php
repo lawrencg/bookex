@@ -8,6 +8,7 @@
 	
 	$user = $_SERVER['REMOTE_USER'];
 	$dbconn = pg_connect($DB_CONNECT_STRING)
+		or die('Could not connect: ' . pg_last_error());
 	$result = pg_query("SELECT isabookexuser('{$user}'::varchar)") or die('Query failed: ' . pg_last_error()); 
 	$userExists = pg_fetch_array($result);
 	pg_close($dbconn);
