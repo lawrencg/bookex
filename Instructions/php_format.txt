@@ -1,0 +1,4 @@
+<?php
+
+## Must be first, or at least before ANY HTML is output.
+include 'session.php'
