@@ -54,7 +54,7 @@ case "searchNetID":
 	if (trim($searchTerm) == "") {
 		echo "You didn't enter a search term.";
 	} else {
-	$searchNetidSQL = "SELECT * FROM searchbyuwnetid('" . $searchTerm . "') AS results(numberOfBooks bigint, ownerName varchar, email varchar)";
+	$searchNetidSQL = "SELECT * FROM searchbyuwnetid('" . $searchTerm . "') AS results(numberOfBooks bigint, ownerName varchar, email varchar, userid varchar)";
 	$searchNetidSQLResult = pg_query($dbconn, $searchNetidSQL);
 	if (!$searchNetidSQLResult) {
 		die("Error in SQL query: " . pg_last_error());
@@ -65,7 +65,7 @@ case "searchNetID":
 	echo "<table border='1'>";
 	echo "<tr><th>Name<th>E-mail<th>Number of books</tr>";
 	while ($row = pg_fetch_array($searchNetidSQLResult)) {
-		echo "<tr><td>" . htmlspecialchars($row[1]) . "</td><td>" . htmlspecialchars($row[2]) . "</td><td>" . htmlspecialchars($row[0]) . "</td></tr>"; 
+		echo "<tr><td><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td>" . htmlspecialchars($row[2]) . "</td><td>" . htmlspecialchars($row[0]) . "</td></tr>"; 
 		}
 	} else {
 		echo "<i>Cannot find any people with the UW NetID <b>"	. $searchTerm . "</b>";
