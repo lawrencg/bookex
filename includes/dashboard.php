@@ -43,7 +43,6 @@
 		global $user, $errormessage;
 		$dbconn = pg_connect($DB_CONNECT_STRING)
 	    	or die('Could not connect: ' . pg_last_error());
-		
 		pg_query("SELECT addbookexuser('" . $user . "',null,null,null,null)")
 			or die('Query failed: ' . pg_last_error());
 		$result = pg_query("SELECT getbookexname('" . $user . "')") or die('Query failed: ' . pg_last_error()); 
