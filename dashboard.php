@@ -40,13 +40,13 @@
 	function register_user(){
 		global $user, $errormessage;
 		
-		$firstname = pg_escape_string($_POST['firstname']);
-		$lastname = pg_escape_string($_POST['lastname']);
-		$email = pg_escape_string($_POST['email']);
-		$major = pg_escape_string($_POST['major']);
+		$firstname = trim(pg_escape_string($_POST['firstname']));
+		$lastname = trim(pg_escape_string($_POST['lastname']));
+		$email = trim(pg_escape_string($_POST['email']));
+		$major = trim(pg_escape_string($_POST['major']));
 		
-		$dbconn = pg_connect($DB_CONNECT_STRING)
-	    	or die('Could not connect: ' . pg_last_error());
+		//$dbconn = pg_connect($DB_CONNECT_STRING)
+	    //	or die('Could not connect: ' . pg_last_error());
 		pg_query("SELECT addbookexuser('{$user}'::varchar,'{$firstname}'::varchar,
 			'{$lastname}'::varchar,'{$email}'::varchar,'{$major}'::varchar)") or die('Query failed: ' . pg_last_error());
 		$result = pg_query("SELECT getbookexname('{$user}')") or die('Query failed: ' . pg_last_error()); 
@@ -237,6 +237,7 @@
     # Process requests that come from this page.
     # This is majority of the borrow and loaning process. Initial requests are the only thing missing.
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+		
 		# The user accepeted a book request.
 		if(isset($_POST['accept'])){
 			pg_query("SELECT acceptbookrequest('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
@@ -275,7 +276,6 @@
 	# Display the things we want in the order we want them.
 	# All of these functions need a database connection.
 	if(!isset($_POST['dontregister'])){
-		echo $errormessage;
 		myrequests();
 		othersrequests();
 		deliveryconfirmations();
