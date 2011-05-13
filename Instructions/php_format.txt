@@ -1,6 +1,7 @@
 <?php
 
-// Must be first, or at least before ANY HTML is output.
+/*  Must be first, or at least before ANY HTML is output.
+ */ Current only used for bug submission.
 include 'includes/session.php';
 
 /*  Force non-registered users to register or leave
