@@ -5,6 +5,8 @@
 	    or die('Could not connect: ' . pg_last_error());
 	# Get the current UW NetID from the server via pubcookie
 	$user = $_SERVER['REMOTE_USER'];
+	if(isset($_GET['maint']))
+		$user = null;
 	$result = pg_query("SELECT isabookexuser('{$user}'::varchar)") or die('Query failed: ' . pg_last_error()); 
 	$userExists = pg_fetch_array($result);
 	pg_close($dbconn);
@@ -28,7 +30,8 @@
 		<div id="top">
 			<div id="header">
 				<div id="bookexlogo" class="frontpageonly">
-					BookEX
+					<!-- BookEX -->
+					<img src="images/bookex-logo.png" />
 				</div>
 				<!--<div class=""><h1>Agreement and Registration</h1></div>-->
 			</div>
