@@ -1,3 +1,4 @@
+<!-- SPLIT searchresults_0_header.php -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
  "http://www.w3.org/TR/html4/strict.dtd" author and creator: Jessica Pardee>
 <html>
@@ -9,6 +10,8 @@
 </head>
 <body>
 <div id="pagecontainer">
+<!-- SPLIT END searchresults_0_header.php -->
+<!-- SPLIT siteheader.php -->
 	<!-- Top Div, this is included in every page.  Should be pulled out into a header file, use PHP include feature so we don't repeat code -->
 	<div id="top">
 		<div id="header">
@@ -42,14 +45,17 @@
 		</div>
 	</div>	
 	<!-- End Top Div -->
-	
+<!-- SPLIT END siteheader.php -->	
+<!-- SPLIT searchresults_1_contentarea.php -->
 	<div id="page">
 		<div class="pageTitle">Search Results for "Introduction to JavaScript"</div>
 		<div id="notification" class="show hide" >Message is here</div>
 		<div id="maincontent">
 			<div id="searchresultsarea" class="contentarea">
-				<div id="booksearchresults">
+				<div id="searchresults">
 					<div class="pageSubTitle">Books Found</div>
+<!-- SPLIT END searchresults_1_contentarea.php -->
+<!-- NO SPLIT JUST STYLE IN PHP -->					
 					<table id="booksearchresultstable">
 						<thead>
 							<tr>
@@ -80,11 +86,14 @@
 							</tr>
 						</tbody>
 					</table>
+<!-- NO SPLIT JUST STYLE IN PHP -->	
+<!-- SPLIT searchresults_2_contentarea.php -->
 				</div> 				
 			</div>
 		</div>
 	</div>
-	
+<!-- SPLIT END serachresults_2_contentarea.php -->
+<!-- SPLIT sitefooter.php -->
 	<!-- Footer, this should be the same across every page.  Consider pulling out into an include -->
 	<div id="footer">
 		<ul id="footernavigation">
@@ -102,3 +111,4 @@
 	<!-- End Footer -->
 </body>
 </html>
+<!-- SPLIT END sitefooter.php -->
