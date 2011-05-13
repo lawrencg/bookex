@@ -19,7 +19,7 @@
  "http://www.w3.org/TR/html4/strict.dtd" author and creator: Jessica Pardee>
 <html>
 	<head>
-		<title>Agreement and Registration</title>
+		<title>BookEx User Agreement and Registration</title>
 		<!-- <link rel="stylesheet" href="main.css"/> -->
 		<link rel="stylesheet" href="styles/main.css"/>
 	
@@ -39,7 +39,7 @@
 		<!-- End Top Div -->
 		
 		<div id="page">
-			<div id="registrationtitle" class="pageTitle">BookEx User Agreement and Registration</div>
+			<div id="registrationtitle" class="pageTitle">Agreement and Registration</div>
 			<div id="maincontent">
 				<div class="contentarea centerDiv">
 					<div id="agreementinformation">
