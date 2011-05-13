@@ -10,7 +10,7 @@
 	$result = pg_query("SELECT isabookexuser('{$user}'::varchar)") or die('Query failed: ' . pg_last_error()); 
 	$userExists = pg_fetch_array($result);
 	if ($userExists[0] == f) {
-		header("Location: https://students.washington.edu/shanzha/register.php");
+		header("Location: https://students.washington.edu/shanzha/registration.php");
 		exit();
 	}
 ?>
