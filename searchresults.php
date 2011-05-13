@@ -12,7 +12,7 @@ echo "\t&nbsp;|&nbsp;<a href='mybooks.php'>My Books</a>\n";
 echo "\t&nbsp;|&nbsp;My Profile\n";
 echo "\t&nbsp;|&nbsp;<a href='https://weblogin.washington.edu/logout/'>Logout</a>\n";
 echo "</p>\n";
-include 'search.php';
+include 'includes/search.php';
 
 $searchTerm = $_POST['searchTerm'];
 $searchOption = $_POST['searchDropdown'];
@@ -44,7 +44,7 @@ case "searchTitle":
 	echo "<table border='1'>";
 	echo "<tr><th>Book Title<th>Author<th>ISBN-10<th>ISBN-13<th>Owner</tr>";
 	while ($row = pg_fetch_array($searchTitleSQLResult)) {
-		echo "<tr><td class="booktitle">" . htmlspecialchars($row[0]) . "</td><td>" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td>" . htmlspecialchars($row[3]) . "</td><td>" . htmlspecialchars($row[4]) . "</td><td>" . htmlspecialchars($row[5]) . " " . htmlspecialchars($row[6]) . "</td></tr>"; 
+		echo "<tr><td class='booktitle'>" . htmlspecialchars($row[0]) . "</td><td>" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td>" . htmlspecialchars($row[3]) . "</td><td>" . htmlspecialchars($row[4]) . "</td><td>" . htmlspecialchars($row[5]) . " " . htmlspecialchars($row[6]) . "</td></tr>"; 
 		}
 	} else {
 		echo "<i>Cannot find any books with the title <b>" . $searchTerm . "</b>";
@@ -96,6 +96,6 @@ case "searchISBN":
 	}
 break;
 }
-		
+include 'includes/searchresults_2_contentarea.php';		
 include 'includes/sitefooter.php';		
 ?>
