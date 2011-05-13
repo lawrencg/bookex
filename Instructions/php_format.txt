@@ -2,7 +2,7 @@
 
 	/*  Must be first, or at least before ANY HTML is output.
 	 */ Current only used for bug submission.
-	include 'includes/session.php';
+	include 'includes/session_track.php';
 	
 	/*  Force non-registered users to register or leave
 	 *  Pages would break if a UW NetID accessed a page directly
@@ -20,3 +20,30 @@
 
 ?>
 
+SAMPLE SITE LAYOUT
+
+student_html
+	index.php
+	addbook.php
+	dashboard.php
+	profile.php
+	styles
+		main.css
+		home.css
+	includes
+		session_track.php
+		request_process.php
+		menu.php
+		database_info.php
+		valid_user.php
+		addbook_0.php
+		addbook_1.php
+		addbook_2.php
+		dashboard_0.php
+	images
+		bookex-logo.png
+		bookex-logo-small.png
+		profile-pics
+			1304966919.jpg
+			thumbs
+				1304966919.jpg
