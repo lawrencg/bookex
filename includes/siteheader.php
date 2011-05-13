@@ -25,7 +25,7 @@
 			<ul id="topnavigationlist">
 				<li id="dashboard"><a href="dashboard.php">Dashboard</a></li>
 				<li id="mybooks"><a href="mybooks.php">My Books</a></li>
-				<li id="myprofile"><a href="profile.php">Profile</a></li>
+				<li id="myprofile"><a href="profile.php">My Profile</a></li>
 				<li id="logout"><a href="logout.php">Logout</a></li>
 			</ul>
 		</div>
