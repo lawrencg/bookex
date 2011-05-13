@@ -8,9 +8,9 @@
 	include 'includes/session_track.php';
 	# Database connection parameters
 	require 'includes/database_info.php';
-	require 'includes/menu.php';
-	include 'includes/search.php';
-	include 'includes/greeting.php';
+	#require 'includes/menu.php';
+	#include 'includes/search.php';
+	#include 'includes/greeting.php';
 	
 	# GLOBAL VARIABLES
 	# BookEx book id
