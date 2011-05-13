@@ -41,11 +41,17 @@
 	# All buttons submit back to this page.
 	function register_user(){
 		global $user, $errormessage;
+		
+		$firstname = pg_escape_string($_POST['firstname']);
+		$lastname = pg_escape_string($_POST['lastname']);
+		$email = pg_escape_string($_POST['email']);
+		$major = pg_escape_string($_POST['major']);
+		
 		$dbconn = pg_connect($DB_CONNECT_STRING)
 	    	or die('Could not connect: ' . pg_last_error());
-		pg_query("SELECT addbookexuser('" . $user . "',null,null,null,null)")
-			or die('Query failed: ' . pg_last_error());
-		$result = pg_query("SELECT getbookexname('" . $user . "')") or die('Query failed: ' . pg_last_error()); 
+		pg_query("SELECT addbookexuser('{$user}'::varchar,'{$firstname}'::varchar,
+			'{$lastname}'::varchar,'{$email}'::varchar,'{$major}'::varchar)") or die('Query failed: ' . pg_last_error());
+		$result = pg_query("SELECT getbookexname('{$user}')") or die('Query failed: ' . pg_last_error()); 
 		$bookexname = pg_fetch_array($result);
 			$errormessage = "Thank you, {$bookexname[0]}. You have just been registered.";
 	
