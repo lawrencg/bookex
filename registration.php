@@ -1,12 +1,11 @@
 <?php 
-
 	include 'includes/database_info.php';
 	
 	$dbconn = pg_connect($DB_CONNECT_STRING)
 	    or die('Could not connect: ' . pg_last_error());
 	# Get the current UW NetID from the server via pubcookie
 	$user = $_SERVER['REMOTE_USER'];
-	$result = pg_query("SELECT isabookexuser('" . $user . "')") or die('Query failed: ' . pg_last_error()); 
+	$result = pg_query("SELECT isabookexuser('{$user}'::varchar)") or die('Query failed: ' . pg_last_error()); 
 	$userExists = pg_fetch_array($result);
 	pg_close($dbconn);
 	if ($userExists[0] == t) {
