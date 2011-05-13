@@ -8,7 +8,10 @@
 	include 'includes/session_track.php';
 	# Database connection parameters
 	require 'includes/database_info.php';
-
+	# Force non-registered users to register or leave
+	# Pages would break if a UW NetID accessed a page directly
+	# without being a user
+	require 'includes/valid_user.php';
 	
 	$user = $_SERVER['REMOTE_USER'];
 	$errormessage;
