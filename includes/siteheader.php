@@ -2,7 +2,8 @@
 	<div id="top">
 		<div id="header">
 			<div id="bookexlogo">
-				BookEX
+				<!--  BookEX-->
+				<img src="images/bookex-logo-small.png" />
 			</div>
 		</div>
 		<div id="search">
