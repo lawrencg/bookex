@@ -13,6 +13,7 @@
 	include 'greeting.php';
 	
 	$user = $_SERVER['REMOTE_USER'];
+	$errormessage;
 	
 	function comments(){
 	#	.button-container form,
@@ -38,6 +39,21 @@
 	}
 	# Accepts a BookEx book id, input button name, and button label to create different types of buttons.
 	# All buttons submit back to this page.
+	function register_user(){
+		global $user, $errormessage;
+		$dbconn = pg_connect($DB_CONNECT_STRING)
+	    	or die('Could not connect: ' . pg_last_error());
+		
+		pg_query("SELECT addbookexuser('" . $user . "',null,null,null,null)")
+			or die('Query failed: ' . pg_last_error());
+		$result = pg_query("SELECT getbookexname('" . $user . "')") or die('Query failed: ' . pg_last_error()); 
+		$bookexname = pg_fetch_array($result);
+			$errormessage = "Thank you, {$bookexname[0]}. You have just been registered.";
+	
+	}
+	function leave_bookex(){
+		include 'includes/denyregistration.php';
+	}
 	function createbutton($name, $label, $bookid){
 		echo "<form action='' id='form_98' name='form_98' method='POST'>";
 		echo "<input type='hidden' value='{$bookid}' id='transid' name='transid' />";
@@ -221,47 +237,52 @@
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		# The user accepeted a book request.
 		if(isset($_POST['accept'])){
-				pg_query("SELECT acceptbookrequest('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
-					or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT acceptbookrequest('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
+				or die('Query failed: ' . pg_last_error()); 
 		# The owner has delivered the book to the requestor			
 		} else if (isset($_POST['delivered'])){
-				pg_query("SELECT deliverbook('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
-					or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT deliverbook('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
+				or die('Query failed: ' . pg_last_error()); 
 		# The requestor now has the book			
 		} else if (isset($_POST['confirmdelivery'])){
-				pg_query("SELECT confirmdelivery('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
-					or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT confirmdelivery('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
+				or die('Query failed: ' . pg_last_error()); 
 		# The user returned the book to the owner
 		} else if (isset($_POST['return'])){
-				pg_query("SELECT returnbooktoowner('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
-					or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT returnbooktoowner('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
+				or die('Query failed: ' . pg_last_error()); 
 		# The user confirmed that the book was returned to them.				
 		} else if (isset($_POST['confirmreturnedbook'])){
-				pg_query("SELECT confirmreturnedbook('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
-					or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT confirmreturnedbook('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
+				or die('Query failed: ' . pg_last_error()); 
 		# The user canceled a book request.			
 		} else if (isset($_POST['cancelrequest'])){
-				pg_query("SELECT cancelrequest('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
-					or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT cancelrequest('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
+				or die('Query failed: ' . pg_last_error()); 
 		# The user denied a book request.			
 		} else if (isset($_POST['deny'])){
-				pg_query("SELECT denybookrequest('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
-					or die('Query failed: ' . pg_last_error()); 
-		} else {
+			pg_query("SELECT denybookrequest('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
+				or die('Query failed: ' . pg_last_error()); 
+		} else if (isset($_POST['register'])){
+			register_user();
+		} else if (isset($_POST['dontregister'])){
+			leave_bookex();
 		}
 	}
 	# Display the things we want in the order we want them.
-	# All of these functions need a database connection.	
-	myrequests();
-	othersrequests();
-	deliveryconfirmations();
-	receiptconfirmations();
-	returnconfirmations();
-	# System notifications are always displayed. Might be the first if there is no activity for the current user.
-	notifications();
-	# From user testing, this is where we should have the book that people are going to return when they are done.
-	# mybooks was not intuitive
-	imborrowing();
-	# Close the database
+	# All of these functions need a database connection.
+	if(!isset($_POST['dontregister'])){
+		myrequests();
+		othersrequests();
+		deliveryconfirmations();
+		receiptconfirmations();
+		returnconfirmations();
+		# System notifications are always displayed. Might be the first if there is no activity for the current user.
+		notifications();
+		# From user testing, this is where we should have the book that people are going to return when they are done.
+		# mybooks was not intuitive
+		imborrowing();
+		# Close the database
+	}
 	pg_close($dbconn);
 ?>
