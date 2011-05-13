@@ -8,7 +8,7 @@
 	include 'includes/session_track.php';
 	# Database connection parameters
 	require 'includes/database_info.php';
-	include 'inlcudes/siteheader.php';
+	include 'includes/siteheader.php';
 	
 	$user = $_SERVER['REMOTE_USER'];
 	$errormessage;
