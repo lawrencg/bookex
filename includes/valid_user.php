@@ -12,14 +12,13 @@
 	$userExists = pg_fetch_array($result);
 	pg_close($dbconn);
 	if ($userExists[0] == f) {
-		echo "<p>Thank you, {$user}. You have just been registered.</p>\n";
 		echo'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">';
 		echo'<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">';
 		echo'	<head>';
-		echo'		<title>BookEx Disagreement Redirect</title>';
+		echo'		<title>BookEx Unathorized Access</title>';
 		echo'		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />';
 		echo'        <meta name="author" content="BookEx" />';
-		echo'        <meta http-equiv="REFRESH" content="0;url=https://myuw.washington.edu" />';
+		echo'        <meta http-equiv="REFRESH" content="0;url=https://bookex.info/register.php" />';
 		echo'	</head>';
 		echo'	<body>';
 		echo'		<p><a href="https://bookex.info/register.php">You must be a registered BookEx user to view this page.</a></p>';
