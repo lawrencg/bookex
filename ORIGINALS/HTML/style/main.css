@@ -92,13 +92,14 @@
 	#mybooklist .pageSubTitle {
 		margin-left: 5px;
 	}
-	#peoplesearchresults .pageSubTitle {
+	#searchresults .pageSubTitle {
 		margin-left: 5px;
 	}	
+	/*
 	#booksearchresults .pageSubTitle {
 		margin-left: 5px;
 	}
-
+	*/
 
 /*A space to notify , give feedback to user what they just did, eg. have just deleted a book */	
 #notification{
