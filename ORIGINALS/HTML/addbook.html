@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd" author and creator: Jessica Pardee>
+<html>
+<head>
+<title>Add Book</title>
+<link rel="stylesheet" href="style/main.css"/>
+</head>
+<body>
+<div id="pagecontainer">
+	<!-- Top Div, this is included in every page.  Should be pulled out into a header file, use PHP include feature so we don't repeat code -->
+	<div id="top">
+		<div id="header">
+			<div id="bookexlogo">
+				BookEX
+			</div>
+		</div>
+		<div id="search">
+			<form id="searchbox" method="Get" Action="/search">
+				<select name="SearchType">
+					<option>Book-Title</option>
+					<option>Book-ISBN</option>
+					<option>Book-Author First Name</option>
+					<option>Book-Author Last Name</option>
+					<option>Person-UW NetID</option>
+					<option>Person-Email</option>
+					<option>Person-Student Last Name</option>
+					<option>Person-Student First Name</option>
+				</select>
+				<input type="text" name="question" size="40"/>
+				<input type="submit" value="Search"/>
+			</form>	
+		</div>
+		<div id="navigation">
+			<ul id="topnavigationlist">
+				<li id="dashboard"><a href="/dashboard">Dashboard</a></li>
+				<li id="mybooks"><a href="/mybooks">My Books</a></li>
+				<li id="myprofile"><a href="/myprofile">My Profile</a></li>
+				<li id="logout"><a href="/logout">Logout</a></li>
+			</ul>
+		</div>
+	</div>	
+	<!-- End Top Div -->
+	
+	<div id="page">
+		<div class="pageTitle">Add Book</div>
+		<div id="notification" class="show hide" >Message is here</div>
+		<div id="maincontent">
+			<div id="" class="contentarea">
+				<div class="leftContent">
+					<div id="bookImageContent">
+						<div id="bookImagePhoto"></div>
+						<button class="smallbtn">Upload Photo</button>
+						<button class="actionButton">Add</button>
+					</div>
+				</div>
+				
+				<div class="rightContent contentarea">
+					<form id="addBookForm">
+						<div><label>Title:</label><input type="text" name="Title" /></div>
+						<div><label>Author First Name:</label><input type="text" name="FirstName" /></div>
+						<div><label>Author Last Name:</label><input type="text" name="Lastname" /></div>
+						<div><label>Year:</label><input type="text" name="Year" /></div>
+						<div><label>ISBN:</label><input type="text" name="ISBN" /></div>
+						<div><label>Class:</label><input type="text" name="Class" /></div>
+						<div><label>Condition:</label><input type="text" name="Condition" /></div>
+						<div><label>Description:</label><textarea type="text" name="Description"></textarea></div>
+						<div><label>Available for Loan:</label><input type="checkbox" name="Available" value="1"/></div>
+					</form>
+				</div>
+				
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Footer, this should be the same across every page.  Consider pulling out into an include -->
+	<div id="footer">
+		<ul id="footernavigation">
+			<li id="privacy"><a href="/privacy">Privacy</a></li>
+			<li id="terms"><a href="/terms">Terms</a></li>
+			<li id="contact"><a href="/contact">Contact</a></li>
+			<li id="help"><a href="/help">Help</a></li>
+			<li id="ourstory"><a href="/ourstory">Our Story</a></li>
+		</ul>
+		<div id="copyrightstatement">
+				&copy; 2011 All Rights Reserved by BookEX
+		</div>
+	</div>
+</div>	
+	<!-- End Footer -->
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My Book Detail Edit</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>		
+		<link rel="stylesheet" href="style/main.css"/>		
+		<script src="jquery.js"></script>
+		<script src="bookex.js">
+			
+		</script>		
+	</head>
+	<body>
+	<div id="pagecontainer">	
+		<!-- Top Div-->
+			<div id="top">
+				<div id="header">
+					<div id="bookexlogo">
+						BookEX
+					</div>
+				</div>
+				<div id="search">
+					<form id="searchbox" method="Get" Action="/search">
+						<select name="SearchType">
+							<option>Book-Title</option>
+							<option>Book-ISBN</option>
+							<option>Book-Author First Name</option>
+							<option>Book-Author Last Name</option>
+							<option>Person-UW NetID</option>
+							<option>Person-Email</option>
+							<option>Person-Student Last Name</option>
+							<option>Person-Student First Name</option>
+						</select>
+						<input type="text" name="question" size="40"/>
+						<input type="submit" value="Search"/>
+					</form>	
+				</div>
+				<div id="navigation">
+					<ul id="topnavigationlist">
+						<li id="dashboard"><a href="/dashboard">Dashboard</a></li>
+						<li id="mybooks"><a href="/mybooks">My Books</a></li>
+						<li id="myprofile"><a href="/myprofile">My Profile</a></li>
+						<li id="logout"><a href="/logout">Logout</a></li>
+					</ul>
+				</div>
+			</div>	
+		<!-- top div -->
+			<div id="page">
+				<div class="pageTitle">My Book Details Edit</div>
+				<div class="pageSubTitle">Book Title here</div>
+				<div id="notification" class="show hide" >Message is here</div>				
+				<div id="maincontent">
+					<div id="" class="contentarea">
+						<div class="leftContent">
+							<div id="bookImageContent">
+								<div id="bookImagePhoto"></div>
+								<button class="smallbtn">Upload Photo</button>
+								<button class="actionButton">Save</button>
+							</div>
+						</div>
+						
+						<div class="rightContent contentarea">
+							<form id="addBookForm">
+								<div><label>Title:</label><div><input type="text" value="Introduction to Public Speaking" /></div></div>
+								<div><label>Author First Name:</label><div><input type="text" value="Larry" /></div></div>
+								<div><label>Author Last Name:</label><div><input type="text" value="Isengerg" /></div></div>
+								<div><label>Year:</label><div><input type="text" value="2011" /></div></div>
+								<div><label>ISBN:</label><div><input type="text" value="978-1449952172" /></div></div>
+								<div><label>Course:</label><div><input type="text" value="COM220" /></div></div>
+								<div><label>Condition:</label><div><input type="text" value="Used" /></div></div>
+								<div><label>Description:</label><div class="bookDescription"><input type="text" value="This book introduces how to declear different kind of social API. There are many different type of function. It intorduces the facebook, twitter, and google API."/></div></div>
+								<div><label>Owner:</label><div><a href="">Link to owner's profie</a></div></div>
+							</form>
+						</div>
+						
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+		<!-- Footer, this should be the same across every page.  Consider pulling out into an include -->
+		<div id="footer">
+			<ul id="footernavigation">
+				<li id="privacy"><a href="/privacy">Privacy</a></li>
+				<li id="terms"><a href="/terms">Terms</a></li>
+				<li id="contact"><a href="/contact">Contact</a></li>
+				<li id="help"><a href="/help">Help</a></li>
+				<li id="ourstory"><a href="/ourstory">Our Story</a></li>
+			</ul>
+			<div id="copyrightstatement">
+					&copy; 2011 All Rights Reserved by BookEX
+			</div>
+		</div>	
+		<!-- End Footer -->
+		
+	</div>		
+	</body>
+</html>
