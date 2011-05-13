@@ -10,9 +10,9 @@
 	echo "<input type='submit' name='searchID' value='Search'/>";	
 	echo "</form>";
 
-	if (pg_escape_string($_POST['searchID'])){
-		
-	}
+	//if (pg_escape_string($_POST['searchID'])){
+	//	
+	//}
 	
 	
 	
