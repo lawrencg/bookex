@@ -1,3 +1,4 @@
+===========================================================
 --SAMPLE PHP--
 <?php
 
@@ -20,31 +21,71 @@
 	require 'includes/menu.php';
 	
 ?>
---SAMPLE SITE LAYOUT--
+===========================================================
+--SAMPLE ORGINAL HTML FILES--
 
-student_html
-	index.php
-	addbook.php
-	dashboard.php
-	styles
-		main.css
-		home.css
-	includes
-		session_track.php
-		menu.php
-		database_info.php
-		valid_user.php
-		addbook_0.php
-		addbook_1.php
-		addbook_2.php
-	images
-		bookex-logo.png
-		profile-pics
-			1304966919.jpg
-			thumbs
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	 "http://www.w3.org/TR/html4/strict.dtd" author and creator: Jessica Pardee>
+	 <!-- SPLIT addbook_0.php -->
+	<html>
+	[...]
+			<div id="search">
+	<!-- SPLIT END addbook_0.php -->
+				<form id="searchbox" method="Get" Action="/search">
+	[...]
+		</div>	
+		<!-- End Top Div -->
+	<!-- SPLIT addbook_1.php -->	
+		<div id="page">
+	[...]
+					</div>
+	<!-- SPLIT END addbook_1.php -->
+	<!-- NO-SPLIT - JUST STYLE -->	
+					<div class="rightContent contentarea">
+						<form id="addBookForm">
+							<div><label>Title:</label><input type="text" name="Title" /></div>
+							<div><label>Author First Name:</label><input type="text" name="FirstName" /></div>
+							<div><label>Author Last Name:</label><input type="text" name="Lastname" /></div>
+							<div><label>Year:</label><input type="text" name="Year" /></div>
+							<div><label>ISBN:</label><input type="text" name="ISBN" /></div>
+							<div><label>Class:</label><input type="text" name="Class" /></div>
+							<div><label>Condition:</label><input type="text" name="Condition" /></div>
+							<div><label>Description:</label><textarea type="text" name="Description"></textarea></div>
+							<div><label>Available for Loan:</label><input type="checkbox" name="Available" value="1"/></div>
+						</form>
+					</div>
+	<!-- NO-SPLIT END - JUST STYLE -->
+	<!-- SPLIT addbook_2.php -->			
+					<div class="clear"></div>
+	[...]
+	</html>
+	<!-- SPLIT END addbook_2.php -->
+===========================================================
+--SAMPLE SITE LAYOUT--
+	
+	student_html
+		index.php
+		addbook.php
+		dashboard.php
+		styles
+			main.css
+			home.css
+		includes
+			session_track.php
+			menu.php
+			database_info.php
+			valid_user.php
+			addbook_0.php
+			addbook_1.php
+			addbook_2.php
+		images
+			bookex-logo.png
+			profile-pics
 				1304966919.jpg
-	ORGINALS
-		HTML
-			addbook.html
-		PHP
-			addbook.php
+				thumbs
+					1304966919.jpg
+		ORGINALS
+			HTML
+				addbook.html
+			PHP
+				addbook.php
