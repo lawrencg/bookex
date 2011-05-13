@@ -8,7 +8,7 @@
 	include 'includes/session_track.php';
 	# Database connection parameters
 	require 'includes/database_info.php';
-	include 'includes/siteheader.php';
+
 	
 	$user = $_SERVER['REMOTE_USER'];
 	$errormessage;
@@ -272,6 +272,7 @@
 			leave_bookex();
 		}
 	}
+	include 'includes/siteheader.php';
 	# Display the things we want in the order we want them.
 	# All of these functions need a database connection.
 	if(!isset($_POST['dontregister'])){
