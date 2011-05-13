@@ -158,7 +158,7 @@
 			echo '<img src="profile-pics/thumbs/'.$currentPictureURL.'"><br/>';
 			
 			
-			$myinfo = "SELECT * FROM getmyinfo('" . $currentId . "') AS results(id varchar, first_name varchar, last_name varchar, email varchar, major integer, pic varchar)";
+			$myinfo = "SELECT * FROM getmyinfo('" . $currentId . "') AS results(id varchar, first_name varchar, last_name varchar, email varchar, major varchar)";
 			$myinfoResult = pg_query($dbconn, $myinfo); 			
 			if (!$myinfoResult) {
 				die("Error in SQL query: " . pg_last_error());
