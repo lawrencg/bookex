@@ -13,7 +13,7 @@
 	include 'greeting.php';
 
 	$DATABASE = "larry_test";
-	$DB_USER = "shanzha";
+	$DB_USER = "shanzha"; 
 	$DB_PASSWORD = "lawrence";
 	$DB_CONNECT_STRING = "host=vergil.u.washington.edu port=10450 dbname=" . $DATABASE . " user=" . $DB_USER . " password=" . $DB_PASSWORD;
 	
@@ -407,7 +407,7 @@
 			
 			//echo "<a href='editprofile.php'>-->Edit My Information</a>\n";
 			echo "<input type='submit' name='edit' value='Edit Information' />";
-			echo "<input type='submit' name='saveID' value='Save' style='margin-left:100px' />";	
+			echo "<input type='submit' name='saveID' value='Save' />";	
 			
 			//if($_SERVER['REQUEST_METHOD'] == 'POST'){ 
 			//	if(isset($_POST['edit'])) {
