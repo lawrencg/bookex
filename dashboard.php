@@ -52,7 +52,6 @@
 		$result = pg_query("SELECT getbookexname('{$user}')") or die('Query failed: ' . pg_last_error()); 
 		$bookexname = pg_fetch_array($result);
 			$errormessage = "Thank you, {$bookexname[0]}. You have just been registered.";
-	
 	}
 	function leave_bookex(){
 		include 'includes/denyregistration.php';
@@ -276,6 +275,7 @@
 	# Display the things we want in the order we want them.
 	# All of these functions need a database connection.
 	if(!isset($_POST['dontregister'])){
+		echo $errormessage;
 		myrequests();
 		othersrequests();
 		deliveryconfirmations();
