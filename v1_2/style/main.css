@@ -1,3 +1,4 @@
+
 #pagecontainer{
 	width: 850px;
 	margin-left: auto;
@@ -6,13 +7,6 @@
 }
 
 
-#bookexlogo {
-	font-size: 72px;	
-}
-
-#bookexlogo.frontpageonly {
-	text-align:center;
-}
 
 #registrationtitle{
 	text-align:center;
@@ -29,11 +23,6 @@
 	padding-right: .3em;
 }
 
-#navigation {
-	float: right;
-	margin-right: 0px;
-	margin-bottom: 5px;
-}
 
 #frontpagetopnavigationlist {
 	float: right;
@@ -41,29 +30,98 @@
 	margin-bottom: 25px;
 }
 
-#search {
-	float: left;
-	margin-left: 0px;
-	margin-bottom: 10px;
-	
+
+#header {
+	width: 300px;
+	float:left;
 }
 
+#bookexlogo {
+	font-size: 72px;
+	width: 300px;
+	float: left;
+}
+
+#bookexlogo.frontpageonly {
+	text-align:center;
+	width:848px;
+}
+
+
+#search {
+	float: right;
+	margin-left: 0px;
+	margin-top: 15px;	
+	margin-bottom: 15px;
+}
+	select {
+		width: 100px;
+	}
+#navigation {
+	float: right;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+/*Page start*/
 #page {
 	clear: both;
 	margin: 10px;
-	border: solid 1px black;	
+	border: solid 1px lightgray;	
 	background: #eee;
 	width: 848px;
 	margin-left: auto;
 	margin-right: auto;
 	min-height: 700px;
+	padding: 0px 0px 0px;
+}
+	.pageTitle {
+		font-size: 30px;
+		margin: 10px;
+		margin-left: 20px;
+	}
+
+	.pageSubTitle {
+		font-size: 20px;
+		margin: 10px;
+		margin-left: 20px;
+	}
+
+/*Page end*/
 	
+	
+	#mybooklist .pageSubTitle {
+		margin-left: 5px;
+	}
+	#peoplesearchresults .pageSubTitle {
+		margin-left: 5px;
+	}	
+	#booksearchresults .pageSubTitle {
+		margin-left: 5px;
+	}
+
+
+/*A space to notify , give feedback to user what they just did, eg. have just deleted a book */	
+#notification{
+	width: 800px;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 5px;
+	border: 0px gray solid;
+	background-color: lightyellow;
+	display: none;	
+}
+	#notification.show{
+		display: inline;
+	}
+	#notification.hide{
+		display: none;
+}
+/* Dashbaord message header */
+.header {
+	font-size: 20px;
+	margin:10px;
 }
 
-.header {
-	font-family: 'Arial';
-    font-size: 16px;
-}
 
 #footer {
 	margin-left: auto;
@@ -89,17 +147,33 @@
 	margin-right: auto;
 	text-align: center;
 }
+/*
+#confirmationmessagearea.contentarea{
+	overflow: hidden;
 	
+}	
+#notificationmessagearea.contentarea {
+	overflow: hidden;	
+}
+
+#booksborrowedlist.contentarea {
+	overflow: hidden;	
+}
+#searchresultsarea.contentarea {
+	overflow:hidden;
+}
+*/
 .contentarea  {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	border: solid 1px black;
+	border: solid 1px gray;
 	margin: 10px;
 	padding: 5px;
 	background: white;
 	width: 800px;
 	margin-right: auto;
 	margin-left: auto;
+	/*overflow: hidden;*/
 	
 }
 
@@ -128,7 +202,7 @@
 
 /* These are the button columns, they are all the same width */
 .yourrequestsbutton , .othersrequestsacceptbutton, .othersrequestsdenybutton, 
-.bookreturnbutton, .receiptconfirmationsbutton, .deliveryconfirmationsbutton {
+.bookreturnbutton, .receiptconfirmationsbutton, .deliveryconfirmationsbutton , .returnconfirmationsbuttons{
 	width: 100px;
 	text-align: center;
 }
@@ -140,9 +214,10 @@
 
 .rightContent {
 	float: left;
-	padding: 10px;
+	padding: 15px;
 	width: 545px;
-	
+	border: 0px solid black;
+	background-color: #eee;
 }
 
 .clear {
@@ -155,10 +230,11 @@
 }
 
 #bookImagePhoto {
-	margin-left: 25px;
+	margin-left: 25px;	
 	width: 130px;
 	height: 180px;
-	border: 1px solid black;
+	border: 1px solid gray;
+	
 }
 
 button {
@@ -196,26 +272,17 @@ button {
 }
 
 #addBookForm input[type='text'] {
-	width: 25em;
+	width: 28em;
 }
 
 #addBookForm textarea {
-	width: 40em;
+	width: 41em;
 	height: 6em;
 	
 }
 
 
 
-.pageTitle {
-	font-size: 36px;
-	margin: 10px;
-}
-
-.pageSubTitle {
-	font-size: 24px;
-	margin: 10px;
-}
 
 .bookDescription {
 	max-width: 500px;
@@ -294,3 +361,8 @@ button {
 #agreementbuttons input[type='submit'] {
 	margin: 15px;
 }
+
+
+
+
+

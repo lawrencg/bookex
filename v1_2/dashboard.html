@@ -16,14 +16,12 @@
 				<div id="search">
 					<form id="searchbox" onsubmit="return false;">
 						<select>
-							<option>Book-Title</option>
-							<option>Book-ISBN</option>
-							<option>Book-Author First Name</option>
-							<option>Book-Author Last Name</option>
-							<option>Person-UW NetID</option>
-							<option>Person-Email</option>
-							<option>Person-Student Last Name</option>
-							<option>Person-Student First Name</option>
+							<option>Title</option>
+							<option>ISBN</option>
+							<option>Author</option>							
+							<option>User Name</option>	
+							<option>UW NetID</option>
+							<option>Email</option>													
 						</select>
 						<input type="text" name="question" size="40"/>
 						<input type="submit" value="Search"/>
@@ -40,10 +38,10 @@
 			</div>
 		<div id="page">
 			<div id="maincontent">
-				<div id="profilepic">
-					
-				</div>
+				<br />
+				<div id="notification" class="show hide" >Message is here</div>
 				<div id="confirmationmessagearea" class="contentarea">
+			
 						<div id="yourrequests">
 							<p class="header">Your Requests</p>
 								<table id="yourrequeststable">
@@ -75,7 +73,7 @@
 									<tr>
 										<td class="deliveryconfirmationsmessage">Have you received "JavaScript and PHP" from Amy?</td>
 										<td class="deliveryconfirmationsbutton">
-											<button>Received</button>
+											<button>Delivered</button>
 										</td>
 									</tr>
 								</table>
@@ -88,7 +86,7 @@
 											Has Joe returned your "American History" book?
 										</td>
 										<td class="receiptconfirmationsbutton">
-											<button>Returned</button>
+											<button>Received</button>
 										</td>
 									</tr>
 								</table>
@@ -97,8 +95,10 @@
 							<p class="header">Return Confirmations</p>
 								<table id="returnconfirmationstable">
 									<tr>
-										<td class="returnconfirmationsmessage"></td>
-										<td class="returnconfirmationsbuttons"></td>
+										<td class="returnconfirmationsmessage">Hellow</td>
+										<td class="returnconfirmationsbuttons">
+											<button>Returned</button>
+										</td>
 									</tr>
 								</table>
 						</div>
@@ -109,6 +109,11 @@
 								<table id="notificationstable">
 									<tr>
 										<td class="notificationsmessage">Your request for "Introduction to JavaScript Programming" has been accepted by Alex. Contact the owner for delivery details.</td>
+										
+									</tr>
+									<tr>
+										<td class="notificationsmessage">Your request for "Introduction to JavaScript Programming" has been accepted by Alex. Contact the owner for delivery details.</td>
+										
 									</tr>
 								</table>
 					</div>
@@ -132,9 +137,18 @@
 									<button>Return</button>
 								</td>
 							</tr>
+							<tr>
+								<td class="booktitle">Introduction to JavaScript Programming</td>
+								<td class="booklender">Alex John</td>
+								<td class="bookduedate">June 23, 2011</td>
+								<td class="bookreturnbutton">
+									<button>Return</button>
+								</td>
+							</tr>
 						</table>
 				</div>
 			</div>
+			<br />
 		</div>
 	
 		<div id="footer">
