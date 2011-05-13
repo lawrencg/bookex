@@ -6,7 +6,7 @@
 			</div>
 		</div>
 		<div id="search">
-			<form id="searchbox" method="POST" Action="includes/searchResults.php">
+			<form id="searchbox" method="POST" Action="searchresults.php">
 				<select name="searchDropdown">		
 					<option value='searchTitle'>Title</option>
 					<option value='searchISBN'>ISBN</option>
