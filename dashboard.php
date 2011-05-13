@@ -48,7 +48,7 @@
 		if($firstname == '')
 			$firstname = null;
 		if($lastname == '')
-			last = null;
+			$lastname = null;
 		if($email == '')
 			$email = null;
 		if($major == '')
