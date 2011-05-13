@@ -39,28 +39,35 @@
 	# All buttons submit back to this page.
 	function register_user(){
 		global $user, $errormessage;
+
+		# Get the current UW NetID from the server via pubcookie
+		$user = $_SERVER['REMOTE_USER'];
+		$result = pg_query("SELECT isabookexuser('{$user}'::varchar)") or die('Query failed: ' . pg_last_error()); 
+		$userExists = pg_fetch_array($result);
+		if ($userExists[0] == f) {
+			$firstname = trim(pg_escape_string($_POST['firstname']));
+			$lastname = trim(pg_escape_string($_POST['lastname']));
+			$email = trim(pg_escape_string($_POST['email']));
+			$major = trim(pg_escape_string($_POST['major']));
+			
+			if($firstname == '')
+				$firstname = ' ';
+			if($lastname == '')
+				$lastname = ' ';
+			if($email == '')
+				$email = ' ';
+			if($major == '')
+				$major = ' ';
+			
+			//$dbconn = pg_connect($DB_CONNECT_STRING)
+		    //	or die('Could not connect: ' . pg_last_error());
+			pg_query("SELECT addbookexuser('{$user}'::varchar,'{$firstname}'::varchar,
+				'{$lastname}'::varchar,'{$email}'::varchar,'{$major}'::varchar)") or die('Query failed: ' . pg_last_error());
+			$result = pg_query("SELECT getbookexname('{$user}')") or die('Query failed: ' . pg_last_error()); 
+			$bookexname = pg_fetch_array($result);
+				$errormessage = "Thank you, {$bookexname[0]}. You have just been registered.";
+		}
 		
-		$firstname = trim(pg_escape_string($_POST['firstname']));
-		$lastname = trim(pg_escape_string($_POST['lastname']));
-		$email = trim(pg_escape_string($_POST['email']));
-		$major = trim(pg_escape_string($_POST['major']));
-		
-		if($firstname == '')
-			$firstname = ' ';
-		if($lastname == '')
-			$lastname = ' ';
-		if($email == '')
-			$email = ' ';
-		if($major == '')
-			$major = ' ';
-		
-		//$dbconn = pg_connect($DB_CONNECT_STRING)
-	    //	or die('Could not connect: ' . pg_last_error());
-		pg_query("SELECT addbookexuser('{$user}'::varchar,'{$firstname}'::varchar,
-			'{$lastname}'::varchar,'{$email}'::varchar,'{$major}'::varchar)") or die('Query failed: ' . pg_last_error());
-		$result = pg_query("SELECT getbookexname('{$user}')") or die('Query failed: ' . pg_last_error()); 
-		$bookexname = pg_fetch_array($result);
-			$errormessage = "Thank you, {$bookexname[0]}. You have just been registered.";
 	}
 	function leave_bookex(){
 		include 'includes/denyregistration.php';
@@ -75,7 +82,7 @@
 	function myrequests(){
 		# Global variables
 		# Only need to get the username from the server once.
-		global $user;
+		global $use;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
 		$yourequested = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND transstatus = 'Requested'") 
@@ -240,9 +247,7 @@
 			echo "</table>";
 		}
 	}
-	# Connect to database
-	$dbconn = pg_connect($DB_CONNECT_STRING)
-    		or die('Could not connect: ' . pg_last_error());
+
     # Process requests that come from this page.
     # This is majority of the borrow and loaning process. Initial requests are the only thing missing.
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
