@@ -76,19 +76,19 @@
 							<div id="centeringtextarea">
 									<div class="firstnametextarea">
 										<label>First Name:</label>
-										<input type="text" id="firstname" id="firstname" />
+										<input type="text" id="firstname" name="firstname" />
 									</div>
 									<div class="lastnametextarea">
 										<label>Last Name:</label>
-										<input type="text" id="lastname" id="lastname"/>
+										<input type="text" id="lastname" name="lastname"/>
 									</div>
 									<div class="majortextarea">
 										<label>Major:</label>
-										<input type="text" id="major" id="major"/>
+										<input type="text" id="major" name="major"/>
 									</div>
 									<div class="additionalemailtextarea">
 										<label>Additional E-mail:</label>
-										<input type="text" id="email" id="email"/>
+										<input type="text" id="email" name="email"/>
 									</div>	
 							</div>
 						</div>
