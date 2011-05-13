@@ -1,12 +1,15 @@
+<!-- SPLIT addbook_0.php -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
  "http://www.w3.org/TR/html4/strict.dtd" author and creator: Jessica Pardee>
 <html>
 <head>
 <title>Add Book</title>
-<link rel="stylesheet" href="style/main.css"/>
+<link rel="stylesheet" href="styles/main.css"/>
 </head>
 <body>
 <div id="pagecontainer">
+<!-- SPLIT END addbook_0.php -->
+<!-- SPLIT siteheader.php -->
 	<!-- Top Div, this is included in every page.  Should be pulled out into a header file, use PHP include feature so we don't repeat code -->
 	<div id="top">
 		<div id="header">
@@ -40,7 +43,8 @@
 		</div>
 	</div>	
 	<!-- End Top Div -->
-	
+<!-- SPLIT END siteheader.php -->
+<!-- SPLIT addbook_1_contentarea.php -->
 	<div id="page">
 		<div class="pageTitle">Add Book</div>
 		<div id="notification" class="show hide" >Message is here</div>
@@ -55,6 +59,8 @@
 				</div>
 				
 				<div class="rightContent contentarea">
+<!-- SPLIT END addbook_1_contentarea.php -->
+<!-- NO-SPLIT JUST STYLE IN PHP -->
 					<form id="addBookForm">
 						<div><label>Title:</label><input type="text" name="Title" /></div>
 						<div><label>Author First Name:</label><input type="text" name="FirstName" /></div>
@@ -66,13 +72,16 @@
 						<div><label>Description:</label><textarea type="text" name="Description"></textarea></div>
 						<div><label>Available for Loan:</label><input type="checkbox" name="Available" value="1"/></div>
 					</form>
+<!-- NO-SPLIT JUST STYLE IN PHP -->
+<!-- SPLIT addbook_2_contentarea.php -->
 				</div>
 				
 				<div class="clear"></div>
 			</div>
 		</div>
 	</div>
-	
+<!-- SPLIT END addbook_2_contentarea.php -->
+<!-- SPLIT sitefooter.php -->
 	<!-- Footer, this should be the same across every page.  Consider pulling out into an include -->
 	<div id="footer">
 		<ul id="footernavigation">
@@ -90,3 +99,4 @@
 	<!-- End Footer -->
 </body>
 </html>
+<!-- SPLIT END sitefooter.php -->
