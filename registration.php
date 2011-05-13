@@ -39,7 +39,7 @@
 		<!-- End Top Div -->
 		
 		<div id="page">
-			<div id="registrationtitle" class="pageTitle">Agreement and Registration</div>
+			<div id="registrationtitle" class="pageTitle">BookEx User Agreement and Registration</div>
 			<div id="maincontent">
 				<div class="contentarea centerDiv">
 					<div id="agreementinformation">
