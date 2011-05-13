@@ -45,6 +45,15 @@
 		$email = trim(pg_escape_string($_POST['email']));
 		$major = trim(pg_escape_string($_POST['major']));
 		
+		if($firstname == '')
+			$firstname = null;
+		if($lastname == '')
+			last = null;
+		if($email == '')
+			$email = null;
+		if($major == '')
+			$major = null;
+		
 		//$dbconn = pg_connect($DB_CONNECT_STRING)
 	    //	or die('Could not connect: ' . pg_last_error());
 		pg_query("SELECT addbookexuser('{$user}'::varchar,'{$firstname}'::varchar,
