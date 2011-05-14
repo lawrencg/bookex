@@ -183,7 +183,12 @@
 		global $bookex_id, $title, $authors, $isbn10, $isbn13, $course, $note, $DB_CONNECT_STRING;
 		echo"
 		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
-		<div><label>Title:</label></div>&nbsp;" . $title . "<br /><br />
+		
+		<div><label>Title:</label><div>this is the title</div></div>
+		
+		<div><label>Title (required):</label>&nbsp;<input type='text' value='" . $title . "' id='title' name='title' size='40' /></div>		
+		
+		<div><label>Title:</label><div>&nbsp;" . $title . "</div></div>
 		
 		
 		<input type='hidden' value='{$title}' id='title' name='title' />
