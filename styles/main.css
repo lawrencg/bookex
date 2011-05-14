@@ -92,16 +92,13 @@
 	#mybooklist .pageSubTitle {
 		margin-left: 5px;
 	}
-	#searchresults .pageSubTitle {
+	#peoplesearchresults .pageSubTitle {
 		margin-left: 5px;
-	}
-
-	
-	/*
+	}	
 	#booksearchresults .pageSubTitle {
 		margin-left: 5px;
 	}
-	*/
+
 
 /*A space to notify , give feedback to user what they just did, eg. have just deleted a book */	
 #notification{
@@ -260,25 +257,25 @@ button {
 	margin: 10px;
 }
 
-#defaultform div {
+#addBookForm div {
 	min-height: 2em;
 } 
 
 /* For the details screen, the details are wrapped in a div.. so float it */
-#defaultform div  div{
+#addBookForm div  div{
 	float: left;
 } 
-#defaultform label {
+#addBookForm label {
 	clear: left;
 	float: left;
 	width: 10em;
 }
 
-#defaultform input[type='text'] {
+#addBookForm input[type='text'] {
 	width: 28em;
 }
 
-#defaultform textarea {
+#addBookForm textarea {
 	width: 41em;
 	height: 6em;
 	
