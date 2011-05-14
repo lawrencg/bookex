@@ -308,13 +308,34 @@
 				or die('Query failed: ' . pg_last_error()); 
 		}
 	}
+	function bookimage(){
+		echo '						<div id="bookImagePhoto"></div>' . "\n";
+		echo '						<button class="smallbtn">Upload Photo</button>' . "\n";
+		echo '						<button class="actionButton">Add</button>' . "\n";
+	}
 	# The actual page.
 	# Start the form, empty action POST's or GET's to itself.
 	# http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#form-submission-algorithm
 	include 'includes/addbook_0_header.php';
 	include 'includes/siteheader.php';
-	include 'includes/addbook_1_contentarea.php';
+	echo '		<div id="page">' . "\n";
+	echo '			<div id="maincontent">' . "\n";
+	echo '				<br />' . "\n";
 	
+	if($errormessage != ''){
+		echo '				<div id="notification" class="show">'.$errormessage.'</div>' . "\n";
+	}
+	
+	echo '			<div id="mybooklistarea" class="contentarea">' . "\n";
+	echo '					<div id="leftContent">' . "\n";
+	echo '					<div id="bookImageContent">' . "\n";
+	
+	bookimage();
+
+
+	echo '					</div>';
+	echo '				</div>';
+	echo '				<div class="rightContent contentarea">';
 	echo "<form action='' id='defaultform' name='book' method='POST'>";
 	# This is a POST
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){ 
