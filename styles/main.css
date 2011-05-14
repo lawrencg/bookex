@@ -241,11 +241,12 @@
 }
 
 button {
-	width:100px;
+	width: 100px;
 }
 
 .requestbutton {
 	text-align: right;
+	width: 100px;
 }
 
 .smallbtn { 
