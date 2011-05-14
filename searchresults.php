@@ -23,11 +23,11 @@ if ($searchOption = "searchTitle") {
 echo "searchOption = searchTitle";
 }
 */
-
+include 'includes/request_process.php';
 include 'includes/searchresults_0_header.php';
 include 'includes/siteheader.php';
 include 'includes/searchresults_1_contentarea.php';
-include 'includes/request_process.php';
+
 
 switch ($searchOption)
 {
@@ -46,7 +46,7 @@ case "searchTitle":
 	echo "<table id='booksearchresultstable'>";
 	echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN-13</td><td class=\"header\">Owner</td></tr></thead>";
 	while ($row = pg_fetch_array($results)) {
-		echo "<tr><td class=\"booktitle\">" . htmlspecialchars($row[0]) . "</td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">" . request_button($rows[6]) . "</td></tr>"; 
+		echo "<tr><td class=\"booktitle\">" . htmlspecialchars($row[0]) . "</td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">" . request_button($row[6]) . "</td></tr>"; 
 		}
 	echo "</table>";
 	} else {
