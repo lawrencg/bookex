@@ -283,8 +283,11 @@
 	# Mode 0 = A new instance of an existing BookEx book.
 	# Mode 1 = A completely new BookEx book.
 	function addbook($mode){
-		global $bookex_id, $isbn10, $isbn13, $title, $authors, $note, $user, $status, $condition, $course;
+		global $bookex_id, $isbn10, $isbn13, $title, $authors, $note, $user, $status, $condition, $course, $errormessage;
 		# Convert the input checkbox to a value in the database.
+		if($isbn10 == '' && $isbn13 == '' && $title == '')
+			$errormessage = 'Sorry, we need an ISBN or a title to add this book to your account.';
+			return;
 		if($status == 'on')
 			$status = 'Available';
 		else
