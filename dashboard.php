@@ -328,31 +328,19 @@
 				echo '									<td class="bookreturnbutton"></td>' . "\n";
 				echo '								</tr>' . "\n";
 				echo '							</thead>' . "\n";
-				echo '							<tr>' . "\n";
-				# Book title
-				echo '								<td class="booktitle">' . $records[3] . '</td>' . "\n";
-				# Book owner
-				echo '								<td class="booklender">' . $records[6] . '</td>' . "\n";
-				# BookEx does not currently store a 'Due' date
-				echo '								<td class="bookduedate">' . date("F j, Y"). '</td>' . "\n";
-				echo '								<td class="bookreturnbutton">' . "\n";
-				createbutton('return','Return',$records[0]);
-				echo '								</td>' . "\n";
-				echo '							</tr>' . "\n";
 				$firsttime = false;
-			} else {
-				echo '							<tr>' . "\n";
-				# Book title
-				echo '								<td class="booktitle">' . $records[3] . '</td>' . "\n";
-				# Book owner
-				echo '								<td class="booklender">' . $records[6] . '</td>' . "\n";
-				# BookEx does not currently store a 'Due' date
-				echo '								<td class="bookduedate">' . date("F j, Y"). '</td>' . "\n";
-				echo '								<td class="bookreturnbutton">' . "\n";
-				createbutton('return','Return',$records[0]);
-				echo '								</td>' . "\n";
-				echo '							</tr>' . "\n";
-			}
+			} 
+			echo '							<tr>' . "\n";
+			# Book title
+			echo '								<td class="booktitle">' . $records[3] . '</td>' . "\n";
+			# Book owner
+			echo '								<td class="booklender">' . $records[6] . '</td>' . "\n";
+			# BookEx does not currently store a 'Due' date
+			echo '								<td class="bookduedate">' . date("F j, Y"). '</td>' . "\n";
+			echo '								<td class="bookreturnbutton">' . "\n";
+			createbutton('return','Return',$records[0]);
+			echo '								</td>' . "\n";
+			echo '							</tr>' . "\n";
 		}
 		
 		if($firsttime){
