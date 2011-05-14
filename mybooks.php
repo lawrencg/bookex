@@ -42,6 +42,7 @@
 	}
 
 	function displaybooks(){
+		global $user;
 		$books = pg_query("SELECT * FROM getmybooks('{$user}') VALUES (bookid int, owner varchar, 
 			date timestamp, title varchar, borrower varchar, available varchar, transstatus varchar)") 
 			or die('Query failed: ' . pg_last_error()); 
@@ -79,7 +80,7 @@
 			# Decides what status to display. For loaned books we need to display the transaction status,
 			# for books that are not loaned out, we need to show the availability status.
 			if($records[6] == ''){
-				echo '									<td class="bookduedate">&nbps;</td>' . "\n";
+				echo '									<td class="bookduedate">&nbsp;</td>' . "\n";
 				echo '									<td class="bookstatus">'.$records[5].'</td>' . "\n";				
 			} else {
 				echo '									<td class="bookduedate">'.date("F j, Y").'</td>' . "\n";
@@ -89,7 +90,6 @@
 		}
 
 		if($firsttime){
-						echo '						<div class="pageSubTitle">Books I Own</div>' . "\n";	
 						echo '						<table id="mybooklisttable">' . "\n";
 						echo '							<tbody>' . "\n";	
 						echo '								<tr>' . "\n";	
