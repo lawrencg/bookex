@@ -106,6 +106,7 @@
 		function editProfile() {
 		# Global variables
 		global $myinfoNetID, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor, $DB_CONNECT_STRING;		
+		echo "<form action='' id='profile' name='profile' method='POST'>";		
 		echo"
 		<input type='hidden' value='{$myinfoFirstName}' id='myinfoFirstName' name='myinfoFirstName' />
 		<b>First Name: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myinfoFirstName . "' id='myinfoFirstName' name='myinfoFirstName' size='40' /><br />
@@ -119,7 +120,7 @@
 		<b>Major: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myMajor . "' id='myMajor' name='myMajor' size='40' /><br />";
 		
 		echo "<input type='submit' name='saveID' value='Save Changes' />";
-		
+		echo "</form>";
 		}
 		 
 		 
@@ -345,16 +346,7 @@
 			//	}
 			//}
 			
-			if (pg_escape_string(isset($_POST['edit']))){
-				editProfile();
-			}
-			echo "</form>";
-			
-			if (pg_escape_string($_POST['saveID'])){
-				savemyinfo();
-				echo '<META HTTP-EQUIV="refresh" content="0;URL=https://students.washington.edu/shanzha/profile.php">';
-				exit;
-			}
+
 			}
 	#		                                                                           #
 	#		                                                                           #	
@@ -369,10 +361,26 @@
 	
 	
 	
-		if ((isset($_POST) || isset($_GET)) && !isset($_GET['id']) && (!isset($_POST['edit']))) {
-			generateMyProfile();
-			filledProfile();
-		}
+			if (pg_escape_string(isset($_POST['edit']))){
+				editProfile();
+				echo "1";
+			} elseif (!isset($_GET['id']) || $_GET['id']==$user) {
+				generateMyProfile();
+				filledProfile();
+				echo "2";
+			
+			} else {
+			echo "3";
+			}
+			echo "</form>";
+			
+			if (isset($_POST['saveID'])){
+				savemyinfo();
+				//generateMyProfile();
+				//filledProfile();
+				//echo '<META HTTP-EQUIV="refresh" content="0;URL=https://students.washington.edu/shanzha/profile.php">';
+				//exit;
+			}
 		
 	if(isset($_GET['id'])) {
 		//$dbconn = pg_connect($DB_CONNECT_STRING)
