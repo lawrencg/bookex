@@ -188,14 +188,35 @@
 				echo "&nbsp;";
 				createbutton('deny','Deny',$records[0]);
 				echo "</p>\n";
+				
+				echo '						<div id="deliveryconfirmations">';
+				echo '							<p class="header">Delivery Confirmation</p>';
+				echo '								<table id="deliveryconfirmationstable">';
+				echo '									<tr>';
+				echo '										<td class="deliveryconfirmationsmessage">Have you delivered ' . "\"{$records[3]}\" to {$records[5]}?</td>";
+				echo '										<td class="deliveryconfirmationsbutton">';
+				createbutton('delivered','Delivered',$records[0]);
+				echo '										</td>';
+				echo '										<td class="deliveryconfirmationsbutton">';
+				createbutton('deny','Deny',$records[0]);
+				echo '										</td>';
+				echo '									</tr>';
 				$firsttime = false;
 			} else {
-				echo "<p>Have you delivered \"{$records[3]}\" to {$records[5]}? "; 
+				echo '									<tr>';
+				echo '										<td class="deliveryconfirmationsmessage">Have you delivered ' . "\"{$records[3]}\" to {$records[5]}?</td>";
+				echo '										<td class="deliveryconfirmationsbutton">';
 				createbutton('delivered','Delivered',$records[0]);
-				echo "&nbsp;";
+				echo '										</td>';
+				echo '										<td class="deliveryconfirmationsbutton">';
 				createbutton('deny','Deny',$records[0]);
-				echo "</p>\n";
+				echo '										</td>';
+				echo '									</tr>';
 			}
+		}
+		if(!firsttime){
+			echo '								</table>';
+			echo '						</div>';
 		}
 	}
 	# Books I have received
@@ -213,16 +234,28 @@
 					echo '				<div id="confirmationmessagearea" class="contentarea">';
 					$noconfirmations = false;
 				}
-				echo "<h3>Receipt Confimation</h3>\n";
-				echo "<p>Have you received \"{$records[3]}\" from {$records[6]}?";
+				echo '						<div id="receiveconfirmations">';
+				echo '							<p class="header">Receipt Confirmation</p>';
+				echo '								<table id="receiveconfirmationstable">';
+				echo '									<tr>';
+				echo '										<td class="receiveconfirmationsmessage">Have you received ' . "\"{$records[3]}\" from {$records[6]}?</td>";
+				echo '										<td class="receiveconfirmationsbutton">';
 				createbutton('confirmdelivery','Received',$records[0]);
-				echo "</p>\n";
+				echo '										</td>';
+				echo '									</tr>';
 				$firsttime = false;
 			} else {
-				echo "<p>Have you received \"{$records[3]}\" from {$records[6]}?";
+				echo '									<tr>';
+				echo '										<td class="receiveconfirmationsmessage">Have you received ' . "\"{$records[3]}\" from {$records[6]}?</td>";
+				echo '										<td class="receiveconfirmationsbutton">';
 				createbutton('confirmdelivery','Received',$records[0]);
-				echo "</p>\n";
+				echo '										</td>';
+				echo '									</tr>';
 			}
+		}
+		if(!firsttime){
+			echo '								</table>';
+			echo '						</div>';
 		}
 	}
 	# Books someone has returned to me
@@ -244,12 +277,29 @@
 				echo "<p>Has {$records[5]} returned your \"{$records[3]}\" book?";
 				createbutton('confirmreturnedbook','Returned',$records[0]);
 				echo "</p>\n";
+				
+				echo '						<div id="returnconfirmations">';
+				echo '							<p class="header">Return Confirmation</p>';
+				echo '								<table id="returnconfirmationstable">';
+				echo '									<tr>';
+				echo '										<td class="returnconfirmationsmessage">Has ' . {$records[5]} . " retunred \"{$records[3]}\"?</td>";
+				echo '										<td class="returnconfirmationsbutton">';
+				createbutton('confirmreturnedbook','Returned',$records[0]);
+				echo '										</td>';
+				echo '									</tr>';
 				$firsttime = false;
 			} else {
-				echo "<p>Has {$records[5]} returned your \"{$records[3]}\" book?";
+				echo '									<tr>';
+				echo '										<td class="returnconfirmationsmessage">Has ' . {$records[5]} . " retunred \"{$records[3]}\"?</td>";
+				echo '										<td class="returnconfirmationsbutton">';
 				createbutton('confirmreturnedbook','Returned',$records[0]);
-				echo "</p>\n";
+				echo '										</td>';
+				echo '									</tr>';
 			}
+		}
+		if(!firsttime){
+			echo '								</table>';
+			echo '						</div>';
 		}
 	}
 	# HTML to display system notifications
@@ -342,31 +392,31 @@
 		
 		# The user accepeted a book request.
 		if(isset($_POST['accept'])){
-			pg_query("SELECT acceptbookrequest('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
+			pg_query("SELECT acceptbookrequest('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
 				or die('Query failed: ' . pg_last_error()); 
 		# The owner has delivered the book to the requestor			
 		} else if (isset($_POST['delivered'])){
-			pg_query("SELECT deliverbook('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
+			pg_query("SELECT deliverbook('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
 				or die('Query failed: ' . pg_last_error()); 
 		# The requestor now has the book			
 		} else if (isset($_POST['confirmdelivery'])){
-			pg_query("SELECT confirmdelivery('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
+			pg_query("SELECT confirmdelivery('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
 				or die('Query failed: ' . pg_last_error()); 
 		# The user returned the book to the owner
 		} else if (isset($_POST['return'])){
-			pg_query("SELECT returnbooktoowner('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
+			pg_query("SELECT returnbooktoowner('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
 				or die('Query failed: ' . pg_last_error()); 
 		# The user confirmed that the book was returned to them.				
 		} else if (isset($_POST['confirmreturnedbook'])){
-			pg_query("SELECT confirmreturnedbook('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
+			pg_query("SELECT confirmreturnedbook('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
 				or die('Query failed: ' . pg_last_error()); 
 		# The user canceled a book request.			
 		} else if (isset($_POST['cancelrequest'])){
-			pg_query("SELECT cancelrequest('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
+			pg_query("SELECT cancelrequest('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
 				or die('Query failed: ' . pg_last_error()); 
 		# The user denied a book request.			
 		} else if (isset($_POST['deny'])){
-			pg_query("SELECT denybookrequest('{$_POST['transid']}'::integer,'" . $user . "'::varchar)") 
+			pg_query("SELECT denybookrequest('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
 				or die('Query failed: ' . pg_last_error()); 
 		} else if (isset($_POST['register'])){
 			register_user();
@@ -379,7 +429,9 @@
 	echo '		<div id="page">';
 	echo '			<div id="maincontent">';
 	echo '				<br />';
-	echo '				<div id="notification" class="show">Warning!</div>';
+	if($errormessage != '')
+		echo '				<div id="notification" class="show">' . $errormessage . '</div>';
+	
 	# Display the things we want in the order we want them.
 	myrequests();
 	othersrequests();
