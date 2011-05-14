@@ -222,7 +222,7 @@
 	# HTML used to edit a form populated with book information.
 	function editform(){
 		# Global variables
-		global $bookex_id, $title, $authors, $isbn10, $isbn13, $course, $note
+		global $bookex_id, $title, $authors, $isbn10, $isbn13, $course, $note;
 		//<b>Title (required):</b>&nbsp;<input type='text' value='" . $title . "' id='title' name='title' size='40' /><br /><br />
 		echo"
 		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />		
@@ -319,15 +319,15 @@
 	include 'includes/addbook_0_header.php';
 	include 'includes/siteheader.php';
 	echo '		<div id="page">' . "\n";
-	echo '			<div id="maincontent">' . "\n";
+	echo '		<div class="pageTitle">Add Book</div>' . "\n";
 	echo '				<br />' . "\n";
 	
 	if($errormessage != ''){
 		echo '				<div id="notification" class="show">'.$errormessage.'</div>' . "\n";
 	}
-	
-	echo '			<div id="mybooklistarea" class="contentarea">' . "\n";
-	echo '					<div id="leftContent">' . "\n";
+	echo '		<div id="maincontent">';
+	echo '			<div id="" class="contentarea">' . "\n";
+	echo '				<div class="leftContent">' . "\n";
 	echo '					<div id="bookImageContent">' . "\n";
 	
 	bookimage();
@@ -337,6 +337,14 @@
 	echo '				</div>';
 	echo '				<div class="rightContent contentarea">';
 	echo "<form action='' id='defaultform' name='book' method='POST'>";
+	
+
+	
+	
+	
+	
+	
+	
 	# This is a POST
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){ 
 		if(isset($_POST['addbooksearch'])){
