@@ -111,9 +111,9 @@
 	}
 	# HTML used for the initial ISBN search. 
 	function initialsearch(){
-		echo "<p>Please enter the ISBN-10 or ISBN-13 for your book.</p><input type='text' value='' id='isbn' name='isbn' size='30' />&nbsp;";
-		echo "<input type='submit' name='addbooksearch' value='Search' />&nbsp;";
-		echo "<input type='submit' name='manual' value='I don&#39;t have an ISBN' />";
+		echo "<p>Please enter the ISBN-10 or ISBN-13 for your book.</p><input type='text' value='' id='isbn' name='isbn' size='20' />&nbsp;";
+		echo "<br /><input type='submit' name='addbooksearch' value='Search' />";
+		echo "<input type='submit' name='manual' value='Don&#39;t have an ISBN' />";
 	}
 	# Accepts a numeric value and attempts to find a book in the BookEx database by ISBN-10 or ISBN-13
 	# Sets global variables if a book is found.
