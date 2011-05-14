@@ -74,7 +74,6 @@
 			}
 			
 			echo '								<tr>' . "\n";
-
 			# Book title is a link to book details for that book
 			echo '									<td class="booktitle"><a href="bookdetail.php?id='$records[0]'">'$records[3]'</a></td>' . "\n";
 			echo '									<td class="booklender">'$borrow'</td>' . "\n";
