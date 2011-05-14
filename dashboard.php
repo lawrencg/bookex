@@ -240,9 +240,18 @@
 	}
 	# HTML to display system notifications
 	function notifications(){
-		echo "<h3>Notifications</h3>\n";
-		echo "<p style='color:red'><i>&nbsp;&nbsp;&nbsp;BookEx is currently under maintenance. Some features may be temporarily unavailable."; 
-		echo "</i></p>\n";
+		$nonotifications = true;
+		
+		echo '				<div id="notificationmessagearea" class="contentarea">';
+		echo '					<div id="notifications">';
+		echo '							<p class="header">Notifications</p>';
+		echo '								<table id="notificationstable">';
+		echo '									<tr>';
+		echo '										<td class="notificationsmessage">BookEx is currently under maintenance. Some features may be temporarily unavailable.</td>';
+		echo '									</tr>';
+		echo '								</table>';
+		echo '					</div>';
+		echo '				</div>';
 	}
 	# HTML to display the books that the user needs to return after they are done.
 	function imborrowing(){
@@ -251,37 +260,65 @@
 		global $user;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;	
-		echo "<h3>Books I'm borrowing</h3>\n";
+		$noborrowing = true;
+		echo '				<div id="booksborrowedlist" class="contentarea">';
+		echo '					<p class="header">Books I\'m Borrowing</p>';
 		$returned = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND transstatus = 'Received'") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($returned)) {
 			if ($firsttime) {
-				echo "<table border='2px'>";
-				echo "<th>Title</th><th>Lender</th><th>Due Date</th><th></th>";
+				echo '						<table id="booksborrowingtable">';
+				echo '							<thead>';
+				echo '								<tr>';
+				echo '									<td class="booktitle header">Title</td>';
+				echo '									<td class="booklender header">Lender</td>';
+				echo '									<td class="bookduedate header">Due</td>';
+				echo '									<td class="bookreturnbutton"></td>';
+				echo '								</tr>';
+				echo '							</thead>';
+				echo '							<tr>';
 				# Book title
-				echo "<tr><td>{$records[3]}</td>";
+				echo '								<td class="booktitle">' . $records[3] . '</td>';
 				# Book owner
-				echo "<td>{$records[6]}</td>";
+				echo '								<td class="booklender">' . $records[6] . '</td>';
 				# BookEx does not currently store a 'Due' date
-				echo "<td>".date("F j, Y")."</td><td>";
+				echo '								<td class="bookduedate">' . date("F j, Y"). '</td>';
+				echo '								<td class="bookreturnbutton">';
 				createbutton('return','Return',$records[0]);
-				echo "</td></tr>";
+				echo '								</td>';
+				echo '							</tr>';
 				$firsttime = false;
 			} else {
+				echo '							<tr>';
 				# Book title
-				echo "<tr><td>{$records[3]}</td>";
+				echo '								<td class="booktitle">' . $records[3] . '</td>';
 				# Book owner
-				echo "<td>{$records[6]}</td>";
+				echo '								<td class="booklender">' . $records[6] . '</td>';
 				# BookEx does not currently store a 'Due' date
-				echo "<td>".date("F j, Y")."</td><td>";
+				echo '								<td class="bookduedate">' . date("F j, Y"). '</td>';
+				echo '								<td class="bookreturnbutton">';
 				createbutton('return','Return',$records[0]);
-				echo "</td></tr>";
+				echo '								</td>';
+				echo '							</tr>';
 			}
 		}
+		
 		if($firsttime){
-			echo "<p><i>&nbsp;&nbsp;&nbsp;You are currently not borrwing and books.</i></p>"; 
+			echo '						<table id="booksborrowingtable">';
+			echo '							<tr>';
+			echo '								<td class="booktitle">You are currently not borrwing any books.</td>';
+			echo '							</tr>';
+			echo '						</table>';
+			echo '				</div>';
+			echo '			</div>';
+			echo '			<br />';
+			echo '		</div>';
 		} else {
-			echo "</table>";
+			echo '						</table>';
+			echo '				</div>';
+			echo '			</div>';
+			echo '			<br />';
+			echo '		</div>';
 		}
 	}
 
@@ -325,20 +362,26 @@
 	}
 	include 'includes/dashboard_0_header.php';
 	include 'includes/siteheader.php';
+	echo '		<div id="page">';
+	echo '			<div id="maincontent">';
+	echo '				<br />';
+	echo '				<div id="notification" class="show">Warning!</div>';
 	# Display the things we want in the order we want them.
-	# All of these functions need a database connection.
-	if(!isset($_POST['dontregister'])){
-		myrequests();
-		othersrequests();
-		deliveryconfirmations();
-		receiptconfirmations();
-		returnconfirmations();
-		# System notifications are always displayed. Might be the first if there is no activity for the current user.
-		notifications();
-		# From user testing, this is where we should have the book that people are going to return when they are done.
-		# mybooks was not intuitive
-		imborrowing();
-		# Close the database
+	myrequests();
+	othersrequests();
+	deliveryconfirmations();
+	receiptconfirmations();
+	returnconfirmations();
+	if(!$noconfirmations){
+		echo '				</div>';
 	}
+	
+	# System notifications are always displayed. Might be the first if there is no activity for the current user.
+	notifications();
+	# From user testing, this is where we should have the book that people are going to return when they are done.
+	# mybooks was not intuitive
+	imborrowing();
+	include 'includes/sitefooter.php';
+	# Close the database
 	pg_close($dbconn);
 ?>
