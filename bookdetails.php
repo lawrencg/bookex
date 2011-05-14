@@ -5,12 +5,9 @@
 	# Title: Add a book to the BookEx web application.
 	
 	# Session tracking for the bug submission form. Needs to be before ANY HTML.
-	include 'session_track.php';
+	include 'includes/session_track.php';
 	# Database connection parameters
-	require 'database_info.php';
-	require 'menu.php';
-	include 'search.php';
-	include 'greeting.php';
+	require 'includes/database_info.php';
 	
 	# GLOBAL VARIABLES
 	# Used to see if this book is owned by the current UW NetID that is logged in
