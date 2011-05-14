@@ -168,7 +168,7 @@
 		# Usually a call to BookEx is first then if nothing is found, a call to ISBNDB. If nothing is returned from ISBNDB, we let the user know
 		# that they will need to enter the book information manually.
 		} else {
-			$errormessage =  'Sorry, we could not locate the ISBN ' . $_POST['isbn'] . ' in our database or on the interent.  
+			$errormessage =  'Sorry, we could not locate the ISBN "' . $_POST['isbn'] . '" in our database or on the internet.  
 				Please enter the book information manually or <a href="addbook.php" style="color:blue">Search Again</a>';
 		}
 	}
@@ -285,9 +285,10 @@
 	function addbook($mode){
 		global $bookex_id, $isbn10, $isbn13, $title, $authors, $note, $user, $status, $condition, $course, $errormessage;
 		# Convert the input checkbox to a value in the database.
-		if($isbn10 == '' && $isbn13 == '' && $title == '')
+		if($isbn10 == '' && $isbn13 == '' && $title == ''){
 			$errormessage = 'Sorry, we need an ISBN or a title to add this book to your account.';
 			return;
+		}
 		if($status == 'on')
 			$status = 'Available';
 		else
@@ -305,10 +306,12 @@
 		if($mode == 0){
 			pg_query("SELECT addbook('{$user}'::varchar,'{$bookex_id}'::int, '{$status}'::varchar,'{$course}'::varchar,'{$condition}'::varchar,'{$note}'::text)") 
 				or die('Query failed: ' . pg_last_error()); 
+			$errormessage = 'Your book has been added sucessfully.';
 		# Need all of the information associated with a book to create it in BookEx
 		} elseif($mode == 1) {
 			pg_query("SELECT addbook('{$user}'::varchar,'{$title}'::varchar,'" . authorfirstname($authors) . "'::varchar,'" . authorlastname($authors) . "'::varchar,'{$course}'::varchar,'{$condition}'::varchar,'{$note}'::text,{$isbn10}::numeric,{$isbn13}::numeric,'{$status}'::varchar)")
 				or die('Query failed: ' . pg_last_error()); 
+			$errormessage = 'Your book has been added sucessfully.';
 		}
 	}
 	function bookimage(){
@@ -350,8 +353,7 @@
 			addbook(0);	
 			# Message to the user, confirmation. PHP will error horribly if something fails. 
 			# Might want to catch exceptions in future versions.
-			if($errormessage == '')
-				$errormessage = 'Your book has been added sucessfully.';
+
 			# Add another book
 
 		# The Forceadd button is visible when the user wants to edit an existing book or when the book was 
@@ -369,9 +371,6 @@
 			addbook(1);
 			# Message to the user, confirmation. PHP will error horribly if something fails. 
 			# Might want to catch exceptions in future versions.
-			if($errormessage == '')
-				$errormessage = 'Your book has been added sucessfully.';
-			# Add another book
 
 		}
 	# This page was not accessed via a POST. Could mean a GET but we are not checking for that. Means that this is a new book add.
@@ -416,11 +415,13 @@
 				initialsearch();
 			}
 			# Check the title, empty means that BookEx did not return any results.
-			if($title == '' && $_POST['isbn'] != '')
+			if($title == '' && $_POST['isbn'] != ''){
+				
+			}
 
 			# The search from ISBNDB truned up nothing as well. Manual entry is necessary.
-			if($title == ''){
-				blankform();
+			if($title == '' ){
+
 			# The title is not blank so we can assume that something was found and we can fill the form.
 			} else {	
 				filledform();
@@ -469,4 +470,6 @@
 	
 	include 'includes/addbook_2_contentarea.php';
 	include 'includes/sitefooter.php';
+	# Close the database
+	pg_close($dbconn);
 ?>
