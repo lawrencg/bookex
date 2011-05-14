@@ -360,18 +360,12 @@
 			echo '							<tr>' . "\n";
 			echo '								<td class="booktitle">You are currently not borrwing any books.</td>' . "\n";
 			echo '							</tr>' . "\n";
-			echo '						</table>' . "\n";
-			echo '				</div>' . "\n";
-			echo '			</div>' . "\n";
-			echo '			<br />' . "\n";
-			echo '		</div>' . "\n";
-		} else {
-			echo '						</table>' . "\n";
-			echo '				</div>' . "\n";
-			echo '			</div>' . "\n";
-			echo '			<br />' . "\n";
-			echo '		</div>' . "\n";
-		}
+		} 
+		echo '						</table>' . "\n";
+		echo '				</div>' . "\n";
+		echo '			</div>' . "\n";
+		echo '			<br />' . "\n";
+		echo '		</div>' . "\n";
 	}
 
     # Process requests that come from this page.
