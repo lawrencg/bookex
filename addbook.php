@@ -184,6 +184,8 @@
 		echo"
 		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
 		<div><label>Title:</label></div>&nbsp;" . $title . "<br /><br />
+		
+		
 		<input type='hidden' value='{$title}' id='title' name='title' />
 		<b>Author(s)</b><br / ><br />";
 		# Displays multiple authors if there are more than one. Only the first author will be passed in a post.
@@ -224,16 +226,17 @@
 	function editform(){
 		# Global variables
 		global $bookex_id, $title, $authors, $isbn10, $isbn13, $course, $note, $DB_CONNECT_STRING;
+		//<b>Title (required):</b>&nbsp;<input type='text' value='" . $title . "' id='title' name='title' size='40' /><br /><br />
 		echo"
-		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
-		<b>Title (required):</b>&nbsp;<input type='text' value='" . $title . "' id='title' name='title' size='40' /><br /><br />
-		<b>Author</b><br / ><br /><i>First name:</i>&nbsp;<input type='text' value='" . authorfirstname($authors) . 
-		"' id='author_fname' name='author_fname' size='30' /><br />
-		<i>Last name:</i>&nbsp;<input type='text' value='" . authorlastname($authors) . "' id='author_lname' name='author_lname' size='30' /><br /><br /><br />
-		<b>ISBN-10:</b>&nbsp;<input type='text' value='" . $isbn10 . "' id='isbn10' name='isbn10' size='13' /><br /><br />
-		<b>ISBN-13:</b>&nbsp;<input type='text' value='" . $isbn13 . "' id='isbn13' name='isbn13' size='13' /><br /><br />
-		<b>Class:</b>&nbsp;<input type='text' value='" . $course . "' id='class' name='class' size='8' /><br /><br />
-		<b>Condition:</b>&nbsp;<select name='condition'>";
+		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />		
+		<div><label>Title (required):</label>&nbsp;<input type='text' value='" . $title . "' id='title' name='title' size='40' /></div>		
+		<div><label>Author First name:</label>&nbsp;<input type='text' value='" . authorfirstname($authors) . "' id='author_fname' name='author_fname' size='30' /></div>
+		<div><label>Author Last name:</label>&nbsp;<input type='text' value='" . authorlastname($authors) . "' id='author_lname' name='author_lname' size='30' /></div>
+		<div><label>ISBN-10:</label>&nbsp;<input type='text' value='" . $isbn10 . "' id='isbn10' name='isbn10' size='13' /></div>
+		<div><label>ISBN-13:</label>&nbsp;<input type='text' value='" . $isbn13 . "' id='isbn13' name='isbn13' size='13' /></div>
+		<div><label>Course:</label>&nbsp;<input type='text' value='" . $course . "' id='course' name='class' size='8' /></div>
+		<div><label>Condition:</label>&nbsp;<select name='condition'></div>";
+		
 		//START CONDTION OPTIONS DROP DOWN
 		$dbconn = pg_connect($DB_CONNECT_STRING)
 		    or die('Could not connect: ' . pg_last_error());
@@ -248,9 +251,11 @@
 		}
 		pg_close($dbconn);
 		//END DROPDOWN
-		echo "</select><br /><br />
-		<b>Description:</b>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual />" . $note . 
-		"</textarea><br /><br />
+		echo "</select></div>
+		
+		<div><label>Description:</label>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual /> " . $note . " </textarea></div>
+		
+		<b>Description:</b>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual />" . $note . "</textarea> </div>
 		<b>Make book available for others to borrow.</b>&nbsp;<input type='checkbox' id='available' name='available' checked/><br /><br />
 		<input type='submit' name='forceadd' value='Add to My Books' style='margin-left:200px' />";
 	}
@@ -328,7 +333,7 @@
 	include 'includes/siteheader.php';
 	include 'includes/addbook_1_contentarea.php';
 	
-	echo "<form action='' id='addBookForm' name='book' method='POST'>";
+	echo "<form action='' id='defaultform' name='book' method='POST'>";
 	# This is a POST
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){ 
 		if(isset($_POST['addbooksearch'])){

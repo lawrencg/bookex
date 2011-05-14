@@ -94,7 +94,9 @@
 	}
 	#searchresults .pageSubTitle {
 		margin-left: 5px;
-	}	
+	}
+
+	
 	/*
 	#booksearchresults .pageSubTitle {
 		margin-left: 5px;
@@ -258,25 +260,25 @@ button {
 	margin: 10px;
 }
 
-#addBookForm div {
+#defaultform div {
 	min-height: 2em;
 } 
 
 /* For the details screen, the details are wrapped in a div.. so float it */
-#addBookForm div  div{
+#defaultform div  div{
 	float: left;
 } 
-#addBookForm label {
+#defaultform label {
 	clear: left;
 	float: left;
 	width: 10em;
 }
 
-#addBookForm input[type='text'] {
+#defaultform input[type='text'] {
 	width: 28em;
 }
 
-#addBookForm textarea {
+#defaultform textarea {
 	width: 41em;
 	height: 6em;
 	
