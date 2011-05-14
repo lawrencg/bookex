@@ -10,12 +10,12 @@
 	# Displays a button in a form that POST's back to this files initiate_request() function.
 	function request_button($bookid){
 		# Global variables, hopefully
-		global $DB_CONNECT_STRING;
+		#global $DB_CONNECT_STRING;
 		# Get the current UW NetID from the server via pubcookie
 		$user = $_SERVER['REMOTE_USER'];
 		# Connect to the database
-		$dbconn = pg_connect($DB_CONNECT_STRING)
-		    or die('Could not connect: ' . pg_last_error());
+		#$dbconn = pg_connect($DB_CONNECT_STRING)
+		#    or die('Could not connect: ' . pg_last_error());
 		# Two possible conditions for the request button to be disabled.
 		# Condition #1: It is not available, which means someone else has borrowed it OR the user has it marked 'Unavailable'
 		#               Not sure how they would get to this request but never hurts to be sure.
@@ -50,12 +50,12 @@
 	# transaction for the current UW NetID
 	function initiate_request($bookid){
 		# Global variables
-		global $DB_CONNECT_STRING;
+		#global $DB_CONNECT_STRING;
 		# Get the current UW NetID from the server via pubcookie
 		$user = $_SERVER['REMOTE_USER'];
 		# Connect to the database
-		$dbconn = pg_connect($DB_CONNECT_STRING)
-		    or die('Could not connect: ' . pg_last_error());
+		#$dbconn = pg_connect($DB_CONNECT_STRING)
+		 #   or die('Could not connect: ' . pg_last_error());
 		# Creates an entry in the transactions table
 		$results = pg_query("SELECT requestbook('{$bookid}'::integer,'{$user}'::varchar)") 
 			or die('Query failed: ' . pg_last_error()); 
