@@ -15,6 +15,7 @@
 	
 	$user = $_SERVER['REMOTE_USER'];
 	$errormessage;
+	$noconfirmations = true;
 	
 	function comments(){
 	#	.button-container form,
@@ -76,45 +77,66 @@
 		include 'includes/denyregistration.php';
 	}
 	function createbutton($name, $label, $bookid){
-		echo "<form action='' id='form_98' name='form_98' method='POST'>";
-		echo "<input type='hidden' value='{$bookid}' id='transid' name='transid' />";
-		echo "<input type='submit' id='{$name}' name='{$name}' value='{$label}' />";
-		echo "</form>";	
+		echo '											<form action=\'\' id=\'form_{$name}\' name=\'form_{$name}\' method=\'POST\'>';
+		echo '												<input type=\'hidden\' value=\'{$bookid}\' id=\'transid\' name=\'transid\' />';
+		echo '												<input type=\'submit\' id=\'{$name}\' name=\'{$name}\' value=\'{$label}\' />';
+		echo '											</form>';	
 	}
 	# Books I have requested
 	function myrequests(){
 		# Global variables
 		# Only need to get the username from the server once.
-		global $use;
+		global $use, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
 		$yourequested = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND transstatus = 'Requested'") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($yourequested)) {
 			if ($firsttime){
-				echo "<h3>Your Requests</h3>\n";
-				echo "<p>You have requested to borrow \"{$records[3]}\" from {$records[6]}. ";
+				if($noconfirmations){
+					echo '				<div id="confirmationmessagearea" class="contentarea">';
+					$noconfirmations = false;
+				}
+				echo '						<div id="yourrequests">';
+				echo '							<p class="header">Your Requests</p>';
+				echo '								<table id="yourrequeststable">';
+				echo '									<tr>';
+				echo '										<td class="yourrequestsmessage">You requested ' . "\"{$records[3]}\" from {$records[6]}.</td>";
+				echo '										<td class="yourrequestsbutton">';
 				createbutton('cancelrequest','Cancel',$records[0]);
-				echo "</p>\n";
+				echo '										</td>';
+				echo '									</tr>';
 				$firsttime = false;
 			} else {
-				echo "<p>You have requested to borrow \"{$records[3]}\" from {$records[6]}. ";
+				echo '									<tr>';
+				echo '										<td class="yourrequestsmessage">You requested ' . "\"{$records[3]}\" from {$records[6]}.</td>";
+				echo '										<td class="yourrequestsbutton">';
 				createbutton('cancelrequest','Cancel',$records[0]);
-				echo "</p>\n";
+				echo '										</td>';
+				echo '									</tr>';
 			}
 		}
+		if(!firsttime){
+			echo '								</table>';
+			echo '						</div>';
+		}
+		
 	}
 	# Books others have requested
 	function othersrequests(){
 		# Global variables
 		# Only need to get the username from the server once.
-		global $user;
+		global $user, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
 		$theyrequested = pg_query("SELECT * FROM detailedtransactions WHERE myid = '" . $user . "' AND transstatus = 'Requested'") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($theyrequested)) {
 			if ($firsttime){
+				if($noconfirmations){
+					echo '				<div id="confirmationmessagearea" class="contentarea">';
+					$noconfirmations = false;
+				}
 				echo "<h3>Others have Requested</h3>\n";
 				echo "<p>{$records[5]} has requested to borrow \"{$records[3]}\" ";
 				createbutton('accept','Accept',$records[0]);
@@ -135,13 +157,17 @@
 	function deliveryconfirmations(){
 		# Global variables
 		# Only need to get the username from the server once.
-		global $user;
+		global $user, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
 		$awaiting = pg_query("SELECT * FROM detailedtransactions WHERE myid = '" . $user . "' AND transstatus = 'Awaiting Delivery'") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($awaiting)) {
 			if ($firsttime) {
+				if($noconfirmations){
+					echo '				<div id="confirmationmessagearea" class="contentarea">';
+					$noconfirmations = false;
+				}
 				echo "<h3>Delivery Confirmations</h3>\n";
 				echo "<p>Have you delivered \"{$records[3]}\" to {$records[5]}? "; 
 				createbutton('delivered','Delivered',$records[0]);
@@ -162,13 +188,17 @@
 	function receiptconfirmations(){
 		# Global variables
 		# Only need to get the username from the server once.
-		global $user;
+		global $user, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
 		$delivered = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND transstatus = 'Delivered'") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($delivered)) {
 			if ($firsttime) {
+				if($noconfirmations){
+					echo '				<div id="confirmationmessagearea" class="contentarea">';
+					$noconfirmations = false;
+				}
 				echo "<h3>Receipt Confimation</h3>\n";
 				echo "<p>Have you received \"{$records[3]}\" from {$records[6]}?";
 				createbutton('confirmdelivery','Received',$records[0]);
@@ -185,13 +215,17 @@
 	function returnconfirmations(){
 		# Global variables
 		# Only need to get the username from the server once.
-		global $user;
+		global $user, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
 		$returned = pg_query("SELECT * FROM detailedtransactions WHERE myid = '" . $user . "' AND transstatus = 'Returned'") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($returned)) {
 			if ($firsttime) {
+				if($noconfirmations){
+					echo '				<div id="confirmationmessagearea" class="contentarea">';
+					$noconfirmations = false;
+				}
 				echo "<h3>Return Confirmations</h3>\n";
 				echo "<p>Has {$records[5]} returned your \"{$records[3]}\" book?";
 				createbutton('confirmreturnedbook','Returned',$records[0]);
@@ -289,6 +323,7 @@
 			leave_bookex();
 		}
 	}
+	include 'includes/dashbaord_0_header.php';
 	include 'includes/siteheader.php';
 	# Display the things we want in the order we want them.
 	# All of these functions need a database connection.
