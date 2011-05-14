@@ -59,21 +59,21 @@
 			else 
 				$borrow = $records[4];
 			if ($firsttime) {
-				echo '						<div class="pageSubTitle">Books I Own</div>';	
-				echo '						<table id="mybooklisttable">';	
-				echo '							<thead>';	
-				echo '								<tr>';	
-				echo '									<td class="header">Title</td>';	
-				echo '									<td class="header">Borrower</td>';	
-				echo '									<td class="header">Due</td>';	
-				echo '									<td class="header">Status</td>';	
-				echo '								</tr>';	
-				echo '							</thead>';	
-				echo '							<tbody>';	
+				echo '						<div class="pageSubTitle">Books I Own</div>' . "\n";
+				echo '						<table id="mybooklisttable">' . "\n";
+				echo '							<thead>' . "\n";
+				echo '								<tr>' . "\n";
+				echo '									<td class="header">Title</td>' . "\n";
+				echo '									<td class="header">Borrower</td>' . "\n";
+				echo '									<td class="header">Due</td>' . "\n";
+				echo '									<td class="header">Status</td>' . "\n";
+				echo '								</tr>' . "\n";
+				echo '							</thead>' . "\n";
+				echo '							<tbody>' . "\n";
 				$firsttime = false;
 			}
 			
-			echo '								<tr>';	
+			echo '								<tr>' . "\n";
 
 			# Book title is a link to book details for that book
 			echo '									<td class="booktitle"><a href="bookdetail.php?id='$records[0]'">'$records[3]'</a></td>' . "\n";
@@ -91,26 +91,26 @@
 		}
 
 		if($firsttime){
-						echo '						<div class="pageSubTitle">Books I Own</div>';	
-						echo '						<table id="mybooklisttable">';
-						echo '							<tbody>';	
-						echo '								<tr>';	
+						echo '						<div class="pageSubTitle">Books I Own</div>' . "\n";	
+						echo '						<table id="mybooklisttable">' . "\n";
+						echo '							<tbody>' . "\n";	
+						echo '								<tr>' . "\n";	
 						echo '									<td class="booktitle">You do not currently have any books added to your account.</td>' . "\n";
-						echo '								</tr>';	
+						echo '								</tr>' . "\n";
 		}
 
-		echo '							</tbody>';
-		echo '						</table>';
-		echo '				</div>';
+		echo '							</tbody>' . "\n";
+		echo '						</table>' . "\n";
+		echo '				</div>' . "\n";
 
 	}
 	function addbooksbutton(){		
-		echo'				<form action="addbook.php" method="GET">';
-		echo'					<input type="submit" class="actionButton" value="Add New Book"/>';
-		echo'				</form>';
-		echo'			</div>';
-		echo'		</div>';
-		echo'	</div>';
+		echo'				<form action="addbook.php" method="GET">' . "\n";
+		echo'					<input type="submit" class="actionButton" value="Add New Book"/>' . "\n";
+		echo'				</form>' . "\n";
+		echo'			</div>' . "\n";
+		echo'		</div>' . "\n";
+		echo'	</div>' . "\n";
 	}
 	## MAIN SITE DISPLAY
 	include 'includes/mybooks_0_header.php';
@@ -120,12 +120,12 @@
 	echo '				<br />' . "\n";
 	
 	if($errormessage != ''){
-		echo '				<div id="notification" class="show">' . $errormessage . '</div>' . "\n";
+		echo '				<div id="notification" class="show">'$errormessage'</div>' . "\n";
 	}
 	
-	echo '			<div id="mybooklistarea" class="contentarea">';
-	echo '					<div id="mybooklist">';
-	echo '						<div class="pageSubTitle">Books I Own</div>';
+	echo '			<div id="mybooklistarea" class="contentarea">' . "\n";
+	echo '					<div id="mybooklist">' . "\n";
+	echo '						<div class="pageSubTitle">Books I Own</div>' . "\n";
 	
 	displaybooks();
 	addbooksbutton();
