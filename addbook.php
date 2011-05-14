@@ -39,6 +39,8 @@
 	$status = pg_escape_string($_POST['available']);
 	# Possible message to display.
 	$errormessage;
+	#Currently logged in UW NetID
+	$user = $_SERVER['REMOTE_USER'];
 
 	# Accepts a string and retuns the string modified to include ONLY numbers.
 	# Used with the inital ISBN search if the user inputs spaces or dashes.
@@ -119,10 +121,8 @@
 	# Sets global variables if a book is found.
 	function getfromBookEx($post_isbn){
 		# Global variables
-		global $bookex_id, $isbn10, $isbn13, $title, $authors, $DB_CONNECT_STRING;
+		global $bookex_id, $isbn10, $isbn13, $title, $authors;
 		# Connect to the database
-		$dbconn = pg_connect($DB_CONNECT_STRING)
-		    or die('Could not connect: ' . pg_last_error());
 		$books = pg_query("SELECT * FROM findbook('{$post_isbn}'::numeric) as records(book_id int, isbn10 numeric, isbn13 numeric, title varchar, author text)") 
 			or die('Query failed: ' . pg_last_error()); 
 		# Hopefully we found something. If more than one record is returned, only the 
@@ -135,8 +135,6 @@
 			# Creates an array from a string of names.
 			$authors = splitauthors($records[4]);
 		}
-		# Close the database
-		pg_close($dbconn);
 	}
 	# Accepts a numeric value and attempts to find a book from ISBNDB.com
 	# Process the XML response from ISBNDB.com
@@ -170,8 +168,8 @@
 		# Usually a call to BookEx is first then if nothing is found, a call to ISBNDB. If nothing is returned from ISBNDB, we let the user know
 		# that they will need to enter the book information manually.
 		} else {
-			$errormessage =  "<p style='color:red;font-style:italic;font-size:12px'>Sorry, we could not locate the ISBN '" . $_POST['isbn'] . 
-				"' in our database or on the interent.<br /> Please enter the book information manually or <a href='addbook.php' style='color:blue'>Search Again</a></p>";
+			$errormessage =  'Sorry, we could not locate the ISBN ' . $_POST['isbn'] . ' in our database or on the interent.  
+				Please enter the book information manually or <a href="addbook.php" style="color:blue">Search Again</a>';
 		}
 	}
 	# HTML used to display a populated form with book information.
@@ -180,7 +178,7 @@
 	# they are displayed as text with a paired hidden field. You cannot POST text that is not in an input with a form.
 	function filledform(){
 		# Global variables
-		global $bookex_id, $title, $authors, $isbn10, $isbn13, $course, $note, $DB_CONNECT_STRING;
+		global $bookex_id, $title, $authors, $isbn10, $isbn13, $course, $note;
 		//<b>Author(s)</b><br /><br />";
 		echo"
 		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
@@ -203,8 +201,6 @@
 			<div><label>Condition:</label>&nbsp;<select name='condition'>";
 			
 		//START CONDTION OPTIONS DROP DOWN
-		$dbconn = pg_connect($DB_CONNECT_STRING)
-		    or die('Could not connect: ' . pg_last_error());
 		$conditions = pg_query("SELECT * FROM condition ORDER BY rank") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($conditions)) {
@@ -215,7 +211,6 @@
 				echo "<option value='$records[0]'>" . $records[0] . "</option>";
 			}
 		}
-		pg_close($dbconn);
 		//END DROPDOWN
 		//<b>Description:</b>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual />" . $note . </textarea><br /><br />
 		echo "</select></div>		
@@ -227,7 +222,7 @@
 	# HTML used to edit a form populated with book information.
 	function editform(){
 		# Global variables
-		global $bookex_id, $title, $authors, $isbn10, $isbn13, $course, $note, $DB_CONNECT_STRING;
+		global $bookex_id, $title, $authors, $isbn10, $isbn13, $course, $note
 		//<b>Title (required):</b>&nbsp;<input type='text' value='" . $title . "' id='title' name='title' size='40' /><br /><br />
 		echo"
 		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />		
@@ -240,8 +235,6 @@
 		<div><label>Condition:</label>&nbsp;<select name='condition'></div>";
 		
 		//START CONDTION OPTIONS DROP DOWN
-		$dbconn = pg_connect($DB_CONNECT_STRING)
-		    or die('Could not connect: ' . pg_last_error());
 		$conditions = pg_query("SELECT * FROM condition ORDER BY rank") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($conditions)) {
@@ -251,7 +244,6 @@
 				echo "<option value='$records[0]'>" . $records[0] . "</option>";
 			}
 		}
-		pg_close($dbconn);
 		//END DROPDOWN
 		//<b>Description:</b>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual />" . $note . "</textarea> </div>
 		echo "</select></div>
@@ -261,7 +253,6 @@
 	}
 	# HTML used to manually add a book to BookEx
 	function blankform(){
-		global $DB_CONNECT_STRING;
 		echo"
 		<div><label>Title (required):</label>&nbsp;<input type='text' value='' id='title' name='title' size='40' /></div>
 		<div><label>Author First name:</label>&nbsp;<input type='text' value='' id='author_fname' name='author_fname' size='30' /></div>
@@ -271,8 +262,6 @@
 		<div><label>Course:</label>&nbsp;<input type='text' value='' id='course' name='class' size='8' /></div>
 		<div><label>Condition:</label>&nbsp;<select name='condition'></div>";
 		//START CONDTION OPTIONS DROP DOWN
-		$dbconn = pg_connect($DB_CONNECT_STRING)
-		    or die('Could not connect: ' . pg_last_error());
 		$conditions = pg_query("SELECT * FROM condition ORDER BY rank") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($conditions)) {
@@ -282,7 +271,6 @@
 				echo "<option value='$records[0]'>" . $records[0] . "</option>";
 			}
 		}
-		pg_close($dbconn);
 		//END DROPDOWN
 		echo "</select></div>
 		<div><label>Description:</label>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual /></textarea></div>
@@ -295,7 +283,7 @@
 	# Mode 0 = A new instance of an existing BookEx book.
 	# Mode 1 = A completely new BookEx book.
 	function addbook($mode){
-		global $bookex_id, $isbn10, $isbn13, $title, $authors, $note, $DB_CONNECT_STRING, $status, $condition, $course;
+		global $bookex_id, $isbn10, $isbn13, $title, $authors, $note, $user, $status, $condition, $course;
 		# Convert the input checkbox to a value in the database.
 		if($status == 'on')
 			$status = 'Available';
@@ -310,10 +298,6 @@
 			$isbn10 = 1;
 		if($isbn13 == '')
 			$isbn13 = 1;
-		# Connect to the database
-		$dbconn = pg_connect($DB_CONNECT_STRING)
-		    or die('Could not connect: ' . pg_last_error());
-		$user = $_SERVER['REMOTE_USER'];
 		# Minimal information is needed if the book already exists in BookEx
 		if($mode == 0){
 			pg_query("SELECT addbook('{$user}'::varchar,'{$bookex_id}'::int, '{$status}'::varchar,'{$course}'::varchar,'{$condition}'::varchar,'{$note}'::text)") 
@@ -323,8 +307,6 @@
 			pg_query("SELECT addbook('{$user}'::varchar,'{$title}'::varchar,'" . authorfirstname($authors) . "'::varchar,'" . authorlastname($authors) . "'::varchar,'{$course}'::varchar,'{$condition}'::varchar,'{$note}'::text,{$isbn10}::numeric,{$isbn13}::numeric,'{$status}'::varchar)")
 				or die('Query failed: ' . pg_last_error()); 
 		}
-		# Close databse connection.
-		pg_close($dbconn);
 	}
 	# The actual page.
 	# Start the form, empty action POST's or GET's to itself.
@@ -342,15 +324,13 @@
 				getfromBookEx(remove_non_numeric($_POST['isbn']));
 			# Empty search
 			} else {
-				$errormessage =  "<p style='color:red;font-style:italic;font-size:12px'>Sorry, you did not enter an ISBN.<br /> 
-				Please enter the book information manually or <a href='addbook.php' style='color:blue'>Search Again</a></p>";
+				$errormessage =  'Sorry, you did not enter an ISBN.	Please enter the book information manually or <a href="addbook.php" style="color:blue">Search Again</a>';
 			}
 			# Check the title, empty means that BookEx did not return any results.
 			if($title == '' && $_POST['isbn'] != '')
 				getfromISBNDB(remove_non_numeric($_POST['isbn']));
 			# The search from ISBNDB truned up nothing as well. Manual entry is necessary.
 			if($title == ''){
-				echo $errormessage;
 				blankform();
 			# The title is not blank so we can assume that something was found and we can fill the form.
 			} else {	
@@ -369,7 +349,7 @@
 			addbook(0);	
 			# Message to the user, confirmation. PHP will error horribly if something fails. 
 			# Might want to catch exceptions in future versions.
-			echo "<p>Your book has been added sucessfully.</p>";
+			$errormessage = 'Your book has been added sucessfully.';
 			# Add another book
 			initialsearch();
 		# The Forceadd button is visible when the user wants to edit an existing book or when the book was 
@@ -387,7 +367,7 @@
 			addbook(1);
 			# Message to the user, confirmation. PHP will error horribly if something fails. 
 			# Might want to catch exceptions in future versions.
-			echo "<p>Your book has been added sucessfully.</p>";
+			$errormessage = 'Your book has been added sucessfully.';
 			# Add another book
 			initialsearch();
 		}
