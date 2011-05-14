@@ -6,14 +6,14 @@ if (!$dbconn) {
 }
 $user = $_SERVER['REMOTE_USER'];
 
-echo "<p>\n";
+/*echo "<p>\n";
 echo "\t<a href='dashboard.php'>Dashboard</a>\n";
 echo "\t&nbsp;|&nbsp;<a href='mybooks.php'>My Books</a>\n";
 echo "\t&nbsp;|&nbsp;My Profile\n";
 echo "\t&nbsp;|&nbsp;<a href='https://weblogin.washington.edu/logout/'>Logout</a>\n";
 echo "</p>\n";
-include 'includes/search.php';
-
+//include 'includes/search.php';
+*/
 $searchTerm = $_POST['searchTerm'];
 $searchOption = $_POST['searchDropdown'];
 /*
@@ -33,21 +33,22 @@ case "searchTitle":
 	if (trim($searchTerm) == "") {
 		echo "You didn't enter a search term.";
 		} else {
-	$searchTitleSQL = "SELECT * FROM searchbytitle('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_first_name varchar, owner_last_name varchar)";
+	$searchTitleSQL = "SELECT * FROM searchbytitle('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar)";
 	$searchTitleSQLResult = pg_query($dbconn, $searchTitleSQL);
 	if (!$searchTitleSQLResult) {
 		die("Error in SQL query: " . pg_last_error());
 	}
 	$rows = pg_num_rows($searchTitleSQLResult);
 	if ($rows != 0) {
-	echo "<h2>Search Results for <font color='green'><i>" . $searchTerm . "</i></font></h2>";
-	echo "<table border='1'>";
-	echo "<tr><th>Book Title<th>Author<th>ISBN-10<th>ISBN-13<th>Owner</tr>";
+	echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
+	echo "<table id='booksearchresultstable'>";
+	echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN-10</td><td class=\"header\">ISBN-13</td><td class=\"header\">Owner</td></tr></thead>";
 	while ($row = pg_fetch_array($searchTitleSQLResult)) {
-		echo "<tr><td class='booktitle'>" . htmlspecialchars($row[0]) . "</td><td>" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td>" . htmlspecialchars($row[3]) . "</td><td>" . htmlspecialchars($row[4]) . "</td><td>" . htmlspecialchars($row[5]) . " " . htmlspecialchars($row[6]) . "</td></tr>"; 
+		echo "<tr><td class=\"booktitle\">" . htmlspecialchars($row[0]) . "</td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[3]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td></tr>"; 
 		}
+	echo "</table>";
 	} else {
-		echo "<i>Cannot find any books with the title <b>" . $searchTerm . "</b>";
+		echo "<i>Cannot find any books with the title <b>" . $searchTerm . "</b></i>";
 	}
 	}
 break;
@@ -62,14 +63,15 @@ case "searchNetID":
 	}
 	$rows2 = pg_num_rows($searchTitleSQLResult2);
 	if ($rows2 != 0) {
-	echo "<h2>Search Results for <font color='green'><i>" . $searchTerm . "</i></font></h2>";
-	echo "<table border='1'>";
-	echo "<tr><th>Name<th>E-mail<th>Number of books</tr>";
+	echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
+	echo "<table id='peoplesearchresults'>";
+	echo "<thead><tr><td class=\"header\">Name</td><td>E-mail</td><td>Number of books</td></tr></thead>";
 	while ($row = pg_fetch_array($searchTitleSQLResult2)) {
-		echo "<tr><td>" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td>" . htmlspecialchars($row[3]) . "</td><td>" . htmlspecialchars($row[0]) . "</td></tr>"; 
+		echo "<tr><td class=\"personsname\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"personsemail\">" . htmlspecialchars($row[3]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
 		}
+	echo "</table>";
 	} else {
-		echo "<i>Cannot find any people with the UW NetID <b>"	. $searchTerm . "</b>";
+		echo "<i>Cannot find any people with the UW NetID <b>"	. $searchTerm . "</b></i>";
 	}
 	}
 break;
@@ -84,14 +86,17 @@ case "searchISBN":
 	}
 	$rows2 = pg_num_rows($searchTitleSQLResult2);
 	if ($rows2 != 0) {
-	echo "<h2>Search Results for <font color='green'><i>" . $searchTerm . "</i></font></h2>";
-	echo "<table border='1'>";
-	echo "<tr><th>Name<th>E-mail<th>Number of books</tr>";
-	while ($row = pg_fetch_array($searchTitleSQLResult2)) {
-		echo "<tr><td>" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td>" . htmlspecialchars($row[3]) . "</td><td>" . htmlspecialchars($row[0]) . "</td></tr>"; 
+		echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>\n";
+		echo "<table border=\"1\">\n";
+		echo "<tr><th>Name<th>E-mail<th>Number of books</tr>\n";
+		while ($row = pg_fetch_array($searchTitleSQLResult2)) 
+		{
+			echo "<tr><td>" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td>" . htmlspecialchars($row[3]) . "</td><td>" . htmlspecialchars($row[0]) . "</td></tr>\n"; 
 		}
+		echo "</table>";
+		
 	} else {
-		echo "<i>Cannot find any people with the UW NetID <b>"	. $searchTerm . "</b>";
+		echo "<i>Cannot find any people with the UW NetID <b>"	. $searchTerm . "</b></i>";
 	}
 	}
 break;
