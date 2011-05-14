@@ -18,7 +18,7 @@
 	$bookex_id = pg_escape_string($_POST['bookexid']);
 	# Get the current UW NetID from the server via pubcookie
 	$user = $_SERVER['REMOTE_USER'];
-	$errormessage = '';
+	$errormessage;
 
 	# This POST came from the bookdetail.php page
 	# This was the most logical place to drop users after they removed one of their books.
