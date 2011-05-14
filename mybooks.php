@@ -104,6 +104,14 @@
 		echo '				</div>';
 
 	}
+	function addbooksbutton(){		
+		echo'				<form action="addbook.php" method="GET">';
+		echo'					<input type="submit" class="actionButton" value="Add New Book"/>';
+		echo'				</form>';
+		echo'			</div>';
+		echo'		</div>';
+		echo'	</div>';
+	}
 	## MAIN SITE DISPLAY
 	include 'includes/mybooks_0_header.php';
 	include 'includes/siteheader.php';
@@ -120,6 +128,7 @@
 	echo '						<div class="pageSubTitle">Books I Own</div>';
 	
 	displaybooks();
+	addbooksbutton();
 	include 'includes/sitefooter.php';
 	# Close the database
 	pg_close($dbconn);
