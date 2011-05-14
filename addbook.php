@@ -312,10 +312,74 @@
 		}
 	}
 	function bookimage(){
-		echo '						<div id="bookImagePhoto"></div>' . "\n";
-		echo '						<button class="smallbtn">Upload Photo</button>' . "\n";
-		echo '						<button class="actionButton">Add</button>' . "\n";
+		echo '						<div id="bookImagePhoto"><img src="images/default-book.png" /></div>' . "\n";
+		#echo '						<button class="smallbtn">Upload Photo</button>' . "\n";
+		#echo '						<button class="actionButton">Add</button>' . "\n";
 	}
+	## DO PROCESSING
+	# This is a POST
+	if($_SERVER['REQUEST_METHOD'] == 'POST'){ 
+		if(isset($_POST['addbooksearch'])){
+			# Try to find the book in BookEx
+			if($_POST['isbn'] != ''){
+				getfromBookEx(remove_non_numeric($_POST['isbn']));
+			# Empty search
+			} else {
+				$errormessage =  'Sorry, you did not enter an ISBN.	Please search by ISBN or click  "I don\'t have and ISBN"';
+			}
+			# Check the title, empty means that BookEx did not return any results.
+			if($title == '' && $_POST['isbn'] != '')
+				getfromISBNDB(remove_non_numeric($_POST['isbn']));
+			# The search from ISBNDB truned up nothing as well. Manual entry is necessary.
+			if($title == ''){
+
+			# The title is not blank so we can assume that something was found and we can fill the form.
+			} else {	
+
+			}
+		# A manual entry method choosen by the user from the intial search box.
+		} elseif (isset($_POST['manual'])){
+
+		# The Edit button is only visible when a filled form is created, aka book information was found in BookEx or ISBNDB
+		# The user wants to edit some of it for their copy. This will eventually create a new book in the database.
+		} elseif (isset($_POST['edit'])){
+
+		# User accepted the book that was found in the BookEx database. This is the ideal addbook
+		} elseif (isset($_POST['standardadd']) && $bookex_id != ''){
+			# New instance
+			addbook(0);	
+			# Message to the user, confirmation. PHP will error horribly if something fails. 
+			# Might want to catch exceptions in future versions.
+			if($errormessage == '')
+				$errormessage = 'Your book has been added sucessfully.';
+			# Add another book
+
+		# The Forceadd button is visible when the user wants to edit an existing book or when the book was 
+		# not in the BookEx database. The standardadd will be set when a book was found in BookEx or ISBNDB but 
+		# the bookex_id will be empty when the book came from ISBNDB. Same as a forceadd, the book is new
+		# to the BookEx database.
+		} elseif (isset($_POST['forceadd']) || (isset($_POST['standardadd']) && $bookex_id == '')){
+			# This is a manual add and the addbook function requrires an array of author names.
+			# Create one here.
+			if(isset($_POST['forceadd'])){
+				$temp = $_POST['author_lname'] . ' ' . $_POST['author_fname'];
+				$authors = $temp;
+			}
+			# Completely new book
+			addbook(1);
+			# Message to the user, confirmation. PHP will error horribly if something fails. 
+			# Might want to catch exceptions in future versions.
+			if($errormessage == '')
+				$errormessage = 'Your book has been added sucessfully.';
+			# Add another book
+
+		}
+	# This page was not accessed via a POST. Could mean a GET but we are not checking for that. Means that this is a new book add.
+	} 
+	
+	
+	
+	
 	# The actual page.
 	# Start the form, empty action POST's or GET's to itself.
 	# http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#form-submission-algorithm
@@ -324,7 +388,7 @@
 	echo '		<div id="page">' . "\n";
 	echo '		<div class="pageTitle">Add Book</div>' . "\n";
 	echo '				<br />' . "\n";
-	
+		
 	if($errormessage != ''){
 		echo '				<div id="notification" class="show">'.$errormessage.'</div>' . "\n";
 	}
@@ -353,14 +417,14 @@
 		if(isset($_POST['addbooksearch'])){
 			# Try to find the book in BookEx
 			if($_POST['isbn'] != ''){
-				getfromBookEx(remove_non_numeric($_POST['isbn']));
+
 			# Empty search
 			} else {
-				$errormessage =  'Sorry, you did not enter an ISBN.	Please enter the book information manually or <a href="addbook.php" style="color:blue">Search Again</a>';
+				initialsearch();
 			}
 			# Check the title, empty means that BookEx did not return any results.
 			if($title == '' && $_POST['isbn'] != '')
-				getfromISBNDB(remove_non_numeric($_POST['isbn']));
+
 			# The search from ISBNDB truned up nothing as well. Manual entry is necessary.
 			if($title == ''){
 				blankform();
@@ -378,10 +442,10 @@
 		# User accepted the book that was found in the BookEx database. This is the ideal addbook
 		} elseif (isset($_POST['standardadd']) && $bookex_id != ''){
 			# New instance
-			addbook(0);	
+
 			# Message to the user, confirmation. PHP will error horribly if something fails. 
 			# Might want to catch exceptions in future versions.
-			$errormessage = 'Your book has been added sucessfully.';
+
 			# Add another book
 			initialsearch();
 		# The Forceadd button is visible when the user wants to edit an existing book or when the book was 
@@ -396,10 +460,10 @@
 				$authors = $temp;
 			}
 			# Completely new book
-			addbook(1);
+
 			# Message to the user, confirmation. PHP will error horribly if something fails. 
 			# Might want to catch exceptions in future versions.
-			$errormessage = 'Your book has been added sucessfully.';
+
 			# Add another book
 			initialsearch();
 		}
