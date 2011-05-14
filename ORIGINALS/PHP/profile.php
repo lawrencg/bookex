@@ -5,17 +5,10 @@
 	# Title: Display a users information. Will be displayed differently if the user is looking at their own profile.
 	
 	# Session tracking for the bug submission form. Needs to be before ANY HTML.
-	include 'session_track.php';
+	require 'includes/session_track.php';
 	# Database connection parameters
-	include 'database_info.php';
-	include 'menu.php';
-	include 'search.php';
-	include 'greeting.php';
-
-	$DATABASE = "larry_test";
-	$DB_USER = "shanzha"; 
-	$DB_PASSWORD = "lawrence";
-	$DB_CONNECT_STRING = "host=vergil.u.washington.edu port=10450 dbname=" . $DATABASE . " user=" . $DB_USER . " password=" . $DB_PASSWORD;
+	require 'includes/database_info.php';
+	include 'includes/siteheader.php';
 	
 	$user = $_SERVER['REMOTE_USER'];
 	# GLOBAL VARIABLES
@@ -26,7 +19,7 @@
 	$myEmail = pg_escape_string($_POST['myEmail']);
 	$myMajor = pg_escape_string($_POST['myMajor']);	
 	
-	include 'request_process.php';
+	include 'includes/request_process.php';
 
 	
 	# ---------------------------------------- #
@@ -134,9 +127,11 @@
 	
 	
 	
-	if(!isset($_GET['id']) || !isset($_POST['']) || !isset($_GET[''])){
-		echo "No user choosen.";
-	} else {
+	if(isset($_POST['']) || isset($_GET[''])){
+		echo "No user choosen!!!.";
+	}
+	
+	if(isset($_GET['id'])) {
 		$dbconn = pg_connect($DB_CONNECT_STRING)
 		    or die('Could not connect: ' . pg_last_error());
 		$currentId = $_GET['id'];
