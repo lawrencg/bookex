@@ -100,21 +100,14 @@
 				echo '						<div id="yourrequests">' . "\n";
 				echo '							<p class="header">Your Requests</p>' . "\n";
 				echo '								<table id="yourrequeststable">' . "\n";
-				echo '									<tr>' . "\n";
-				echo '										<td class="yourrequestsmessage">You have requested ' . "\"{$records[3]}\" from {$records[6]}.</td>\n";
-				echo '										<td class="yourrequestsbutton">' . "\n";
-				createbutton('cancelrequest','Cancel',$records[0]);
-				echo '										</td>' . "\n";
-				echo '									</tr>' . "\n";
 				$firsttime = false;
-			} else {
-				echo '									<tr>' . "\n";
-				echo '										<td class="yourrequestsmessage">You haave requested ' . "\"{$records[3]}\" from {$records[6]}.</td>\n";
-				echo '										<td class="yourrequestsbutton">' . "\n";
-				createbutton('cancelrequest','Cancel',$records[0]);
-				echo '										</td>' . "\n";
-				echo '									</tr>' . "\n";
-			}
+			} 
+			echo '									<tr>' . "\n";
+			echo '										<td class="yourrequestsmessage">You haave requested ' . "\"{$records[3]}\" from {$records[6]}.</td>\n";
+			echo '										<td class="yourrequestsbutton">' . "\n";
+			createbutton('cancelrequest','Cancel',$records[0]);
+			echo '										</td>' . "\n";
+			echo '									</tr>' . "\n";
 		}
 		if(!$firsttime){
 			echo '								</table>' . "\n";
@@ -140,27 +133,17 @@
 				echo '						<div id="othersrequests">' . "\n";
 				echo '							<p class="header">Other\'s Requests</p>' . "\n";
 				echo '								<table id="othersrequeststable">' . "\n";
-				echo '									<tr>' . "\n";
-				echo '										<td class="yourrequestsmessage">' . $records[5] . "has requested to borrow \"{$records[3]}\".</td>\n";
-				echo '										<td class="othersrequestsacceptbutton">' . "\n";
-				createbutton('acceptrequest','Accept',$records[0]);
-				echo '										</td>' . "\n";
-				echo '										<td class="othersrequestsacceptbutton">' . "\n";
-				createbutton('deny','Deny',$records[0]);
-				echo '										</td>' . "\n";
-				echo '									</tr>' . "\n";
 				$firsttime = false;
-			} else {	
-				echo '									<tr>' . "\n";
-				echo '										<td class="yourrequestsmessage">' . $records[5] . "has requested to borrow \"{$records[3]}\".</td>\n";
-				echo '										<td class="othersrequestsacceptbutton">' . "\n";
-				createbutton('acceptrequest','Accept',$records[0]);
-				echo '										</td>' . "\n";
-				echo '										<td class="othersrequestsacceptbutton">' . "\n";
-				createbutton('deny','Deny',$records[0]);
-				echo '										</td>' . "\n";
-				echo '									</tr>' . "\n";
 			}
+			echo '									<tr>' . "\n";
+			echo '										<td class="yourrequestsmessage">' . $records[5] . "has requested to borrow \"{$records[3]}\".</td>\n";
+			echo '										<td class="othersrequestsacceptbutton">' . "\n";
+			createbutton('acceptrequest','Accept',$records[0]);
+			echo '										</td>' . "\n";
+			echo '										<td class="othersrequestsacceptbutton">' . "\n";
+			createbutton('deny','Deny',$records[0]);
+			echo '										</td>' . "\n";
+			echo '									</tr>' . "\n";
 		}
 		if(!$firsttime){
 			echo '								</table>' . "\n";
@@ -185,27 +168,17 @@
 				echo '						<div id="deliveryconfirmations">' . "\n";
 				echo '							<p class="header">Delivery Confirmation</p>' . "\n";
 				echo '								<table id="deliveryconfirmationstable">' . "\n";
-				echo '									<tr>' . "\n";
-				echo '										<td class="deliveryconfirmationsmessage">Have you delivered ' . "\"{$records[3]}\" to {$records[5]}?</td>\n";
-				echo '										<td class="deliveryconfirmationsbutton">' . "\n";
-				createbutton('delivered','Delivered',$records[0]);
-				echo '										</td>' . "\n";
-				echo '										<td class="deliveryconfirmationsbutton">' . "\n";
-				createbutton('deny','Deny',$records[0]);
-				echo '										</td>' . "\n";
-				echo '									</tr>' . "\n";
 				$firsttime = false;
-			} else {
-				echo '									<tr>' . "\n";
-				echo '										<td class="deliveryconfirmationsmessage">Have you delivered ' . "\"{$records[3]}\" to {$records[5]}?</td>\n";
-				echo '										<td class="deliveryconfirmationsbutton">' . "\n";
-				createbutton('delivered','Delivered',$records[0]);
-				echo '										</td>' . "\n";
-				echo '										<td class="deliveryconfirmationsbutton">' . "\n";
-				createbutton('deny','Deny',$records[0]);
-				echo '										</td>' . "\n";
-				echo '									</tr>' . "\n";
-			}
+			} 
+			echo '									<tr>' . "\n";
+			echo '										<td class="deliveryconfirmationsmessage">Have you delivered ' . "\"{$records[3]}\" to {$records[5]}?</td>\n";
+			echo '										<td class="deliveryconfirmationsbutton">' . "\n";
+			createbutton('delivered','Delivered',$records[0]);
+			echo '										</td>' . "\n";
+			echo '										<td class="deliveryconfirmationsbutton">' . "\n";
+			createbutton('deny','Deny',$records[0]);
+			echo '										</td>' . "\n";
+			echo '									</tr>' . "\n";
 		}
 		if(!$firsttime){
 			echo '								</table>' . "\n";
@@ -230,21 +203,14 @@
 				echo '						<div id="receiveconfirmations">' . "\n";
 				echo '							<p class="header">Receipt Confirmation</p>' . "\n";
 				echo '								<table id="receiveconfirmationstable">' . "\n";
-				echo '									<tr>' . "\n";
-				echo '										<td class="receiveconfirmationsmessage">Have you received ' . "\"{$records[3]}\" from {$records[6]}?</td>\n";
-				echo '										<td class="receiveconfirmationsbutton">' . "\n";
-				createbutton('confirmdelivery','Received',$records[0]);
-				echo '										</td>' . "\n";
-				echo '									</tr>' . "\n";
 				$firsttime = false;
-			} else {
-				echo '									<tr>' . "\n";
-				echo '										<td class="receiveconfirmationsmessage">Have you received ' . "\"{$records[3]}\" from {$records[6]}?</td>\n";
-				echo '										<td class="receiveconfirmationsbutton">' . "\n";
-				createbutton('confirmdelivery','Received',$records[0]);
-				echo '										</td>' . "\n";
-				echo '									</tr>' . "\n";
 			}
+			echo '									<tr>' . "\n";
+			echo '										<td class="receiveconfirmationsmessage">Have you received ' . "\"{$records[3]}\" from {$records[6]}?</td>\n";
+			echo '										<td class="receiveconfirmationsbutton">' . "\n";
+			createbutton('confirmdelivery','Received',$records[0]);
+			echo '										</td>' . "\n";
+			echo '									</tr>' . "\n";
 		}
 		if(!$firsttime){
 			echo '								</table>' . "\n";
@@ -269,21 +235,14 @@
 				echo '						<div id="returnconfirmations">' . "\n";
 				echo '							<p class="header">Return Confirmation</p>' . "\n";
 				echo '								<table id="returnconfirmationstable">' . "\n";
-				echo '									<tr>' . "\n";
-				echo '										<td class="returnconfirmationsmessage">Has ' . $records[5] . " retunred \"{$records[3]}\"?</td>\n";
-				echo '										<td class="returnconfirmationsbutton">' . "\n";
-				createbutton('confirmreturnedbook','Returned',$records[0]);
-				echo '										</td>' . "\n";
-				echo '									</tr>' . "\n";
 				$firsttime = false;
-			} else {
-				echo '									<tr>' . "\n";
-				echo '										<td class="returnconfirmationsmessage">Has ' . $records[5] . " retunred \"{$records[3]}\"?</td>\n";
-				echo '										<td class="returnconfirmationsbutton">' . "\n";
-				createbutton('confirmreturnedbook','Returned',$records[0]);
-				echo '										</td>' . "\n";
-				echo '									</tr>' . "\n";
-			}
+			} 
+			echo '									<tr>' . "\n";
+			echo '										<td class="returnconfirmationsmessage">Has ' . $records[5] . " retunred \"{$records[3]}\"?</td>\n";
+			echo '										<td class="returnconfirmationsbutton">' . "\n";
+			createbutton('confirmreturnedbook','Returned',$records[0]);
+			echo '										</td>' . "\n";
+			echo '									</tr>' . "\n";
 		}
 		if(!$firsttime){
 			echo '								</table>' . "\n";
