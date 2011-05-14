@@ -181,30 +181,27 @@
 	function filledform(){
 		# Global variables
 		global $bookex_id, $title, $authors, $isbn10, $isbn13, $course, $note, $DB_CONNECT_STRING;
+		//<b>Author(s)</b><br /><br />";
 		echo"
 		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
-		
-		<div><label>Title:</label><div>this is the title</div></div>
-		
-		<div><label>Title (required):</label>&nbsp;<input type='text' value='" . $title . "' id='title' name='title' size='40' /></div>		
-		
 		<div><label>Title:</label><div>&nbsp;" . $title . "</div></div>
-		
-		
-		<input type='hidden' value='{$title}' id='title' name='title' />
-		<b>Author(s)</b><br / ><br />";
+		<input type='hidden' value='{$title}' id='title' name='title' />";
+
 		# Displays multiple authors if there are more than one. Only the first author will be passed in a post.
 			foreach($authors AS $author){
-				echo "<i>First name:</i>&nbsp;" . authorfirstname($author) . "<br />
-				<i>Last name:</i>&nbsp;" . authorlastname($author) . "<br /><br />";
+				echo 
+				"<div><label>Author First Name:</label><div>&nbsp;" . authorfirstname($author) . "</div></div>
+				<div><label>Author Last Name:</label><div>&nbsp;" . authorlastname($author) . "</div></div>";				
 			}
-		echo "<input type='hidden' value='{$authors[0]}' id='authors' name='authors' />
-		<b>ISBN-10:</b>&nbsp;" .$isbn10 . "<br /><br />
-		<input type='hidden' value='{$isbn10}' id='isbn10' name='isbn10' />
-		<b>ISBN-13:</b>&nbsp;" .$isbn13 . "<br /><br />
-		<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />
-		<b>Course:</b>&nbsp;<input type='text' value='' id='course' name='class' size='8' /><br /><br />
-		<b>Condition:</b>&nbsp;<select name='condition'>";
+		echo 
+			"<input type='hidden' value='{$authors[0]}' id='authors' name='authors' />			
+			<div><label>ISBN-10:</label><div>&nbsp;" . $isbn10 . "</div></div>
+			<div><label>ISBN-10:</label><div>&nbsp;" . $isbn13 . "</div></div>			
+			<input type='hidden' value='{$isbn10}' id='isbn10' name='isbn10' />			
+			<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />
+			<div><label>Course:</label>&nbsp;<input type='text' value='' id='course' name='class' size='8' /></div>
+			<div><label>Condition:</label>&nbsp;<select name='condition'>";
+			
 		//START CONDTION OPTIONS DROP DOWN
 		$dbconn = pg_connect($DB_CONNECT_STRING)
 		    or die('Could not connect: ' . pg_last_error());
@@ -220,10 +217,10 @@
 		}
 		pg_close($dbconn);
 		//END DROPDOWN
-		echo "</select><br /><br />
-		<b>Description:</b>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual />" . $note . 
-		"</textarea><br /><br />
-		<b>Make book available for others to borrow.</b>&nbsp;<input type='checkbox' id='available' name='available' checked/><br /><br />";
+		//<b>Description:</b>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual />" . $note . </textarea><br /><br />
+		echo "</select></div>		
+		<div><label>Description:</label>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual /> " . $note . " </textarea></div>		
+		<div>Make book available for others to borrow.</b>&nbsp;<input type='checkbox' id='available' name='available' checked/></div>";
 		echo "<input type='submit' name='standardadd' value='Add to My Books' style='margin-left:200px' />";
 		echo "<input type='submit' name='edit' value='Edit Information' style='margin-left:10px' />";
 	}
@@ -256,12 +253,10 @@
 		}
 		pg_close($dbconn);
 		//END DROPDOWN
+		//<b>Description:</b>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual />" . $note . "</textarea> </div>
 		echo "</select></div>
-		
-		<div><label>Description:</label>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual /> " . $note . " </textarea></div>
-		
-		<b>Description:</b>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual />" . $note . "</textarea> </div>
-		<b>Make book available for others to borrow.</b>&nbsp;<input type='checkbox' id='available' name='available' checked/><br /><br />
+		<div><label>Description:</label>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual /> " . $note . " </textarea></div>		
+		<div>Make book available for others to borrow.&nbsp;<input type='checkbox' id='available' name='available' checked/></div>
 		<input type='submit' name='forceadd' value='Add to My Books' style='margin-left:200px' />";
 	}
 	# HTML used to manually add a book to BookEx
