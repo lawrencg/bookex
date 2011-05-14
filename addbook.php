@@ -405,13 +405,6 @@
 	echo '				<div class="rightContent contentarea">';
 	echo "<form action='' id='defaultform' name='book' method='POST'>";
 	
-
-	
-	
-	
-	
-	
-	
 	# This is a POST
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){ 
 		if(isset($_POST['addbooksearch'])){
