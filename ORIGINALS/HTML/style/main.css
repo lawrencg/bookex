@@ -344,6 +344,7 @@ button {
 
 #agreeandregistercontent, #additionalinfotextareas { 
 	width: 500px;
+	overflow:hidden;
 }
 	#centeringtextarea {
 		width: 500px;
