@@ -100,6 +100,7 @@
 		echo "<input type='submit' name='edit' value='Edit Information' />";
 		echo "</form>";
 		}
+		
 
 		
 		// HTML used to edit a form populated with profile information.
@@ -108,15 +109,10 @@
 		global $myinfoNetID, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor, $DB_CONNECT_STRING;		
 		echo "<form action='' id='profile' name='profile' method='POST'>";		
 		echo"
-		<input type='hidden' value='{$myinfoFirstName}' id='myinfoFirstName' name='myinfoFirstName' />
 		<b>First Name: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myinfoFirstName . "' id='myinfoFirstName' name='myinfoFirstName' size='40' /><br />
-		<input type='hidden' value='{$myinfoLastName}' id='myinfoLastName' name='myinfoLastName' />
 		<b>Last Name: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myinfoLastName . "' id='myinfoLastName' name='myinfoLastName' size='40' /><br />			 
-		<input type='hidden' value='{$myinfoNetID}' id='myinfoNetID' name='myinfoNetID' />
 		<b>UW NetID: <span style='font-weight:normal;'></b>&nbsp;" . $myinfoNetID . " <id='myinfoNetID' name='myinfoNetID' /><br />
-		<input type='hidden' value='{$myEmail}' id='myEmail' name='myEmail' />
 		<b>E-mail: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myEmail . "' id='myEmail' name='myEmail' size='40' /><br />
-		<input type='hidden' value='{$myMajor}' id='myMajor' name='myMajor' />
 		<b>Major: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myMajor . "' id='myMajor' name='myMajor' size='40' /><br />";
 		
 		echo "<input type='submit' name='saveID' value='Save Changes' />";
@@ -125,11 +121,11 @@
 		 
 		 
 		function savemyinfo(){
-			global $user, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor;
+			global $user, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor, $DB_CONNECT_STRING;
 			//global $dbconn;
 			//$dbconn2 = pg_connect($dbconn)
 			//    or die('Could not connect: ' . pg_last_error());
-			pg_query("SELECT savemyinfo('{$myinfoFirstName}'::varchar,'{$myinfoLastName}'::varchar, '{$myEmail}'::varchar, '{$myMajor}'::varchar, '{$user}'::varchar)") 
+			pg_query("SELECT savemyinfo('M'::varchar,'Cheunggg'::varchar, 'cheungm@uw.edu'::varchar, 'Informatics'::varchar, 'cheungm'::varchar)") 
 				or die('Query failed: ' . pg_last_error()); 
 		}
 		
