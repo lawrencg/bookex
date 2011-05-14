@@ -28,7 +28,7 @@
 	#		                                                                           #
 	#		                                                                           #
 	
-		function getinfofromBookEx($currentId){
+		/*function getinfofromBookEx($currentId){
 		# Global variables
 		//global $myinfoNetID, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor, $DB_CONNECT_STRING;
 		global $DB_CONNECT_STRING;
@@ -64,32 +64,28 @@
 		}
 		# Close the database
 		pg_close($dbconn);
-		}
+		}*/
 		
-		
-		// HTML used to edit a form populated with profile information.
-		function editProfile() {
-		# Global variables
-		global $myinfoNetID, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor, $DB_CONNECT_STRING;		
-		echo"
-		<input type='hidden' value='{$myinfoFirstName}' id='myinfoFirstName' name='myinfoFirstName' />
-		<b>First Name: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myinfoFirstName . "' id='myinfoFirstName' name='myinfoFirstName' size='40' /><br />
-		<input type='hidden' value='{$myinfoLastName}' id='myinfoLastName' name='myinfoLastName' />
-		<b>Last Name: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myinfoLastName . "' id='myinfoLastName' name='myinfoLastName' size='40' /><br />			 
-		<input type='hidden' value='{$myinfoNetID}' id='myinfoNetID' name='myinfoNetID' />
-		<b>UW NetID: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myinfoNetID . "' id='myinfoNetID' name='myinfoNetID' size='40' /><br />
-		<input type='hidden' value='{$myEmail}' id='myEmail' name='myEmail' />
-		<b>E-mail: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myEmail . "' id='myEmail' name='myEmail' size='40' /><br />
-		<input type='hidden' value='{$myMajor}' id='myMajor' name='myMajor' />
-		<b>Major: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myMajor . "' id='myMajor' name='myMajor' size='40' /><br />";
-		
-		echo "<input type='submit' name='saveID' value='Save Changes' />";
-		
-		}
-		 
-		 
+
 		function filledProfile() {
-		global $myinfoNetID, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor, $DB_CONNECT_STRING;
+		global $user, $myinfoNetID, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor, $DB_CONNECT_STRING;
+		# Connect to the database
+		//$dbconn = pg_connect($DB_CONNECT_STRING)
+		//	or die('Could not connect: ' . pg_last_error());
+		$myinfoResult2 = pg_query("SELECT * FROM getmyinfo('" . $user . "') AS results(id varchar, fname varchar, lname varchar, email varchar, major varchar)"); 			
+		if (!$myinfoResult2) {
+			die("Error in SQL query: " . pg_last_error());
+		}
+
+		while ($row = pg_fetch_array($myinfoResult2)) {
+			$myinfoNetID = $row[0];
+			$myinfoFirstName = $row[1];
+			$myinfoLastName = $row[2];
+			$myEmail = $row[3];
+			$myMajor = $row[4];		
+		}
+
+		echo "<form action='' id='profile' name='profile' method='POST'>";			
 		echo"
 		<input type='hidden' value='{$myinfoFirstName}' id='myinfoFirstName' name='myinfoFirstName' />
 		<b>First Name: <span style='font-weight:normal;'></b>&nbsp;" . $myinfoFirstName . "<br />
@@ -101,27 +97,45 @@
 		<b>E-mail: <span style='font-weight:normal;'></b>&nbsp;" . $myEmail . "<br / >			
 		<input type='hidden' value='{$myMajor}' id='myMajor' name='myMajor' />
 		<b>Major: <span style='font-weight:normal;'></b>&nbsp;" . $myMajor . "<br / >";	
+		echo "<input type='submit' name='edit' value='Edit Information' />";
+		echo "</form>";
+		}
+
 		
-		//pg_close($dbconn);
+		// HTML used to edit a form populated with profile information.
+		function editProfile() {
+		# Global variables
+		global $myinfoNetID, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor, $DB_CONNECT_STRING;		
+		echo"
+		<input type='hidden' value='{$myinfoFirstName}' id='myinfoFirstName' name='myinfoFirstName' />
+		<b>First Name: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myinfoFirstName . "' id='myinfoFirstName' name='myinfoFirstName' size='40' /><br />
+		<input type='hidden' value='{$myinfoLastName}' id='myinfoLastName' name='myinfoLastName' />
+		<b>Last Name: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myinfoLastName . "' id='myinfoLastName' name='myinfoLastName' size='40' /><br />			 
+		<input type='hidden' value='{$myinfoNetID}' id='myinfoNetID' name='myinfoNetID' />
+		<b>UW NetID: <span style='font-weight:normal;'></b>&nbsp;" . $myinfoNetID . " <id='myinfoNetID' name='myinfoNetID' /><br />
+		<input type='hidden' value='{$myEmail}' id='myEmail' name='myEmail' />
+		<b>E-mail: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myEmail . "' id='myEmail' name='myEmail' size='40' /><br />
+		<input type='hidden' value='{$myMajor}' id='myMajor' name='myMajor' />
+		<b>Major: <span style='font-weight:normal;'></b>&nbsp;<input type='text' value='" . $myMajor . "' id='myMajor' name='myMajor' size='40' /><br />";
 		
-		echo "<input type='submit' name='edit' value='Edit Information' />";	
+		echo "<input type='submit' name='saveID' value='Save Changes' />";
 		
 		}
-		
+		 
+		 
 		function savemyinfo(){
-			global $myinfoFirstName, $myinfoLastName, $myEmail;
+			global $user, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor;
 			//global $dbconn;
 			//$dbconn2 = pg_connect($dbconn)
 			//    or die('Could not connect: ' . pg_last_error());
-			$user2 = $_SERVER['REMOTE_USER'];
-			pg_query("SELECT savemyinfo('{$myinfoFirstName}'::varchar,'{$myinfoLastName}'::varchar, '{$myEmail}'::varchar, '{$user2}'::varchar)") 
+			pg_query("SELECT savemyinfo('{$myinfoFirstName}'::varchar,'{$myinfoLastName}'::varchar, '{$myEmail}'::varchar, '{$myMajor}'::varchar, '{$user}'::varchar)") 
 				or die('Query failed: ' . pg_last_error()); 
 		}
 		
 		
 		
 		function generateMyProfile() {
-		global $dbconn, $user;
+			global $dbconn, $user;
 			echo "<h1>My Profile</h1>";
 			
 			
@@ -318,12 +332,11 @@
 			*/
 				
 			
-			getinfofromBookEx($user);
+			//getinfofromBookEx($user);
 			//filledProfile();	
 			
 			echo "<form action='' id='profile' name='profile' method='POST'>";			
-			//echo "<a href='editprofile.php'>-->Edit My Information</a>\n";
-			echo "<input type='submit' name='edit' value='Edit Information' />";
+			//////echo "<input type='submit' name='edit' value='Edit Information' />";
 			//echo "<input type='submit' name='saveID' value='Save' />";	
 			
 			//if($_SERVER['REQUEST_METHOD'] == 'POST'){ 
@@ -337,11 +350,11 @@
 			}
 			echo "</form>";
 			
-			//if (pg_escape_string($_POST['saveID'])){
-			//	savemyinfo();
-			//	echo '<META HTTP-EQUIV="refresh" content="0;URL=https://students.washington.edu/shanzha/myprofile.php">';
-			//	exit;
-			//}
+			if (pg_escape_string($_POST['saveID'])){
+				savemyinfo();
+				echo '<META HTTP-EQUIV="refresh" content="0;URL=https://students.washington.edu/shanzha/profile.php">';
+				exit;
+			}
 			}
 	#		                                                                           #
 	#		                                                                           #	
@@ -356,13 +369,14 @@
 	
 	
 	
-		if ((isset($_POST) || isset($_GET)) && !isset($_GET['id'])) {
+		if ((isset($_POST) || isset($_GET)) && !isset($_GET['id']) && (!isset($_POST['edit']))) {
 			generateMyProfile();
+			filledProfile();
 		}
 		
 	if(isset($_GET['id'])) {
-		$dbconn = pg_connect($DB_CONNECT_STRING)
-		    or die('Could not connect: ' . pg_last_error());
+		//$dbconn = pg_connect($DB_CONNECT_STRING)
+		//    or die('Could not connect: ' . pg_last_error());
 		$currentId = $_GET['id'];
 		
 		
@@ -430,9 +444,8 @@
 		} else {
 		
 			if ($currentId = $user) {
-			
-			generateMyProfile();
-			
+				generateMyProfile();
+				filledProfile();
 			}
 			}
 				//pg_close($dbconn);
