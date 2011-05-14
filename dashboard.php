@@ -77,9 +77,9 @@
 		include 'includes/denyregistration.php';
 	}
 	function createbutton($name, $label, $bookid){
-		echo '											<form action=\'\' id=\'form_{$name}\' name=\'form_{$name}\' method=\'POST\'>';
-		echo '												<input type=\'hidden\' value=\'{$bookid}\' id=\'transid\' name=\'transid\' />';
-		echo '												<input type=\'submit\' id=\'{$name}\' name=\'{$name}\' value=\'{$label}\' />';
+		echo '											<form action=\'\' id=\'form_' . $name . '\' name=\'form_' . $name . '\' method=\'POST\'>';
+		echo '												<input type=\'hidden\' value=\'' . $bookid . '\' id=\'transid\' name=\'transid\' />';
+		echo '												<input type=\'submit\' id=\'' . $name . '\' name=\'' . $name . '\' value=\'' . $label . '\' />';
 		echo '											</form>';	
 	}
 	# Books I have requested
