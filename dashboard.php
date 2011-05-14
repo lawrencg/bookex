@@ -137,20 +137,34 @@
 					echo '				<div id="confirmationmessagearea" class="contentarea">';
 					$noconfirmations = false;
 				}
-				echo "<h3>Others have Requested</h3>\n";
-				echo "<p>{$records[5]} has requested to borrow \"{$records[3]}\" ";
-				createbutton('accept','Accept',$records[0]);
-				echo "&nbsp;";
+				echo '						<div id="othersrequests">';
+				echo '							<p class="header">Other\'s Requests</p>';
+				echo '								<table id="othersrequeststable">';
+				echo '									<tr>';
+				echo '										<td class="yourrequestsmessage">' . $records[5] . "has requested to borrow \"{$records[3]}\".</td>";
+				echo '										<td class="othersrequestsacceptbutton">';
+				createbutton('acceptrequest','Accept',$records[0]);
+				echo '										</td>';
+				echo '										<td class="othersrequestsacceptbutton">';
 				createbutton('deny','Deny',$records[0]);
-				echo "</p>\n";
+				echo '										</td>';
+				echo '									</tr>';
 				$firsttime = false;
 			} else {	
-				echo "<p>{$records[5]} has requested to borrow \"{$records[3]}\" ";
+				echo '									<tr>';
+				echo '										<td class="yourrequestsmessage">' . $records[5] . "has requested to borrow \"{$records[3]}\".</td>";
+				echo '										<td class="othersrequestsacceptbutton">';
 				createbutton('acceptrequest','Accept',$records[0]);
-				echo "&nbsp;";
+				echo '										</td>';
+				echo '										<td class="othersrequestsacceptbutton">';
 				createbutton('deny','Deny',$records[0]);
-				echo "</p>\n";
+				echo '										</td>';
+				echo '									</tr>';
 			}
+		}
+		if(!firsttime){
+			echo '								</table>';
+			echo '						</div>';
 		}
 	}
 	# Books I need to deliver
