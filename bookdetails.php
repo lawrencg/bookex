@@ -116,33 +116,6 @@
 			<input type='hidden' value='{$note}' id='description' name='description' />
 			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' {$status} disabled /></div></div>
 			<input type='hidden' id='available' name='available' value='{$status}' /><br /><br />" ;
-							
-		/*
-		echo "<p><form action='' id='defaultform' name='book' method='POST'>
-		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />		
-		<input type='hidden' value='{$owner_id}' id='ownerid' name='ownerid' />
-		
-		<b>Title:</b>&nbsp;{$title}<br />
-		<input type='hidden' value='{$title}' id='title' name='title' />
-		<b>Author Firstname</b>:&nbsp;{$authorfirst}<br /> 
-		<input type='hidden' value='{$authorfirst}' id='authorfirst' name='authorfirst' />
-		<b>Author Lastname</b>:&nbsp;{$authorlast}<br /> 
-		<input type='hidden' value='{$authorlast}' id='authorlast' name='authorlast' />
-		<b>ISBN-10:</b>&nbsp;{$isbn10}<br />
-		<input type='hidden' value='{$isbn10}' id='isbn10' name='isbn10' />
-		<b>ISBN-13:</b>&nbsp;{$isbn13}<br />
-		<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />
-		<b>Course:</b>&nbsp;{$course}<br />
-		<input type='hidden' value='{$course}' id='course' name='course' />
-		<b>Condition:</b>&nbsp;<select name='dropdown' disabled><option value='{$cond}' selected='selected'>{$cond}</option></select><br /><br />
-		<input type='hidden' value='{$cond}' id='condition' name='condition' />
-		
-		<b>Description:</b>&nbsp;
-		<textarea cols='40' rows='5' id='frame' name='frame' style='vertical-align:text-top;' virtual disabled />{$note}</textarea><br /><br />
-		<input type='hidden' value='{$note}' id='description' name='description' />
-		<b>Available for loan?</b>&nbsp;<input type='checkbox' id='box' name='box' {$status} disabled />
-		<input type='hidden' id='available' name='available' value='{$status}' /><br /><br />";
-		*/
 		
 		# Security feature. Check to see if the owner is the UW NetID that is logged in.
 		$user = $_SERVER['REMOTE_USER'];
@@ -164,29 +137,7 @@
 		if($status == 'on'){
 			$status	= 'checked';
 		}
-		/*
-			<input type='hidden' value='{$cond}' id='condition' name='condition' />			
-			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='frame' style='vertical-align:text-top;' virtual disabled />{$note}</textarea></div></div>
-			<input type='hidden' value='{$note}' id='description' name='description' />
-			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' {$status} disabled /></div></div>
-			<input type='hidden' id='available' name='available' value='{$status}' /><br /><br />" ;
-		
-		echo "<p><form action='' id='defaultform' name='book' method='POST'>
-		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
-		<input type='hidden' value='{$owner_id}' id='ownerid' name='ownerid' />
-		<b>Title:</b>&nbsp;{$title}<br />
-		<input type='hidden' value='{$title}' id='title' name='title' />
-		<b>Author Firstname</b>:&nbsp;{$authorfirst}<br /> 
-		<input type='hidden' value='{$authorfirst}' id='authorfirst' name='authorfirst' />
-		<b>Author Lastname</b>:&nbsp;{$authorlast}<br /> 
-		<input type='hidden' value='{$authorlast}' id='authorlast' name='authorlast' />
-		<b>ISBN-10:</b>&nbsp;{$isbn10}<br />
-		<input type='hidden' value='{$isbn10}' id='isbn10' name='isbn10' />
-		<b>ISBN-13:</b>&nbsp;{$isbn13}<br />
-		<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />
-		<b>Course:</b>&nbsp;<input type='text' value='{$course}' id='course' name='course' size='8' /><br /><br />
-		<b>Condition:</b>&nbsp;<select name='condition'>";
-		*/
+	
 		echo " 
 		<form action='' id='defaultform' name='book' method='POST'>
 			<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
@@ -251,7 +202,9 @@
 		}
 		# Posts back to mybook.php because after this book is removed we cannot display this book anymore.
 		echo "<p><form action='mybooks.php' id='defaultform' name='book' method='POST'>
-		<h2>Are you sure you want to remove this book from your BookEx account?<br />This cannot be undone.</h2>
+		
+		<div>Are you sure you want to remove this book from your BookEx account?<br />This cannot be undone.</div>
+		
 		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
 		<b>Title:</b>&nbsp;{$title}<br />
 		<b>Author Firstname</b>:&nbsp;{$authorfirst}<br /> 
