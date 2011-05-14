@@ -17,8 +17,10 @@
 	// Allow a book to be requested from this page
 	include 'includes/request_process.php';
 	
+	//SOME HTML
+	
 	// Site navigation
-	require 'includes/menu.php';
+	require 'includes/siteheader.php';
 	
 ?>
 ===========================================================
