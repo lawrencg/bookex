@@ -33,7 +33,7 @@ switch ($searchOption)
 {
 case "searchTitle":
 	if (trim($searchTerm) == "") {
-		echo "You didn't enter a search term.";
+		$errormessage = "You didn't enter a search term.";
 		} else {
 	$searchTitleSQL = "SELECT * FROM searchbytitle('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int)";
 	$results = pg_query($dbconn, $searchTitleSQL);
@@ -56,7 +56,7 @@ case "searchTitle":
 break;
 case "searchNetID":
 	if (trim($searchTerm) == "") {
-		echo "You didn't enter a search term.";
+		$errormessage = "You didn't enter a search term.";
 		} else {
 	$searchNetidSQL2 = "SELECT * FROM searchbyuwnetid('" . $searchTerm . "') AS results(numberOfBooks bigint, ownerName varchar, email varchar, userid varchar)";
 	$results = pg_query($dbconn, $searchNetidSQL2);
@@ -79,7 +79,7 @@ case "searchNetID":
 break;
 case "searchISBN":
 	if (trim($searchTerm) == "") {
-		echo "You didn't enter a search term.";
+		$errormessage = "You didn't enter a search term.";
 		} else {
 	$searchTitleSQL2 = "SELECT * FROM searchbyisbn('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int)";
 	$results = pg_query($dbconn, $searchTitleSQL2);
@@ -102,7 +102,7 @@ case "searchISBN":
 break;
 case "searchStudentName":
 	if (trim($searchTerm) == "") {
-		echo "You didn't enter a search term.";
+		$errormessage = "You didn't enter a search term.";
 	} else {
 	$searchStudentNameSQL = "SELECT * FROM searchbyname('" . $searchTerm . "') AS results(numberOfBooks bigint, ownerName varchar, email varchar, userid varchar)";
 	$results = pg_query($dbconn, $searchStudentNameSQL);	
@@ -125,7 +125,7 @@ case "searchStudentName":
 break;
 case "searchEmail":
 	if (trim($searchTerm) == "") {
-		echo "You didn't enter a search term.";
+		$errormessage = "You didn't enter a search term.";
 	} else {
 	$searchStudentEmailSQL = "SELECT * FROM searchbyemail('" . $searchTerm . "') AS results(numberOfBooks bigint, ownerName varchar, email varchar, userid varchar)";
 	$results = pg_query($dbconn, $searchStudentEmailSQL);
@@ -148,7 +148,7 @@ case "searchEmail":
 break;
 case "searchAuthor":
 	if (trim($searchTerm) == "") {
-		echo "You didn't enter a search term.";
+		$errormessage = "You didn't enter a search term.";
 	} else {
 	$searchAuthorSQL = "SELECT * FROM searchbyauthorname('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int)";
 	$results = pg_query($dbconn, $searchAuthorSQL);
