@@ -29,7 +29,7 @@ function filledProfile() {
 	if($person == null)
 		$person = $user;
 
-	$myinfoResult2 = pg_query("SELECT * FROM getmyinfo('{$user}') AS results(id varchar, fname varchar, lname varchar, email varchar, major varchar)");
+	$myinfoResult2 = pg_query("SELECT * FROM getmyinfo('{$person}') AS results(id varchar, fname varchar, lname varchar, email varchar, major varchar)");
 	if (!$myinfoResult2) {
 		die("Error in SQL query: " . pg_last_error());
 	}
@@ -55,7 +55,7 @@ function filledProfile() {
 		<b>E-mail: <span style='font-weight:normal;'></b>&nbsp;" . $myEmail . "<br / >			
 		<input type='hidden' value='{$myMajor}' id='myMajor' name='myMajor' />
 		<b>Major: <span style='font-weight:normal;'></b>&nbsp;" . $myMajor . "<br / >";	
-	if($user == $_SERVER['REMOTE_USER']){
+	if($user == $person){
 		echo "<input type='submit' name='edit' value='Edit Information' />";
 	}
 	echo "</form>";
@@ -154,6 +154,7 @@ function getExtension($str) {
 		return $ext;
 	}
 function uploadimage(){
+	global $user;
 	define ("MAX_SIZE","1000");
 	// define the width and height for the thumbnail
 	// note that theese dimmensions are considered the maximum dimmension and are not fixed,
@@ -206,12 +207,13 @@ function uploadimage(){
 					$thumb=make_thumb($newname,$thumb_name,WIDTH,HEIGHT);
 				}
 			}	
+			echo $errormessage;
 			//If no errors registred, print the success message and show the thumbnail image created
-			 if($errormessage = '')
+			 if($errormessage == '')
 			 {
 			 	$errormessage = 'Image uploaded Successfully';
-			 	$imageInsertSQL = "UPDATE users SET profile_pic='$thumb_file' WHERE id ='$user'";
-			 	$imageInsertResult = pg_query($dbconn, $imageInsertSQL);
+			 	$imageInsertSQL = "UPDATE users SET profile_pic='$thumb_file' WHERE id ='{$user}'";
+			 	$imageInsertResult = pg_query($imageInsertSQL);
 			 	if (!$imageInsertResult) {
 			 		die("Error in SQL query: " . pg_last_error());
 			 	}
