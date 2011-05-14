@@ -8,6 +8,7 @@
 	require 'includes/session_track.php';
 	# Database connection parameters
 	require 'includes/database_info.php';
+	include 'includes/valid_user.php';
 	include 'includes/siteheader.php';
 	
 	$user = $_SERVER['REMOTE_USER'];
@@ -22,11 +23,10 @@
 	include 'includes/request_process.php';
 
 	
-	# ---------------------------------------- #
-	#                                          #
-	# ----------FUNCTIONS BEGIN HERE---------- #
-	#                                          #
-	# ---------------------------------------- #
+	# -------------------------------------------------------------------------------- #
+	# ------------------------------FUNCTIONS BEGIN HERE------------------------------ #
+	#		                                                                           #
+	#		                                                                           #
 	
 		function getinfofromBookEx($currentId){
 		# Global variables
@@ -117,94 +117,18 @@
 			pg_query("SELECT savemyinfo('{$myinfoFirstName}'::varchar,'{$myinfoLastName}'::varchar, '{$myEmail}'::varchar, '{$user2}'::varchar)") 
 				or die('Query failed: ' . pg_last_error()); 
 		}
-	
-	# ---------------------------------------- #
-	#                                          #
-	# -----------FUNCTIONS END HERE----------- #
-	#                                          #
-	# ---------------------------------------- #	
-	
-	
-	
-	
-	if(isset($_POST['']) || isset($_GET[''])){
-		echo "No user choosen!!!.";
-	}
-	
-	if(isset($_GET['id'])) {
-		$dbconn = pg_connect($DB_CONNECT_STRING)
-		    or die('Could not connect: ' . pg_last_error());
-		$currentId = $_GET['id'];
-		// Case if profile is another user's profile.
-		if ($currentId != $user) {
 		
-			$imageURL = "SELECT users.profile_pic FROM users WHERE id = '$currentId'";
-			$imageURLResult = pg_query($dbconn, $imageURL);
-			if (!$imageURLResult) {
-				die("Error in SQL query: " . pg_last_error());
-			}
-
-			while ($row = pg_fetch_array($imageURLResult)) {
-				 $currentPictureURL = $row[0];
-			}
-
-			echo '<img src="profile-pics/thumbs/'.$currentPictureURL.'"><br/>';
-			
-			
-			$myinfo = "SELECT * FROM getmyinfo('" . $currentId . "') AS results(id varchar, first_name varchar, last_name varchar, email varchar, major varchar)";
-			$myinfoResult = pg_query($dbconn, $myinfo); 			
-			if (!$myinfoResult) {
-				die("Error in SQL query: " . pg_last_error());
-			}
-			 
-			while ($row = pg_fetch_array($myinfoResult)) {
-				$myinfoNetID = $row[0];
-				$myinfoFirstName = $row[1];
-				$myinfoLastName = $row[2];
-				$myEmail = $row[3];
-				echo "First Name: <span style='font-weight:normal;'>" . $myinfoFirstName . "</span><br/>";
-				echo "Last Name: <span style='font-weight:normal;'>" . $myinfoLastName . "</span><br/>";
-				echo "UW NetID: <span style='font-weight:normal;'>" . $myinfoNetID . "</span><br/>";
-				echo "E-mail: <span style='font-weight:normal;'>" . $myEmail . "</span><br/>";	
-				echo "Major: <br/>";		
-			}
-			
 		
-			$available = pg_query("SELECT * FROM availablebooksfromuser('{$_GET['id']}'::varchar) 
-				VALUES( book_id int, title varchar, isbn10 numeric, isnb13 numeric, author text)") 
-				or die('Query failed: ' . pg_last_error()); 
-			$firsttime = true;
-			while($records = pg_fetch_array($available)) {
-				if ($firsttime) {
-					echo "<h3>Book List for {$_GET['id']}</h3>\n";
-					echo "<table border='2px'><th width='250px'>Title</th><th width='200px'>Author</th>
-					<th width='100px'>ISBN-10</th><th width='100px'>ISBN-13</th><th width='300px'></th>";
-					echo "<tr>";
-					echo "<td><a href='bookdetail.php?id={$records[0]}'>{$records[1]}</a></td>
-					<td>{$records[4]}</td><td>{$records[2]}</td><td>{$records[3]}</td><td>";
-					request_button($records[0]); 
-					echo "</td>\n";
-					echo "</tr>";
-					$firsttime = false;
-				} else {
-					echo "<tr>";
-					echo "<td><a href='bookdetail.php?id={$records[0]}'>{$records[1]}</a></td>
-					<td>{$records[4]}</td><td>{$records[2]}</td><td>{$records[3]}</td><td>"; 
-					request_button($records[0]);
-					echo "</td>\n";
-					echo "</tr>";
-				}
-			}
-			// Case if profile is the current user's profile.
-		} else {
+		
+		function generateMyProfile() {
+		global $dbconn, $user;
 			echo "<h1>My Profile</h1>";
 			
-			# ---------------------------------------- #
-			#                                          #
-			# ---UPLOAD PICTURE PROCESS STARTS HERE--- #
-			#                                          #
-			# ---------------------------------------- #
 			
+	# -------------------------------------------------------------------------------- #
+	# -----------------------UPLOAD PICTURE PROCESS STARTS HERE----------------------- #
+	#		                                                                           #
+	#		                                                                           #
 			 //define a maxim size for the uploaded images
 			 define ("MAX_SIZE","1000"); 
 			 // define the width and height for the thumbnail
@@ -348,12 +272,11 @@
 					die("Error in SQL query: " . pg_last_error());
 				}
 			 }
-			 
-			# -------------------------------------- #
-			#                                        #
-			# ---UPLOAD PICTURE PROCESS ENDS HERE--- #
-			#                                        #
-			# -------------------------------------- #
+	
+	#		                                                                           #
+	#		                                                                           #	
+	# -------------------------------------------------------------------------------- #
+	# ------------------------UPLOAD PICTURE PROCESS ENDS HERE------------------------ #
 			
 			
 
@@ -419,8 +342,98 @@
 			//	echo '<META HTTP-EQUIV="refresh" content="0;URL=https://students.washington.edu/shanzha/myprofile.php">';
 			//	exit;
 			//}
+			}
+	#		                                                                           #
+	#		                                                                           #	
+	# -------------------------------------------------------------------------------- #
+	# -------------------------------FUNCTIONS END HERE------------------------------- #
+	
+	
+	
+//	if ((isset($_POST) || isset($_GET)) && !isset($_GET['id'])) {
+//	
+//	}
+	
+	
+	
+		if ((isset($_POST) || isset($_GET)) && !isset($_GET['id'])) {
+			generateMyProfile();
+		}
+		
+	if(isset($_GET['id'])) {
+		$dbconn = pg_connect($DB_CONNECT_STRING)
+		    or die('Could not connect: ' . pg_last_error());
+		$currentId = $_GET['id'];
+		
+		
+		// Case if profile is another user's profile.
+		if ($currentId != $user) {
+		
+			$imageURL = "SELECT users.profile_pic FROM users WHERE id = '$currentId'";
+			$imageURLResult = pg_query($dbconn, $imageURL);
+			if (!$imageURLResult) {
+				die("Error in SQL query: " . pg_last_error());
+			}
+
+			while ($row = pg_fetch_array($imageURLResult)) {
+				 $currentPictureURL = $row[0];
+			}
+
+			echo '<img src="profile-pics/thumbs/'.$currentPictureURL.'"><br/>';
 			
 			
+			$myinfo = "SELECT * FROM getmyinfo('" . $currentId . "') AS results(id varchar, first_name varchar, last_name varchar, email varchar, major varchar)";
+			$myinfoResult = pg_query($dbconn, $myinfo); 			
+			if (!$myinfoResult) {
+				die("Error in SQL query: " . pg_last_error());
+			}
+			 
+			while ($row = pg_fetch_array($myinfoResult)) {
+				$myinfoNetID = $row[0];
+				$myinfoFirstName = $row[1];
+				$myinfoLastName = $row[2];
+				$myEmail = $row[3];
+				echo "First Name: <span style='font-weight:normal;'>" . $myinfoFirstName . "</span><br/>";
+				echo "Last Name: <span style='font-weight:normal;'>" . $myinfoLastName . "</span><br/>";
+				echo "UW NetID: <span style='font-weight:normal;'>" . $myinfoNetID . "</span><br/>";
+				echo "E-mail: <span style='font-weight:normal;'>" . $myEmail . "</span><br/>";	
+				echo "Major: <br/>";		
+			}
+			
+		
+			$available = pg_query("SELECT * FROM availablebooksfromuser('{$_GET['id']}'::varchar) 
+				VALUES( book_id int, title varchar, isbn10 numeric, isnb13 numeric, author text)") 
+				or die('Query failed: ' . pg_last_error()); 
+			$firsttime = true;
+			while($records = pg_fetch_array($available)) {
+				if ($firsttime) {
+					echo "<h3>Book List for {$_GET['id']}</h3>\n";
+					echo "<table border='2px'><th width='250px'>Title</th><th width='200px'>Author</th>
+					<th width='100px'>ISBN-10</th><th width='100px'>ISBN-13</th><th width='300px'></th>";
+					echo "<tr>";
+					echo "<td><a href='bookdetail.php?id={$records[0]}'>{$records[1]}</a></td>
+					<td>{$records[4]}</td><td>{$records[2]}</td><td>{$records[3]}</td><td>";
+					request_button($records[0]); 
+					echo "</td>\n";
+					echo "</tr>";
+					$firsttime = false;
+				} else {
+					echo "<tr>";
+					echo "<td><a href='bookdetail.php?id={$records[0]}'>{$records[1]}</a></td>
+					<td>{$records[4]}</td><td>{$records[2]}</td><td>{$records[3]}</td><td>"; 
+					request_button($records[0]);
+					echo "</td>\n";
+					echo "</tr>";
+				}
+			}
+			// Case if profile is the current user's profile.
+		} else {
+		
+			if ($currentId = $user) {
+			
+			generateMyProfile();
+			
+			}
 			}
 				//pg_close($dbconn);
 				echo "</table>";	
