@@ -323,7 +323,7 @@
 			leave_bookex();
 		}
 	}
-	include 'includes/dashbaord_0_header.php';
+	include 'includes/dashboard_0_header.php';
 	include 'includes/siteheader.php';
 	# Display the things we want in the order we want them.
 	# All of these functions need a database connection.
