@@ -59,7 +59,6 @@
 			else 
 				$borrow = $records[4];
 			if ($firsttime) {
-				echo '						<div class="pageSubTitle">Books I Own</div>' . "\n";
 				echo '						<table id="mybooklisttable">' . "\n";
 				echo '							<thead>' . "\n";
 				echo '								<tr>' . "\n";
