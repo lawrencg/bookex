@@ -75,7 +75,7 @@
 			
 			echo '								<tr>' . "\n";
 			# Book title is a link to book details for that book
-			echo '									<td class="booktitle"><a href="bookdetail.php?id='.$records[0].'">'.$records[3].'</a></td>' . "\n";
+			echo '									<td class="booktitle"><a href="bookdetails.php?id='.$records[0].'">'.$records[3].'</a></td>' . "\n";
 			echo '									<td class="booklender">'.$borrow.'</td>' . "\n";
 			# Decides what status to display. For loaned books we need to display the transaction status,
 			# for books that are not loaned out, we need to show the availability status.
