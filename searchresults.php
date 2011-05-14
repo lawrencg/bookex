@@ -23,9 +23,11 @@ if ($searchOption = "searchTitle") {
 echo "searchOption = searchTitle";
 }
 */
+
 include 'includes/searchresults_0_header.php';
 include 'includes/siteheader.php';
 include 'includes/searchresults_1_contentarea.php';
+include 'includes/request_process.php';
 
 switch ($searchOption)
 {
@@ -33,71 +35,138 @@ case "searchTitle":
 	if (trim($searchTerm) == "") {
 		echo "You didn't enter a search term.";
 		} else {
-	$searchTitleSQL = "SELECT * FROM searchbytitle('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar)";
-	$searchTitleSQLResult = pg_query($dbconn, $searchTitleSQL);
-	if (!$searchTitleSQLResult) {
+	$searchTitleSQL = "SELECT * FROM searchbytitle('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int)";
+	$results = pg_query($dbconn, $searchTitleSQL);
+	if (!$results) {
 		die("Error in SQL query: " . pg_last_error());
 	}
-	$rows = pg_num_rows($searchTitleSQLResult);
+	$rows = pg_num_rows($results);
 	if ($rows != 0) {
 	echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
 	echo "<table id='booksearchresultstable'>";
-	echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN-10</td><td class=\"header\">ISBN-13</td><td class=\"header\">Owner</td></tr></thead>";
-	while ($row = pg_fetch_array($searchTitleSQLResult)) {
-		echo "<tr><td class=\"booktitle\">" . htmlspecialchars($row[0]) . "</td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[3]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td></tr>"; 
+	echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN-13</td><td class=\"header\">Owner</td></tr></thead>";
+	while ($row = pg_fetch_array($results)) {
+		echo "<tr><td class=\"booktitle\">" . htmlspecialchars($row[0]) . "</td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">" . request_button($rows[6]) . "</td></tr>"; 
 		}
 	echo "</table>";
 	} else {
-		echo "<i>Cannot find any books with the title <b>" . $searchTerm . "</b></i>";
-	}
+		$errormessage = "Cannot find any books with the title";
+		}
 	}
 break;
 case "searchNetID":
 	if (trim($searchTerm) == "") {
 		echo "You didn't enter a search term.";
 		} else {
-	$searchTitleSQL2 = "SELECT * FROM searchbyuwnetid('" . $searchTerm . "') AS results(numberOfBooks bigint, fname character varying, lname character varying, email character varying)";
-	$searchTitleSQLResult2 = pg_query($dbconn, $searchTitleSQL2);
-	if (!$searchTitleSQLResult2) {
+	$searchNetidSQL2 = "SELECT * FROM searchbyuwnetid('" . $searchTerm . "') AS results(numberOfBooks bigint, ownerName varchar, email varchar, userid varchar)";
+	$results = pg_query($dbconn, $searchNetidSQL2);
+	if (!$results) {
 		die("Error in SQL query: " . pg_last_error());
 	}
-	$rows2 = pg_num_rows($searchTitleSQLResult2);
-	if ($rows2 != 0) {
+	$rows = pg_num_rows($results);
+	if ($rows != 0) {
 	echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
 	echo "<table id='peoplesearchresults'>";
 	echo "<thead><tr><td class=\"header\">Name</td><td>E-mail</td><td>Number of books</td></tr></thead>";
-	while ($row = pg_fetch_array($searchTitleSQLResult2)) {
-		echo "<tr><td class=\"personsname\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"personsemail\">" . htmlspecialchars($row[3]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
+	while ($row = pg_fetch_array($results)) {
+		echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsemail\">" . htmlspecialchars($row[2]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
 		}
-	echo "</table>";
+		echo "</table>";
 	} else {
-		echo "<i>Cannot find any people with the UW NetID <b>"	. $searchTerm . "</b></i>";
-	}
+		$errormessage = "Cannot find any people with the UW NetID";
+		}
 	}
 break;
 case "searchISBN":
 	if (trim($searchTerm) == "") {
 		echo "You didn't enter a search term.";
 		} else {
-	$searchTitleSQL2 = "SELECT * FROM searchbyisbn('" . $searchTerm . "') AS results(numberOfBooks bigint, fname character varying, lname character varying, email character varying)";
-	$searchTitleSQLResult2 = pg_query($dbconn, $searchTitleSQL2);
-	if (!$searchTitleSQLResult2) {
+	$searchTitleSQL2 = "SELECT * FROM searchbyisbn('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int)";
+	$results = pg_query($dbconn, $searchTitleSQL2);
+	if (!$results) {
 		die("Error in SQL query: " . pg_last_error());
 	}
-	$rows2 = pg_num_rows($searchTitleSQLResult2);
-	if ($rows2 != 0) {
-		echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>\n";
-		echo "<table border=\"1\">\n";
-		echo "<tr><th>Name<th>E-mail<th>Number of books</tr>\n";
-		while ($row = pg_fetch_array($searchTitleSQLResult2)) 
-		{
-			echo "<tr><td>" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td>" . htmlspecialchars($row[3]) . "</td><td>" . htmlspecialchars($row[0]) . "</td></tr>\n"; 
+	$rows = pg_num_rows($results);
+	if ($rows != 0) {
+	echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
+	echo "<table id='peoplesearchresults'>";
+	echo "<thead><tr><td class=\"header\">Name</td><td>E-mail</td><td>Number of books</td></tr></thead>";
+	while ($row = pg_fetch_array($results)) {
+		echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsemail\">" . htmlspecialchars($row[2]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
 		}
 		echo "</table>";
-		
 	} else {
-		echo "<i>Cannot find any people with the UW NetID <b>"	. $searchTerm . "</b></i>";
+		$errormessage = "Cannot find any books with the ISBN";
+		}
 	}
+break;
+case "searchStudentName":
+	if (trim($searchTerm) == "") {
+		echo "You didn't enter a search term.";
+	} else {
+	$searchStudentNameSQL = "SELECT * FROM searchbyname('" . $searchTerm . "') AS results(numberOfBooks bigint, ownerName varchar, email varchar, userid varchar)";
+	$results = pg_query($dbconn, $searchStudentNameSQL);	
+	if (!$results) {
+		die("Error in SQL query: " . pg_last_error());
+	}
+	$rows = pg_num_rows($results);
+	if ($rows != 0) {
+	echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
+	echo "<table id='peoplesearchresults'>";
+	echo "<thead><tr><td class=\"header\">Name</td><td>E-mail</td><td>Number of books</td></tr></thead>";
+	while ($row = pg_fetch_array($results)) {
+		echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsemail\">" . htmlspecialchars($row[2]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
+		}
+		echo "</table>";
+	} else {
+		$errormessage = "Cannot find any people with the name";
+		}
+	}
+break;
+case "searchEmail":
+	if (trim($searchTerm) == "") {
+		echo "You didn't enter a search term.";
+	} else {
+	$searchStudentEmailSQL = "SELECT * FROM searchbyemail('" . $searchTerm . "') AS results(numberOfBooks bigint, ownerName varchar, email varchar, userid varchar)";
+	$results = pg_query($dbconn, $searchStudentEmailSQL);
+	if (!$results) {
+		die("Error in SQL query: " . pg_last_error());
+	}
+	$rows = pg_num_rows($results);
+	if ($rows != 0) {
+	echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
+	echo "<table id='peoplesearchresults'>";
+	echo "<thead><tr><td class=\"header\">Name</td><td>E-mail</td><td>Number of books</td></tr></thead>";
+	while ($row = pg_fetch_array($results)) {
+		echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsemail\">" . htmlspecialchars($row[2]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
+		}
+		echo "</table>";
+	} else {
+		$errormessage = "Cannot find any people with the email";
+		}
+	}
+break;
+case "searchAuthor":
+	if (trim($searchTerm) == "") {
+		echo "You didn't enter a search term.";
+	} else {
+	$searchAuthorSQL = "SELECT * FROM searchbyauthorname('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int)";
+	$results = pg_query($dbconn, $searchAuthorSQL);
+	if (!$results) {
+		die("Error in SQL query: " . pg_last_error());
+	}
+	$rows = pg_num_rows($results);
+	if ($rows != 0) {
+	echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
+	echo "<table id='peoplesearchresults'>";
+	echo "<thead><tr><td class=\"header\">Name</td><td>E-mail</td><td>Number of books</td></tr></thead>";
+	while ($row = pg_fetch_array($results)) {
+		echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsemail\">" . htmlspecialchars($row[2]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
+		}
+		echo "</table>";
+	} else {
+		$errormessage = "Cannot find any books with the author";
+		}
 	}
 break;
 }
