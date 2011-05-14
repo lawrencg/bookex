@@ -7,7 +7,7 @@
 					<div id="bookImageContent">
 						<div id="bookImagePhoto"></div>
 						<button class="smallbtn">Upload Photo</button>
-						<button class="actionButton">Add</button>
+						<!--<button class="actionButton">Add</button>-->
 					</div>
 				</div>
 				
