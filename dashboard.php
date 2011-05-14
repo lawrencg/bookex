@@ -77,48 +77,48 @@
 		include 'includes/denyregistration.php';
 	}
 	function createbutton($name, $label, $bookid){
-		echo '											<form action=\'\' id=\'form_' . $name . '\' name=\'form_' . $name . '\' method=\'POST\'>';
-		echo '												<input type=\'hidden\' value=\'' . $bookid . '\' id=\'transid\' name=\'transid\' />';
-		echo '												<input type=\'submit\' id=\'' . $name . '\' name=\'' . $name . '\' value=\'' . $label . '\' />';
-		echo '											</form>';	
+		echo '											<form action=\'\' id=\'form_' . $name . '\' name=\'form_' . $name . '\' method=\'POST\'>' . "\n";
+		echo '												<input type=\'hidden\' value=\'' . $bookid . '\' id=\'transid\' name=\'transid\' />' . "\n";
+		echo '												<input type=\'submit\' id=\'' . $name . '\' name=\'' . $name . '\' value=\'' . $label . '\' />' . "\n";
+		echo '											</form>' . "\n";	
 	}
 	# Books I have requested
 	function myrequests(){
 		# Global variables
 		# Only need to get the username from the server once.
-		global $use, $noconfirmations;
+		global $user, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
-		$yourequested = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND transstatus = 'Requested'") 
+		$yourequested = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '{$user}' AND transstatus = 'Requested'") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($yourequested)) {
 			if ($firsttime){
 				if($noconfirmations){
-					echo '				<div id="confirmationmessagearea" class="contentarea">';
+					echo '				<div id="confirmationmessagearea" class="contentarea">' . "\n";
 					$noconfirmations = false;
 				}
-				echo '						<div id="yourrequests">';
-				echo '							<p class="header">Your Requests</p>';
-				echo '								<table id="yourrequeststable">';
-				echo '									<tr>';
-				echo '										<td class="yourrequestsmessage">You requested ' . "\"{$records[3]}\" from {$records[6]}.</td>";
-				echo '										<td class="yourrequestsbutton">';
+				echo '						<div id="yourrequests">' . "\n";
+				echo '							<p class="header">Your Requests</p>' . "\n";
+				echo '								<table id="yourrequeststable">' . "\n";
+				echo '									<tr>' . "\n";
+				echo '										<td class="yourrequestsmessage">You have requested ' . "\"{$records[3]}\" from {$records[6]}.</td>\n";
+				echo '										<td class="yourrequestsbutton">' . "\n";
 				createbutton('cancelrequest','Cancel',$records[0]);
-				echo '										</td>';
-				echo '									</tr>';
+				echo '										</td>' . "\n";
+				echo '									</tr>' . "\n";
 				$firsttime = false;
 			} else {
-				echo '									<tr>';
-				echo '										<td class="yourrequestsmessage">You requested ' . "\"{$records[3]}\" from {$records[6]}.</td>";
-				echo '										<td class="yourrequestsbutton">';
+				echo '									<tr>' . "\n";
+				echo '										<td class="yourrequestsmessage">You haave requested ' . "\"{$records[3]}\" from {$records[6]}.</td>\n";
+				echo '										<td class="yourrequestsbutton">' . "\n";
 				createbutton('cancelrequest','Cancel',$records[0]);
-				echo '										</td>';
-				echo '									</tr>';
+				echo '										</td>' . "\n";
+				echo '									</tr>' . "\n";
 			}
 		}
-		if(!firsttime){
-			echo '								</table>';
-			echo '						</div>';
+		if(!$firsttime){
+			echo '								</table>' . "\n";
+			echo '						</div>' . "\n";
 		}
 		
 	}
@@ -129,42 +129,42 @@
 		global $user, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
-		$theyrequested = pg_query("SELECT * FROM detailedtransactions WHERE myid = '" . $user . "' AND transstatus = 'Requested'") 
+		$theyrequested = pg_query("SELECT * FROM detailedtransactions WHERE myid = '{$user}' AND transstatus = 'Requested'") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($theyrequested)) {
 			if ($firsttime){
 				if($noconfirmations){
-					echo '				<div id="confirmationmessagearea" class="contentarea">';
+					echo '				<div id="confirmationmessagearea" class="contentarea">' . "\n";
 					$noconfirmations = false;
 				}
-				echo '						<div id="othersrequests">';
-				echo '							<p class="header">Other\'s Requests</p>';
-				echo '								<table id="othersrequeststable">';
-				echo '									<tr>';
-				echo '										<td class="yourrequestsmessage">' . $records[5] . "has requested to borrow \"{$records[3]}\".</td>";
-				echo '										<td class="othersrequestsacceptbutton">';
+				echo '						<div id="othersrequests">' . "\n";
+				echo '							<p class="header">Other\'s Requests</p>' . "\n";
+				echo '								<table id="othersrequeststable">' . "\n";
+				echo '									<tr>' . "\n";
+				echo '										<td class="yourrequestsmessage">' . $records[5] . "has requested to borrow \"{$records[3]}\".</td>\n";
+				echo '										<td class="othersrequestsacceptbutton">' . "\n";
 				createbutton('acceptrequest','Accept',$records[0]);
-				echo '										</td>';
-				echo '										<td class="othersrequestsacceptbutton">';
+				echo '										</td>' . "\n";
+				echo '										<td class="othersrequestsacceptbutton">' . "\n";
 				createbutton('deny','Deny',$records[0]);
-				echo '										</td>';
-				echo '									</tr>';
+				echo '										</td>' . "\n";
+				echo '									</tr>' . "\n";
 				$firsttime = false;
 			} else {	
-				echo '									<tr>';
-				echo '										<td class="yourrequestsmessage">' . $records[5] . "has requested to borrow \"{$records[3]}\".</td>";
-				echo '										<td class="othersrequestsacceptbutton">';
+				echo '									<tr>' . "\n";
+				echo '										<td class="yourrequestsmessage">' . $records[5] . "has requested to borrow \"{$records[3]}\".</td>\n";
+				echo '										<td class="othersrequestsacceptbutton">' . "\n";
 				createbutton('acceptrequest','Accept',$records[0]);
-				echo '										</td>';
-				echo '										<td class="othersrequestsacceptbutton">';
+				echo '										</td>' . "\n";
+				echo '										<td class="othersrequestsacceptbutton">' . "\n";
 				createbutton('deny','Deny',$records[0]);
-				echo '										</td>';
-				echo '									</tr>';
+				echo '										</td>' . "\n";
+				echo '									</tr>' . "\n";
 			}
 		}
-		if(!firsttime){
-			echo '								</table>';
-			echo '						</div>';
+		if(!$firsttime){
+			echo '								</table>' . "\n";
+			echo '						</div>' . "\n";
 		}
 	}
 	# Books I need to deliver
@@ -174,49 +174,42 @@
 		global $user, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
-		$awaiting = pg_query("SELECT * FROM detailedtransactions WHERE myid = '" . $user . "' AND transstatus = 'Awaiting Delivery'") 
+		$awaiting = pg_query("SELECT * FROM detailedtransactions WHERE myid = '{$user}' AND transstatus = 'Awaiting Delivery'") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($awaiting)) {
 			if ($firsttime) {
 				if($noconfirmations){
-					echo '				<div id="confirmationmessagearea" class="contentarea">';
+					echo '				<div id="confirmationmessagearea" class="contentarea">' . "\n";
 					$noconfirmations = false;
 				}
-				echo "<h3>Delivery Confirmations</h3>\n";
-				echo "<p>Have you delivered \"{$records[3]}\" to {$records[5]}? "; 
+				echo '						<div id="deliveryconfirmations">' . "\n";
+				echo '							<p class="header">Delivery Confirmation</p>' . "\n";
+				echo '								<table id="deliveryconfirmationstable">' . "\n";
+				echo '									<tr>' . "\n";
+				echo '										<td class="deliveryconfirmationsmessage">Have you delivered ' . "\"{$records[3]}\" to {$records[5]}?</td>\n";
+				echo '										<td class="deliveryconfirmationsbutton">' . "\n";
 				createbutton('delivered','Delivered',$records[0]);
-				echo "&nbsp;";
+				echo '										</td>' . "\n";
+				echo '										<td class="deliveryconfirmationsbutton">' . "\n";
 				createbutton('deny','Deny',$records[0]);
-				echo "</p>\n";
-				
-				echo '						<div id="deliveryconfirmations">';
-				echo '							<p class="header">Delivery Confirmation</p>';
-				echo '								<table id="deliveryconfirmationstable">';
-				echo '									<tr>';
-				echo '										<td class="deliveryconfirmationsmessage">Have you delivered ' . "\"{$records[3]}\" to {$records[5]}?</td>";
-				echo '										<td class="deliveryconfirmationsbutton">';
-				createbutton('delivered','Delivered',$records[0]);
-				echo '										</td>';
-				echo '										<td class="deliveryconfirmationsbutton">';
-				createbutton('deny','Deny',$records[0]);
-				echo '										</td>';
-				echo '									</tr>';
+				echo '										</td>' . "\n";
+				echo '									</tr>' . "\n";
 				$firsttime = false;
 			} else {
-				echo '									<tr>';
-				echo '										<td class="deliveryconfirmationsmessage">Have you delivered ' . "\"{$records[3]}\" to {$records[5]}?</td>";
-				echo '										<td class="deliveryconfirmationsbutton">';
+				echo '									<tr>' . "\n";
+				echo '										<td class="deliveryconfirmationsmessage">Have you delivered ' . "\"{$records[3]}\" to {$records[5]}?</td>\n";
+				echo '										<td class="deliveryconfirmationsbutton">' . "\n";
 				createbutton('delivered','Delivered',$records[0]);
-				echo '										</td>';
-				echo '										<td class="deliveryconfirmationsbutton">';
+				echo '										</td>' . "\n";
+				echo '										<td class="deliveryconfirmationsbutton">' . "\n";
 				createbutton('deny','Deny',$records[0]);
-				echo '										</td>';
-				echo '									</tr>';
+				echo '										</td>' . "\n";
+				echo '									</tr>' . "\n";
 			}
 		}
-		if(!firsttime){
-			echo '								</table>';
-			echo '						</div>';
+		if(!$firsttime){
+			echo '								</table>' . "\n";
+			echo '						</div>' . "\n";
 		}
 	}
 	# Books I have received
@@ -226,36 +219,36 @@
 		global $user, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
-		$delivered = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND transstatus = 'Delivered'") 
+		$delivered = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '{$user}' AND transstatus = 'Delivered'") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($delivered)) {
 			if ($firsttime) {
 				if($noconfirmations){
-					echo '				<div id="confirmationmessagearea" class="contentarea">';
+					echo '				<div id="confirmationmessagearea" class="contentarea">' . "\n";
 					$noconfirmations = false;
 				}
-				echo '						<div id="receiveconfirmations">';
-				echo '							<p class="header">Receipt Confirmation</p>';
-				echo '								<table id="receiveconfirmationstable">';
-				echo '									<tr>';
-				echo '										<td class="receiveconfirmationsmessage">Have you received ' . "\"{$records[3]}\" from {$records[6]}?</td>";
-				echo '										<td class="receiveconfirmationsbutton">';
+				echo '						<div id="receiveconfirmations">' . "\n";
+				echo '							<p class="header">Receipt Confirmation</p>' . "\n";
+				echo '								<table id="receiveconfirmationstable">' . "\n";
+				echo '									<tr>' . "\n";
+				echo '										<td class="receiveconfirmationsmessage">Have you received ' . "\"{$records[3]}\" from {$records[6]}?</td>\n";
+				echo '										<td class="receiveconfirmationsbutton">' . "\n";
 				createbutton('confirmdelivery','Received',$records[0]);
-				echo '										</td>';
-				echo '									</tr>';
+				echo '										</td>' . "\n";
+				echo '									</tr>' . "\n";
 				$firsttime = false;
 			} else {
-				echo '									<tr>';
-				echo '										<td class="receiveconfirmationsmessage">Have you received ' . "\"{$records[3]}\" from {$records[6]}?</td>";
-				echo '										<td class="receiveconfirmationsbutton">';
+				echo '									<tr>' . "\n";
+				echo '										<td class="receiveconfirmationsmessage">Have you received ' . "\"{$records[3]}\" from {$records[6]}?</td>\n";
+				echo '										<td class="receiveconfirmationsbutton">' . "\n";
 				createbutton('confirmdelivery','Received',$records[0]);
-				echo '										</td>';
-				echo '									</tr>';
+				echo '										</td>' . "\n";
+				echo '									</tr>' . "\n";
 			}
 		}
-		if(!firsttime){
-			echo '								</table>';
-			echo '						</div>';
+		if(!$firsttime){
+			echo '								</table>' . "\n";
+			echo '						</div>' . "\n";
 		}
 	}
 	# Books someone has returned to me
@@ -265,57 +258,52 @@
 		global $user, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
-		$returned = pg_query("SELECT * FROM detailedtransactions WHERE myid = '" . $user . "' AND transstatus = 'Returned'") 
+		$returned = pg_query("SELECT * FROM detailedtransactions WHERE myid = '{$user}' AND transstatus = 'Returned'") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($returned)) {
 			if ($firsttime) {
 				if($noconfirmations){
-					echo '				<div id="confirmationmessagearea" class="contentarea">';
+					echo '				<div id="confirmationmessagearea" class="contentarea">' . "\n";
 					$noconfirmations = false;
 				}
-				echo "<h3>Return Confirmations</h3>\n";
-				echo "<p>Has {$records[5]} returned your \"{$records[3]}\" book?";
+				echo '						<div id="returnconfirmations">' . "\n";
+				echo '							<p class="header">Return Confirmation</p>' . "\n";
+				echo '								<table id="returnconfirmationstable">' . "\n";
+				echo '									<tr>' . "\n";
+				echo '										<td class="returnconfirmationsmessage">Has ' . $records[5] . " retunred \"{$records[3]}\"?</td>\n";
+				echo '										<td class="returnconfirmationsbutton">' . "\n";
 				createbutton('confirmreturnedbook','Returned',$records[0]);
-				echo "</p>\n";
-				
-				echo '						<div id="returnconfirmations">';
-				echo '							<p class="header">Return Confirmation</p>';
-				echo '								<table id="returnconfirmationstable">';
-				echo '									<tr>';
-				echo '										<td class="returnconfirmationsmessage">Has ' . {$records[5]} . " retunred \"{$records[3]}\"?</td>";
-				echo '										<td class="returnconfirmationsbutton">';
-				createbutton('confirmreturnedbook','Returned',$records[0]);
-				echo '										</td>';
-				echo '									</tr>';
+				echo '										</td>' . "\n";
+				echo '									</tr>' . "\n";
 				$firsttime = false;
 			} else {
-				echo '									<tr>';
-				echo '										<td class="returnconfirmationsmessage">Has ' . {$records[5]} . " retunred \"{$records[3]}\"?</td>";
-				echo '										<td class="returnconfirmationsbutton">';
+				echo '									<tr>' . "\n";
+				echo '										<td class="returnconfirmationsmessage">Has ' . $records[5] . " retunred \"{$records[3]}\"?</td>\n";
+				echo '										<td class="returnconfirmationsbutton">' . "\n";
 				createbutton('confirmreturnedbook','Returned',$records[0]);
-				echo '										</td>';
-				echo '									</tr>';
+				echo '										</td>' . "\n";
+				echo '									</tr>' . "\n";
 			}
 		}
-		if(!firsttime){
-			echo '								</table>';
-			echo '						</div>';
+		if(!$firsttime){
+			echo '								</table>' . "\n";
+			echo '						</div>' . "\n";
 		}
 	}
 	# HTML to display system notifications
 	function notifications(){
 		$nonotifications = true;
 		
-		echo '				<div id="notificationmessagearea" class="contentarea">';
-		echo '					<div id="notifications">';
-		echo '							<p class="header">Notifications</p>';
-		echo '								<table id="notificationstable">';
-		echo '									<tr>';
-		echo '										<td class="notificationsmessage">BookEx is currently under maintenance. Some features may be temporarily unavailable.</td>';
-		echo '									</tr>';
-		echo '								</table>';
-		echo '					</div>';
-		echo '				</div>';
+		echo '				<div id="notificationmessagearea" class="contentarea">' . "\n";
+		echo '					<div id="notifications">' . "\n";
+		echo '							<p class="header">Notifications</p>' . "\n";
+		echo '								<table id="notificationstable">' . "\n";
+		echo '									<tr>' . "\n";
+		echo '										<td class="notificationsmessage">BookEx is currently under maintenance. Some features may be temporarily unavailable.</td>' . "\n";
+		echo '									</tr>' . "\n";
+		echo '								</table>' . "\n";
+		echo '					</div>' . "\n";
+		echo '				</div>' . "\n";
 	}
 	# HTML to display the books that the user needs to return after they are done.
 	function imborrowing(){
@@ -325,64 +313,64 @@
 		# Might need to create the table and print the table headers.
 		$firsttime = true;	
 		$noborrowing = true;
-		echo '				<div id="booksborrowedlist" class="contentarea">';
-		echo '					<p class="header">Books I\'m Borrowing</p>';
+		echo '				<div id="booksborrowedlist" class="contentarea">' . "\n";
+		echo '					<p class="header">Books I\'m Borrowing</p>' . "\n";
 		$returned = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND transstatus = 'Received'") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($returned)) {
 			if ($firsttime) {
-				echo '						<table id="booksborrowingtable">';
-				echo '							<thead>';
-				echo '								<tr>';
-				echo '									<td class="booktitle header">Title</td>';
-				echo '									<td class="booklender header">Lender</td>';
-				echo '									<td class="bookduedate header">Due</td>';
-				echo '									<td class="bookreturnbutton"></td>';
-				echo '								</tr>';
-				echo '							</thead>';
-				echo '							<tr>';
+				echo '						<table id="booksborrowingtable">' . "\n";
+				echo '							<thead>' . "\n";
+				echo '								<tr>' . "\n";
+				echo '									<td class="booktitle header">Title</td>' . "\n";
+				echo '									<td class="booklender header">Lender</td>' . "\n";
+				echo '									<td class="bookduedate header">Due</td>' . "\n";
+				echo '									<td class="bookreturnbutton"></td>' . "\n";
+				echo '								</tr>' . "\n";
+				echo '							</thead>' . "\n";
+				echo '							<tr>' . "\n";
 				# Book title
-				echo '								<td class="booktitle">' . $records[3] . '</td>';
+				echo '								<td class="booktitle">' . $records[3] . '</td>' . "\n";
 				# Book owner
-				echo '								<td class="booklender">' . $records[6] . '</td>';
+				echo '								<td class="booklender">' . $records[6] . '</td>' . "\n";
 				# BookEx does not currently store a 'Due' date
-				echo '								<td class="bookduedate">' . date("F j, Y"). '</td>';
-				echo '								<td class="bookreturnbutton">';
+				echo '								<td class="bookduedate">' . date("F j, Y"). '</td>' . "\n";
+				echo '								<td class="bookreturnbutton">' . "\n";
 				createbutton('return','Return',$records[0]);
-				echo '								</td>';
-				echo '							</tr>';
+				echo '								</td>' . "\n";
+				echo '							</tr>' . "\n";
 				$firsttime = false;
 			} else {
-				echo '							<tr>';
+				echo '							<tr>' . "\n";
 				# Book title
-				echo '								<td class="booktitle">' . $records[3] . '</td>';
+				echo '								<td class="booktitle">' . $records[3] . '</td>' . "\n";
 				# Book owner
-				echo '								<td class="booklender">' . $records[6] . '</td>';
+				echo '								<td class="booklender">' . $records[6] . '</td>' . "\n";
 				# BookEx does not currently store a 'Due' date
-				echo '								<td class="bookduedate">' . date("F j, Y"). '</td>';
-				echo '								<td class="bookreturnbutton">';
+				echo '								<td class="bookduedate">' . date("F j, Y"). '</td>' . "\n";
+				echo '								<td class="bookreturnbutton">' . "\n";
 				createbutton('return','Return',$records[0]);
-				echo '								</td>';
-				echo '							</tr>';
+				echo '								</td>' . "\n";
+				echo '							</tr>' . "\n";
 			}
 		}
 		
 		if($firsttime){
-			echo '						<table id="booksborrowingtable">';
-			echo '							<tr>';
-			echo '								<td class="booktitle">You are currently not borrwing any books.</td>';
-			echo '							</tr>';
-			echo '						</table>';
-			echo '				</div>';
-			echo '			</div>';
-			echo '			<br />';
-			echo '		</div>';
+			echo '						<table id="booksborrowingtable">' . "\n";
+			echo '							<tr>' . "\n";
+			echo '								<td class="booktitle">You are currently not borrwing any books.</td>' . "\n";
+			echo '							</tr>' . "\n";
+			echo '						</table>' . "\n";
+			echo '				</div>' . "\n";
+			echo '			</div>' . "\n";
+			echo '			<br />' . "\n";
+			echo '		</div>' . "\n";
 		} else {
-			echo '						</table>';
-			echo '				</div>';
-			echo '			</div>';
-			echo '			<br />';
-			echo '		</div>';
+			echo '						</table>' . "\n";
+			echo '				</div>' . "\n";
+			echo '			</div>' . "\n";
+			echo '			<br />' . "\n";
+			echo '		</div>' . "\n";
 		}
 	}
 
@@ -426,11 +414,11 @@
 	}
 	include 'includes/dashboard_0_header.php';
 	include 'includes/siteheader.php';
-	echo '		<div id="page">';
-	echo '			<div id="maincontent">';
-	echo '				<br />';
+	echo '		<div id="page">' . "\n";
+	echo '			<div id="maincontent">' . "\n";
+	echo '				<br />' . "\n";
 	if($errormessage != '')
-		echo '				<div id="notification" class="show">' . $errormessage . '</div>';
+		echo '				<div id="notification" class="show">' . $errormessage . '</div>' . "\n";
 	
 	# Display the things we want in the order we want them.
 	myrequests();
@@ -439,7 +427,7 @@
 	receiptconfirmations();
 	returnconfirmations();
 	if(!$noconfirmations){
-		echo '				</div>';
+		echo '				</div>' . "\n";
 	}
 	
 	# System notifications are always displayed. Might be the first if there is no activity for the current user.
