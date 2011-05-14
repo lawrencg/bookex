@@ -75,16 +75,16 @@
 			
 			echo '								<tr>' . "\n";
 			# Book title is a link to book details for that book
-			echo '									<td class="booktitle"><a href="bookdetail.php?id='$records[0]'">'$records[3]'</a></td>' . "\n";
-			echo '									<td class="booklender">'$borrow'</td>' . "\n";
+			echo '									<td class="booktitle"><a href="bookdetail.php?id='.$records[0].'">'.$records[3].'</a></td>' . "\n";
+			echo '									<td class="booklender">'.$borrow.'</td>' . "\n";
 			# Decides what status to display. For loaned books we need to display the transaction status,
 			# for books that are not loaned out, we need to show the availability status.
 			if($records[6] == ''){
 				echo '									<td class="bookduedate">&nbps;</td>' . "\n";
-				echo '									<td class="bookstatus">'$records[5]'</td>' . "\n";				
+				echo '									<td class="bookstatus">'.$records[5].'</td>' . "\n";				
 			} else {
-				echo '									<td class="bookduedate">'date("F j, Y")'</td>' . "\n";
-				echo '									<td class="bookstatus">'$records[6]'</td>' . "\n";
+				echo '									<td class="bookduedate">'.date("F j, Y").'</td>' . "\n";
+				echo '									<td class="bookstatus">'.$records[6].'</td>' . "\n";
 			}
 			echo '								</tr>';
 		}
@@ -119,7 +119,7 @@
 	echo '				<br />' . "\n";
 	
 	if($errormessage != ''){
-		echo '				<div id="notification" class="show">'$errormessage'</div>' . "\n";
+		echo '				<div id="notification" class="show">'.$errormessage.'</div>' . "\n";
 	}
 	
 	echo '			<div id="mybooklistarea" class="contentarea">' . "\n";
