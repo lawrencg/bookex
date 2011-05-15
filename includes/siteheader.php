@@ -1,4 +1,4 @@
-	<!-- Top Div, this is included in every page.  Should be pulled out into a header file, use PHP include feature so we don't repeat code -->
+<!-- Top Div, this is included in every page.  Should be pulled out into a header file, use PHP include feature so we don't repeat code -->
 	<div id="top">
 		<div id="header">
 			<div id="bookexlogo">
@@ -8,7 +8,7 @@
 		</div>
 		<div id="search">
 			<form id="searchbox" method="POST" Action="searchresults.php">
-				<select name="searchDropdown">		
+				<select name="searchDropdown">
 					<option value='searchTitle'>Title</option>
 					<option value='searchISBN'>ISBN</option>
 					<option value='searchAuthor'>Author</option>
@@ -18,7 +18,7 @@
 				</select>
 				<input type="text" name="searchTerm" size="40"/>
 				<input type="submit" name="searchButton" value="Search"/>
-			</form>	
+			</form>
 		</div>
 		<div id="navigation">
 			<ul id="topnavigationlist">
@@ -28,5 +28,5 @@
 				<li id="logout"><a href="logout.php">Logout</a></li>
 			</ul>
 		</div>
-	</div>	
-	<!-- End Top Div -->
+	</div>
+<!-- End Top Div -->
