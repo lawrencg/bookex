@@ -225,7 +225,6 @@
 		echo "
 		<div id='page'>
 				<div class='pageTitle'>Book Details</div>
-				<div class='pageSubTitle'>Book Title here</div>				
 								
 				<div id='notification' class='show' >WARNING: Removing a book cannot be undone. Are you sure you want to delete this book?</div>
 				
