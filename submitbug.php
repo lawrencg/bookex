@@ -12,11 +12,9 @@
 	# Pages would break if a UW NetID accessed a page directly
 	# without being a user
 	require 'includes/valid_user.php';
-	$errormessage;
-
 
 	function bugform(){
-		echo "<div class='button-container'><form action='' id='book' name='book' method='POST'>
+		echo "<div class='button-container'><form action='dashboard.php' id='book' name='book' method='POST'>
 		<p>Description of bug:</p><textarea cols='80' rows='5' id='description' 
 			name='description' style='vertical-align:text-top;resize:none;' virtual /></textarea><br /><br />
 		<p><b>The following information will also be sent:</b></p>
@@ -45,36 +43,13 @@
 		echo "<form action='dashboard.php' id='nothing' name='nothing' method='POST'><div>
 		<input type='submit' name='cancelbug' value='Cancel' style='margin-left:10px' /></div></form></div>";
 	}
-	function submitbug(){
-		global $errormessage;
-		$note = htmlspecialchars($_POST['description']); 
-		$info = htmlspecialchars($_POST['data']); 
-		$system_message = "This is a bug submission from BookEx.";
-		$from = 'bookex@u.washington.edu';
-		$message = $system_message . "\n\n--USER INPUT--\n" . $note . "\n\n--BROWSER INFO--\n" . $info;
-		$subject = 'BookEx Bug Report';
-		$to = 'shanzha@washington.edu';
-		$headers = 'From: BookEx<' . $from . '>' . "\r\n" .
-		'Reply-To: BookEx<bookex@u.washington.edu>' . "\r\n" .
-		'X-Mailer: PHP/' . phpversion();		
-		mail($to,$subject,$message,$headers);
-		$errormessage = 'Thank you for your input. Your report has been submitted. <a href="dashboard.php">Return to Dashboard</a>';
-	}
-	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-		if(isset($_POST['sendbug'])){
-			submitbug();
-		}
-	} 
 	
 	include 'includes/submitbug_0_header.php';
 	include 'includes/siteheader.php';
 	
 	echo '		<div id="page">' . "\n";
 	echo '			<div id="maincontent">' . "\n";
-	echo '				<div class="pageTitle">Submit a Bug</div>' . "\n";
-	if($errormessage != '')
-		echo '				<div id="notification" class="show">' . $errormessage . '</div>' . "\n";
-		
+	echo '				<div class="pageTitle">Submit a Bug</div>' . "\n";	
 	echo '			<div id="submitbugarea" class="contentarea">' . "\n";
 	echo '					<div id="submitbug">' . "\n";
 	
