@@ -29,7 +29,7 @@
 					die("Error in SQL query: " . pg_last_error());
 				}
 				$rows = pg_num_rows($results);
-				echo "<div class=\"pageSubTitle\">Books containing: <font color='green'><i>\"" . $searchTerm . "\"</i></font></div>";
+				echo "<div class=\"pageSubTitle\">Books containing&nbsp;<font color='green'><i>\"" . $searchTerm . "\"</i></font></div>";
 				echo "<table id='booksearchresultstable'>";
 				echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN-13</td><td class=\"header\">Owner</td><td class=\"header\"></td></tr></thead>";
 				while ($row = pg_fetch_array($results)) {
@@ -37,7 +37,7 @@
 					request_button($row[6]);
 					echo "</td></tr>"; 
 				}
-				if ($rows != 0) {
+				if ($rows == 0) {
 					echo "<tr><td>Cannot find any books with the title<td><tr>";
 				}	
 				echo "</table>";
