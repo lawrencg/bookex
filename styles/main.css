@@ -376,6 +376,18 @@ button {
 	margin: 15px;
 }
 
+/*Larry*/
+.button-container form,
+.button-container form div {
+    display: inline;
+}
+
+.button-container input {
+    display: inline;
+
+}
+
+
 
 
 
