@@ -328,6 +328,8 @@
 			register_user();
 		} else if (isset($_POST['dontregister'])){
 			leave_bookex();
+		} else if (isset($_POST['cancelbug'])){
+			$errormessage = "Bug report canceled.";
 		}
 	}
 	include 'includes/dashboard_0_header.php';
