@@ -16,13 +16,13 @@
 
 
 	function bugform(){
-		echo "<form action='' id='book' name='book' method='POST'>
-		<p><b>Description of bug:</b></p><textarea cols='100' rows='5' id='description' 
-			name='description' style='vertical-align:text-top;' virtual /></textarea><br /><br />
+		echo "<div class='button-container'><form action='' id='book' name='book' method='POST'>
+		<p>Description of bug:</p><textarea cols='80' rows='5' id='description' 
+			name='description' style='vertical-align:text-top;resize:none;' virtual /></textarea><br /><br />
 		<p><b>The following information will also be sent:</b></p>
 		<input type='hidden' id='data' name='data' />
-		<textarea cols='100' rows='12' id='display' 
-			name='display' style='vertical-align:text-top;' virtual disabled /></textarea><br /><br />";
+		<textarea cols='80' rows='12' id='display' 
+			name='display' style='vertical-align:text-top;resize:none;' virtual disabled /></textarea><br /><br />";
 		$user = $_SERVER['REMOTE_USER'];
 		echo "<script type=\"text/javascript\">
 		txt = \"Browser CodeName: \" + navigator.appCodeName + \"\\n\";
@@ -40,10 +40,10 @@
 		document.getElementById(\"data\").value=txt;
 		</script>";
 		echo "
-		<input type='submit' name='sendbug' value='Submit' style='margin-left:10px' />";
-		echo "</form></p>";
-		echo "<form action='dashboard.php' id='nothing' name='nothing' method='POST'>
-		<input type='submit' name='cancelbug' value='Cancel' style='margin-left:10px' /></form>";
+		<div><input type='submit' name='sendbug' value='Submit' style='margin-left:10px' /></div>";
+		echo "</form>";
+		echo "<form action='dashboard.php' id='nothing' name='nothing' method='POST'><div>
+		<input type='submit' name='cancelbug' value='Cancel' style='margin-left:10px' /></div></form></div>";
 	}
 	function submitbug(){
 		global $errormessage;
@@ -80,7 +80,7 @@
 	
 	if(!isset($_POST['sendbug'])){
 		bugform();
-	}
+	} 
 	echo '			</div>';
 	echo '		</div>';
 	echo '	</div>';
