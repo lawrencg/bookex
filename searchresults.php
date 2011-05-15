@@ -33,6 +33,9 @@
 					echo "<div class=\"pageSubTitle\">Found {$rows} with the title containing &nbsp;<font color='green'><i>\"" . $searchTerm . "\"</i></font></div>";
 					echo "<table id='booksearchresultstable'>";
 					echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN-13</td><td class=\"header\">Owner</td><td class=\"header\"></td></tr></thead>";
+					echo "<tr><td class=\"booktitle\">" . htmlspecialchars($row[0]) . "</td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
+					request_button($row[6]);
+					echo "</td></tr>";
 					while ($row = pg_fetch_array($results)) {
 						echo "<tr><td class=\"booktitle\">" . htmlspecialchars($row[0]) . "</td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
 						request_button($row[6]);
