@@ -17,28 +17,6 @@
 	$errormessage;
 	$noconfirmations = true;
 	
-	function comments(){
-	#	.button-container form,
-	#	.button-container form div {
-	#	    display: inline;
-	#	}
-	#	.button-container button {
-	#	    display: inline;
-	#	    vertical-align: middle;
-	#	}
-	#	<div class="button-container">
-	#	    <form action="confirm.php" method="post">
-	#		<div>
-	#			<button type="submit">Confirm</button>
-	#		</div>
-	#	    </form>
-	#	    <form action="cancel.php" method="post">
-	#		<div>
-	#			<button type="submit">Cancel</button>
-	#		</div>
-	#	    </form>
-	#	</div>
-	}
 	# Accepts a BookEx book id, input button name, and button label to create different types of buttons.
 	# All buttons submit back to this page.
 	function register_user(){
@@ -103,7 +81,7 @@
 				$firsttime = false;
 			} 
 			echo '									<tr>' . "\n";
-			echo '										<td class="yourrequestsmessage">You haave requested ' . "\"{$records[3]}\" from {$records[6]}.</td>\n";
+			echo '										<td class="yourrequestsmessage">You have requested ' . "\"{$records[3]}\" from {$records[6]}.</td>\n";
 			echo '										<td class="yourrequestsbutton">' . "\n";
 			createbutton('cancelrequest','Cancel',$records[0]);
 			echo '										</td>' . "\n";
@@ -138,7 +116,7 @@
 			echo '									<tr>' . "\n";
 			echo '										<td class="yourrequestsmessage">' . $records[5] . "has requested to borrow \"{$records[3]}\".</td>\n";
 			echo '										<td class="othersrequestsacceptbutton">' . "\n";
-			createbutton('acceptrequest','Accept',$records[0]);
+			createbutton('acceptbookrequest','Accept',$records[0]);
 			echo '										</td>' . "\n";
 			echo '										<td class="othersrequestsacceptbutton">' . "\n";
 			createbutton('deny','Deny',$records[0]);
@@ -238,7 +216,7 @@
 				$firsttime = false;
 			} 
 			echo '									<tr>' . "\n";
-			echo '										<td class="returnconfirmationsmessage">Has ' . $records[5] . " retunred \"{$records[3]}\"?</td>\n";
+			echo '										<td class="returnconfirmationsmessage">Has ' . $records[5] . " returned \"{$records[3]}\"?</td>\n";
 			echo '										<td class="returnconfirmationsbutton">' . "\n";
 			createbutton('confirmreturnedbook','Returned',$records[0]);
 			echo '										</td>' . "\n";
@@ -318,9 +296,8 @@
     # Process requests that come from this page.
     # This is majority of the borrow and loaning process. Initial requests are the only thing missing.
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
-		
 		# The user accepeted a book request.
-		if(isset($_POST['accept'])){
+		if(isset($_POST['acceptbookrequest'])){
 			pg_query("SELECT acceptbookrequest('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
 				or die('Query failed: ' . pg_last_error()); 
 		# The owner has delivered the book to the requestor			
