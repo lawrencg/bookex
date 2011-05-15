@@ -284,7 +284,7 @@ function userbooks(){
 	include 'includes/profile_1b_contentarea.php';	
 
 	$picURL = pictureurl();
-	echo "<img src='iamges/profiles/" . $picURL . "' ></img>";
+	echo "<img src='images/profiles/" . $picURL . "' ></img>";
 	include 'includes/profile_2_contentarea.php';
 	
 	if (isset($_POST['edit'])){
