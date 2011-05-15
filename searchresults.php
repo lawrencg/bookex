@@ -166,6 +166,7 @@
 			}
 		break;
 		}
+		
 	include 'includes/searchresults_2_contentarea.php';		
 	include 'includes/sitefooter.php';		
 ?>
