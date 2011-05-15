@@ -105,7 +105,6 @@
 			<input type='hidden' value='{$authorfirst}' id='authorfirst' name='authorfirst' />			
 			<div><label>Author Last Name:</label><div>{$authorlast}</div></div>
 			<input type='hidden' value='{$authorlast}' id='authorlast' name='authorlast' />			
-			<div><label>Year:</label><div>Year HERE</div></div>
 			<div><label>ISBN-10:</label><div>{$isbn10}</div></div>
 			<input type='hidden' value='{$isbn10}' id='isbn10' name='isbn10' />
 			<div><label>ISBN-13:</label><div>{$isbn13}</div></div>
@@ -151,7 +150,6 @@
 			<input type='hidden' value='{$authorfirst}' id='authorfirst' name='authorfirst' />			
 			<div><label>Author Last Name:</label><div>{$authorlast}</div></div>
 			<input type='hidden' value='{$authorlast}' id='authorlast' name='authorlast' />			
-			<div><label>Year:</label><div>Year HERE</div></div>
 			<div><label>ISBN-10:</label><div>{$isbn10}</div></div>
 			<input type='hidden' value='{$isbn10}' id='isbn10' name='isbn10' />
 			<div><label>ISBN-13:</label><div>{$isbn13}</div></div>
@@ -253,8 +251,7 @@
 			<div><label>Author First Name:</label><div>{$authorfirst}</div></div>
 			<input type='hidden' value='{$authorfirst}' id='authorfirst' name='authorfirst' />			
 			<div><label>Author Last Name:</label><div>{$authorlast}</div></div>
-			<input type='hidden' value='{$authorlast}' id='authorlast' name='authorlast' />			
-			<div><label>Year:</label><div>Year HERE</div></div>
+			<input type='hidden' value='{$authorlast}' id='authorlast' name='authorlast' />	
 			<div><label>ISBN-10:</label><div>{$isbn10}</div></div>
 			<input type='hidden' value='{$isbn10}' id='isbn10' name='isbn10' />
 			<div><label>ISBN-13:</label><div>{$isbn13}</div></div>
