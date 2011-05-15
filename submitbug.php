@@ -12,6 +12,7 @@
 	# Pages would break if a UW NetID accessed a page directly
 	# without being a user
 	require 'includes/valid_user.php';
+	$errormessage;
 
 
 	function bugform(){
@@ -45,6 +46,7 @@
 		<input type='submit' name='cancel' value='Cancel' style='margin-left:10px' /></form>";
 	}
 	function submitbug(){
+		global $errormessage;
 		$note = htmlspecialchars($_POST['description']); 
 		$info = htmlspecialchars($_POST['data']); 
 		$system_message = "This is a bug submission from BookEx.";
@@ -56,8 +58,7 @@
 		'Reply-To: BookEx<bookex@u.washington.edu>' . "\r\n" .
 		'X-Mailer: PHP/' . phpversion();		
 		mail($to,$subject,$message,$headers);
-		echo "<p>Thank you for your input. Your report has been submitted.</p>";
-		echo "<a href='dashboard.php'>Return to Dashboard</a>";
+		$errormessage = 'Thank you for your input. Your report has been submitted. <a href="dashboard.php">Return to Dashboard</a>';
 	}
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		if(isset($_POST['sendbug'])){
@@ -77,7 +78,16 @@
 	echo '			<div id="submitbugarea" class="contentarea">' . "\n";
 	echo '					<div id="submitbug">' . "\n";
 	
-	bugform();
+	if(!isset($_POST['sendbug'])){
+		bugform();
+	}
+	echo '			</div>';
+	echo '		</div>';
+	echo '	</div>';
+	echo '	</div>';
+
+
+
 		
 	include 'includes/sitefooter.php';
 ?>
