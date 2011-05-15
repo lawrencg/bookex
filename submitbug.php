@@ -59,12 +59,25 @@
 		echo "<p>Thank you for your input. Your report has been submitted.</p>";
 		echo "<a href='dashboard.php'>Return to Dashboard</a>";
 	}
-	echo "<h1>Bug Submission</h1>";
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		if(isset($_POST['sendbug'])){
 			submitbug();
 		}
-	} else {
-		bugform();
-	}
+	} 
+	
+	include 'includes/submitbug_0_header.php';
+	include 'includes/siteheader.php';
+	
+	echo '		<div id="page">' . "\n";
+	echo '			<div id="maincontent">' . "\n";
+	echo '				<div class="pageTitle">Submit a Bug</div>' . "\n";
+	if($errormessage != '')
+		echo '				<div id="notification" class="show">' . $errormessage . '</div>' . "\n";
+		
+	echo '			<div id="submitbugarea" class="contentarea">' . "\n";
+	echo '					<div id="submitbug">' . "\n";
+	
+	bugform();
+		
+	include 'includes/sitefooter.php';
 ?>
