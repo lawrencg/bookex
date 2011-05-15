@@ -38,7 +38,7 @@
 					echo "</td></tr>"; 
 				}
 				if ($rows == 0) {
-					echo "<tr><td>Cannot find any books with the title<td><tr>";
+					echo "<tr><td>Cannot find any books with the title \"{$searchTerm}\"<td><td></td><td></td><td></td><tr>";
 				}	
 				echo "</table>";
 			}
