@@ -94,6 +94,7 @@
 			$status	= 'checked';
 		}
 		include 'includes/bookdetails_1_contentarea.php';
+		echo "<div class='twoformbuttons'>";		
 		echo "
 		<form action='' id='defaultform' name='book' method='POST'>
 			<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
@@ -113,7 +114,7 @@
 			<input type='hidden' value='{$course}' id='course' name='course' />
 			<div><label>Condition:</label><div><select name='dropdown' disabled><option value='{$cond}' selected='selected'>{$cond}</option></select></div></div>
 			<input type='hidden' value='{$cond}' id='condition' name='condition' />			
-			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='frame' style='vertical-align:text-top;' virtual disabled />{$note}</textarea></div></div>
+			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='description' style='vertical-align:text-top;' virtual disabled />{$note}</textarea></div></div>
 			<input type='hidden' value='{$note}' id='description' name='description' />
 			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' {$status} disabled /></div></div>
 			<input type='hidden' id='available' name='available' value='{$status}' /><br /><br />" ;
@@ -123,8 +124,7 @@
 		if($owner_id == $user){
 			echo "<input type='submit' name='edit' value='Edit' style='margin-left:10px' />
 			<input type='submit' name='delete' value='Delete Book' style='margin-left:10px' />";
-		}
-		include 'includes/bookdetails_2_contentarea.php';
+		}		
 	}
 	# HTML used to edit a books details. Should only be able to access this function if the current UW NetID is the owner of the Book.
 	# Using hidden input forms to transfer the data between POST's.
@@ -140,6 +140,7 @@
 			$status	= 'checked';
 		}
 		include 'includes/bookdetails_1_contentarea.php';
+		echo "<div class='twoformbuttons'>";		
 		echo " 
 		<form action='' id='defaultform' name='book' method='POST'>
 			<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
@@ -157,8 +158,8 @@
 			<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />
 			
 			<div><label>Course:</label><div><input type='text' value='{$course}' id='course' name='course' /></div></div>
-			
-			<div><label>Condition:</label><div><select name='dropdown'>";
+						
+			<div><label>Condition:</label><div><select name='condition'>";
 					
 		
 		//START CONDTION OPTIONS DROP DOWN
@@ -177,7 +178,8 @@
 		//END DROPDOWN //end condition
 		echo "</select></div></div> 
 		
-		<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='frame' style='vertical-align:text-top;'/>{$note}</textarea>" ;
+		<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='description' style='vertical-align:text-top;'/>{$note}</textarea>" ;
+		
 		
 		# Security feature. Check to see if the owner is the UW NetID that is logged in.
 		$user = $_SERVER['REMOTE_USER'];
@@ -190,7 +192,7 @@
 			<input type='submit' name='save' value='Save' style='margin-left:10px' />
 			<input type='submit' name='cancel' value='Cancel' style='margin-left:10px' />";
 		}
-		include 'includes/bookdetails_2_contentarea.php';
+		
 	}
 	# HTML used when the owner of the book wants to delete a book that is associated with their account.
 	function deletebook(){
@@ -239,8 +241,9 @@
 							</div>
 						</div>						
 						<div class='rightContent contentarea'>";
-		
-		echo "		
+						
+		echo "<div class='twoformbuttons'>";				
+		echo "				
 		<form action='mybooks.php' id='defaultform' name='book' method='POST'>
 			<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
 			<input type='hidden' value='{$owner_id}' id='ownerid' name='ownerid' />			
@@ -258,9 +261,9 @@
 			<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />
 			<div><label>Course:</label><div>{$course}</div></div>
 			<input type='hidden' value='{$course}' id='course' name='course' />
-			<div><label>Condition:</label><div><select name='dropdown' disabled><option value='{$cond}' selected='selected'>{$cond}</option></select></div></div>
+			<div><label>Condition:</label><div><select name='condition' disabled><option value='{$cond}' selected='selected'>{$cond}</option></select></div></div>
 			<input type='hidden' value='{$cond}' id='condition' name='condition' />			
-			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='frame' style='vertical-align:text-top;' virtual disabled />{$note}</textarea></div></div>
+			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='description' style='vertical-align:text-top;' virtual disabled />{$note}</textarea></div></div>
 			<input type='hidden' value='{$note}' id='description' name='description' />
 			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' {$status} disabled /></div></div>
 			<input type='hidden' id='available' name='available' value='{$status}' /><br /><br />" ;
@@ -269,17 +272,16 @@
 		# Security feature. Check to see if the owner is the UW NetID that is logged in.
 		$user = $_SERVER['REMOTE_USER'];
 		if($owner_id == $user){
-			echo "<input type='submit' name='confirmdelete' value='Delete' style='margin-left:10px' />";
-			echo "<input type='submit' name='cancel' value='Cancel' style='margin-left:10px' />";
+			echo "<div id='firstbutton'><input type='submit' name='confirmdelete' value='Delete' style='margin-left:10px' /></div>";
+			echo "</form><form action='bookdetails.php' method='get'><div><input type='hidden' value='{$bookex_id}' id='id' name='id' /><input type='submit' name='cancel' value='Cancel' style='margin-left:10px' /></div>";
 		}
-		include 'includes/bookdetails_2_contentarea.php';
+		
 	}
 	# Default HTML
 	
 	include 'includes/bookdetails_0_header.php';
 	include 'includes/siteheader.php';
 	
-		
 	//echo "<h1>Book Details</h1>";
 	# Request method of GET means that the user followed a link to get to this page.
 	if($_SERVER['REQUEST_METHOD'] == 'GET'){ 
@@ -318,8 +320,8 @@
 		} 
 	}
 	# Close any form that was made. Need to make sure one was opened first.
-	echo "</form></p>";
-	
+	echo "</form></div></p>";
+	include 'includes/bookdetails_2_contentarea.php';
 	include 'includes/sitefooter.php';
 	
 ?>
