@@ -197,7 +197,7 @@ function uploadimage(){
 				//we will give an unique name, for example the time in unix time format
 				$image_name=time().'.'.$extension;
 				//the new name will be containing the full path where will be stored (profile-pics folder)
-				$newname='images/profiles/tmp/'.$image_name;
+				$newname='images/profile/tmp/'.$image_name;
 				$copied = copy($_FILES['image']['tmp_name'], $newname);
 				//we verify if the image has been uploaded, and print error instead
 				if (!$copied)
