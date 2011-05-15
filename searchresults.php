@@ -16,7 +16,7 @@ switch ($searchOption){
 		if (trim($searchTerm) == "") {
 			$errormessage = "You didn't enter a search term.";
 			} else {
-		$searchTitleSQL = "SELECT * FROM searchbytitle('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int)";
+		$searchTitleSQL = "SELECT * FROM searchbytitle('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id integer)";
 		$results = pg_query($searchTitleSQL);
 		if (!$results) {
 			die("Error in SQL query: " . pg_last_error());
