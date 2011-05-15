@@ -35,7 +35,7 @@ case "searchTitle":
 	if (trim($searchTerm) == "") {
 		$errormessage = "You didn't enter a search term.";
 		} else {
-	$searchTitleSQL = "SELECT * FROM searchbytitle('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int)";
+	$searchTitleSQL = "SELECT * FROM searchbytitle('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, userid varchar)";
 	$results = pg_query($dbconn, $searchTitleSQL);
 	if (!$results) {
 		die("Error in SQL query: " . pg_last_error());
@@ -91,12 +91,14 @@ case "searchISBN":
 	$rows = pg_num_rows($results);
 	if ($rows != 0) {
 	echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
-	echo "<table id='peoplesearchresults'>";
-	echo "<thead><tr><td class=\"header\">Name</td><td>E-mail</td><td>Number of books</td><td class=\"header\"></td></tr></thead>";
+	echo "<table id='booksearchresultstable'>";
+	echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN-13</td><td class=\"header\">Owner</td><td class=\"header\"></td></tr></thead>";
 	while ($row = pg_fetch_array($results)) {
-		echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsemail\">" . htmlspecialchars($row[2]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
+		echo "<tr><td class=\"booktitle\">" . htmlspecialchars($row[0]) . "</td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
+		request_button($row[6]);
+		echo "</td></tr>"; 
 		}
-		echo "</table>";
+	echo "</table>";
 	} else {
 		$errormessage = "Cannot find any books with the ISBN";
 		}
@@ -160,12 +162,14 @@ case "searchAuthor":
 	$rows = pg_num_rows($results);
 	if ($rows != 0) {
 	echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
-	echo "<table id='peoplesearchresults'>";
-	echo "<thead><tr><td class=\"header\">Name</td><td>E-mail</td><td>Number of books</td><td class=\"header\"></td></tr></thead>";
+	echo "<table id='booksearchresultstable'>";
+	echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN-13</td><td class=\"header\">Owner</td><td class=\"header\"></td></tr></thead>";
 	while ($row = pg_fetch_array($results)) {
-		echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsemail\">" . htmlspecialchars($row[2]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
+		echo "<tr><td class=\"booktitle\">" . htmlspecialchars($row[0]) . "</td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
+		request_button($row[6]);
+		echo "</td></tr>"; 
 		}
-		echo "</table>";
+	echo "</table>";
 	} else {
 		$errormessage = "Cannot find any books with the author";
 		}
