@@ -12,7 +12,7 @@
 	include 'includes/request_process.php';
 	
 	
-	$user = $_SERVER['REMOTE_USER'];
+
 	
 	$myinfoNetID = pg_escape_string($_POST['myinfoNetID']);
 	$myinfoFirstName = pg_escape_string($_POST['myinfoFirstName']);
@@ -22,7 +22,7 @@
 	$person = pg_escape_string($_POST['person']);
 	$errormessage;
 	$person = $_GET['id'];
-
+	$user = $_SERVER['REMOTE_USER'];
 	if($person == null){
 		$person = $user;
 	}
@@ -51,7 +51,7 @@
 			<input type='hidden' value='{$myinfoLastName}' id='myinfoLastName' name='myinfoLastName' />
 			<input type='hidden' value='{$myinfoNetID}' id='myinfoNetID' name='myinfoNetID' />
 			<input type='hidden' value='{$myEmail}' id='myEmail' name='myEmail' />
-			<input type='hidden' value='{$myMajor}' id='myMajor' name='myMajor' />"
+			<input type='hidden' value='{$myMajor}' id='myMajor' name='myMajor' />";
 		echo '								<div><label>First Name:</label><div>'. $myinfoFirstName . '</div></div>';
 		echo '								<div><label>Last Name:</label><div>' . $myinfoLastName . '</div></div>';
 		echo '								<div><label>UW NetID:</label><div>' . $myinfoNetID . '</div></div>';
@@ -63,7 +63,7 @@
 		}
 		echo '							</form>';
 		
-		if($user != $_SERVER['REMOTE_USER']){
+		if($person != $_SERVER['REMOTE_USER']){
 			userbooks();
 		}
 	}
@@ -239,33 +239,88 @@
 			return $currentPictureURL;
 	
 	}
-	function userbooks(){
-			$available = pg_query("SELECT * FROM availablebooksfromuser('{$_GET['id']}'::varchar)
+	function userbooks(){	
+			global $person;
+			$result = pg_query("SELECT getbookexname('{$person}'::varchar)") 
+					or die('Query failed: ' . pg_last_error());
+			$row = pg_fetch_array($result);
+			$real_name = $row[0];
+			$available = pg_query("SELECT * FROM availablebooksfromuser('{$person}'::varchar)
 					VALUES( book_id int, title varchar, isbn10 numeric, isnb13 numeric, author text)") 
-			or die('Query failed: ' . pg_last_error());
-			$firsttime = true;
+					or die('Query failed: ' . pg_last_error());
+			echo '						</div>';
+			echo '						<div class="clear"></div>';
+			echo '					</div>';
+			echo '					<div id="maincontent">';
+			echo '						<div id="searchresultsarea" class="contentarea">';
+			echo '							<div id="booksearchresults">';
+			echo '								<div class="pageSubTitle">Books List for ' . $real_name . '</div>';
+			echo '								<table id="booksearchresultstable">';
+			echo '									<thead>';
+			echo '										<tr>';
+			echo '											<td class="header">Title</td>';
+			echo '											<td class="header">Author</td>';
+			echo '											<td class="header">ISBN</td>';
+			echo '											<td class="header"></td>';
+			echo '										</tr>';
+			echo '									</thead>';
+			echo '									<tbody>	';
+
+
+
+									
+		/*								
+
+										</tr>						
+										<tr>
+											<td class="booktitle">Introduction to PHP Programming</td>
+											<td class="bookauthor">How is?</td>
+											<td class="bookyear">2001</td>
+											<td class="bookisbn">123456789</td>											
+											<td class="requestbutton"><button>Request</button></td>
+										</tr>
+										<tr>
+											<td class="booktitle">Introduction to PHP Programming</td>
+											<td class="bookauthor">How is?</td>
+											<td class="bookyear">2001</td>
+											<td class="bookisbn">123456789</td>											
+											<td class="requestbutton"><button>Request</button></td>
+
+										
+									</tbody>
+*/
+
+			$rows = pg_num_rows($available);
 			while($records = pg_fetch_array($available)) {
-				if ($firsttime) {
-					echo "<h3>Book List for {$_GET['id']}</h3>\n";
-					echo "<table border='2px'><th width='250px'>Title</th><th width='200px'>Author</th>
-						<th width='100px'>ISBN-10</th><th width='100px'>ISBN-13</th><th width='300px'></th>";
-					echo "<tr>";
-					echo "<td><a href='bookdetail.php?id={$records[0]}'>{$records[1]}</a></td>
-						<td>{$records[4]}</td><td>{$records[2]}</td><td>{$records[3]}</td><td>";
-					request_button($records[0]);
-					echo "</td>\n";
-					echo "</tr>";
-					$firsttime = false;
+				echo '										<tr>';
+				echo '											<td class="booktitle"><a href="bookdetails.php?id=' .$records[0]. '">' .$records[1]. '</a></td>';
+				echo '											<td class="bookauthor">' . $records[4] .'</td>';
+				echo '											<td class="bookisbn">'; 
+				if ($records[2] != ''){
+					echo $records[2];
 				} else {
-					echo "<tr>";
-					echo "<td><a href='bookdetail.php?id={$records[0]}'>{$records[1]}</a></td>
-						<td>{$records[4]}</td><td>{$records[2]}</td><td>{$records[3]}</td><td>"; 
-					request_button($records[0]);
-					echo "</td>\n";
-					echo "</tr>";
+					echo $records[3];
 				}
+				echo '</td';
+				echo '											<td class="requestbutton">';
+				request_button($records[0]);
+				echo '</td>';
+				echo '										</tr>';			
+				while($records = pg_fetch_array($available)){
+					echo '										<tr>';
+					echo '											<td class="booktitle"><a href="bookdetail.php?id=' .$records[0]. '">' .$records[1]. '</a></td>';
+					echo '											<td class="bookauthor">' . $records[4] .'</td>';
+					echo '											<td class="bookisbn">' . $records[2] . '</td';
+					echo '											<td class="requestbutton">';
+					request_button($records[0]);
+					echo '</td>';
+					echo '										</tr>';
+				}
+
 			}
-			echo "</table>";
+			echo '									</tbody>';
+			echo '								</table>';
+			echo '							</div>';
 	}
 	
 	if (isset($_POST['saveID'])){
