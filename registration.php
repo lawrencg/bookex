@@ -44,18 +44,19 @@
 				<div class="contentarea centerDiv">
 					<div id="agreementinformation">
 						<p class="introstatement">To use BookEX, you have to agree to the follwing terms.</p>
-						<p>This document assumes that you have an English install of Notepad++. If you have installed it in another language, the commands and options will probably have been translated into your native language. In that case, find the command with the similar name, the logical grouping will still be the same. p>All the images used in this helpfile assume the default settings. If you change any of these settings, you'll have to look for the other image instead, this is most noticable with the toolbar (the position of images will always remain the same).</p>
+						<p>The program is intended for use by UW students, factulties and staffs who have a valid UW NetID. You decide who to loan your textbooks to and we are not responsible for any damage or lost to your books by the borrower. You can resquest book and you can also accept or deny other's book requests.</p>
 						<p class="agreementconditions">
 						You agree that:<br/>
 							<ul>
-								<li>You will return the book you borrow on time and in as good condition as when borrowed.</li>
-								<li>You agree to pay for the damage or loss of the book that you borrow.</li>
+								<li>You will return the book you borrowed on time and in as good condition as when borrowed.</li>
+								<li>You agree to pay for the damage or loss of the book that you borrow to the lender. Howerver we do not hadle the payment. You do that in person out of the system.</li>							
+								<li>Conflict is dealt between lender and borrower and BookEX does not deal with conflict between lender and borrower. </li>
+								<li>You will not held BookEX owners accoutable for any lost or damage to your textbooks or books or anyother lost</li>
 								<li>You will not hack the system.</li>
 								<li>Will not spam other members with your request.</li>
 							</ul>
-							<p>This document assumes that you have an English install of Notepad++. If you have installed it in another language, the commands and options will probably have been translated into your native language. In that case, find the command with the similar name, the logical grouping will still be the same. p>All the images used in this helpfile assume the default settings. If you change any of these settings, you'll have to look for the other image instead, this is most noticable with the toolbar (the position of images will always remain the same).</p>
-							
 							You will have to use your UW NetID to log in.
+							<p>Click "Agree" to agree to the agreement and use the BookEX or click "No thanks" if you don't agree to the terms and leave.</p>						
 						</p>
 					</div>
 				</div>
