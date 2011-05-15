@@ -241,12 +241,11 @@
 }
 
 button {
-	width: 100px;
+	width:100px;
 }
 
 .requestbutton {
-	text-align: center;
-	width: 100px;
+	text-align: right;
 }
 
 .smallbtn { 
@@ -285,8 +284,18 @@ button {
 	
 }
 
+/*Two form buttons*/
+.twoformbuttons form{
+	display: inline;
+}
 
+.twoformbuttons input {
+	display: inline;	
+}
 
+#firstbutton  {
+	display: inline;	
+}
 
 .bookDescription {
 	max-width: 500px;
