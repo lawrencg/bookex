@@ -358,7 +358,7 @@
 	
 	echo '		<div id="page">' . "\n";
 	echo '			<div id="maincontent">' . "\n";
-	echo '				<br />' . "\n";
+	echo '				<div class="pageTitle">Dashboard</div>' . "\n";
 	if($errormessage != '')
 		echo '				<div id="notification" class="show">' . $errormessage . '</div>' . "\n";
 	
