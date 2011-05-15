@@ -22,8 +22,10 @@
 	$person = pg_escape_string($_POST['person']);
 	$errormessage;
 	$person = $_GET['id'];
-	if($person == null)
+
+	if($person == null){
 		$person = $user;
+	}
 	
 	
 	
@@ -34,7 +36,7 @@
 		if (!$myinfoResult2) {
 			die("Error in SQL query: " . pg_last_error());
 		}
-	
+		echo pg_num_rows($myinfoResult2);
 		while ($row = pg_fetch_array($myinfoResult2)) {
 			$myinfoNetID = $row[0];
 			$myinfoFirstName = $row[1];
