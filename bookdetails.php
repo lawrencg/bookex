@@ -229,7 +229,7 @@
 				<div class='pageTitle'>Book Details</div>
 				<div class='pageSubTitle'>Book Title here</div>				
 								
-				<div id='notification' class='show' >Are you sure you want to remove this book? This cannot be done!</div>
+				<div id='notification' class='show' >WARNING: Removing a book cannot be undone. Are you sure you want to delete this book?</div>
 				
 				<div id='maincontent'>
 					<div id='' class='contentarea'>
