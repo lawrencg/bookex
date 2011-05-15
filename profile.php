@@ -197,7 +197,7 @@ function uploadimage(){
 				//we will give an unique name, for example the time in unix time format
 				$image_name=time().'.'.$extension;
 				//the new name will be containing the full path where will be stored (profile-pics folder)
-				$newname="profile-pics/".$image_name;
+				$newname='images/profiles/tmp/'.$image_name;
 				$copied = copy($_FILES['image']['tmp_name'], $newname);
 				//we verify if the image has been uploaded, and print error instead
 				if (!$copied)
@@ -207,11 +207,12 @@ function uploadimage(){
 				else
 				{
 					// the new thumbnail image will be placed in profile-pics/thumbs/ folder
-					$thumb_name='profile-pics/thumbs/thumb_'.$image_name;
-					$thumb_file='thumb_'.$image_name;
+					$thumb_name='images/profiles/'.$image_name;
+					$thumb_file=$image_name;
 					// call the function that will create the thumbnail. The function will get as parameters
 					// the image name, the thumbnail name and the width and height desired for the thumbnail
 					$thumb=make_thumb($newname,$thumb_name,WIDTH,HEIGHT);
+					unlink($newname);
 				}
 			}	
 			echo $errormessage;
