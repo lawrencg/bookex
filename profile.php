@@ -36,7 +36,6 @@
 		if (!$myinfoResult2) {
 			die("Error in SQL query: " . pg_last_error());
 		}
-		echo pg_num_rows($myinfoResult2);
 		while ($row = pg_fetch_array($myinfoResult2)) {
 			$myinfoNetID = $row[0];
 			$myinfoFirstName = $row[1];
@@ -45,26 +44,28 @@
 			$myMajor = $row[4];
 		}
 		$picURL = pictureurl();
-		echo "<form action='' id='profile' name='profile' method='POST'>";
+		echo '							<form id="defaultform" action="" name="form_99" method="POST" >';
 		echo"
 			<input type='hidden' value='{$person}' id='person' name='person' />
 			<input type='hidden' value='{$myinfoFirstName}' id='myinfoFirstName' name='myinfoFirstName' />
-			First Name: <span style='font-weight:normal;'>&nbsp;" . $myinfoFirstName . "<br /><br />
 			<input type='hidden' value='{$myinfoLastName}' id='myinfoLastName' name='myinfoLastName' />
-			Last Name: <span style='font-weight:normal;'>&nbsp;" . $myinfoLastName . "<br / ><br />
 			<input type='hidden' value='{$myinfoNetID}' id='myinfoNetID' name='myinfoNetID' />
-			UW NetID: <span style='font-weight:normal;'>&nbsp;" . $myinfoNetID . "<br / ><br />			
 			<input type='hidden' value='{$myEmail}' id='myEmail' name='myEmail' />
-			E-mail: <span style='font-weight:normal;'>&nbsp;" . $myEmail . "<br / >	<br />		
-			<input type='hidden' value='{$myMajor}' id='myMajor' name='myMajor' />
-			Major: <span style='font-weight:normal;'>&nbsp;" . $myMajor . "<br / ><br />";	
+			<input type='hidden' value='{$myMajor}' id='myMajor' name='myMajor' />"
+		echo '								<div><label>First Name:</label><div>'. $myinfoFirstName . '</div></div>';
+		echo '								<div><label>Last Name:</label><div>' . $myinfoLastName . '</div></div>';
+		echo '								<div><label>UW NetID:</label><div>' . $myinfoNetID . '</div></div>';
+		echo '								<div><label>E-mail:</label><div>' . $myEmail . '</div></div>';
+		echo '								<div><label>Major:</label><div>' . $myMajor . '</div></div>';
+
 		if($user == $person){
-			echo "<input type='submit' name='edit' value='Edit Information' />";
+			echo '								<input type="submit" name="edit" value="Edit My Profile" />';
 		}
-		echo "</form>";
+		echo '							</form>';
 		
-		if($user != $_SERVER['REMOTE_USER'])
+		if($user != $_SERVER['REMOTE_USER']){
 			userbooks();
+		}
 	}
 	function editProfile() {
 		# Global variables
