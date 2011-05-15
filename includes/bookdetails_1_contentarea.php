@@ -5,7 +5,7 @@
 					<div id="" class="contentarea">
 						<div class="leftContent">
 							<div id="bookImageContent">
-								<div id="bookImagePhoto"></div>
+								<div id="bookImagePhoto"><img src='images/default-book.png' /></div>
 								<button class="smallbtn">Upload Photo</button>
 								<button class="actionButton">Edit</button>
 							</div>
