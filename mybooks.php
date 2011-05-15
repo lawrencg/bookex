@@ -99,7 +99,7 @@
 
 		echo '							</tbody>' . "\n";
 		echo '						</table>' . "\n";
-		echo '				</div>' . "\n";
+
 
 	}
 	function addbooksbutton(){		
@@ -126,6 +126,7 @@
 	echo '						<div class="pageSubTitle">Books I Own</div>' . "\n";
 	
 	displaybooks();
+	echo '				</div>' . "\n";
 	addbooksbutton();
 	include 'includes/sitefooter.php';
 	# Close the database
