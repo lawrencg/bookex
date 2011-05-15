@@ -51,6 +51,21 @@
 		}
 		
 	}
+	function submitbug(){
+		global $errormessage;
+		$note = htmlspecialchars($_POST['description']); 
+		$info = htmlspecialchars($_POST['data']); 
+		$system_message = "This is a bug submission from BookEx.";
+		$from = 'bookex@u.washington.edu';
+		$message = $system_message . "\n\n--USER INPUT--\n" . $note . "\n\n--BROWSER INFO--\n" . $info;
+		$subject = 'BookEx Bug Report';
+		$to = 'bookex@u.washington.edu';
+		$headers = 'From: BookEx<' . $from . '>' . "\r\n" .
+		'Reply-To: BookEx<bookex@u.washington.edu>' . "\r\n" .
+		'X-Mailer: PHP/' . phpversion();		
+		mail($to,$subject,$message,$headers);
+		$errormessage = 'Thank you for your input. Your report has been submitted.';
+	}
 	function leave_bookex(){
 		include 'includes/denyregistration.php';
 	}
@@ -330,6 +345,8 @@
 			leave_bookex();
 		} else if (isset($_POST['cancelbug'])){
 			$errormessage = "Bug report canceled.";
+		} else if (isset($_POST['sendbug'])){
+			submitbug();
 		}
 	}
 	include 'includes/dashboard_0_header.php';
