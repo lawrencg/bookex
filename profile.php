@@ -130,11 +130,13 @@ function make_thumb($img_name,$filename,$new_w,$new_h)
 		$ratio2=$old_y/$new_h;
 		if($ratio1>$ratio2)	{
 			$thumb_w=$new_w;
-			$thumb_h=$old_y/$ratio1;
+			$thumb_h=$new_h;
+			//$thumb_h=$old_y/$ratio1;
 		}
 		else	{
+			$thumb_w=$new_w;
 			$thumb_h=$new_h;
-			$thumb_w=$old_x/$ratio2;
+			//$thumb_w=$old_x/$ratio2;
 		}
 
 		// we create a new image with the new dimmensions
