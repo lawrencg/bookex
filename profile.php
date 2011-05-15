@@ -266,30 +266,6 @@
 			echo '									</thead>';
 			echo '									<tbody>	';
 
-
-
-									
-		/*								
-
-										</tr>						
-										<tr>
-											<td class="booktitle">Introduction to PHP Programming</td>
-											<td class="bookauthor">How is?</td>
-											<td class="bookyear">2001</td>
-											<td class="bookisbn">123456789</td>											
-											<td class="requestbutton"><button>Request</button></td>
-										</tr>
-										<tr>
-											<td class="booktitle">Introduction to PHP Programming</td>
-											<td class="bookauthor">How is?</td>
-											<td class="bookyear">2001</td>
-											<td class="bookisbn">123456789</td>											
-											<td class="requestbutton"><button>Request</button></td>
-
-										
-									</tbody>
-*/
-
 			$rows = pg_num_rows($available);
 			while($records = pg_fetch_array($available)) {
 				echo '										<tr>';
@@ -301,7 +277,7 @@
 				} else {
 					echo $records[3];
 				}
-				echo '</td';
+				echo '</td>';
 				echo '											<td class="requestbutton">';
 				request_button($records[0]);
 				echo '</td>';
@@ -310,7 +286,7 @@
 					echo '										<tr>';
 					echo '											<td class="booktitle"><a href="bookdetail.php?id=' .$records[0]. '">' .$records[1]. '</a></td>';
 					echo '											<td class="bookauthor">' . $records[4] .'</td>';
-					echo '											<td class="bookisbn">' . $records[2] . '</td';
+					echo '											<td class="bookisbn">' . $records[2] . '</td>';
 					echo '											<td class="requestbutton">';
 					request_button($records[0]);
 					echo '</td>';
