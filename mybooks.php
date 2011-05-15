@@ -36,7 +36,7 @@
 				$erromessage = 'ERROR: Your book could not be removed at this time. Please ensure that 
 				the book available for others to borrow and that it is not currently loaned to someone.';
 			} else {
-				$erromessage = 'Your book has been removed.';
+				$errormessage = 'Your book has been removed.';
 			}
 		}
 	}
