@@ -246,6 +246,7 @@ button {
 
 .requestbutton {
 	text-align: right;
+	width:100px;
 }
 
 .smallbtn { 
