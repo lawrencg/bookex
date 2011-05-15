@@ -8,9 +8,11 @@
 	include 'includes/session_track.php';
 	# Database connection parameters
 	require 'includes/database_info.php';
-	#require 'includes/menu.php';
-	#include 'includes/search.php';
-	#include 'includes/greeting.php';
+	# Force non-registered users to register or leave
+	# Pages would break if a UW NetID accessed a page directly
+	# without being a user
+	require 'includes/valid_user.php';
+
 	
 	# GLOBAL VARIABLES
 	# BookEx book id
@@ -386,7 +388,6 @@
 	include 'includes/siteheader.php';
 	echo '		<div id="page">' . "\n";
 	echo '		<div class="pageTitle">Add Book</div>' . "\n";
-	echo '				<br />' . "\n";
 		
 	if($errormessage != ''){
 		echo '				<div id="notification" class="show">'.$errormessage.'</div>' . "\n";
