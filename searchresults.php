@@ -48,8 +48,8 @@
 		break;
 		case "searchNetID":
 			if (trim($searchTerm) == "") {
-				$errormessage = "You didn't enter a search term.";
-				} else {
+				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
+			} else {
 			$searchNetidSQL2 = "SELECT * FROM searchbyuwnetid('" . $searchTerm . "') AS results(numberOfBooks bigint, ownerName varchar, email varchar, userid varchar)";
 			$results = pg_query($searchNetidSQL2);
 			if (!$results) {
@@ -71,8 +71,8 @@
 		break;
 		case "searchISBN":
 			if (trim($searchTerm) == "") {
-				$errormessage = "You didn't enter a search term.";
-				} else {
+				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
+			} else {
 			$searchTitleSQL2 = "SELECT * FROM searchbyisbn('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int)";
 			$results = pg_query($searchTitleSQL2);
 			if (!$results) {
@@ -96,7 +96,7 @@
 		break;
 		case "searchStudentName":
 			if (trim($searchTerm) == "") {
-				$errormessage = "You didn't enter a search term.";
+				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
 			} else {
 			$searchStudentNameSQL = "SELECT * FROM searchbyname('" . $searchTerm . "') AS results(numberOfBooks bigint, ownerName varchar, email varchar, userid varchar)";
 			$results = pg_query($searchStudentNameSQL);	
@@ -119,7 +119,7 @@
 		break;
 		case "searchEmail":
 			if (trim($searchTerm) == "") {
-				$errormessage = "You didn't enter a search term.";
+				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
 			} else {
 			$searchStudentEmailSQL = "SELECT * FROM searchbyemail('" . $searchTerm . "') AS results(numberOfBooks bigint, ownerName varchar, email varchar, userid varchar)";
 			$results = pg_query($searchStudentEmailSQL);
@@ -142,7 +142,7 @@
 		break;
 		case "searchAuthor":
 			if (trim($searchTerm) == "") {
-				$errormessage = "You didn't enter a search term.";
+				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
 			} else {
 			$searchAuthorSQL = "SELECT * FROM searchbyauthorname('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int)";
 			$results = pg_query($searchAuthorSQL);
