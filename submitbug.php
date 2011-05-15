@@ -43,7 +43,7 @@
 		<input type='submit' name='sendbug' value='Submit' style='margin-left:10px' />";
 		echo "</form></p>";
 		echo "<form action='dashboard.php' id='nothing' name='nothing' method='POST'>
-		<input type='submit' name='cancel' value='Cancel' style='margin-left:10px' /></form>";
+		<input type='submit' name='cancelbug' value='Cancel' style='margin-left:10px' /></form>";
 	}
 	function submitbug(){
 		global $errormessage;
@@ -85,9 +85,6 @@
 	echo '		</div>';
 	echo '	</div>';
 	echo '	</div>';
-
-
-
 		
 	include 'includes/sitefooter.php';
 ?>
