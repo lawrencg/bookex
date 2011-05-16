@@ -71,6 +71,7 @@
 		# Global variables
 		global $myinfoNetID, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor, $user;
 		echo "<form action='' id='profile' name='profile' method='POST' enctype='multipart/form-data'>";
+		/*
 		echo"
 			First Name: <span style='font-weight:normal;'>&nbsp;<input type='text' value='" . $myinfoFirstName . "' id='myinfoFirstName' name='myinfoFirstName' size='40' /><br /><br />
 			Last Name: <span style='font-weight:normal;'>&nbsp;<input type='text' value='" . $myinfoLastName . "' id='myinfoLastName' name='myinfoLastName' size='40' /><br />	<br />		 
@@ -78,6 +79,14 @@
 			E-mail: <span style='font-weight:normal;'>&nbsp;<input type='text' value='" . $myEmail . "' id='myEmail' name='myEmail' size='40' /><br /><br />
 			Major: <span style='font-weight:normal;'>&nbsp;<input type='text' value='" . $myMajor . "' id='myMajor' name='myMajor' size='40' /><br /><br />
 			Upload Photo: <input type='file' name='image'>";
+		*/	
+		echo "								<div><label>First Name:</label><div><input type='text' value='" . $myinfoFirstName . "' id='myinfoFirstName' name='myinfoFirstName' size='40' /></div></div>";
+		echo "								<div><label>Last Name:</label><div><input type='text' value='" . $myinfoLastName . "' id='myinfoLastName' name='myinfoLastName' size='40' /></div></div>";
+		echo "								<div><label>UW NetID:</label><div>" . $myinfoNetID . "</div></div>";
+		echo "								<div><label>E-mail:</label><div><input type='text' value='" . $myEmail . "' id='myEmail' name='myEmail' size='40' /></div></div>";
+		echo "								<div><label>Major:</label><div><input type='text' value='" . $myMajor . "' id='myMajor' name='myMajor' size='40' /></div></div>";
+			
+			
 		echo "<br/><br/><input type='submit' name='saveID' value='Save Changes' />";
 		echo "</form>";
 		/*		 echo '<form name="newad" method="post" enctype="multipart/form-data"  
