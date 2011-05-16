@@ -111,7 +111,7 @@
 			if ($rows != 0) {
 			echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
 			echo "<table id='peoplesearchresults'>";
-			echo "<thead><tr><td class=\"header\">Name</td><td>E-mail</td><td>Number of books</td></tr></thead>";
+			echo "<thead><tr><td class=\"header\">Name</td><td class=\"header\">E-mail</td><td class=\"header\">Available Books</td></tr></thead>";
 			while ($row = pg_fetch_array($results)) {
 				echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsemail\">" . htmlspecialchars($row[2]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
 				}
@@ -134,7 +134,7 @@
 			if ($rows != 0) {
 			echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
 			echo "<table id='peoplesearchresults'>";
-			echo "<thead><tr><td class=\"header\">Name</td><td>E-mail</td><td>Number of books</td></tr></thead>";
+			echo "<thead><tr><td class=\"header\">Name</td><td class=\"header\">E-mail</td><td class=\"header\">Available Books</td></tr></thead>";
 			while ($row = pg_fetch_array($results)) {
 				echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsemail\">" . htmlspecialchars($row[2]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
 				}
@@ -157,7 +157,7 @@
 			if ($rows != 0) {
 			echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
 			echo "<table id='peoplesearchresults'>";
-			echo "<thead><tr><td class=\"header\">Name</td><td>E-mail</td><td>Number of books</td></tr></thead>";
+			echo "<thead><tr><td class=\"header\">Name</td><td class=\"header\">E-mail</td><td class=\"header\">Available Books</td></tr></thead>";
 			while ($row = pg_fetch_array($results)) {
 				echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsemail\">" . htmlspecialchars($row[2]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
 				}
