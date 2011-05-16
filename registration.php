@@ -1,9 +1,6 @@
 <?php 
 	include 'includes/database_info.php';
 	
-	$dbconn = pg_connect($DB_CONNECT_STRING)
-	    or die('Could not connect: ' . pg_last_error());
-	# Get the current UW NetID from the server via pubcookie
 	$user = $_SERVER['REMOTE_USER'];
 	if(isset($_GET['maint']))
 		$user = null;
