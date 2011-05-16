@@ -422,7 +422,7 @@
 
 			# The search from ISBNDB truned up nothing as well. Manual entry is necessary.
 			if($title == '' ){
-
+				blankform();
 			# The title is not blank so we can assume that something was found and we can fill the form.
 			} else {	
 				filledform();
