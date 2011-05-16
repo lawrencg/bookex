@@ -33,13 +33,13 @@
 			$major = trim(pg_escape_string($_POST['major']));
 			
 			if($firstname == '')
-				$firstname = ' ';
+				$firstname = null;
 			if($lastname == '')
-				$lastname = ' ';
+				$lastname = null;
 			if($email == '')
-				$email = ' ';
+				$email = null;
 			if($major == '')
-				$major = ' ';
+				$major = null;
 			
 			//$dbconn = pg_connect($DB_CONNECT_STRING)
 		    //	or die('Could not connect: ' . pg_last_error());
