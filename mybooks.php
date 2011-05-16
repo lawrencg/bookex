@@ -15,7 +15,7 @@
 	
 	# GLOBAL VARIABLES
 	# Who knows what someone will try to POST
-	$bookex_id = pg_escape_string($_POST['bookexid']);
+	$bookex_id = pg_escape_string($_POST['book_id']);
 	# Get the current UW NetID from the server via pubcookie
 	$user = $_SERVER['REMOTE_USER'];
 	$errormessage;
