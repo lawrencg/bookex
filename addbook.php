@@ -421,9 +421,11 @@
 			}
 
 			# The search from ISBNDB truned up nothing as well. Manual entry is necessary.
-			if($title == '' ){
+			if($title == '' && !isset($_POST['isbn'])){
 				blankform();
 			# The title is not blank so we can assume that something was found and we can fill the form.
+			} elseif ($title == '' && isset($_POST['isbn'])){
+				
 			} else {	
 				filledform();
 			}
