@@ -67,7 +67,8 @@
 		$errormessage = 'Thank you for your input. Your report has been submitted.';
 	}
 	function leave_bookex(){
-		include 'includes/denyregistration.php';
+		header("Location: https://students.washington.edu/shanzha");
+		exit();
 	}
 	function createbutton($name, $label, $bookid){
 		echo '											<form action=\'\' id=\'form_' . $name . '\' name=\'form_' . $name . '\' method=\'POST\'>' . "\n";
