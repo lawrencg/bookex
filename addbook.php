@@ -297,9 +297,9 @@
 			$status = 'Unavailable';
 		# Prevent two single quotes from being entered into the database.
 		if($note == '')
-			$note = ' ';
+			$note = '';
 		if($course == '')
-			$course = ' ';
+			$course = '';
 		if($isbn10 == '')
 			$isbn10 = 1;
 		if($isbn13 == '')
