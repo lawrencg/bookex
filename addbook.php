@@ -36,7 +36,7 @@
 	$note = trim(pg_escape_string($_POST['description'])); 
 	# The condition of this instance of the book. Must be choosen from 
 	# values in the conditions table of the BookEx database.
-	$condition = trim(pg_escape_string($_POST['condition']);
+	$condition = trim(pg_escape_string($_POST['condition']));
 	# The borrowing status of this instance, Available or Unavailable
 	$status = trim(pg_escape_string($_POST['available']));
 	# Possible message to display.
