@@ -294,7 +294,7 @@
 				echo '										</tr>';			
 				while($records = pg_fetch_array($available)){
 					echo '										<tr>';
-					echo '											<td class="booktitle"><a href="bookdetail.php?id=' .$records[0]. '">' .$records[1]. '</a></td>';
+					echo '											<td class="booktitle"><a href="bookdetails.php?id=' .$records[0]. '">' .$records[1]. '</a></td>';
 					echo '											<td class="bookauthor">' . $records[4] .'</td>';
 					echo '											<td class="bookisbn">' . $records[2] . '</td>';
 					echo '											<td class="requestbutton">';
