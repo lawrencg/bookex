@@ -99,6 +99,8 @@
 		}
 		include 'includes/bookdetails_1_contentarea.php';
 		echo "<div class='twoformbuttons'>";		
+		//<div><label>Course:</label><div>{$course}</div></div>
+		
 		echo "
 		<form action='' id='defaultform' name='book' method='POST'>
 			<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
@@ -113,8 +115,10 @@
 			<input type='hidden' value='{$isbn10}' id='isbn10' name='isbn10' />
 			<div><label>ISBN-13:</label><div>{$isbn13}</div></div>
 			<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />
-			<div><label>Course:</label><div>{$course}</div></div>
+			
+			<div><label>Course:</label><div></div></div>
 			<input type='hidden' value='{$course}' id='course' name='course' />
+			
 			<div><label>Condition:</label><div><select name='dropdown' disabled><option value='{$cond}' selected='selected'>{$cond}</option></select></div></div>
 			<input type='hidden' value='{$cond}' id='condition' name='condition' />			
 			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='description' style='vertical-align:text-top;' virtual disabled />{$note}</textarea></div></div>
