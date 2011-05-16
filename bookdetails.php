@@ -15,22 +15,22 @@
 	
 	# GLOBAL VARIABLES
 	# Used to see if this book is owned by the current UW NetID that is logged in
-	$owner_id = pg_escape_string($_POST['ownerid']);
+	$owner_id = trim(pg_escape_string($_POST['ownerid']));
 	# BookEx id
-	$bookex_id = pg_escape_string($_POST['bookexid']);
-	$title = pg_escape_string($_POST['title']); 
+	$bookex_id = trim(pg_escape_string($_POST['bookexid']));
+	$title = trim(pg_escape_string($_POST['title'])); 
 	# Author name is in two fields. Different from addbook.php where the authors are stored in an array. 
-	$authorfirst = pg_escape_string($_POST['authorfirst']); 
-	$authorlast = pg_escape_string($_POST['authorlast']); 
-	$isbn10 = remove_non_numeric($_POST['isbn10']); 
-	$isbn13 = remove_non_numeric($_POST['isbn13']);
+	$authorfirst = trim(pg_escape_string($_POST['authorfirst'])); 
+	$authorlast = trim(pg_escape_string($_POST['authorlast'])); 
+	$isbn10 = trim(remove_non_numeric($_POST['isbn10'])); 
+	$isbn13 = trim(remove_non_numeric($_POST['isbn13']));
 	# The class that the owner said the book was for.
-    $course = pg_escape_string($_POST['course']);
+    $course = trim(pg_escape_string($_POST['course']));
     # This condition must come from values in the BookEx database.
 	$cond = pg_escape_string($_POST['condition']);
 	# See addbook.php for justification for this field. The user can edit this value to 
 	# contain something like "Has coffee on the bottom of all the pages."
-	$note = pg_escape_string($_POST['description']); 
+	$note = trim(pg_escape_string($_POST['description'])); 
 	# Available or unavailable.
 	$status = pg_escape_string($_POST['available']);
 	
