@@ -18,6 +18,56 @@
 	$searchTerm = $_POST['searchTerm'];
 	$searchOption = $_POST['searchDropdown'];
 	
+	function remove_non_numeric($string) {
+		return preg_replace('/\D/', '', $string);
+	}
+	
+	function displaybookresults($results, $type){
+		global $searchTerm;
+		$rows = pg_num_rows($results);
+		echo "<div class=\"pageSubTitle\">Found {$rows} books with the {$type}&nbsp;<font color='green'><i>\"" . $searchTerm . "\"</i></font></div>";	
+		while ($row = pg_fetch_array($results)) {
+
+			echo "<table id='booksearchresultstable'>";
+			echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN-13</td><td class=\"header\">Owner</td><td class=\"header\"></td></tr></thead><tbody>";
+			echo "<tr><td class=\"booktitle\"><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
+			request_button($row[6]);
+			echo "</td></tr>";
+			while ($row = pg_fetch_array($results)) {
+				echo "<tr><td class=\"booktitle\"><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
+				request_button($row[6]);
+				echo "</td></tr>";
+			} 
+			echo "</tbody></table>";
+		}
+	}
+	function displayuserresults($results, $type){
+		global $searchTerm;
+		$rows = pg_num_rows($results);
+		echo "<div class=\"pageSubTitle\">Found {$rows} users with their {$type} containing&nbsp;<font color='green'><i>\"" . $searchTerm . "\"</i></font></div>";	
+		while ($row = pg_fetch_array($results)) {
+
+			echo "<table id='booksearchresultstable'>";
+			echo "<thead><tr><td class=\"header\">Name</td><td class=\"header\">UW NetID</td><td class=\"header\">Email</td><td class=\"header\">Available Books</td></tr></thead><tbody>";
+				echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsnetid\">" . htmlspecialchars($row[3]) . "  </td><td class=\"personsemail\">";
+				if(htmlspecialchars($row[2]) == ' '){
+					echo htmlspecialchars($row[3]) . "@uw.edu";
+				} else {
+					echo htmlspecialchars($row[2]);
+				}				
+				echo "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>";
+			while ($row = pg_fetch_array($results)) {
+				echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsnetid\">" . htmlspecialchars($row[3]) . "  </td><td class=\"personsemail\">";
+				if(htmlspecialchars($row[2]) == ' '){
+					echo htmlspecialchars($row[3]) . "@uw.edu";
+				} else {
+					echo htmlspecialchars($row[2]);
+				}				
+				echo "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>";
+			} 
+			echo "</tbody></table>";
+		}
+	}
 	switch ($searchOption){
 		case "searchTitle":
 			if (trim($searchTerm) == "") {
@@ -28,25 +78,11 @@
 				if (!$results) {
 					die("Error in SQL query: " . pg_last_error());
 				}
-				$rows = pg_num_rows($results);
-				echo "<div class=\"pageSubTitle\">Found {$rows} books with the title containing&nbsp;<font color='green'><i>\"" . $searchTerm . "\"</i></font></div>";	
-				while ($row = pg_fetch_array($results)) {
-
-					echo "<table id='booksearchresultstable'>";
-					echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN-13</td><td class=\"header\">Owner</td><td class=\"header\"></td></tr></thead><tbody>";
-					echo "<tr><td class=\"booktitle\"><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
-					request_button($row[6]);
-					echo "</td></tr>";
-					while ($row = pg_fetch_array($results)) {
-						echo "<tr><td class=\"booktitle\"><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
-						request_button($row[6]);
-						echo "</td></tr>";
-					} 
-					echo "</tbody></table>";
-				}
+				displaybookresults($results, 'title containing');
 			}
 		break;
 		case "searchISBN":
+			$searchTerm = remove_non_numeric($searchTerm);
 			if (trim($searchTerm) == "") {
 				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
 			} else {
@@ -55,20 +91,7 @@
 			if (!$results) {
 				die("Error in SQL query: " . pg_last_error());
 			}
-			$rows = pg_num_rows($results);
-			if ($rows != 0) {
-			echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
-			echo "<table id='booksearchresultstable'>";
-			echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN-13</td><td class=\"header\">Owner</td><td class=\"header\"></td></tr></thead>";
-			while ($row = pg_fetch_array($results)) {
-				echo "<tr><td class=\"booktitle\"><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
-				request_button($row[6]);
-				echo "</td></tr>"; 
-				}
-			echo "</table>";
-			} else {
-				$errormessage = "Cannot find any books with the ISBN";
-				}
+				displaybookresults($results, 'ISBN');
 			}
 		break;
 		case "searchAuthor":
@@ -80,20 +103,7 @@
 			if (!$results) {
 				die("Error in SQL query: " . pg_last_error());
 			}
-			$rows = pg_num_rows($results);
-			if ($rows != 0) {
-			echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
-			echo "<table id='booksearchresultstable'>";
-			echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN-13</td><td class=\"header\">Owner</td><td class=\"header\"></td></tr></thead>";
-			while ($row = pg_fetch_array($results)) {
-				echo "<tr><td class=\"booktitle\"><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
-				request_button($row[6]);
-				echo "</td></tr>"; 
-				}
-			echo "</table>";
-			} else {
-				$errormessage = "Cannot find any books with the author";
-				}
+				displaybookresults($results, 'author name containing');
 			}
 		break;
 		
@@ -107,18 +117,7 @@
 			if (!$results) {
 				die("Error in SQL query: " . pg_last_error());
 			}
-			$rows = pg_num_rows($results);
-			if ($rows != 0) {
-			echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
-			echo "<table id='peoplesearchresults'>";
-			echo "<thead><tr><td class=\"header\">Name</td><td class=\"header\">E-mail</td><td class=\"header\">Available Books</td></tr></thead>";
-			while ($row = pg_fetch_array($results)) {
-				echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsemail\">" . htmlspecialchars($row[2]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
-				}
-				echo "</table>";
-			} else {
-				$errormessage = "Cannot find any people with the name";
-				}
+				displayuserresults($results, 'name');
 			}
 		break;
 		case "searchNetID":
@@ -130,18 +129,7 @@
 			if (!$results) {
 				die("Error in SQL query: " . pg_last_error());
 			}
-			$rows = pg_num_rows($results);
-			if ($rows != 0) {
-			echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
-			echo "<table id='peoplesearchresults'>";
-			echo "<thead><tr><td class=\"header\">Name</td><td class=\"header\">E-mail</td><td class=\"header\">Available Books</td></tr></thead>";
-			while ($row = pg_fetch_array($results)) {
-				echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsemail\">" . htmlspecialchars($row[2]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
-				}
-				echo "</table>";
-			} else {
-				$errormessage = "Cannot find any people with the UW NetID";
-				}
+				displayuserresults($results, 'UW NetID');
 			}
 		break;
 		case "searchEmail":
@@ -153,21 +141,9 @@
 			if (!$results) {
 				die("Error in SQL query: " . pg_last_error());
 			}
-			$rows = pg_num_rows($results);
-			if ($rows != 0) {
-			echo "<div class=\"pageSubTitle\">Search Results for <font color='green'><i>" . $searchTerm . "</i></font></div>";
-			echo "<table id='peoplesearchresults'>";
-			echo "<thead><tr><td class=\"header\">Name</td><td class=\"header\">E-mail</td><td class=\"header\">Available Books</td></tr></thead>";
-			while ($row = pg_fetch_array($results)) {
-				echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsemail\">" . htmlspecialchars($row[2]) . "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>"; 
-				}
-				echo "</table>";
-			} else {
-				$errormessage = "Cannot find any people with the email";
-				}
+				displayuserresults($results, 'email address');
 			}
 		break;
-
 		}
 		
 	include 'includes/searchresults_2_contentarea.php';		
