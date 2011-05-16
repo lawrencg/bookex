@@ -31,7 +31,7 @@
 			<div id="header">
 				<div id="bookexlogo" class="frontpageonly">
 					<!-- BookEX -->
-					<img src="images/bookex-logo.png" />
+					<img id="logo" src="images/bookex-logo.png" />
 				</div>
 				<!--<div class=""><h1>Agreement and Registration</h1></div>-->
 			</div>
