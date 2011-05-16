@@ -57,11 +57,12 @@
 	height: 100px;
 }
 
+/* search */
 #search {
 	float: right;
 	margin-left: 0px;
-	margin-top: 15px;	
-	margin-bottom: 15px;
+	margin-top: 20px;	
+	margin-bottom: 10px;
 }
 	select {
 		width: 100px;
@@ -71,6 +72,7 @@
 	margin-right: 0px;
 	margin-bottom: 0px;
 }
+
 /*Page start*/
 #page {
 	clear: both;
