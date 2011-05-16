@@ -12,12 +12,13 @@
 	# Pages would break if a UW NetID accessed a page directly
 	# without being a user
 	require 'includes/valid_user.php';
+	include 'includes/request_process.php';
 	
 	# GLOBAL VARIABLES
 	# Used to see if this book is owned by the current UW NetID that is logged in
 	$owner_id = trim(pg_escape_string($_POST['ownerid']));
 	# BookEx id
-	$bookex_id = trim(pg_escape_string($_POST['bookexid']));
+	$bookex_id = trim(pg_escape_string($_POST['book_id']));
 	$title = trim(pg_escape_string($_POST['title'])); 
 	# Author name is in two fields. Different from addbook.php where the authors are stored in an array. 
 	$authorfirst = trim(pg_escape_string($_POST['authorfirst'])); 
@@ -42,30 +43,26 @@
 	# Uses global variables to update the users book instance in the BookEx database.
 	# Outputs database errors directly.
 	function updatebook(){
-		global $bookex_id, $course, $cond, $note, $status, $DB_CONNECT_STRING;
+		global $bookex_id, $course, $cond, $note, $status;
 		if($status == 'on'){
 			$status = 'Available';
 		} else {
 			$status = 'Unavailable';
 		}
 		$user = $_SERVER['REMOTE_USER'];
-		$dbconn = pg_connect($DB_CONNECT_STRING)
-		    or die('Could not connect: ' . pg_last_error());
 		$books = pg_query("SELECT editbook('{$bookex_id}'::int,'{$user}'::varchar,'{$course}'::varchar,'{$cond}'::varchar,'{$note}'::text,
 		'{$status}'::varchar)") or die('Query failed: ' . pg_last_error()); 
 	}
 	# Accepts any valid BookEx peoples_books.id and retrieves the book information from database then stores them
 	# in global variables for use later.
-	function getfromBookEx($bookexid){
-		global $owner_id, $bookex_id, $isbn10, $isbn13, $title, $course, $cond, $authorfirst, $authorlast, $note, $status, $DB_CONNECT_STRING;
+	function getfromBookEx($book_id){
+		global $owner_id, $bookex_id, $isbn10, $isbn13, $title, $course, $cond, $authorfirst, $authorlast, $note, $status;
 		# Connect to database
-		$dbconn = pg_connect($DB_CONNECT_STRING)
-		    or die('Could not connect: ' . pg_last_error());
-		$books = pg_query("SELECT * FROM bookdetails WHERE bookid='{$bookexid}'") 
+		$books = pg_query("SELECT * FROM bookdetails WHERE bookid='{$book_id}'") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($books)) {
 			$owner_id = $records[0];
-			$bookex_id = $bookexid; 
+			$bookex_id = $book_id; 
 			$title = $records[2];
 			$authorfirst = $records[3];
 			$authorlast = $records[4];
@@ -81,8 +78,7 @@
 				$status = 'unchecked';
 			}
 		}
-		# Close database
-		pg_close($dbconn);
+
 	}
 	# HTML to display the book information that has been retreived from the BookEx database and stored in global variables.
 	# Using hidden input forms to transfer the data between POST's.
@@ -91,19 +87,19 @@
 	function filledform(){
 		# Global variables, elimnates the need to pass so many around or manage an array.
 		# Good practice??
-		global $owner_id, $bookex_id, $isbn10, $isbn13, $title, $course, $cond, $authorfirst, $authorlast, $note, $status, $DB_CONNECT_STRING;
+		global $owner_id, $bookex_id, $isbn10, $isbn13, $title, $course, $cond, $authorfirst, $authorlast, $note, $status;
 		# Convert the POST value of a checkbox.
 		# Unnecessary??
 		if($status == 'on'){
 			$status	= 'checked';
 		}
-		include 'includes/bookdetails_1_contentarea.php';
+		displaybookimage();
 		echo "<div class='twoformbuttons'>";		
 		//<div><label>Course:</label><div>{$course}</div></div>
 		
 		echo "
 		<form action='' id='defaultform' name='book' method='POST'>
-			<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
+			<input type='hidden' value='{$bookex_id}' id='book_id' name='book_id' />
 			<input type='hidden' value='{$owner_id}' id='ownerid' name='ownerid' />			
 			<div><label>Title:</label><div>{$title}</div></div>
 			<input type='hidden' value='{$title}' id='title' name='title' />
@@ -140,17 +136,17 @@
 	function editform(){
 		# Global variables, elimnates the need to pass so many around or manage an array.
 		# Good practice??
-		global $owner_id, $bookex_id, $isbn10, $isbn13, $title, $course, $cond, $authorfirst, $authorlast, $note, $status, $DB_CONNECT_STRING;
+		global $owner_id, $bookex_id, $isbn10, $isbn13, $title, $course, $cond, $authorfirst, $authorlast, $note, $status;
 		# Convert the POST value of a checkbox.
 		# Unnecessary??
 		if($status == 'on'){
 			$status	= 'checked';
 		}
-		include 'includes/bookdetails_1_contentarea.php';
+		displaybookimage();
 		echo "<div class='twoformbuttons'>";		
 		echo " 
 		<form action='' id='defaultform' name='book' method='POST'>
-			<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
+			<input type='hidden' value='{$bookex_id}' id='book_id' name='book_id' />
 			<input type='hidden' value='{$owner_id}' id='ownerid' name='ownerid' />			
 			<div><label>Title:</label><div>{$title}</div></div>
 			<input type='hidden' value='{$title}' id='title' name='title' />
@@ -169,8 +165,6 @@
 					
 		
 		//START CONDTION OPTIONS DROP DOWN
-		$dbconn = pg_connect($DB_CONNECT_STRING)
-		    or die('Could not connect: ' . pg_last_error());
 		$conditions = pg_query("SELECT * FROM condition ORDER BY rank") 
 			or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($conditions)) {
@@ -180,7 +174,6 @@
 				echo "<option value='{$records[0]}'>{$records[0]}</option>";
 			}
 		}
-		pg_close($dbconn);
 		//END DROPDOWN //end condition
 		echo "</select></div></div> 
 		
@@ -204,7 +197,7 @@
 	function deletebook(){
 		# Global variables, elimnates the need to pass so many around or manage an array.
 		# Good practice??
-		global $owner_id, $bookex_id, $isbn10, $isbn13, $title, $course, $cond, $authorfirst, $authorlast, $note, $status, $DB_CONNECT_STRING;
+		global $owner_id, $bookex_id, $isbn10, $isbn13, $title, $course, $cond, $authorfirst, $authorlast, $note, $status;
 		# Convert the POST value of a checkbox.
 		# Unnecessary??
 		if($status == 'on'){
@@ -216,7 +209,7 @@
 		
 		<div>Are you sure you want to remove this book from your BookEx account?<br />This cannot be undone.</div>
 		
-		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
+		<input type='hidden' value='{$bookex_id}' id='book_id' name='book_id' />
 		<b>Title:</b>&nbsp;{$title}<br />
 		<b>Author Firstname</b>:&nbsp;{$authorfirst}<br /> 
 		<b>Author Lastname</b>:&nbsp;{$authorlast}<br /><b>ISBN-10:</b>&nbsp;{$isbn10}<br />
@@ -249,7 +242,7 @@
 		echo "<div class='twoformbuttons'>";				
 		echo "				
 		<form action='mybooks.php' id='defaultform' name='book' method='POST'>
-			<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
+			<input type='hidden' value='{$bookex_id}' id='book_id' name='book_id' />
 			<input type='hidden' value='{$owner_id}' id='ownerid' name='ownerid' />			
 			
 			<div><label>Title:</label><div>{$title}</div></div>
@@ -279,6 +272,31 @@
 			echo "</form><form action='bookdetails.php' method='get'><div><input type='hidden' value='{$bookex_id}' id='id' name='id' /><input type='submit' name='cancel' value='Cancel' style='margin-left:10px' /></div>";
 		}
 		
+	}
+	
+	
+	function displaybookimage(){
+		global $bookex_id, $owner_id, $user;
+		echo '
+				<div id="page">
+				<div class="pageTitle">Book Details</div>
+				<div id="maincontent">
+					<div id="" class="contentarea">
+						<div class="leftContent">
+							<div id="bookImageContent">
+								<div id="bookImagePhoto"><img src=\'images/default-book.png\' /></div>
+
+							</div>';
+
+		if($owner_id != $user){
+				echo "<div class=\"requestbutton\">";
+				request_button($bookex_id);
+				echo "</div>";
+		}
+
+		echo '				</div>						
+						<div class="rightContent contentarea">';	
+
 	}
 	# Default HTML
 	
@@ -320,11 +338,16 @@
 			# Display the form to delete the book
 			# Subsequent form will be processed by mybooks.php
 			deletebook();
-		} 
+		} elseif(isset($_POST['request'])){
+			//getfromBookEx($_GET['id']);
+			# Display the book information again
+			filledform();
+		# The user wants to update the book information
+		}
 	}
 	# Close any form that was made. Need to make sure one was opened first.
 	echo "</form></div></p>";
 	include 'includes/bookdetails_2_contentarea.php';
 	include 'includes/sitefooter.php';
-	
+	pg_close($dbconn);
 ?>
