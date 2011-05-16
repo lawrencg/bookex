@@ -1,4 +1,3 @@
-	<!-- Footer, this should be the same across every page.  Consider pulling out into an include -->
 	<div id="footer">
 		<ul id="footernavigation">
 			<li id="privacy"><a href="#">Privacy</a></li>
@@ -8,10 +7,9 @@
 			<li id="ourstory"><a href="http://www.bookex.info/ourstory.html">Our Story</a></li>
 		</ul>
 		<div id="copyrightstatement">
-				&copy; 2011 All Rights Reserved by BookEX
+				&copy; 2011 All Rights Reserved by <a href="http://www.bookex.info">BookEX</a>
 		</div>
 	</div>
 </div>	
-	<!-- End Footer -->
 </body>
 </html>
