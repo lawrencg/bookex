@@ -341,6 +341,7 @@
 		} elseif(isset($_POST['request'])){
 			//getfromBookEx($_GET['id']);
 			# Display the book information again
+			getfromBookEx($_POST['book_id']);
 			filledform();
 		# The user wants to update the book information
 		}
