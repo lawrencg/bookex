@@ -16,29 +16,29 @@
 	
 	# GLOBAL VARIABLES
 	# BookEx book id
-	$bookex_id = pg_escape_string($_POST['bookexid']);
-	$isbn10 = remove_non_numeric($_POST['isbn10']); 
-	$isbn13 = remove_non_numeric($_POST['isbn13']);
+	$bookex_id = trim(pg_escape_string($_POST['bookexid']));
+	$isbn10 = trim(remove_non_numeric($_POST['isbn10'])); 
+	$isbn13 = trim(remove_non_numeric($_POST['isbn13']));
 	# Title of the book
-	$title = pg_escape_string($_POST['title']); 
+	$title = trim(pg_escape_string($_POST['title'])); 
 	# An array of author names.
 	# Should be stored in reverse order.
 	# ex. Authors Tom L. Welling and Mark Weiss
 	# ("Welling","Tom L.","Weiss","Mark") 
-	$authors = pg_escape_string($_POST['authors']); 
+	$authors = trim(pg_escape_string($_POST['authors'])); 
 	# The course assoicated with this instance of the book.
 	# Currently only one course can be assoicated to a book.
-    $course = pg_escape_string($_POST['class']);
+    $course = trim(pg_escape_string($_POST['class']));
     # The description of this instance of the book.
     # Data from ISBNDB has a Summary field and Notes Field.
     # On initial tests, notes looked more promissing but Summary might actually
     # be a better choice. 
-	$note = pg_escape_string($_POST['description']); 
+	$note = trim(pg_escape_string($_POST['description'])); 
 	# The condition of this instance of the book. Must be choosen from 
 	# values in the conditions table of the BookEx database.
-	$condition = pg_escape_string($_POST['condition']);
+	$condition = trim(pg_escape_string($_POST['condition']);
 	# The borrowing status of this instance, Available or Unavailable
-	$status = pg_escape_string($_POST['available']);
+	$status = trim(pg_escape_string($_POST['available']));
 	# Possible message to display.
 	$errormessage;
 	#Currently logged in UW NetID
