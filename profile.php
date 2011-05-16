@@ -70,7 +70,7 @@
 	function editProfile() {
 		# Global variables
 		global $myinfoNetID, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor, $user;
-		echo "<form action='' id='profile' name='profile' method='POST' enctype='multipart/form-data'>";
+		echo "<form action='' id='defaultform' name='profile' method='POST' enctype='multipart/form-data'>";
 		/*
 		echo"
 			First Name: <span style='font-weight:normal;'>&nbsp;<input type='text' value='" . $myinfoFirstName . "' id='myinfoFirstName' name='myinfoFirstName' size='40' /><br /><br />
