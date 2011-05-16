@@ -5,7 +5,7 @@
 			<li id="terms"><a href="#">Terms</a></li>
 			<li id="contact"><a href="#">Contact</a></li>
 			<li id="help"><a href="#">Help</a></li>
-			<li id="ourstory"><a href="https://www.bookex.info/ourstory.html">Our Story</a></li>
+			<li id="ourstory"><a href="http://www.bookex.info/ourstory.html">Our Story</a></li>
 		</ul>
 		<div id="copyrightstatement">
 				&copy; 2011 All Rights Reserved by BookEX
