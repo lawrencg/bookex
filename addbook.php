@@ -115,7 +115,7 @@
 	}
 	# HTML used for the initial ISBN search. 
 	function initialsearch(){
-		echo "<p>Please enter the ISBN-10 or ISBN-13 for your book.</p><input type='text' value='' id='isbn' name='isbn' size='20' />&nbsp;";
+		echo "<p>Please enter the ISBN-10 or ISBN-13 for your book.</p><input type='text' value='' id='addbooksearchtextbox' name='isbn' size='20' />&nbsp;";
 		echo "<br /><input type='submit' name='addbooksearch' value='Search' />";
 		echo "<input type='submit' name='manual' value='Don&#39;t have an ISBN' />";
 	}
@@ -181,11 +181,11 @@
 	function filledform(){
 		# Global variables
 		global $bookex_id, $title, $authors, $isbn10, $isbn13, $course, $note;
-		//<b>Author(s)</b><br /><br />";
+
 		echo"
 		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />
 		<div><label>Title:</label><div>&nbsp;" . $title . "</div></div>
-		<input type='hidden' value='{$title}' id='title' name='title' />";
+		<input type='hidden' value='{$title}' id='title' name='title' maxlength='255' />";
 
 		# Displays multiple authors if there are more than one. Only the first author will be passed in a post.
 			foreach($authors AS $author){
@@ -197,9 +197,9 @@
 			"<input type='hidden' value='{$authors[0]}' id='authors' name='authors' />			
 			<div><label>ISBN-10:</label><div>&nbsp;" . $isbn10 . "</div></div>
 			<div><label>ISBN-10:</label><div>&nbsp;" . $isbn13 . "</div></div>			
-			<input type='hidden' value='{$isbn10}' id='isbn10' name='isbn10' />			
-			<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />
-			<div><label>Course:</label>&nbsp;<input type='text' value='' id='course' name='class' size='8' /></div>
+			<input type='hidden' value='{$isbn10}' id='isbn10' name='isbn10' maxlength='10' />			
+			<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' maxlength='13' />
+			<div><label>Course:</label>&nbsp;<input type='text' value='' id='course' name='class' maxlength='8' size='8' /></div>
 			<div><label>Condition:</label>&nbsp;<select name='condition'>";
 			
 		//START CONDTION OPTIONS DROP DOWN
@@ -214,7 +214,7 @@
 			}
 		}
 		//END DROPDOWN
-		//<b>Description:</b>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual />" . $note . </textarea><br /><br />
+		
 		echo "</select></div>		
 		<div><label>Description:</label>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual /> " . $note . " </textarea></div>		
 		<div>Make book available for others to borrow.</b>&nbsp;<input type='checkbox' id='available' name='available' checked/></div>";
@@ -225,15 +225,15 @@
 	function editform(){
 		# Global variables
 		global $bookex_id, $title, $authors, $isbn10, $isbn13, $course, $note;
-		//<b>Title (required):</b>&nbsp;<input type='text' value='" . $title . "' id='title' name='title' size='40' /><br /><br />
+		
 		echo"
 		<input type='hidden' value='{$bookex_id}' id='bookexid' name='bookexid' />		
-		<div><label>Title (required):</label>&nbsp;<input type='text' value='" . $title . "' id='title' name='title' size='40' /></div>		
-		<div><label>Author First name:</label>&nbsp;<input type='text' value='" . authorfirstname($authors) . "' id='author_fname' name='author_fname' size='30' /></div>
-		<div><label>Author Last name:</label>&nbsp;<input type='text' value='" . authorlastname($authors) . "' id='author_lname' name='author_lname' size='30' /></div>
-		<div><label>ISBN-10:</label>&nbsp;<input type='text' value='" . $isbn10 . "' id='isbn10' name='isbn10' size='13' /></div>
-		<div><label>ISBN-13:</label>&nbsp;<input type='text' value='" . $isbn13 . "' id='isbn13' name='isbn13' size='13' /></div>
-		<div><label>Course:</label>&nbsp;<input type='text' value='" . $course . "' id='course' name='class' size='8' /></div>
+		<div><label>Title (required):</label>&nbsp;<input type='text' value='" . $title . "' id='title' name='title' maxlength='255' size='40' /></div>		
+		<div><label>Author First name:</label>&nbsp;<input type='text' value='" . authorfirstname($authors) . "' id='author_fname' name='author_fname' maxlength='255' size='30' /></div>
+		<div><label>Author Last name:</label>&nbsp;<input type='text' value='" . authorlastname($authors) . "' id='author_lname' name='author_lname' maxlength='255' size='30' /></div>
+		<div><label>ISBN-10:</label>&nbsp;<input type='text' value='" . $isbn10 . "' id='isbn10' name='isbn10' maxlength='10' size='13' /></div>
+		<div><label>ISBN-13:</label>&nbsp;<input type='text' value='" . $isbn13 . "' id='isbn13' name='isbn13' maxlength='13' size='13' /></div>
+		<div><label>Course:</label>&nbsp;<input type='text' value='" . $course . "' id='course' name='class' maxlength='8' size='8' /></div>
 		<div><label>Condition:</label>&nbsp;<select name='condition'></div>";
 		
 		//START CONDTION OPTIONS DROP DOWN
@@ -247,7 +247,7 @@
 			}
 		}
 		//END DROPDOWN
-		//<b>Description:</b>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual />" . $note . "</textarea> </div>
+		
 		echo "</select></div>
 		<div><label>Description:</label>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual /> " . $note . " </textarea></div>		
 		<div>Make book available for others to borrow.&nbsp;<input type='checkbox' id='available' name='available' checked/></div>
@@ -256,12 +256,12 @@
 	# HTML used to manually add a book to BookEx
 	function blankform(){
 		echo"
-		<div><label>Title (required):</label>&nbsp;<input type='text' value='' id='title' name='title' size='40' /></div>
-		<div><label>Author First name:</label>&nbsp;<input type='text' value='' id='author_fname' name='author_fname' size='30' /></div>
-		<div><label>Author Last name:</label>&nbsp;<input type='text' value='' id='author_lname' name='author_lname' size='30' /></div>
-		<div><label>ISBN-10:</label>&nbsp;<input type='text' value='' id='isbn10' name='isbn10' size='13' /></div>
-		<div><label>ISBN-13:</label>&nbsp;<input type='text' value='' id='isbn13' name='isbn13' size='13' /></div>
-		<div><label>Course:</label>&nbsp;<input type='text' value='' id='course' name='class' size='8' /></div>
+		<div><label>Title (required):</label>&nbsp;<input type='text' value='' id='title' name='title' maxlength='255' size='40' /></div>
+		<div><label>Author First name:</label>&nbsp;<input type='text' value='' id='author_fname' name='author_fname' maxlength='255' size='30' /></div>
+		<div><label>Author Last name:</label>&nbsp;<input type='text' value='' id='author_lname' name='author_lname' maxlength='255' size='30' /></div>
+		<div><label>ISBN-10:</label>&nbsp;<input type='text' value='' id='isbn10' name='isbn10' maxlength='10' size='13' /></div>
+		<div><label>ISBN-13:</label>&nbsp;<input type='text' value='' id='isbn13' name='isbn13' maxlength='13' size='13' /></div>
+		<div><label>Course:</label>&nbsp;<input type='text' value='' id='course' name='class' maxlength='8' size='8' /></div>
 		<div><label>Condition:</label>&nbsp;<select name='condition'></div>";
 		//START CONDTION OPTIONS DROP DOWN
 		$conditions = pg_query("SELECT * FROM condition ORDER BY rank") 
