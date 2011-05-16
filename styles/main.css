@@ -49,13 +49,13 @@
 
 #bookexlogo.frontpageonly {
 	text-align:center;
-	width:848px;	
+	width:848px;
+	height: 110px;	
 }
 
 #bookexlogo.frontpageonly img{
 	height: 100px;
 }
-
 
 #search {
 	float: right;
