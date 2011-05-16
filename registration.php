@@ -38,6 +38,7 @@
 						<p>The program is intended for use by UW students, factulties and staffs who have a valid UW NetID. You decide who to loan your textbooks to and we are not responsible for any damage or lost to your books by the borrower. You can resquest book and you can also accept or deny other's book requests.</p>
 						<p class="agreementconditions">
 						You agree that:<br/>
+						</p>
 							<ul>
 								<li>You will return the book you borrowed on time and in as good condition as when borrowed.</li>
 								<li>You agree to pay for the damage or loss of the book that you borrow to the lender. Howerver we do not hadle the payment. You do that in person out of the system.</li>							
@@ -46,9 +47,9 @@
 								<li>You will not hack the system.</li>
 								<li>Will not spam other members with your request.</li>
 							</ul>
-							You will have to use your UW NetID to log in.
-							<p>Click "Agree" to agree to the agreement and use the BookEX or click "No thanks" if you don't agree to the terms and leave.</p>						
-						</p>
+							<p>You will have to use your UW NetID to log in.<br />
+							Click "Agree" to agree to the agreement and use the BookEX or click "No thanks" if you don't agree to the terms and leave.</p>						
+
 					</div>
 				</div>			
 				<div>
