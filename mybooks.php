@@ -84,7 +84,11 @@
 				echo '									<td class="bookstatus">'.$records[5].'</td>' . "\n";				
 			} else {
 				echo '									<td class="bookduedate">'.date("F j, Y").'</td>' . "\n";
-				echo '									<td class="bookstatus">'.$records[6].'</td>' . "\n";
+				if($records[6] == 'Received'){
+					echo '									<td class="bookstatus">Loaned Out</td>' . "\n";
+				} else {
+					echo '									<td class="bookstatus">'.$records[6].'</td>' . "\n";
+				}
 			}
 			echo '								</tr>';
 		}
