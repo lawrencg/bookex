@@ -1,3 +1,10 @@
+<?php 
+	/* Once this file is changed you need to copy and paste it to the static pages.
+	 * index.html
+	 * terms.html
+	 * ourstory.html
+	 */
+?>
 	<div id="footer">
 		<ul id="footernavigation">
 			<li id="privacy"><a href="#">Privacy</a></li>
