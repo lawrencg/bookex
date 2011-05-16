@@ -97,8 +97,8 @@
 							</div>
 						</div>
 						<div id="agreementbuttons" class="centerDiv">
-							<input type="submit" id="register" name="register" value="I agree"/>
-							<input type="submit" id="dontregister" name="dontregister" value="No thanks"> 
+							<input type="submit" id="register" name="register" value="I agree" />
+							<input type="submit" id="dontregister" name="dontregister" value="No thanks" /> 
 						</div>
 					</form>
 				</div>

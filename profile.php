@@ -78,13 +78,14 @@
 			UW NetID: <span style='font-weight:normal;'>&nbsp;" . $myinfoNetID . " <id='myinfoNetID' name='myinfoNetID' /><br /><br />
 			E-mail: <span style='font-weight:normal;'>&nbsp;<input type='text' value='" . $myEmail . "' id='myEmail' name='myEmail' size='40' /><br /><br />
 			Major: <span style='font-weight:normal;'>&nbsp;<input type='text' value='" . $myMajor . "' id='myMajor' name='myMajor' size='40' /><br /><br />
-			Upload Photo: <input type='file' name='image'>";
+			 ";
 		*/	
 		echo "								<div><label>First Name:</label><div><input type='text' value='" . $myinfoFirstName . "' id='myinfoFirstName' name='myinfoFirstName' size='40' /></div></div>";
 		echo "								<div><label>Last Name:</label><div><input type='text' value='" . $myinfoLastName . "' id='myinfoLastName' name='myinfoLastName' size='40' /></div></div>";
 		echo "								<div><label>UW NetID:</label><div>" . $myinfoNetID . "</div></div>";
 		echo "								<div><label>E-mail:</label><div><input type='text' value='" . $myEmail . "' id='myEmail' name='myEmail' size='40' /></div></div>";
 		echo "								<div><label>Major:</label><div><input type='text' value='" . $myMajor . "' id='myMajor' name='myMajor' size='40' /></div></div>";
+		echo "								<div><label>Upload Photo:</label><div><input type='file' name='image'></div></div>";
 			
 			
 		echo "<br/><br/><input type='submit' name='saveID' value='Save Changes' />";
