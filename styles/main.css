@@ -40,16 +40,23 @@
 	font-size: 72px;
 	width: 300px;
 	float: left;
+	height: 105px;
+}
+
+#bookexlogo img{
+	height: 70px;
 }
 
 #bookexlogo.frontpageonly {
 	text-align:center;
 	width:848px;
+	height: 200px;
 }
 
-#logo {
-	
+#bookexlogo.frontpageonly img{
+	height: 100px;
 }
+
 
 #search {
 	float: right;
