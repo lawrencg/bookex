@@ -17,24 +17,18 @@
 <html>
 	<head>
 		<title>BookEx User Agreement and Registration</title>
-		<!-- <link rel="stylesheet" href="main.css"/> -->
 		<link rel="stylesheet" href="styles/main.css"/>
-	
 	</head>
 	<body>
 	<div id="pagecontainer">
-		<!-- Top Div, this is included in every page.  Should be pulled out into a header file, use PHP include feature so we don't repeat code -->
 		<div id="top">
 			<div id="header">
 				<div id="bookexlogo" class="frontpageonly">
 					<!-- BookEX -->
 					<img id="bookex-logo" src="images/bookex-logo.png" />
 				</div>
-				<!--<div class=""><h1>Agreement and Registration</h1></div>-->
 			</div>
 		</div>	
-		<!-- End Top Div -->
-		
 		<div id="page">
 			<div id="registrationtitle" class="pageTitle">Agreement and Registration</div>
 			<div id="maincontent">
@@ -56,21 +50,18 @@
 							<p>Click "Agree" to agree to the agreement and use the BookEX or click "No thanks" if you don't agree to the terms and leave.</p>						
 						</p>
 					</div>
-				</div>
-				
+				</div>			
 				<div>
 					<div id="uwnetiddisplayarea">
 						<p>UW NetID:&nbsp;<b><?php echo $_SERVER['REMOTE_USER']; ?></b></p>
 					</div>
-					<div id="pleasenotemessage">
-						
+					<div id="pleasenotemessage">				
 						<b>Please note:</b> All information in the box below is optional, 
 						but by entering more information, you will make it easier for 
 						others to find you, as well as allowing for people to see more 
 						information about you, increasing your chances of being able to 
 						borrow books.
 						<br/>
-	
 					</div>
 					<form action='dashboard.php' id='register' name='register' method='POST'>
 						<div id="additionalinfotextareas" class="contentarea centerDiv">
@@ -101,8 +92,6 @@
 				</div>
 			</div>
 		</div>
-		
-		<!-- Footer, this should be the same across every page.  Consider pulling out into an include -->
 		<div id="footer">
 			<ul id="footernavigation">
 				<li id="privacy"><a href="/privacy">Privacy</a></li>
@@ -116,6 +105,5 @@
 			</div>
 		</div>
 	</div>	
-		<!-- End Footer -->
 	</body>
 </html>
