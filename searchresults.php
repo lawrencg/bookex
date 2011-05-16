@@ -50,7 +50,7 @@
 			echo "<table id='booksearchresultstable'>";
 			echo "<thead><tr><td class=\"header\">Name</td><td class=\"header\">UW NetID</td><td class=\"header\">Email</td><td class=\"header\">Available Books</td></tr></thead><tbody>";
 				echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsnetid\">" . htmlspecialchars($row[3]) . "  </td><td class=\"personsemail\">";
-				if(htmlspecialchars($row[2]) == ' '){
+				if(htmlspecialchars($row[2]) == ''){
 					echo htmlspecialchars($row[3]) . "@uw.edu";
 				} else {
 					echo htmlspecialchars($row[2]);
@@ -58,7 +58,7 @@
 				echo "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>";
 			while ($row = pg_fetch_array($results)) {
 				echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsnetid\">" . htmlspecialchars($row[3]) . "  </td><td class=\"personsemail\">";
-				if(htmlspecialchars($row[2]) == ' '){
+				if(htmlspecialchars($row[2]) == ''){
 					echo htmlspecialchars($row[3]) . "@uw.edu";
 				} else {
 					echo htmlspecialchars($row[2]);
