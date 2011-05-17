@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<title>My Book Details</title>
-		<link rel="stylesheet" href="styles/main.css"/>
+		<link rel="stylesheet" href="styles/main.css" />
 	</head>
 	<body>
 		<div id="pagecontainer">
