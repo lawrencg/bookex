@@ -28,8 +28,8 @@
 						<div style="text-align:center;">
 						<img src="images/bookex-logo-error.png" id="error-image" alt="BookEx is broken" />
 						</div>
-						<p>Sorry, It doesn't like we know what we're doing here. Hopefully we will get this 
-						problem fixed today. Maybe tomorrow. You can try to <a href="
+						<p>Sorry, It doesn't look like we don't have everything working yet. Hopefully we will get this 
+						problem fixed today. Or maybe tomorrow. You can try to <a href="
 						<?php echo $_SESSION['previouspage'][2]; ?>">
 						go back</a> to where you were before this
 						embarrassment happened. Please don't be too hard on us. Thanks.</p>
