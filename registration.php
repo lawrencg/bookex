@@ -24,7 +24,6 @@
 		<div id="top">
 			<div id="header">
 				<div id="bookexlogo" class="frontpageonly">
-					<!-- BookEX -->
 					<img id="bookex-logo" src="images/bookex-logo.png" />
 				</div>
 			</div>
@@ -34,22 +33,23 @@
 			<div id="maincontent">
 				<div class="contentarea centerDiv">
 					<div id="agreementinformation">
-						<p class="introstatement">To use BookEX, you have to agree to the follwing terms.</p>
-						<p>The program is intended for use by UW students, factulties and staffs who have a valid UW NetID. You decide who to loan your textbooks to and we are not responsible for any damage or lost to your books by the borrower. You can resquest book and you can also accept or deny other's book requests.</p>
+						<p class="introstatement">BookEx is a book exchange application that is intended for use by anyone who has a valid UW NetID. 
+						The decision to loan your books is completely up to you. We are not responsible for lost or damaged books. You can request books from all BookEx 
+						user but they have the right to deny the request for any reason. Exchanges are intended to be made in good faith. Please do not be lame.</p>
+						<p></p>
 						<p class="agreementconditions">
-						You agree that:<br/>
+						By clicking the "I agree" button below, you will be agreeing to the following terms:<br/>
 						</p>
-							<ul>
-								<li>You will return the book you borrowed on time and in as good condition as when borrowed.</li>
-								<li>You agree to pay for the damage or loss of the book that you borrow to the lender. Howerver we do not hadle the payment. You do that in person out of the system.</li>							
-								<li>Conflict is dealt between lender and borrower and BookEX does not deal with conflict between lender and borrower. </li>
-								<li>You will not held BookEX owners accoutable for any lost or damage to your textbooks or books or anyother lost</li>
-								<li>You will not hack the system.</li>
-								<li>Will not spam other members with your request.</li>
-							</ul>
-							<p>You will have to use your UW NetID to log in.<br />
-							Click "Agree" to agree to the agreement and use the BookEX or click "No thanks" if you don't agree to the terms and leave.</p>						
-
+						<ul>
+							<li>You will return the book you borrowed on time and in as good condition as when borrowed.</li>
+							<li>You agree to pay for damaged or lost books. However, BookEx does not handle payment processing.</li>							
+							<li>Any conflicts are dealt with between the lender and borrower. BookEx does not have a conflict resolution mechanism.</li>
+							<li>Will not spam other users with excessive book requests.</li>
+							<li>You will not hack the system.</li>
+						</ul>
+						<p>You will be identified by your UW NetID and will need it to login.</p>
+						<p>Click "I agree" to accept the terms displayed above and create your BookEx account. "No thanks" will return you to the main page and 
+						not add your UW NetID to the BookEx system.</p>						
 					</div>
 				</div>			
 				<div>
