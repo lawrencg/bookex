@@ -8,6 +8,7 @@
 session_start();
 $current= "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 # Might not work properly if they visit the submitbug.php page directly.
+$_SESSION['previouspage'][2]=$_SESSION['previouspage'][1];
 $_SESSION['previouspage'][1]=$_SESSION['previouspage'][0];
 $_SESSION['previouspage'][0]=$current;
 // error handler function
@@ -21,31 +22,32 @@ function bookex_error_handler($errno, $errstr, $errfile, $errline)
 		case E_USER_ERROR:
 			$str="[$errono] Fatal error on line $errline in file $errfile\n";
 			$str.= "$errstr";
-			LogError ($str);
+			//LogError ($str);
 			$str .= $locations;
 			email_error($str);
+			include 'error.php';
 			exit(1);
 			break;
 		case E_USER_WARNING:
 			$str = "[$errno] WARNING $errstr\n";
-			LogError ($str);
+			//LogError ($str);
 			$str .= $locations;
 			email_error($str);
 			break;
 		case E_USER_NOTICE:
 			$str = "[$errno] NOTICE $errstr\n";
-			LogError ($str);
+			//LogError ($str);
 			$str .= $locations;
 			email_error($str);
 			break;
 		default:
-			$str = "Unknown error type: [$errno] $errstr\n";
-			LogError ($str);
-			$str .= $locations;
-			email_error($str);
+			//$str = "Unknown error type: [$errno] $errstr\n";
+			//LogError ($str);
+			//$str .= $locations;
+			//email_error($str);
 			break;
 	}
-	include '../error.php';
+
 	/* Don't execute PHP internal error handler */
 	return true;
 }

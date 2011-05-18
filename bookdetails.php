@@ -58,8 +58,8 @@
 	function getfromBookEx($book_id){
 		global $owner_id, $bookex_id, $isbn10, $isbn13, $title, $course, $cond, $authorfirst, $authorlast, $note, $status;
 		# Connect to database
-		$books = pg_query("SELECT * FROM bookdetails WHERE bookid='{$book_id}'") 
-			or die('Query failed: ' . pg_last_error()); 
+		$books = pg_query("SELECT * FROM bookdetails WHERE bookid='{$book_id}'");
+			//or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($books)) {
 			$owner_id = $records[0];
 			$bookex_id = $book_id; 
