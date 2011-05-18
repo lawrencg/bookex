@@ -2,15 +2,12 @@
 	# Author: Lawrence Gabriel
 	# Email: shanzha@uw.edu
 	# Date: May 11, 2011
-	# Title: Allows users to send feedback to the slcap@u.washington.edu email list about the BookEx web application.
+	# Title: Display a users information. Will be displayed differently if the user is looking at their own profile.
 	
 	# Session tracking for the bug submission form. Needs to be before ANY HTML.
-	include 'includes/session_track.php';
+	require 'includes/session_track.php';
 	# Database connection parameters
 	require 'includes/database_info.php';
-	# Force non-registered users to register or leave
-	# Pages would break if a UW NetID accessed a page directly
-	# without being a user
 	require 'includes/valid_user.php';
 
 	function bugform(){

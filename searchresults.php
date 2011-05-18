@@ -1,12 +1,13 @@
 <?php
-
+	# Author: Lawrence Gabriel
+	# Email: shanzha@uw.edu
+	# Date: May 17, 2011
+	# Title: Displays the results from a search in the main navigation area.
+	
 	# Session tracking for the bug submission form. Needs to be before ANY HTML.
-	include 'includes/session_track.php';
+	require 'includes/session_track.php';
 	# Database connection parameters
 	require 'includes/database_info.php';
-	# Force non-registered users to register or leave
-	# Pages would break if a UW NetID accessed a page directly
-	# without being a user
 	require 'includes/valid_user.php';
 
 	include 'includes/request_process.php';

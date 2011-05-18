@@ -1,11 +1,11 @@
 <?php
 	# Author: Lawrence Gabriel
 	# Email: shanzha@uw.edu
-	# Date: May 11, 2011
+	# Date: May 17, 2011
 	# Title: Display a users books for the BookEx web application.
 	
 	# Session tracking for the bug submission form. Needs to be before ANY HTML.
-	include 'includes/session_track.php';
+	require 'includes/session_track.php';
 	# Database connection parameters
 	require 'includes/database_info.php';
 	# Force non-registered users to register or leave

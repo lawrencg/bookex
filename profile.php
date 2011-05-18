@@ -1,14 +1,14 @@
 <?php
 	# Author: Lawrence Gabriel
 	# Email: shanzha@uw.edu
-	# Date: May 11, 2011
+	# Date: May 17, 2011
 	# Title: Display a users information. Will be displayed differently if the user is looking at their own profile.
 	
 	# Session tracking for the bug submission form. Needs to be before ANY HTML.
 	require 'includes/session_track.php';
 	# Database connection parameters
 	require 'includes/database_info.php';
-	include 'includes/valid_user.php';
+	require 'includes/valid_user.php';
 	include 'includes/request_process.php';
 	
 	

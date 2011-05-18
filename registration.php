@@ -1,5 +1,13 @@
 <?php 
-	include 'includes/database_info.php';
+	# Author: Lawrence Gabriel
+	# Email: shanzha@uw.edu
+	# Date: May 17, 2011
+	# Title: Registers a new user to the BookEx system.
+	
+	# Session tracking for the bug submission form. Needs to be before ANY HTML.
+	require 'includes/session_track.php';
+	# Database connection parameters
+	require 'includes/database_info.php';	
 	
 	$user = $_SERVER['REMOTE_USER'];
 	if(isset($_GET['maint']))
