@@ -125,8 +125,8 @@
 		# Global variables
 		global $bookex_id, $isbn10, $isbn13, $title, $authors;
 		# Connect to the database
-		$books = pg_query("SELECT * FROM findbook('{$post_isbn}'::numeric) as records(book_id int, isbn10 numeric, isbn13 numeric, title varchar, author text)") 
-			or die('Query failed: ' . pg_last_error()); 
+		$books = pg_query("SELECT * FROM findbook('{$post_isbn}'::numeric) as records(book_id int, isbn10 numeric, isbn13 numeric, title varchar, author text)"); 
+			//or die('Query failed: ' . pg_last_error()); 
 		# Hopefully we found something. If more than one record is returned, only the 
 		# last books infomation is saved.
 		while($records = pg_fetch_array($books)) {
@@ -203,8 +203,8 @@
 			<div><label>Condition:</label>&nbsp;<select name='condition'>";
 			
 		//START CONDTION OPTIONS DROP DOWN
-		$conditions = pg_query("SELECT * FROM condition ORDER BY rank") 
-			or die('Query failed: ' . pg_last_error()); 
+		$conditions = pg_query("SELECT * FROM condition ORDER BY rank") ;
+			//or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($conditions)) {
 			# The default value for books being added to BookEx are assumed to be "Used"
 			if($records[0] == 'Used'){
@@ -237,8 +237,8 @@
 		<div><label>Condition:</label>&nbsp;<select name='condition'></div>";
 		
 		//START CONDTION OPTIONS DROP DOWN
-		$conditions = pg_query("SELECT * FROM condition ORDER BY rank") 
-			or die('Query failed: ' . pg_last_error()); 
+		$conditions = pg_query("SELECT * FROM condition ORDER BY rank") ;
+			//or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($conditions)) {
 			if($records[0] == 'Used'){
 				echo "<option value='$records[0]' selected='selected'>" . $records[0] . "</option>";
@@ -264,8 +264,8 @@
 		<div><label>Course:</label>&nbsp;<input type='text' value='' id='course' name='class' maxlength='8' size='8' /></div>
 		<div><label>Condition:</label>&nbsp;<select name='condition'></div>";
 		//START CONDTION OPTIONS DROP DOWN
-		$conditions = pg_query("SELECT * FROM condition ORDER BY rank") 
-			or die('Query failed: ' . pg_last_error()); 
+		$conditions = pg_query("SELECT * FROM condition ORDER BY rank") ;
+			//or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($conditions)) {
 			if($records[0] == 'Used'){
 				echo "<option value='$records[0]' selected='selected'>" . $records[0] . "</option>";
@@ -306,13 +306,13 @@
 			$isbn13 = 1;
 		# Minimal information is needed if the book already exists in BookEx
 		if($mode == 0){
-			pg_query("SELECT addbook('{$user}'::varchar,'{$bookex_id}'::int, '{$status}'::varchar,'{$course}'::varchar,'{$condition}'::varchar,'{$note}'::text)") 
-				or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT addbook('{$user}'::varchar,'{$bookex_id}'::int, '{$status}'::varchar,'{$course}'::varchar,'{$condition}'::varchar,'{$note}'::text)") ;
+				//or die('Query failed: ' . pg_last_error()); 
 			$errormessage = 'Your book has been added sucessfully.';
 		# Need all of the information associated with a book to create it in BookEx
 		} elseif($mode == 1) {
-			pg_query("SELECT addbook('{$user}'::varchar,'{$title}'::varchar,'" . authorfirstname($authors) . "'::varchar,'" . authorlastname($authors) . "'::varchar,'{$course}'::varchar,'{$condition}'::varchar,'{$note}'::text,{$isbn10}::numeric,{$isbn13}::numeric,'{$status}'::varchar)")
-				or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT addbook('{$user}'::varchar,'{$title}'::varchar,'" . authorfirstname($authors) . "'::varchar,'" . authorlastname($authors) . "'::varchar,'{$course}'::varchar,'{$condition}'::varchar,'{$note}'::text,{$isbn10}::numeric,{$isbn13}::numeric,'{$status}'::varchar)");
+				//or die('Query failed: ' . pg_last_error()); 
 			$errormessage = 'Your book has been added sucessfully.';
 		}
 	}

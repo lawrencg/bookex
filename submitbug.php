@@ -14,7 +14,7 @@
 		echo "<div class='button-container'><form action='dashboard.php' id='book' name='book' method='POST'>
 		<p>Description of bug:</p><textarea cols='80' rows='5' id='description' 
 			name='description' style='vertical-align:text-top;resize:none;' virtual /></textarea><br /><br />
-		<p><b>The following information will also be sent:</b></p>
+		<p>The following information will also be sent:</p>
 		<input type='hidden' id='data' name='data' />
 		<textarea cols='80' rows='12' id='display' 
 			name='display' style='vertical-align:text-top;resize:none;' virtual disabled /></textarea><br /><br />";

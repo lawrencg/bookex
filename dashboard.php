@@ -24,7 +24,7 @@
 
 		# Get the current UW NetID from the server via pubcookie
 		$user = $_SERVER['REMOTE_USER'];
-		$result = pg_query("SELECT isabookexuser('{$user}'::varchar)") or die('Query failed: ' . pg_last_error()); 
+		$result = pg_query("SELECT isabookexuser('{$user}'::varchar)") ;//or die('Query failed: ' . pg_last_error()); 
 		$userExists = pg_fetch_array($result);
 		if ($userExists[0] == f) {
 			$firstname = trim(pg_escape_string($_POST['firstname']));
@@ -41,11 +41,9 @@
 			if($major == '')
 				$major = null;
 			
-			//$dbconn = pg_connect($DB_CONNECT_STRING)
-		    //	or die('Could not connect: ' . pg_last_error());
 			pg_query("SELECT addbookexuser('{$user}'::varchar,'{$firstname}'::varchar,
-				'{$lastname}'::varchar,'{$email}'::varchar,'{$major}'::varchar)") or die('Query failed: ' . pg_last_error());
-			$result = pg_query("SELECT getbookexname('{$user}')") or die('Query failed: ' . pg_last_error()); 
+				'{$lastname}'::varchar,'{$email}'::varchar,'{$major}'::varchar)");// or die('Query failed: ' . pg_last_error());
+			$result = pg_query("SELECT getbookexname('{$user}')");// or die('Query failed: ' . pg_last_error()); 
 			$bookexname = pg_fetch_array($result);
 				$errormessage = "Thank you, {$bookexname[0]}. You have just been registered.";
 		}
@@ -87,8 +85,8 @@
 		global $user, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
-		$yourequested = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '{$user}' AND transstatus = 'Requested'") 
-			or die('Query failed: ' . pg_last_error()); 
+		$yourequested = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '{$user}' AND transstatus = 'Requested'") ;
+			//or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($yourequested)) {
 			if ($firsttime){
 				if($noconfirmations){
@@ -120,8 +118,8 @@
 		global $user, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
-		$theyrequested = pg_query("SELECT * FROM detailedtransactions WHERE myid = '{$user}' AND transstatus = 'Requested'") 
-			or die('Query failed: ' . pg_last_error()); 
+		$theyrequested = pg_query("SELECT * FROM detailedtransactions WHERE myid = '{$user}' AND transstatus = 'Requested'") ;
+			//or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($theyrequested)) {
 			if ($firsttime){
 				if($noconfirmations){
@@ -155,8 +153,8 @@
 		global $user, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
-		$awaiting = pg_query("SELECT * FROM detailedtransactions WHERE myid = '{$user}' AND transstatus = 'Awaiting Delivery'") 
-			or die('Query failed: ' . pg_last_error()); 
+		$awaiting = pg_query("SELECT * FROM detailedtransactions WHERE myid = '{$user}' AND transstatus = 'Awaiting Delivery'") ;
+			//or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($awaiting)) {
 			if ($firsttime) {
 				if($noconfirmations){
@@ -190,8 +188,8 @@
 		global $user, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
-		$delivered = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '{$user}' AND transstatus = 'Delivered'") 
-			or die('Query failed: ' . pg_last_error()); 
+		$delivered = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '{$user}' AND transstatus = 'Delivered'") ;
+			//or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($delivered)) {
 			if ($firsttime) {
 				if($noconfirmations){
@@ -222,8 +220,8 @@
 		global $user, $noconfirmations;
 		# Might need to create the table and print the table headers.
 		$firsttime = true;
-		$returned = pg_query("SELECT * FROM detailedtransactions WHERE myid = '{$user}' AND transstatus = 'Returned'") 
-			or die('Query failed: ' . pg_last_error()); 
+		$returned = pg_query("SELECT * FROM detailedtransactions WHERE myid = '{$user}' AND transstatus = 'Returned'") ;
+			//or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($returned)) {
 			if ($firsttime) {
 				if($noconfirmations){
@@ -272,8 +270,8 @@
 		$noborrowing = true;
 		echo '				<div id="booksborrowedlist" class="contentarea">' . "\n";
 		echo '					<p class="header">Books I\'m Borrowing</p>' . "\n";
-		$returned = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND transstatus = 'Received'") 
-			or die('Query failed: ' . pg_last_error()); 
+		$returned = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND transstatus = 'Received'") ;
+			//or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($returned)) {
 			if ($firsttime) {
 				echo '						<table id="booksborrowingtable">' . "\n";
@@ -318,34 +316,34 @@
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		# The user accepeted a book request.
 		if(isset($_POST['acceptbookrequest'])){
-			pg_query("SELECT acceptbookrequest('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
-				or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT acceptbookrequest('{$_POST['transid']}'::integer,'{$user}'::varchar)") ;
+				//or die('Query failed: ' . pg_last_error()); 
 		# The owner has delivered the book to the requestor			
 		} else if (isset($_POST['ourstory'])){
 			ourstory();
 		} else if (isset($_POST['delivered'])){
-			pg_query("SELECT deliverbook('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
-				or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT deliverbook('{$_POST['transid']}'::integer,'{$user}'::varchar)") ;
+				//or die('Query failed: ' . pg_last_error()); 
 		# The requestor now has the book			
 		} else if (isset($_POST['confirmdelivery'])){
-			pg_query("SELECT confirmdelivery('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
-				or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT confirmdelivery('{$_POST['transid']}'::integer,'{$user}'::varchar)") ;
+				//or die('Query failed: ' . pg_last_error()); 
 		# The user returned the book to the owner
 		} else if (isset($_POST['return'])){
-			pg_query("SELECT returnbooktoowner('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
-				or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT returnbooktoowner('{$_POST['transid']}'::integer,'{$user}'::varchar)") ;
+				//or die('Query failed: ' . pg_last_error()); 
 		# The user confirmed that the book was returned to them.				
 		} else if (isset($_POST['confirmreturnedbook'])){
-			pg_query("SELECT confirmreturnedbook('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
-				or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT confirmreturnedbook('{$_POST['transid']}'::integer,'{$user}'::varchar)") ;
+				//or die('Query failed: ' . pg_last_error()); 
 		# The user canceled a book request.			
 		} else if (isset($_POST['cancelrequest'])){
-			pg_query("SELECT cancelrequest('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
-				or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT cancelrequest('{$_POST['transid']}'::integer,'{$user}'::varchar)") ;
+				//or die('Query failed: ' . pg_last_error()); 
 		# The user denied a book request.			
 		} else if (isset($_POST['deny'])){
-			pg_query("SELECT denybookrequest('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
-				or die('Query failed: ' . pg_last_error()); 
+			pg_query("SELECT denybookrequest('{$_POST['transid']}'::integer,'{$user}'::varchar)") ;
+				//or die('Query failed: ' . pg_last_error()); 
 		} else if (isset($_POST['register'])){
 			register_user();
 		} else if (isset($_POST['dontregister'])){

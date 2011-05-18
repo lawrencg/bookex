@@ -5,7 +5,7 @@
 	# Title: Redirects you to the register page if the currently logged in UW NetID is not a BookEx user.
 	
 	$user = $_SERVER['REMOTE_USER'];
-	$result = pg_query("SELECT isabookexuser('{$user}'::varchar)") or die('Query failed: ' . pg_last_error()); 
+	$result = pg_query("SELECT isabookexuser('{$user}'::varchar)");// or die('Query failed: ' . pg_last_error()); 
 	$userExists = pg_fetch_array($result);
 	//
 	if (isset($_POST['dontregister'])) {

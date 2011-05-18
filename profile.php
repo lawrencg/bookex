@@ -96,8 +96,8 @@
 	}
 	function savemyinfo(){
 		global $user, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor, $errormessage;
-		pg_query("SELECT savemyinfo('{$myinfoFirstName}'::varchar,'{$myinfoLastName}'::varchar, '{$myEmail}'::varchar, '{$myMajor}'::varchar, '{$user}'::varchar)")
-			or die('Query failed: ' . pg_last_error());
+		pg_query("SELECT savemyinfo('{$myinfoFirstName}'::varchar,'{$myinfoLastName}'::varchar, '{$myEmail}'::varchar, '{$myMajor}'::varchar, '{$user}'::varchar)");
+			//or die('Query failed: ' . pg_last_error());
 		
 		$image=$_FILES['image']['name'];
 		// if it is not empty
@@ -251,13 +251,13 @@
 	}
 	function userbooks(){	
 			global $person;
-			$result = pg_query("SELECT getbookexname('{$person}'::varchar)") 
-					or die('Query failed: ' . pg_last_error());
+			$result = pg_query("SELECT getbookexname('{$person}'::varchar)") ;
+					//or die('Query failed: ' . pg_last_error());
 			$row = pg_fetch_array($result);
 			$real_name = $row[0];
 			$available = pg_query("SELECT * FROM availablebooksfromuser('{$person}'::varchar)
-					VALUES( book_id int, title varchar, isbn10 numeric, isnb13 numeric, author text)") 
-					or die('Query failed: ' . pg_last_error());
+					VALUES( book_id int, title varchar, isbn10 numeric, isnb13 numeric, author text)") ;
+					//or die('Query failed: ' . pg_last_error());
 			echo '						</div>';
 			echo '						<div class="clear"></div>';
 			echo '					</div>';

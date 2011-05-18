@@ -23,8 +23,8 @@
 	# This POST came from the bookdetail.php page
 	# This was the most logical place to drop users after they removed one of their books.
 	if(isset($_POST['confirmdelete'])){
-		$result = pg_query("SELECT removebook('{$bookex_id}'::integer, '{$user}'::varchar)") 
-			or die('Query failed: ' . pg_last_error()); 
+		$result = pg_query("SELECT removebook('{$bookex_id}'::integer, '{$user}'::varchar)") ;
+			//or die('Query failed: ' . pg_last_error()); 
 		# removebook() returns a boolean
 		# Users can only remove a book that is not currently loaned out to someone else 
 		# OR is not available for others to borrow. They must set it to available first then 
@@ -44,8 +44,8 @@
 	function displaybooks(){
 		global $user;
 		$books = pg_query("SELECT * FROM getmybooks('{$user}') VALUES (bookid int, owner varchar, 
-			date timestamp, title varchar, borrower varchar, available varchar, transstatus varchar)") 
-			or die('Query failed: ' . pg_last_error()); 
+			date timestamp, title varchar, borrower varchar, available varchar, transstatus varchar)") ;
+			//or die('Query failed: ' . pg_last_error()); 
 		# Used a a flag to see if there are actually any books to display. Create a header if yes, and at the end
 		# only close the table if we created one.
 		$firsttime = true;

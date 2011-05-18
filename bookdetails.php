@@ -51,7 +51,7 @@
 		}
 		$user = $_SERVER['REMOTE_USER'];
 		$books = pg_query("SELECT editbook('{$bookex_id}'::int,'{$user}'::varchar,'{$course}'::varchar,'{$cond}'::varchar,'{$note}'::text,
-		'{$status}'::varchar)") or die('Query failed: ' . pg_last_error()); 
+		'{$status}'::varchar)");// or die('Query failed: ' . pg_last_error()); 
 	}
 	# Accepts any valid BookEx peoples_books.id and retrieves the book information from database then stores them
 	# in global variables for use later.
@@ -165,8 +165,8 @@
 					
 		
 		//START CONDTION OPTIONS DROP DOWN
-		$conditions = pg_query("SELECT * FROM condition ORDER BY rank") 
-			or die('Query failed: ' . pg_last_error()); 
+		$conditions = pg_query("SELECT * FROM condition ORDER BY rank") ;
+			//or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($conditions)) {
 			if($records[0] == $cond){
 				echo "<option value='{$records[0]}' selected='selected'>{$records[0]}</option>";
@@ -271,8 +271,6 @@
 		}
 		
 	}
-	
-	
 	function displaybookimage(){
 		global $bookex_id, $owner_id, $user;
 		echo '
@@ -301,7 +299,6 @@
 	include 'includes/bookdetails_0_header.php';
 	include 'includes/siteheader.php';
 	
-	//echo "<h1>Book Details</h1>";
 	# Request method of GET means that the user followed a link to get to this page.
 	if($_SERVER['REQUEST_METHOD'] == 'GET'){ 
 		# Check to see if the id is set first
@@ -309,6 +306,8 @@
 			# Get the book from the BookEx database and set the global variables
 			getfromBookEx($_GET['id']);
 			# Display the filled form
+			filledform();
+		} else {
 			filledform();
 		}
 	# The user was already on this page and is modifying a book
@@ -328,7 +327,7 @@
 			# Update the database
 			updatebook();
 			# Get the updated information from the database
-			getfromBookEx($_GET['id']);
+			getfromBookEx($_POST['book_id']);
 			# Display the books information
 			filledform();
 		# The user wants to delete the book

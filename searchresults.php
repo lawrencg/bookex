@@ -77,7 +77,7 @@
 				$searchTitleSQL = "SELECT * FROM searchbytitle('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id integer)";
 				$results = pg_query($searchTitleSQL);
 				if (!$results) {
-					die("Error in SQL query: " . pg_last_error());
+					//die("Error in SQL query: " . pg_last_error());
 				}
 				displaybookresults($results, 'title containing');
 			}
@@ -90,7 +90,7 @@
 			$searchTitleSQL2 = "SELECT * FROM searchbyisbn('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int)";
 			$results = pg_query($searchTitleSQL2);
 			if (!$results) {
-				die("Error in SQL query: " . pg_last_error());
+				//die("Error in SQL query: " . pg_last_error());
 			}
 				displaybookresults($results, 'ISBN');
 			}
@@ -102,7 +102,7 @@
 			$searchAuthorSQL = "SELECT * FROM searchbyauthorname('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int)";
 			$results = pg_query($searchAuthorSQL);
 			if (!$results) {
-				die("Error in SQL query: " . pg_last_error());
+				//die("Error in SQL query: " . pg_last_error());
 			}
 				displaybookresults($results, 'author name containing');
 			}
@@ -116,7 +116,7 @@
 			$searchStudentNameSQL = "SELECT * FROM searchbyname('" . $searchTerm . "') AS results(numberOfBooks bigint, ownerName varchar, email varchar, userid varchar)";
 			$results = pg_query($searchStudentNameSQL);	
 			if (!$results) {
-				die("Error in SQL query: " . pg_last_error());
+				//die("Error in SQL query: " . pg_last_error());
 			}
 				displayuserresults($results, 'name');
 			}
@@ -128,7 +128,7 @@
 			$searchNetidSQL2 = "SELECT * FROM searchbyuwnetid('" . $searchTerm . "') AS results(numberOfBooks bigint, ownerName varchar, email varchar, userid varchar)";
 			$results = pg_query($searchNetidSQL2);
 			if (!$results) {
-				die("Error in SQL query: " . pg_last_error());
+				//die("Error in SQL query: " . pg_last_error());
 			}
 				displayuserresults($results, 'UW NetID');
 			}
@@ -140,7 +140,7 @@
 			$searchStudentEmailSQL = "SELECT * FROM searchbyemail('" . $searchTerm . "') AS results(numberOfBooks bigint, ownerName varchar, email varchar, userid varchar)";
 			$results = pg_query($searchStudentEmailSQL);
 			if (!$results) {
-				die("Error in SQL query: " . pg_last_error());
+				//die("Error in SQL query: " . pg_last_error());
 			}
 				displayuserresults($results, 'email address');
 			}
