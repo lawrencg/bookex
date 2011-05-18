@@ -1,8 +1,8 @@
 <?php
 	# Author: Lawrence Gabriel
 	# Email: shanzha@uw.edu
-	# Date: May 17, 2011
-	# Title: Error page
+	# Date: May 11, 2011
+	# Title: Add a book to the BookEx web application.
 	
 	# Session tracking for the bug submission form. Needs to be before ANY HTML.
 	include 'includes/session_track.php';
@@ -30,7 +30,7 @@
 						</div>
 						<p>Sorry, It doesn't like we know what we're doing here. Hopefully we will get this 
 						problem fixed today. Maybe tomorrow. You can try to <a href="
-						<?php echo $_SESSION['previouspage'][0]; ?>">
+						<?php echo $_SESSION['previouspage'][2]; ?>">
 						go back</a> to where you were before this
 						embarrassment happened. Please don't be too hard on us. Thanks.</p>
 					</div>
