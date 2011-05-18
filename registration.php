@@ -54,7 +54,7 @@
 				</div>			
 				<div>
 					<div id="uwnetiddisplayarea">
-						<p>UW NetID:&nbsp;<b><?php echo $_SERVER['REMOTE_USER']; ?></b></p>
+						<p><b>UW NetID:&nbsp;</b><?php echo $_SERVER['REMOTE_USER']; ?></p>
 					</div>
 					<div id="pleasenotemessage">				
 						<b>Please note:</b> All information in the box below is optional, 
