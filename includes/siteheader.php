@@ -1,13 +1,18 @@
-<!-- Top Div, this is included in every page.  Should be pulled out into a header file, use PHP include feature so we don't repeat code -->
+	<link rel="stylesheet" href="styles/main.css" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+</head>
+<body>
+	<div id="pagecontainer">
 	<div id="top">
 		<div id="header">
 			<div id="bookexlogo">
 				<!--  BookEX-->
-				<img src="images/bookex-logo-small.png" />
+				<img src="images/bookex-logo-small.png" alt="bokexlogo"	/>
 			</div>
 		</div>
 		<div id="search">
-			<form id="searchbox" method="POST" Action="searchresults.php">
+			<form id="searchbox" method="post" action="searchresults.php">
+				<div>
 				<select name="searchDropdown">
 					<option value='searchTitle'>Title</option>
 					<option value='searchISBN'>ISBN</option>
@@ -18,6 +23,7 @@
 				</select>
 				<input type="text" name="searchTerm" size="40"/>
 				<input type="submit" name="searchButton" value="Search"/>
+				</div>
 			</form>
 		</div>
 		<div id="navigation">
@@ -30,4 +36,3 @@
 			</ul>
 		</div>
 	</div>
-<!-- End Top Div -->
