@@ -70,6 +70,10 @@
 		header("Location: https://students.washington.edu/shanzha");
 		exit();
 	}
+	function leave_bookex(){
+		header("Location: http://www.bookex.info/ourstory.html");
+		exit();
+	}
 	function createbutton($name, $label, $bookid){
 		echo '											<form action=\'\' id=\'form_' . $name . '\' name=\'form_' . $name . '\' method=\'POST\'>' . "\n";
 		echo '												<input type=\'hidden\' value=\'' . $bookid . '\' id=\'transid\' name=\'transid\' />' . "\n";
@@ -317,6 +321,8 @@
 			pg_query("SELECT acceptbookrequest('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
 				or die('Query failed: ' . pg_last_error()); 
 		# The owner has delivered the book to the requestor			
+		} else if (isset($_POST['ourstory'])){
+			ourstory();
 		} else if (isset($_POST['delivered'])){
 			pg_query("SELECT deliverbook('{$_POST['transid']}'::integer,'{$user}'::varchar)") 
 				or die('Query failed: ' . pg_last_error()); 
