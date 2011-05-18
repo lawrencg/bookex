@@ -45,6 +45,7 @@ function bookex_error_handler($errno, $errstr, $errfile, $errline)
 			email_error($str);
 			break;
 	}
+	include '../error.php';
 	/* Don't execute PHP internal error handler */
 	return true;
 }
