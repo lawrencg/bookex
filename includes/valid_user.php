@@ -8,7 +8,9 @@
 	$result = pg_query("SELECT isabookexuser('{$user}'::varchar)") or die('Query failed: ' . pg_last_error()); 
 	$userExists = pg_fetch_array($result);
 	//
-	if ($userExists[0] == f && !isset($_POST['register']) && preg_match('/.w3.org$/',$_SERVER['REMOTE_HOST']) != 1) {
+	if (isset($_POST['dontregister'])) {
+
+	} else if ($userExists[0] == f && !isset($_POST['register']) && preg_match('/.w3.org$/',$_SERVER['REMOTE_HOST']) != 1) {
 		header("Location: https://students.washington.edu/shanzha/registration.php");
 		exit();
 	}
