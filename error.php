@@ -1,3 +1,12 @@
+<?php
+	# Author: Lawrence Gabriel
+	# Email: shanzha@uw.edu
+	# Date: May 17, 2011
+	# Title: Error page
+	
+	# Session tracking for the bug submission form. Needs to be before ANY HTML.
+	include 'includes/session_track.php';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
