@@ -344,7 +344,9 @@ button {
 	width: 200px;
 	margin: 50px;
 	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 	border-radius: 5px;
+	
 	font-size: 17pt;
 }
 
