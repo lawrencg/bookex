@@ -16,14 +16,14 @@
                 </ul>
                 <br />
                 <div id="copyrightstatement">
-                                &copy; 2011 All Rights Reserved by <a href="http://www.bookex.info">BookEX</a>
-                </div>
-                <div id="validator" style='float:right;'>
-                        <?php
-                        global $current;
-                        echo '<a href="http://validator.w3.org/check?uri='.$current.'"><img src="http://www.w3.org/Icons/valid-xhtml10-blue" alt="Valid XHTML 1.0 Strict" style="border:0px;width:88px;height:31px;" /></a>';
-                        echo '<a href="http://jigsaw.w3.org/css-validator/validator?uri='.$current.'"><img src="http://www.w3.org/Icons/valid-css2-blue" alt="Valid CSS!" style="border:0px;width:88px;height:31px;" /></a>';
-                        ?>
+						&copy; 2011 All Rights Reserved by <a href="http://www.bookex.info">BookEx</a>
+					<div id="validator">
+						<?php
+							global $current;
+							echo '<p><a href="http://validator.w3.org/check?uri='.$current.'"><img src="http://www.w3.org/Icons/valid-xhtml11-blue" alt="Valid XHTML 1.1" style="border:0px;width:88px;height:31px;" /></a>';
+							echo '<a href="http://jigsaw.w3.org/css-validator/validator?uri='.$current.'"><img src="http://www.w3.org/Icons/valid-css2-blue" alt="Valid CSS!" style="border:0px;width:88px;height:31px;" /></a></p>';
+						?>
+					</div>
                 </div>
         </div>
 </div>

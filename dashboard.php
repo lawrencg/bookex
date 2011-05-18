@@ -70,7 +70,7 @@
 		header("Location: https://students.washington.edu/shanzha");
 		exit();
 	}
-	function leave_bookex(){
+	function ourstory(){
 		header("Location: http://www.bookex.info/ourstory.html");
 		exit();
 	}
