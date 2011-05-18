@@ -23,7 +23,7 @@
 		return preg_replace('/\D/', '', $string);
 	}
 	
-	function displaybookresults($results, $type){
+	function displaybookresults($results, $type, $owner){
 		global $searchTerm;
 		$rows = pg_num_rows($results);
 		echo "<div class=\"pageSubTitle\">Found {$rows} books with the {$type}&nbsp;<font color='green'><i>\"" . $searchTerm . "\"</i></font></div>";	
@@ -32,11 +32,19 @@
 			echo "<table id='booksearchresultstable'>";
 			echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN-13</td><td class=\"header\">Owner</td><td class=\"header\"></td></tr></thead><tbody>";
 			echo "<tr><td class=\"booktitle\"><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "&nbsp;&nbsp;</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
-			request_button($row[6]);
+			if( $owner != $row[5]){
+				request_button($row[6]);
+			}else{
+				echo "&nbsp;";
+			}
 			echo "</td></tr>";
 			while ($row = pg_fetch_array($results)) {
 				echo "<tr><td class=\"booktitle\"><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "&nbsp;&nbsp;&nbsp;&nbsp;</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
-				request_button($row[6]);
+				if( $owner != $row[5]){
+					request_button($row[6]);
+				}else {
+					echo "&nbsp;";
+				}
 				echo "</td></tr>";
 			} 
 			echo "</tbody></table>";
@@ -69,6 +77,10 @@
 			echo "</tbody></table>";
 		}
 	}
+	$temp = pg_query("SELECT getbookexname('" . $user . "')") or die('Query failed: ' . pg_last_error()); 
+	$bookexname = pg_fetch_array($temp);
+	$name = $bookexname[0];
+	
 	switch ($searchOption){
 		case "searchTitle":
 			if (trim($searchTerm) == "") {
@@ -79,7 +91,7 @@
 				if (!$results) {
 					//die("Error in SQL query: " . pg_last_error());
 				}
-				displaybookresults($results, 'title containing');
+				displaybookresults($results, 'title containing', $name);
 			}
 		break;
 		case "searchISBN":
@@ -92,7 +104,7 @@
 			if (!$results) {
 				//die("Error in SQL query: " . pg_last_error());
 			}
-				displaybookresults($results, 'ISBN');
+				displaybookresults($results, 'ISBN', $name);
 			}
 		break;
 		case "searchAuthor":
@@ -104,7 +116,7 @@
 			if (!$results) {
 				//die("Error in SQL query: " . pg_last_error());
 			}
-				displaybookresults($results, 'author name containing');
+				displaybookresults($results, 'author name containing', $name);
 			}
 		break;
 		

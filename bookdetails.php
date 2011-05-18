@@ -203,26 +203,6 @@
 		if($status == 'on'){
 			$status	= 'checked';
 		}
-		# Posts back to mybooks.php because after this book is removed we cannot display this book anymore.
-		/*
-		echo "<p><form action='mybooks.php' id='defaultform' name='book' method='POST'>
-		
-		<div>Are you sure you want to remove this book from your BookEx account?<br />This cannot be undone.</div>
-		
-		<input type='hidden' value='{$bookex_id}' id='book_id' name='book_id' />
-		<b>Title:</b>&nbsp;{$title}<br />
-		<b>Author Firstname</b>:&nbsp;{$authorfirst}<br /> 
-		<b>Author Lastname</b>:&nbsp;{$authorlast}<br /><b>ISBN-10:</b>&nbsp;{$isbn10}<br />
-		<b>ISBN-13:</b>&nbsp;{$isbn13}<br />
-		<b>Course:</b>&nbsp;{$course}<br />
-		<b>Condition:</b>&nbsp;<select name='dropdown' disabled>
-		<option value='{$cond}' selected='selected'>{$cond}</option></select><br /><br />
-		<b>Description:</b>&nbsp;
-		<textarea cols='40' rows='5' id='frame' name='frame' style='vertical-align:text-top;' virtual disabled />{$note}</textarea><br /><br />
-		<b>Available for loan?</b>&nbsp;<input type='checkbox' id='box' name='box' {$status} disabled />";
-		*/
-		
-				
 		echo "
 		<div id='page'>
 				<div class='pageTitle'>Book Details</div>		
@@ -262,14 +242,12 @@
 			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' {$status} disabled /></div></div>
 			<input type='hidden' id='available' name='available' value='{$status}' /><br /><br />" ;
 		
-		
 		# Security feature. Check to see if the owner is the UW NetID that is logged in.
 		$user = $_SERVER['REMOTE_USER'];
 		if($owner_id == $user){
 			echo "<div id='firstbutton'><input type='submit' name='confirmdelete' value='Delete' style='margin-left:10px' /></div>";
 			echo "</form><form action='bookdetails.php' method='get'><div><input type='hidden' value='{$bookex_id}' id='id' name='id' /><input type='submit' name='cancel' value='Cancel' style='margin-left:10px' /></div>";
 		}
-		
 	}
 	function displaybookimage(){
 		global $bookex_id, $owner_id, $user;
@@ -283,9 +261,8 @@
 								<div id="bookImagePhoto"><img src=\'images/default-book.png\' /></div>
 
 							</div>';
-
 		if($owner_id != $user){
-				echo "<div class=\"requestbutton\">";
+				echo "<div class=\"detailsrequestbutton\">";
 				request_button($bookex_id);
 				echo "</div>";
 		}

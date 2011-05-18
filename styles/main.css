@@ -277,8 +277,11 @@ button {
 }
 
 .requestbutton {
-	text-align: center;
 	width:100px;
+}
+
+.detailsrequestbutton {
+	text-align: center;
 }
 
 .smallbtn { 
