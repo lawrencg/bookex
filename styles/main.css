@@ -126,6 +126,14 @@
 		margin-left: 5px;
 	}
 	*/
+	/*.booktitle div{   
+     	white-space: nowrap;  
+     	overflow: hidden;  
+     	text-overflow: ellipsis;   
+     	-o-text-overflow: ellipsis;  
+		-moz-binding: url('xml/ellipsis.xml#ellipsis');  
+		width: 400px;
+	}*/
 
 /*A space to notify , give feedback to user what they just did, eg. have just deleted a book */	
 #notification{
