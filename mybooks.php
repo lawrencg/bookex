@@ -23,7 +23,7 @@
 	# This POST came from the bookdetail.php page
 	# This was the most logical place to drop users after they removed one of their books.
 	if(isset($_POST['confirmdelete'])){
-		$result = pg_query("SELECT removebook('{$bookex_id}'::integer, '{$user}'::varchar)") ;
+		$result = pg_query("SELECT removebook('{$bookex_id}'::integer, '{$user}'::varchar)"); 
 			//or die('Query failed: ' . pg_last_error()); 
 		# removebook() returns a boolean
 		# Users can only remove a book that is not currently loaned out to someone else 
@@ -33,7 +33,7 @@
 		# someone is currently borrowing it.
 		while($records = pg_fetch_array($result)) {
 			if($records[0] == f){
-				$erromessage = 'ERROR: Your book could not be removed at this time. Please ensure that 
+				$errormessage = 'ERROR: Your book could not be removed at this time. Please ensure that 
 				the book available for others to borrow and that it is not currently loaned to someone.';
 			} else {
 				$errormessage = 'Your book has been removed.';
