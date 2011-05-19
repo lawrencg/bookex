@@ -328,19 +328,6 @@ button {
 	
 }
 
-/*Two form buttons*/
-.twoformbuttons form{
-	display: inline;
-}
-
-.twoformbuttons input {
-	display: inline;	
-}
-
-#firstbutton  {
-	display: inline;	
-}
-
 .bookDescription {
 	max-width: 500px;
 }
@@ -423,7 +410,7 @@ button {
 
 /*Larry*/
 .button-container form,
-.button-container form div {
+.button-container form div#firstbutton, form div#secondbutton {
     display: inline;
 }
 

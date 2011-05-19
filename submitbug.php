@@ -35,10 +35,10 @@
 		document.getElementById(\"data\").value=txt;
 		</script>";
 		echo "
-		<div><input type='submit' name='sendbug' value='Submit' style='margin-left:10px' /></div>";
+		<div id='firstbutton'><input type='submit' name='sendbug' value='Submit' style='margin-left:10px' /></div>";
 		echo "</form>";
-		echo "<form action='dashboard.php' id='nothing' name='nothing' method='POST'><div>
-		<input type='submit' name='cancelbug' value='Cancel' style='margin-left:10px' /></div></form></div>";
+		echo "<form action='dashboard.php' id='nothing' name='nothing' method='POST'><div id='secondbutton'>
+		<input type='submit' name='cancelbug' value='Cancel' style='margin-left:10px' /></div></form></div><br /><br />";
 	}
 	
 	include 'includes/submitbug_0_header.php';

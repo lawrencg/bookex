@@ -120,7 +120,7 @@
 			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='description' style='vertical-align:text-top;' virtual disabled />{$note}</textarea></div></div>
 			<input type='hidden' value='{$note}' id='description' name='description' />
 			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' {$status} disabled /></div></div>
-			<input type='hidden' id='available' name='available' value='{$status}' /><br /><br />" ;
+			<input type='hidden' id='available' name='available' value='{$status}' />" ;
 		
 		# Security feature. Check to see if the owner is the UW NetID that is logged in.
 		$user = $_SERVER['REMOTE_USER'];
@@ -185,9 +185,7 @@
 		if($owner_id == $user){
 			//end description
 			echo "</textarea></div></div> 
-			
-			<div><label>Available for loan?:</label><div><input type='checkbox' id='available' name='available' {$status} /></div></div>
-			
+			<div><label>Available for loan?:</label><div><input type='checkbox' id='available' name='available' {$status} /></div></div>	
 			<input type='submit' name='save' value='Save' style='margin-left:10px' />
 			<input type='submit' name='cancel' value='Cancel' style='margin-left:10px' />";
 		}
@@ -217,7 +215,7 @@
 						</div>						
 						<div class='rightContent contentarea'>";
 						
-		echo "<div class='twoformbuttons'>";				
+		echo "<div class='button-container'>";				
 		echo "				
 		<form action='mybooks.php' id='defaultform' name='book' method='POST'>
 			<input type='hidden' value='{$bookex_id}' id='book_id' name='book_id' />
@@ -246,7 +244,7 @@
 		$user = $_SERVER['REMOTE_USER'];
 		if($owner_id == $user){
 			echo "<div id='firstbutton'><input type='submit' name='confirmdelete' value='Delete' style='margin-left:10px' /></div>";
-			echo "</form><form action='bookdetails.php' method='get'><div><input type='hidden' value='{$bookex_id}' id='id' name='id' /><input type='submit' name='cancel' value='Cancel' style='margin-left:10px' /></div>";
+			echo "</form><form action='bookdetails.php' method='get'><div id='secondbutton'><input type='hidden' value='{$bookex_id}' id='id' name='id' /><input type='submit' name='cancel' value='Cancel' style='margin-left:10px' /></div>";
 		}
 	}
 	function displaybookimage(){
