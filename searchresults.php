@@ -16,8 +16,8 @@
 	include 'includes/searchresults_1_contentarea.php';
 	
 	$user = $_SERVER['REMOTE_USER'];
-	$searchTerm = trim(pg_escape_string($_POST['searchTerm']));
-	$searchOption = pg_escape_string($_POST['searchDropdown']);
+	$searchTerm = trim(pg_escape_string($_GET['value']));
+	$searchOption = pg_escape_string($_GET['type']);
 	
 	function remove_non_numeric($string) {
 		return preg_replace('/\D/', '', $string);
@@ -82,7 +82,7 @@
 	$name = $bookexname[0];
 	
 	switch ($searchOption){
-		case "searchTitle":
+		case "title":
 			if (trim($searchTerm) == "") {
 				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
 			} else {
@@ -94,7 +94,7 @@
 				displaybookresults($results, 'title containing', $name);
 			}
 		break;
-		case "searchISBN":
+		case "isbn":
 			$searchTerm = remove_non_numeric($searchTerm);
 			if (trim($searchTerm) == "") {
 				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
@@ -107,7 +107,7 @@
 				displaybookresults($results, 'ISBN', $name);
 			}
 		break;
-		case "searchAuthor":
+		case "author":
 			if (trim($searchTerm) == "") {
 				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
 			} else {
@@ -121,7 +121,7 @@
 		break;
 		
 		
-		case "searchStudentName":
+		case "name":
 			if (trim($searchTerm) == "") {
 				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
 			} else {
@@ -133,7 +133,7 @@
 				displayuserresults($results, 'name');
 			}
 		break;
-		case "searchNetID":
+		case "netid":
 			if (trim($searchTerm) == "") {
 				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
 			} else {
@@ -145,7 +145,7 @@
 				displayuserresults($results, 'UW NetID');
 			}
 		break;
-		case "searchEmail":
+		case "email":
 			if (trim($searchTerm) == "") {
 				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
 			} else {
