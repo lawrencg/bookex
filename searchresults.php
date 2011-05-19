@@ -26,7 +26,7 @@
 	function displaybookresults($results, $type, $owner){
 		global $searchTerm;
 		$rows = pg_num_rows($results);
-		echo "<div class=\"pageSubTitle\">Found {$rows} books with the {$type}&nbsp;<font color='green'><i>\"" . $searchTerm . "\"</i></font></div>";	
+		echo "<div class=\"pageSubTitle\">Found {$rows} books with the {$type}&nbsp;<div id='searchterm'><i>\"" . $searchTerm . "\"</i></div></div>";	
 		while ($row = pg_fetch_array($results)) {
 			
 			if(strlen($row[0]) > 30){
@@ -64,7 +64,7 @@
 	function displayuserresults($results, $type){
 		global $searchTerm;
 		$rows = pg_num_rows($results);
-		echo "<div class=\"pageSubTitle\">Found {$rows} users with their {$type} containing&nbsp;<font color='green'><i>\"" . $searchTerm . "\"</i></font></div>";	
+		echo "<div class=\"pageSubTitle\">Found {$rows} users with their {$type} containing&nbsp;<div id='searchterm'><i>\"" . $searchTerm . "\"</i></div></div>";	
 		while ($row = pg_fetch_array($results)) {
 
 			echo "<table id='booksearchresultstable'>";
