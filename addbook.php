@@ -1,7 +1,7 @@
 <?php
 	# Author: Lawrence Gabriel
 	# Email: shanzha@uw.edu
-	# Date: May 11, 2011
+	# Date: May 19, 2011
 	# Title: Add a book to the BookEx web application.
 	
 	# Session tracking for the bug submission form. Needs to be before ANY HTML.
@@ -16,29 +16,29 @@
 	
 	# GLOBAL VARIABLES
 	# BookEx book id
-	$bookex_id = trim(pg_escape_string($_POST['bookexid']));
+	$bookex_id = trim(remove_non_numeric($_POST['bookexid']));
 	$isbn10 = trim(remove_non_numeric($_POST['isbn10'])); 
 	$isbn13 = trim(remove_non_numeric($_POST['isbn13']));
 	# Title of the book
-	$title = trim(pg_escape_string($_POST['title'])); 
+	$title = htmlspecialchars(trim(pg_escape_string($_POST['title']))); 
 	# An array of author names.
 	# Should be stored in reverse order.
 	# ex. Authors Tom L. Welling and Mark Weiss
 	# ("Welling","Tom L.","Weiss","Mark") 
-	$authors = trim(pg_escape_string($_POST['authors'])); 
+	$authors = htmlspecialchars(trim(pg_escape_string($_POST['authors']))); 
 	# The course assoicated with this instance of the book.
 	# Currently only one course can be assoicated to a book.
-    $course = trim(pg_escape_string($_POST['class']));
+    $course = htmlspecialchars(trim(pg_escape_string($_POST['class'])));
     # The description of this instance of the book.
     # Data from ISBNDB has a Summary field and Notes Field.
     # On initial tests, notes looked more promissing but Summary might actually
     # be a better choice. 
-	$note = trim(pg_escape_string($_POST['description'])); 
+	$note = htmlspecialchars(trim(pg_escape_string($_POST['description']))); 
 	# The condition of this instance of the book. Must be choosen from 
 	# values in the conditions table of the BookEx database.
-	$condition = trim(pg_escape_string($_POST['condition']));
+	$condition = htmlspecialchars(trim(pg_escape_string($_POST['condition'])));
 	# The borrowing status of this instance, Available or Unavailable
-	$status = trim(pg_escape_string($_POST['available']));
+	$status = htmlspecialchars(trim(pg_escape_string($_POST['available'])));
 	# Possible message to display.
 	$errormessage;
 	#Currently logged in UW NetID
