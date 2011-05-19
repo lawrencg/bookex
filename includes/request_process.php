@@ -49,8 +49,6 @@
 		# Creates an entry in the transactions table
 		$results = pg_query("SELECT requestbook('{$bookid}'::integer,'{$user}'::varchar)"); 
 			//or die('Query failed: ' . pg_last_error()); 
-		# Closing the database was causing problems. Need to figure this out.
-		//pg_close($dbconn);
 	}
 	# Time to work, process this request
 	if(isset($_POST['request']) && $_POST['book_id'] != null)
