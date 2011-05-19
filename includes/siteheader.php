@@ -22,14 +22,25 @@
 			<form id="searchbox" method="post" action="searchresults.php">
 				<div>
 				<select name="searchDropdown">
-					<option value='searchTitle'>Title</option>
-					<option value='searchISBN'>ISBN</option>
-					<option value='searchAuthor'>Author</option>
-					<option value='searchStudentName'>Real Name</option>
-					<option value='searchNetID'>UW NetID</option>
-					<option value='searchEmail'>Email</option>
-				</select>
-				<input type="text" name="searchTerm" size="40"/>
+				<?php 
+						global $searchTerm, $searchOption;
+						$options = pg_query("SELECT * FROM searchoptions ORDER BY rank") ;
+						//or die('Query failed: ' . pg_last_error()); 
+						while($records = pg_fetch_array($options)) {
+							# The default value for books being added to BookEx are assumed to be "Used"
+							if(isset($_POST['searchDropdown']) && $records[0] == $_POST['searchDropdown']){
+								echo '<option value="'.$records[0].'" selected="selected">'.$records[1].'</option>';
+							} else {
+								echo '<option value="'.$records[0].'">'.$records[1].'</option>';
+							}
+						}
+						echo "</select>";
+						if(isset($_POST['searchTerm'])){
+							echo '<input type="text" name="searchTerm" value="'.$_POST['searchTerm'].'"size="40"/>';
+						}else{
+							echo '<input type="text" name="searchTerm" size="40"/>';
+						}
+				?>
 				<input type="submit" name="searchButton" value="Search"/>
 				</div>
 			</form>
