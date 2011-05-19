@@ -28,10 +28,16 @@
 		$rows = pg_num_rows($results);
 		echo "<div class=\"pageSubTitle\">Found {$rows} books with the {$type}&nbsp;<font color='green'><i>\"" . $searchTerm . "\"</i></font></div>";	
 		while ($row = pg_fetch_array($results)) {
+			
+			if(strlen($row[0]) > 30){
+				$temp = substr($row[0],0,30) . '...';
+			} else {
+				$temp = $row[0];
+			}
 
 			echo "<table id='booksearchresultstable'>";
-			echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN-13</td><td class=\"header\">Owner</td><td class=\"header\"></td></tr></thead><tbody>";
-			echo "<tr><td class=\"booktitle\"><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "&nbsp;&nbsp;</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
+			echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN</td><td class=\"header\">Owner</td><td class=\"header\"></td></tr></thead><tbody>";
+			echo "<tr><td class=\"booktitle\"><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($temp) . "</a></td><td class=\"bookauthor\">" . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . substr(htmlspecialchars($row[4]),0,3) . '...' . substr(htmlspecialchars($row[4]),-3) . "&nbsp;&nbsp;</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
 			if( $owner != $row[5]){
 				request_button($row[6]);
 			}else{
@@ -39,7 +45,12 @@
 			}
 			echo "</td></tr>";
 			while ($row = pg_fetch_array($results)) {
-				echo "<tr><td class=\"booktitle\"><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></td><td class=\"bookauthor\">" . htmlspecialchars($row[1]) . " " . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "&nbsp;&nbsp;&nbsp;&nbsp;</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
+				if(strlen($row[0]) > 30){
+					$temp = substr($row[0],0,30) . '...';
+				} else {
+					$temp = $row[0];
+				}
+				echo "<tr><td class=\"booktitle\"><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($temp) . "</a></td><td class=\"bookauthor\">" . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . substr(htmlspecialchars($row[4]),0,3) . '...' . substr(htmlspecialchars($row[4]),-3) . "&nbsp;&nbsp;&nbsp;&nbsp;</td><td class=\"bookowner\">" . htmlspecialchars($row[5]) . "</td><td class=\"requestbutton\">";
 				if( $owner != $row[5]){
 					request_button($row[6]);
 				}else {
@@ -77,9 +88,10 @@
 			echo "</tbody></table>";
 		}
 	}
-	$temp = pg_query("SELECT getbookexname('" . $user . "')") or die('Query failed: ' . pg_last_error()); 
-	$bookexname = pg_fetch_array($temp);
-	$name = $bookexname[0];
+	//$temp = pg_query("SELECT getbookexname('" . $user . "')") or die('Query failed: ' . pg_last_error()); 
+	//$bookexname = pg_fetch_array($temp);
+	//$name = $bookexname[0];
+	$name = $user;
 	
 	switch ($searchOption){
 		case "title":
