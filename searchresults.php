@@ -1,7 +1,7 @@
 <?php
 	# Author: Lawrence Gabriel
 	# Email: shanzha@uw.edu
-	# Date: May 17, 2011
+	# Date: May 19, 2011
 	# Title: Displays the results from a search in the main navigation area.
 	
 	# Session tracking for the bug submission form. Needs to be before ANY HTML.
@@ -16,8 +16,8 @@
 	include 'includes/searchresults_1_contentarea.php';
 	
 	$user = $_SERVER['REMOTE_USER'];
-	$searchTerm = $_POST['searchTerm'];
-	$searchOption = $_POST['searchDropdown'];
+	$searchTerm = trim(pg_escape_string($_POST['searchTerm']));
+	$searchOption = pg_escape_string($_POST['searchDropdown']);
 	
 	function remove_non_numeric($string) {
 		return preg_replace('/\D/', '', $string);
