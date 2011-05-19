@@ -88,11 +88,8 @@
 		echo "								<div><label>Upload Photo:</label><div><input type='file' name='image'></div></div>";
 			
 			
-		echo "<br/><br/><input type='submit' name='saveID' value='Save Changes' />";
+		echo "<br/><br/><input type='submit' name='saveID' value='Save Changes' /><input type='submit' name='cancel' value='Cancel' />";
 		echo "</form>";
-		/*		 echo '<form name="newad" method="post" enctype="multipart/form-data"  
-				 action=""><table><tr><td><input type="file" name="image"></td></tr><tr><td><input name="Submit" type="submit" value="Upload image"></td></tr></table></form>';
-				 */
 	}
 	function savemyinfo(){
 		global $user, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor, $errormessage;
@@ -107,8 +104,7 @@
 		$errormessage = "Your profile has been updated.";	
 		
 	}
-	function make_thumb($img_name,$filename,$new_w,$new_h)
-		{
+	function make_thumb($img_name,$filename,$new_w,$new_h){
 			//get image extension.
 			$ext=getExtension($img_name);
 			//creates the new image using the appropriate function from gd library
@@ -307,8 +303,7 @@
 			echo '									</tbody>';
 			echo '								</table>';
 			echo '							</div>';
-	}
-	
+	}	
 	if (isset($_POST['saveID'])){
 		savemyinfo();
 	}
@@ -333,7 +328,7 @@
 	} elseif (isset($_POST['saveID'])){	
 		savemyinfo();
 		filledProfile();
-	}elseif($_SERVER['REQUEST_METHOD'] == 'GET'){
+	} elseif ($_SERVER['REQUEST_METHOD'] == 'GET'){
 		filledProfile();
 	} else {
 		filledProfile();
