@@ -219,7 +219,7 @@
 		<div><label>Description:</label>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual /> " . $note . " </textarea></div>		
 		<div>Make book available for others to borrow.</b>&nbsp;<input type='checkbox' id='available' name='available' checked/></div>";
 		echo "<input type='submit' name='standardadd' value='Add to My Books' style='margin-left:200px' />";
-		echo "<input type='submit' name='edit' value='Edit Information' style='margin-left:10px' />";
+		echo "<input type='submit' name='edit' value='Edit Information' style='margin-left:10px' /><input type='submit' name='cancel' value='Cancel' style='margin-left:10px' />";
 	}
 	# HTML used to edit a form populated with book information.
 	function editform(){
@@ -251,7 +251,7 @@
 		echo "</select></div>
 		<div><label>Description:</label>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual /> " . $note . " </textarea></div>		
 		<div>Make book available for others to borrow.&nbsp;<input type='checkbox' id='available' name='available' checked/></div>
-		<input type='submit' name='forceadd' value='Add to My Books' style='margin-left:200px' />";
+		<input type='submit' name='forceadd' value='Add to My Books' style='margin-left:200px' /><input type='submit' name='cancel' value='Cancel' style='margin-left:10px' />";
 	}
 	# HTML used to manually add a book to BookEx
 	function blankform(){
@@ -277,7 +277,7 @@
 		echo "</select></div>
 		<div><label>Description:</label>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual /></textarea></div>
 		<div>Make book available for others to borrow.&nbsp;<input type='checkbox' id='available' name='available' checked/></div>
-		<input type='submit' id='forceadd' name='forceadd' value='Add to My Books' style='margin-left:200px' />";
+		<input type='submit' id='forceadd' name='forceadd' value='Add to My Books' style='margin-left:200px' /><input type='submit' name='cancel' value='Cancel' style='margin-left:10px' />";
 	}
 	# Adds an instance of a book to the BookEx users account.
 	# Accepts an integer value as the mode. Mode indicates if the book was already in the BookEx database 
@@ -374,6 +374,8 @@
 			# Message to the user, confirmation. PHP will error horribly if something fails. 
 			# Might want to catch exceptions in future versions.
 
+		} elseif (isset($_POST['cancel'])){
+			$errormessage = 'Add new book canceled.';
 		}
 	# This page was not accessed via a POST. Could mean a GET but we are not checking for that. Means that this is a new book add.
 	} 
@@ -462,6 +464,8 @@
 			# Might want to catch exceptions in future versions.
 
 			# Add another book
+			initialsearch();
+		} elseif (isset($_POST['cancel'])) {
 			initialsearch();
 		}
 	# This page was not accessed via a POST. Could mean a GET but we are not checking for that. Means that this is a new book add.
