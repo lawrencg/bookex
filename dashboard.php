@@ -73,9 +73,9 @@
 		exit();
 	}
 	function createbutton($name, $label, $bookid){
-		echo '											<form action=\'\' id=\'form_' . $name . '\' name=\'form_' . $name . '\' method=\'POST\'>' . "\n";
-		echo '												<input type=\'hidden\' value=\'' . $bookid . '\' id=\'transid\' name=\'transid\' />' . "\n";
-		echo '												<input type=\'submit\' id=\'' . $name . '\' name=\'' . $name . '\' value=\'' . $label . '\' />' . "\n";
+		echo '											<form action=\'\' id=\'form_' . $name . '\' name=\'form_' . $name . '\' method=\'post\'>' . "\n";
+		echo '												<div class="dashboardbutton"><input type=\'hidden\' value=\'' . $bookid . '\' id=\'transid\' name=\'transid\' />' . "\n";
+		echo '												<input type=\'submit\' id=\'' . $name . '\' name=\'' . $name . '\' value=\'' . $label . '\' /></div>' . "\n";
 		echo '											</form>' . "\n";	
 	}
 	# Books I have requested
@@ -94,12 +94,12 @@
 					$noconfirmations = false;
 				}
 				echo '						<div id="yourrequests">' . "\n";
-				echo '							<p class="header">Your Requests</p>' . "\n";
+				echo '							<p class="header">I have requested ...</p>' . "\n";
 				echo '								<table id="yourrequeststable">' . "\n";
 				$firsttime = false;
 			} 
 			echo '									<tr>' . "\n";
-			echo '										<td class="yourrequestsmessage">You have requested ' . "\"{$records[3]}\" from {$records[6]}.</td>\n";
+			echo '										<td class="yourrequestsmessage">' . "\"{$records[3]}\" from {$records[6]}.</td>\n";
 			echo '										<td class="yourrequestsbutton">' . "\n";
 			createbutton('cancelrequest','Cancel',$records[0]);
 			echo '										</td>' . "\n";
@@ -127,12 +127,12 @@
 					$noconfirmations = false;
 				}
 				echo '						<div id="othersrequests">' . "\n";
-				echo '							<p class="header">Other\'s Requests</p>' . "\n";
+				echo '							<p class="header">Approvals</p>' . "\n";
 				echo '								<table id="othersrequeststable">' . "\n";
 				$firsttime = false;
 			}
 			echo '									<tr>' . "\n";
-			echo '										<td class="yourrequestsmessage">'.$records[5].' has requested to borrow "'.{$records[3]}."</td>\n";
+			echo '										<td class="yourrequestsmessage">'.$records[5].' has requested to borrow "'.$records[3]."</td>\n";
 			echo '										<td class="othersrequestsacceptbutton">' . "\n";
 			createbutton('acceptbookrequest','Accept',$records[0]);
 			echo '										</td>' . "\n";
@@ -162,12 +162,12 @@
 					$noconfirmations = false;
 				}
 				echo '						<div id="deliveryconfirmations">' . "\n";
-				echo '							<p class="header">Delivery Confirmation</p>' . "\n";
+				echo '							<p class="header">Have you delivered ...</p>' . "\n";
 				echo '								<table id="deliveryconfirmationstable">' . "\n";
 				$firsttime = false;
 			} 
 			echo '									<tr>' . "\n";
-			echo '										<td class="deliveryconfirmationsmessage">Have you delivered ' . "\"{$records[3]}\" to {$records[5]}?</td>\n";
+			echo '										<td class="deliveryconfirmationsmessage">' . "\"{$records[3]}\" to {$records[5]}?</td>\n";
 			echo '										<td class="deliveryconfirmationsbutton">' . "\n";
 			createbutton('delivered','Delivered',$records[0]);
 			echo '										</td>' . "\n";
@@ -197,12 +197,12 @@
 					$noconfirmations = false;
 				}
 				echo '						<div id="receiveconfirmations">' . "\n";
-				echo '							<p class="header">Receipt Confirmation</p>' . "\n";
+				echo '							<p class="header">Have you received ...</p>' . "\n";
 				echo '								<table id="receiveconfirmationstable">' . "\n";
 				$firsttime = false;
 			}
 			echo '									<tr>' . "\n";
-			echo '										<td class="receiveconfirmationsmessage">Have you received ' . "\"{$records[3]}\" from {$records[6]}?</td>\n";
+			echo '										<td class="receiveconfirmationsmessage">' . "\"{$records[3]}\" from {$records[6]}?</td>\n";
 			echo '										<td class="receiveconfirmationsbutton">' . "\n";
 			createbutton('confirmdelivery','Received',$records[0]);
 			echo '										</td>' . "\n";
@@ -229,7 +229,7 @@
 					$noconfirmations = false;
 				}
 				echo '						<div id="returnconfirmations">' . "\n";
-				echo '							<p class="header">Return Confirmation</p>' . "\n";
+				echo '							<p class="header">Returns</p>' . "\n";
 				echo '								<table id="returnconfirmationstable">' . "\n";
 				$firsttime = false;
 			} 
