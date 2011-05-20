@@ -121,8 +121,8 @@
 		# Security feature. Check to see if the owner is the UW NetID that is logged in.
 		$user = $_SERVER['REMOTE_USER'];
 		if($owner_id == $user){
-			echo "<input type='submit' name='edit' value='Edit' style='margin-left:10px' />
-			<input type='submit' name='delete' value='Delete Book' style='margin-left:10px' />";
+			echo "<div><input type='submit' name='edit' value='Edit' style='margin-left:10px' />
+			<input type='submit' name='delete' value='Delete Book' style='margin-left:10px' /></div>";
 		}		
 		echo "</form>";
 	}
