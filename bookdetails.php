@@ -123,7 +123,9 @@
 		if($owner_id == $user){
 			echo "<div class='centerDiv' id='bookdetailsbuttons'><input type='submit' name='edit' value='Edit' style='margin-left:10px' />
 			<input type='submit' name='delete' value='Delete Book' style='margin-left:10px' /></div>";
-		}		
+		} else {
+			echo "<div><label>Book Owner:</label><div><a href=\"profile.php?id={$owner_id}\">{$owner_id}</a></div></div>";
+		}
 		echo "</form>";
 	}
 	# HTML used to edit a books details. Should only be able to access this function if the current UW NetID is the owner of the Book.
