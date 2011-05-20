@@ -28,16 +28,16 @@
 						while($records = pg_fetch_array($options)) {
 							# The default value for books being added to BookEx are assumed to be "Used"
 							if(isset($_GET['type']) && $records[0] == $_GET['type']){
-								echo '<option value="' . $records[0] . '">' . $records[1] . '</option>';
+								echo '<option value="' . $records[0] . '" selected="selected">' . $records[1] . '</option>';
 							} else {
 								echo '<option value="' . $records[0] . '">' . $records[1] . '</option>';
 							}
 						}
 						echo "</select>";
 						if(isset($_GET['value'])){
-							echo '<input type="text" name="value" value="'.$_GET['value'].'"size="40"/>';
+							echo '<input type="text" name="value" value="'.$_GET['value'].'" size="40" />';
 						}else{
-							echo '<input type="text" name="value" size="40"/>';
+							echo '<input type="text" name="value" size="40" />';
 						}
 				?>
 				<input type="submit" name="submit" value="Search"/>
