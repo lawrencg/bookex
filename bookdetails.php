@@ -94,40 +94,37 @@
 			$status	= 'checked';
 		}
 		displaybookimage();
-		echo "<div class='twoformbuttons'>";		
-		//<div><label>Course:</label><div>{$course}</div></div>
-		
 		echo "
-		<form action='' id='defaultform' name='book' method='POST'>
-			<input type='hidden' value='{$bookex_id}' id='book_id' name='book_id' />
-			<input type='hidden' value='{$owner_id}' id='ownerid' name='ownerid' />			
+		<form action='' id='defaultform' name='book' method='post'>
+			<div><input type='hidden' value='{$bookex_id}' id='book_id' name='book_id' />
+			<input type='hidden' value='{$owner_id}' id='ownerid' name='ownerid' />	
+			<input type='hidden' value='{$title}' id='title' name='title' />	
+			<input type='hidden' value='{$authorfirst}' id='authorfirst' name='authorfirst' />	
+			<input type='hidden' value='{$authorlast}' id='authorlast' name='authorlast' />	
+			<input type='hidden' value='{$isbn10}' id='isbn10' name='isbn10' />		
+			<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />	
+			<input type='hidden' value='{$course}' id='course' name='course' />	
+			<input type='hidden' value='{$cond}' id='condition' name='condition' />					
 			<div><label>Title:</label><div>{$title}</div></div>
-			<input type='hidden' value='{$title}' id='title' name='title' />
-			<div><label>Author First Name:</label><div>{$authorfirst}</div></div>
-			<input type='hidden' value='{$authorfirst}' id='authorfirst' name='authorfirst' />			
-			<div><label>Author Last Name:</label><div>{$authorlast}</div></div>
-			<input type='hidden' value='{$authorlast}' id='authorlast' name='authorlast' />			
-			<div><label>ISBN-10:</label><div>{$isbn10}</div></div>
-			<input type='hidden' value='{$isbn10}' id='isbn10' name='isbn10' />
-			<div><label>ISBN-13:</label><div>{$isbn13}</div></div>
-			<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />
-			
-			<div><label>Course:</label><div></div></div>
-			<input type='hidden' value='{$course}' id='course' name='course' />
-			
-			<div><label>Condition:</label><div><select name='dropdown' disabled><option value='{$cond}' selected='selected'>{$cond}</option></select></div></div>
-			<input type='hidden' value='{$cond}' id='condition' name='condition' />			
-			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='description' style='vertical-align:text-top;' virtual disabled />{$note}</textarea></div></div>
 			<input type='hidden' value='{$note}' id='description' name='description' />
-			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' {$status} disabled /></div></div>
-			<input type='hidden' id='available' name='available' value='{$status}' />" ;
-		
+			<input type='hidden' id='available' name='available' value='{$status}' /></div>
+
+			<div><label>Author First Name:</label><div>{$authorfirst}</div></div>		
+			<div><label>Author Last Name:</label><div>{$authorlast}</div></div>		
+			<div><label>ISBN-10:</label><div>{$isbn10}</div></div>
+			<div><label>ISBN-13:</label><div>{$isbn13}</div></div>			
+			<div><label>Course:</label><div></div></div>			
+			<div><label>Condition:</label><div><select name='dropdown' disabled='disabled'><option value='{$cond}' selected='selected'>{$cond}</option></select></div></div>	
+			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='description' style='vertical-align:text-top;' virtual disabled='disabled'>{$note}</textarea></div></div>
+			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' checked='{$status}' disabled='disabled' /></div></div>" ;
+			
 		# Security feature. Check to see if the owner is the UW NetID that is logged in.
 		$user = $_SERVER['REMOTE_USER'];
 		if($owner_id == $user){
 			echo "<input type='submit' name='edit' value='Edit' style='margin-left:10px' />
 			<input type='submit' name='delete' value='Delete Book' style='margin-left:10px' />";
 		}		
+		echo "</form>";
 	}
 	# HTML used to edit a books details. Should only be able to access this function if the current UW NetID is the owner of the Book.
 	# Using hidden input forms to transfer the data between POST's.
@@ -142,8 +139,7 @@
 		if($status == 'on'){
 			$status	= 'checked';
 		}
-		displaybookimage();
-		echo "<div class='twoformbuttons'>";		
+		displaybookimage();	
 		echo " 
 		<form action='' id='defaultform' name='book' method='POST'>
 			<input type='hidden' value='{$bookex_id}' id='book_id' name='book_id' />
@@ -189,7 +185,7 @@
 			<input type='submit' name='save' value='Save' style='margin-left:10px' />
 			<input type='submit' name='cancel' value='Cancel' style='margin-left:10px' />";
 		}
-		
+		echo "</form>";
 	}
 	# HTML used when the owner of the book wants to delete a book that is associated with their account.
 	function deletebook(){
@@ -235,17 +231,18 @@
 			<input type='hidden' value='{$course}' id='course' name='course' />
 			<div><label>Condition:</label><div><select name='condition' disabled><option value='{$cond}' selected='selected'>{$cond}</option></select></div></div>
 			<input type='hidden' value='{$cond}' id='condition' name='condition' />			
-			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='description' style='vertical-align:text-top;' virtual disabled />{$note}</textarea></div></div>
+			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='description' style='vertical-align:text-top;' virtual disabled='disabled'>{$note}</textarea></div></div>
 			<input type='hidden' value='{$note}' id='description' name='description' />
-			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' {$status} disabled /></div></div>
+			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' checked='{$status}' disabled='disabled' /></div></div>
 			<input type='hidden' id='available' name='available' value='{$status}' /><br /><br />" ;
 		
 		# Security feature. Check to see if the owner is the UW NetID that is logged in.
 		$user = $_SERVER['REMOTE_USER'];
 		if($owner_id == $user){
 			echo "<div id='firstbutton'><input type='submit' name='confirmdelete' value='Delete' style='margin-left:10px' /></div>";
-			echo "</form><form action='bookdetails.php' method='get'><div id='secondbutton'><input type='hidden' value='{$bookex_id}' id='id' name='id' /><input type='submit' name='cancel' value='Cancel' style='margin-left:10px' /></div>";
+			echo "</form><form action='bookdetails.php' method='get'><div id='secondbutton'><input type='hidden' value='{$bookex_id}' id='id' name='id' /><input type='submit' name='cancel' value='Cancel' style='margin-left:10px' /></div></div>";
 		}
+		echo "</form>";
 	}
 	function displaybookimage(){
 		global $bookex_id, $owner_id, $user;
@@ -253,10 +250,10 @@
 				<div id="page">
 				<div class="pageTitle">Book Details</div>
 				<div id="maincontent">
-					<div id="" class="contentarea">
+					<div class="contentarea">
 						<div class="leftContent">
 							<div id="bookImageContent">
-								<div id="bookImagePhoto"><img src=\'images/default-book.png\' /></div>
+								<div id="bookImagePhoto"><img src=\'images/default-book.png\' alt="Book Image" /></div>
 
 							</div>';
 		if($owner_id != $user){
@@ -320,7 +317,6 @@
 		}
 	}
 	# Close any form that was made. Need to make sure one was opened first.
-	echo "</form></div></p>";
 	include 'includes/bookdetails_2_contentarea.php';
 	include 'includes/sitefooter.php';
 	pg_close($dbconn);
