@@ -287,9 +287,9 @@
 			} 
 			echo '							<tr>' . "\n";
 			# Book title
-			echo '								<td class="booktitle">' . $records[3] . '</td>' . "\n";
+			echo '								<td class="booktitle"><a href="bookdetails.php?id='.$records[1].'">' . $records[3] . '</a></td>' . "\n";
 			# Book owner
-			echo '								<td class="booklender">' . $records[6] . '</td>' . "\n";
+			echo '								<td class="booklender"><a href="profile.php?id='.$records[7].'">'.$records[6].'</a></td>' . "\n";
 			# BookEx does not currently store a 'Due' date
 			echo '								<td class="bookduedate">' . date("F j, Y"). '</td>' . "\n";
 			echo '								<td class="bookreturnbutton">' . "\n";
