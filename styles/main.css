@@ -355,7 +355,7 @@ button {
 
 /* For the details screen, the details are wrapped in a div.. so float it */
 #defaultform div  div{
-	float: left;
+	/*float: left;*/
 } 
 #defaultform label {
 	clear: left;
@@ -375,6 +375,10 @@ button {
 
 .bookDescription {
 	max-width: 500px;
+}
+
+#bookdetailsbuttons {
+	width: 545px;
 }
 
 #informationbuttons {
