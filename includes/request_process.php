@@ -28,11 +28,11 @@
 		echo "<form action='' id='form_{$bookid}' method='post'><div>";
 		# Condition 2 exists. This should be the true directly after a request is made and the page is POSTed to.
 		if ($alreadyrequested[0] == t){
-			echo "<input type='submit' id='notrequest_{$bookid}' name='notrequest' value='Pending Request' class='requestbutton' disabled='disabled' />\n";
+			echo "<input type='submit' id='notrequest_{$bookid}' name='notrequest' value='Pending' class='requestbutton' disabled='disabled' />\n";
 		# Condition 1, then book is no longer available. Most places this should not be displayed. 
 		# Concurrency issue only.
 		} elseif ($stillavailable[0] == f){
-			echo "<input type='submit' id='notrequest_{$bookid}' name='notrequest' value='Not Available' class='requestbutton' disabled='disabled' />\n";
+			echo "<input type='submit' id='notrequest_{$bookid}' name='notrequest' value='Unavailable' class='requestbutton' disabled='disabled' />\n";
 		# Good to go, request if you want.
 		}else {
 			echo "<input type='hidden' value='{$bookid}' id='book_id_{$bookid}' name='book_id' class='requestbutton' />\n";
