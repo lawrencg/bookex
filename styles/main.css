@@ -167,11 +167,38 @@
 	#notification.hide{
 		display: none;
 }
+
 /* Dashbaord message header */
 .header {
 	font-size: 20px;
 	margin:10px;
 }
+
+#yourrequests p {
+	color: #1E90FF; /**/	
+}
+
+#othersrequests p{
+	color: red;
+}
+#deliveryconfirmations p{
+	color: 	#DAA520; /*goldrod*/
+}
+#receiveconfirmations p {
+	color: #DAA520;
+}
+#returnconfirmations p {
+	color: orange;
+}
+#notificationmessagearea p {
+	color: 
+}
+#booksborrowedlist p {
+	color: green;
+}
+
+
+
 
 
 /* footer */
