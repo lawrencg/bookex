@@ -49,6 +49,8 @@
 		# Creates an entry in the transactions table
 		$results = pg_query("SELECT requestbook('{$bookid}'::integer,'{$user}'::varchar)"); 
 			//or die('Query failed: ' . pg_last_error()); 
+		include 'bookex_user_email.php';
+		request_email($bookid,$user);
 	}
 	# Time to work, process this request
 	if(isset($_POST['request']) && $_POST['book_id'] != null)
