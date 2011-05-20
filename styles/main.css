@@ -471,7 +471,9 @@ button {
 #searchterm {
 	color: green;
 }
-
+ a {
+	text-decoration:none;
+ }
 
 
 
