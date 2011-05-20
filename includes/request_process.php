@@ -32,7 +32,7 @@
 		# Condition 1, then book is no longer available. Most places this should not be displayed. 
 		# Concurrency issue only.
 		} elseif ($stillavailable[0] == f){
-			echo "<input type='submit' id='notrequest' name='notrequest' value='Not Available' class='requestbutton' disabled />\n";
+			echo "<input type='submit' id='notrequest' name='notrequest' value='Not Available' class='requestbutton' disabled='disabled' />\n";
 		# Good to go, request if you want.
 		}else {
 			echo "<input type='hidden' value='{$bookid}' id='book_id' name='book_id' class='requestbutton' />\n";
