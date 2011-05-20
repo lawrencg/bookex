@@ -64,7 +64,7 @@
 	function displayuserresults($results, $type){
 		global $searchTerm;
 		$rows = pg_num_rows($results);
-		echo "<div class=\"pageSubTitle\">Found {$rows} users with their {$type} containing&nbsp;<sapn id='searchterm'><i>\"" . $searchTerm . "\"</i></span></div>";	
+		echo "<div class=\"pageSubTitle\">Found {$rows} users with their {$type} containing&nbsp;<span id='searchterm'><i>\"" . $searchTerm . "\"</i></span></div>";	
 		while ($row = pg_fetch_array($results)) {
 
 			echo "<table id='booksearchresultstable'>";
