@@ -372,7 +372,7 @@
 	if(!$noconfirmations){
 		echo '				</div>' . "\n";
 	}
-	
+	#echo '<div class="contentarea" style="text-align:center;"><img src="images/new-dashboard.png" alt="Graphical Dashboard" /></div>';
 	# System notifications are always displayed. Might be the first if there is no activity for the current user.
 	notifications();
 	# From user testing, this is where we should have the book that people are going to return when they are done.
