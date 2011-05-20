@@ -20,8 +20,8 @@
 					<div id="validator">
 						<?php
 							global $current;
-							echo '<p><a href="http://validator.w3.org/check?uri='.$current.'"><img src="http://www.w3.org/Icons/valid-xhtml11-blue" alt="Valid XHTML 1.1" style="border:0px;width:88px;height:31px;" /></a>';
-							echo '<a href="http://jigsaw.w3.org/css-validator/validator?uri='.$current.'"><img src="http://www.w3.org/Icons/valid-css2-blue" alt="Valid CSS!" style="border:0px;width:88px;height:31px;" /></a></p>';
+							echo '<p><a href="http://validator.w3.org/check?uri='.htmlspecialchars($current).'"><img src="http://www.w3.org/Icons/valid-xhtml11-blue" alt="Valid XHTML 1.1" style="border:0px;width:88px;height:31px;" /></a>';
+							echo '<a href="http://jigsaw.w3.org/css-validator/validator?uri='.htmlspecialchars($current).'"><img src="http://www.w3.org/Icons/valid-css2-blue" alt="Valid CSS!" style="border:0px;width:88px;height:31px;" /></a></p>';
 						?>
 					</div>
                 </div>

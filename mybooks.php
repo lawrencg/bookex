@@ -112,8 +112,8 @@
 
 	}
 	function addbooksbutton(){		
-		echo'				<form action="addbook.php" method="GET">' . "\n";
-		echo'					<input type="submit" class="actionButton" value="Add New Book"/>' . "\n";
+		echo'				<form action="addbook.php" method="get">' . "\n";
+		echo'					<div><input type="submit" class="actionButton" value="Add New Book" /></div>' . "\n";
 		echo'				</form>' . "\n";
 		echo'			</div>' . "\n";
 		echo'		</div>' . "\n";

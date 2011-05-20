@@ -115,9 +115,9 @@
 	}
 	# HTML used for the initial ISBN search. 
 	function initialsearch(){
-		echo "<p>Please enter the ISBN-10 or ISBN-13 for your book.</p><input type='text' value='' id='addbooksearchtextbox' name='isbn' size='20' />&nbsp;";
+		echo "<p>Please enter the ISBN-10 or ISBN-13 for your book.</p><div><input type='text' value='' id='addbooksearchtextbox' name='isbn' size='20' />&nbsp;";
 		echo "<br /><input type='submit' name='addbooksearch' value='Search' />";
-		echo "<input type='submit' name='manual' value='Don&#39;t have an ISBN' />";
+		echo "<input type='submit' name='manual' value='Don&#39;t have an ISBN' /></div>";
 	}
 	# Accepts a numeric value and attempts to find a book in the BookEx database by ISBN-10 or ISBN-13
 	# Sets global variables if a book is found.
@@ -317,7 +317,7 @@
 		}
 	}
 	function bookimage(){
-		echo '						<div id="bookImagePhoto"><img src="images/default-book.png" /></div>' . "\n";
+		echo '						<div id="bookImagePhoto"><img src="images/default-book.png" alt="Book Image" /></div>' . "\n";
 		#echo '						<button class="smallbtn">Upload Photo</button>' . "\n";
 		#echo '						<button class="actionButton">Add</button>' . "\n";
 	}
@@ -395,7 +395,7 @@
 		echo '				<div id="notification" class="show">'.$errormessage.'</div>' . "\n";
 	}
 	echo '		<div id="maincontent">';
-	echo '			<div id="" class="contentarea">' . "\n";
+	echo '			<div class="contentarea">' . "\n";
 	echo '				<div class="leftContent">' . "\n";
 	echo '					<div id="bookImageContent">' . "\n";
 	
@@ -405,7 +405,7 @@
 	echo '					</div>';
 	echo '				</div>';
 	echo '				<div class="rightContent contentarea">';
-	echo "<form action='' id='defaultform' name='book' method='POST'>";
+	echo "<form action='' id='defaultform' name='book' method='post'>";
 	
 	# This is a POST
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){ 

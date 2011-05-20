@@ -44,14 +44,14 @@
 			$myMajor = $row[4];
 		}
 		$picURL = pictureurl();
-		echo '							<form id="defaultform" action="" name="form_99" method="POST" >';
+		echo '							<form id="defaultform" action="" method="post" >';
 		echo"
-			<input type='hidden' value='{$person}' id='person' name='person' />
+			<div><input type='hidden' value='{$person}' id='person' name='person' />
 			<input type='hidden' value='{$myinfoFirstName}' id='myinfoFirstName' name='myinfoFirstName' />
 			<input type='hidden' value='{$myinfoLastName}' id='myinfoLastName' name='myinfoLastName' />
 			<input type='hidden' value='{$myinfoNetID}' id='myinfoNetID' name='myinfoNetID' />
 			<input type='hidden' value='{$myEmail}' id='myEmail' name='myEmail' />
-			<input type='hidden' value='{$myMajor}' id='myMajor' name='myMajor' />";
+			<input type='hidden' value='{$myMajor}' id='myMajor' name='myMajor' /></div>";
 		echo '								<div><label>First Name:</label><div>'. $myinfoFirstName . '</div></div>';
 		echo '								<div><label>Last Name:</label><div>' . $myinfoLastName . '</div></div>';
 		echo '								<div><label>UW NetID:</label><div>' . $myinfoNetID . '</div></div>';
@@ -59,7 +59,7 @@
 		echo '								<div><label>Major:</label><div>' . $myMajor . '</div></div>';
 
 		if($user == $person){
-			echo '								<input type="submit" name="edit" value="Edit My Profile" />';
+			echo '								<div><input type="submit" name="edit" value="Edit My Profile" /></div>';
 		}
 		echo '							</form>';
 		
@@ -70,7 +70,7 @@
 	function editProfile() {
 		# Global variables
 		global $myinfoNetID, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor, $user;
-		echo "<form action='' id='defaultform' name='profile' method='POST' enctype='multipart/form-data'>";
+		echo "<form action='' id='defaultform' method='post' enctype='multipart/form-data'>";
 		/*
 		echo"
 			First Name: <span style='font-weight:normal;'>&nbsp;<input type='text' value='" . $myinfoFirstName . "' id='myinfoFirstName' name='myinfoFirstName' size='40' /><br /><br />
@@ -320,7 +320,7 @@
 	include 'includes/profile_1b_contentarea.php';	
 
 	$picURL = pictureurl();
-	echo "<img src='images/profiles/" . $picURL . "' ></img>";
+	echo "<img src='images/profiles/" . $picURL . "' alt='User Picture'></img>";
 	include 'includes/profile_2_contentarea.php';
 	
 	if (isset($_POST['edit'])){
