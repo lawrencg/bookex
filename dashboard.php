@@ -379,6 +379,6 @@
 	# mybooks was not intuitive
 	imborrowing();
 	include 'includes/sitefooter.php';
-	# Close the database
+	# Close the databasee
 	pg_close($dbconn);
 ?>
