@@ -288,10 +288,12 @@
 
 /* These are the button columns, they are all the same width */
 .yourrequestsbutton , .othersrequestsacceptbutton, .othersrequestsdenybutton, 
-.bookreturnbutton, .receiptconfirmationsbutton, .deliveryconfirmationsbutton , .returnconfirmationsbuttons{
+.bookreturnbutton, .receiveconfirmationsbutton, .deliveryconfirmationsbutton , .returnconfirmationsbutton , .dashboardbutton input{
+
 	width: 100px;
 	text-align: center;
 }
+
 
 .leftContent {
 	float: left;
