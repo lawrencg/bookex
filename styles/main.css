@@ -17,7 +17,7 @@
 #frontpagetopnavigationlist {
 	float: right;
 	margin-right: 10px;
-	margin-bottom: 25px;
+ 	margin-bottom: 25px;
 }
 
 
@@ -75,6 +75,7 @@
 		list-style-type: none;
 	}
 
+
 	#navigation ul li {
 		display: inline;
 		
@@ -83,7 +84,17 @@
 		background-color: #ccc;*/
 		
 	}
-
+	
+	/*
+	body#dashboard a#dashboard,
+	body#mybooks a#mybooks,
+	body#profile a#profile ,
+	body#submitbug a#submitbug{	
+		color: #fff;
+		background: #87CEEB;	
+	}
+	*/
+	
 	/*apply to all*/
 	ul li a{
 		text-decoration: none;		
@@ -95,7 +106,6 @@
 	ul li a:hover{
 		text-decoration: none;
 		color: #aaaaaa;
-		
 	}
 	
 	ul li a:visited {
@@ -191,7 +201,7 @@
 	color: orange;
 }
 #notificationmessagearea p {
-	color: 
+	color: #9ACD32;
 }
 #booksborrowedlist p {
 	color: green;

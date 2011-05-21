@@ -310,6 +310,8 @@
 	
 	include 'includes/profile_0_header.php';
 	include 'includes/siteheader.php';
+	echo '<body id="profile">';
+	include 'includes/siteheader2.php';
 	
 	echo '		<div id="page">' . "\n";
 	echo '			<div id="maincontent">' . "\n";

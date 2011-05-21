@@ -122,6 +122,8 @@
 	## MAIN SITE DISPLAY
 	include 'includes/mybooks_0_header.php';
 	include 'includes/siteheader.php';
+	echo '<body id="mybooks">';
+	include 'includes/siteheader2.php';
 	echo '		<div id="page">' . "\n";
 	echo '			<div id="maincontent">' . "\n";
 	echo '				<div class="pageTitle">My Books</div>' . "\n";
