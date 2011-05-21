@@ -247,18 +247,55 @@
 	}
 	# HTML to display system notifications
 	function notifications(){
-		$nonotifications = true;
-		
+		$notifications = false;
 		echo '				<div id="notificationmessagearea" class="contentarea">' . "\n";
 		echo '					<div id="notifications">' . "\n";
 		echo '							<p class="header">Notifications</p>' . "\n";
 		echo '								<table id="notificationstable">' . "\n";
-		echo '									<tr>' . "\n";
-		echo '										<td class="notificationsmessage">BookEx is currently under maintenance. Some features may be temporarily unavailable.</td>' . "\n";
-		echo '									</tr>' . "\n";
+		$returned = pg_query("SELECT * FROM systemnotifications") ;
+			//or die('Query failed: ' . pg_last_error()); 
+		while($records = pg_fetch_array($returned)) {
+			echo '									<tr>' . "\n";
+			echo '										<td class="notificationsmessage">'.$records[1].'</td>' . "\n";
+			echo '									</tr>' . "\n";
+			$notifications = true;
+		}
+		if(!$notifications && !borrowloanupdates()){
+			echo '									<tr>' . "\n";
+			echo '										<td class="notificationsmessage">No Notifications.</td>' . "\n";
+			echo '									</tr>' . "\n";
+		}
 		echo '								</table>' . "\n";
 		echo '					</div>' . "\n";
 		echo '				</div>' . "\n";
+	}
+	function borrowloanupdates(){
+		$messages = false;
+		$returned = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND viewed = 'FALSE'") ;
+			//or die('Query failed: ' . pg_last_error()); 
+		while($records = pg_fetch_array($returned)) {
+			$message = '';
+			switch ($records[4]) {
+				case 'Denied' || 'Already Loaned':
+					$message = "{$records[6]} has either denied your request to borrow \"{$records[3]}\" or loaned it to someone else.";
+					break;
+				case 'Awaiting Delivery':
+					$message = "{$records[6]} has accepted your request to borrow \"{$records[3]}\". Please contact them for delivery details.";
+					break;
+				default:
+					$message = "Transaction ID: {$records[0]}";
+					break;	
+			}
+			
+			echo '									<tr>' . "\n";
+			echo '										<td class="notificationsmessage">'.$message.'</td>' . "\n";
+			echo '									</tr>' . "\n";
+			$messages = true;
+		}
+		return $messages;
+	}
+	function clearnotification($transid){
+		
 	}
 	# HTML to display the books that the user needs to return after they are done.
 	function imborrowing(){
