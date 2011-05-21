@@ -388,8 +388,6 @@
 	# http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#form-submission-algorithm
 	include 'includes/addbook_0_header.php';
 	include 'includes/siteheader.php';
-	echo '<body>';
-	include 'includes/siteheader2.php';
 	echo '		<div id="page">' . "\n";
 	echo '		<div class="pageTitle">Add Book</div>' . "\n";
 		

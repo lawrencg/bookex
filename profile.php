@@ -302,11 +302,8 @@
 	if (isset($_POST['saveID'])){
 		savemyinfo();
 	}
-	
 	include 'includes/profile_0_header.php';
 	include 'includes/siteheader.php';
-	echo '<body>';
-	include 'includes/siteheader2.php';
 	
 	echo '		<div id="page">' . "\n";
 	echo '			<div id="maincontent">' . "\n";
@@ -330,7 +327,6 @@
 	} else {
 		filledProfile();
 	}
-
 	include 'includes/profile_3_contentarea.php';
 	include 'includes/sitefooter.php';
 	

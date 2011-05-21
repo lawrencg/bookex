@@ -108,9 +108,14 @@
 		color: #aaaaaa;
 	}
 	
+	#activenavmenu {
+		color: black;	
+	}
+	
 	ul li a:visited {
 		color: blue;
 	}
+	
 	
 /*Page start*/
 #page {
@@ -244,6 +249,8 @@
 	margin-right: auto;
 	text-align: center;
 }
+
+
 /*
 #confirmationmessagearea.contentarea{
 	overflow: hidden;

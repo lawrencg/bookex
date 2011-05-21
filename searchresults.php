@@ -13,8 +13,6 @@
 	include 'includes/request_process.php';
 	include 'includes/searchresults_0_header.php';
 	include 'includes/siteheader.php';
-	echo '<body>';
-	include 'includes/siteheader2.php';
 	include 'includes/searchresults_1_contentarea.php';
 	
 	$user = $_SERVER['REMOTE_USER'];
