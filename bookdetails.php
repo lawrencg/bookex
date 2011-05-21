@@ -236,7 +236,7 @@
 			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='description' style='vertical-align:text-top;' virtual disabled='disabled'>{$note}</textarea></div></div>
 			<input type='hidden' value='{$note}' id='description' name='description' />
 			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' checked='{$status}' disabled='disabled' /></div></div>
-			<input type='hidden' id='available' name='available' value='{$status}' /><br /><br />" ;
+			<input type='hidden' id='available' name='available' value='{$status}' />" ;
 		
 		# Security feature. Check to see if the owner is the UW NetID that is logged in.
 		$user = $_SERVER['REMOTE_USER'];

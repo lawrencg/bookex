@@ -11,9 +11,6 @@
 	require 'includes/valid_user.php';
 	include 'includes/request_process.php';
 	
-	
-
-	
 	$myinfoNetID = pg_escape_string($_POST['myinfoNetID']);
 	$myinfoFirstName = pg_escape_string($_POST['myinfoFirstName']);
 	$myinfoLastName = pg_escape_string($_POST['myinfoLastName']);
@@ -26,8 +23,6 @@
 	if($person == null){
 		$person = $user;
 	}
-	
-	
 	
 	function filledProfile() {
 		global $myinfoNetID, $myinfoFirstName, $myinfoLastName, $myEmail, $myMajor, $person, $user;
@@ -88,7 +83,7 @@
 		echo "								<div><label>Upload Photo:</label><div><input type='file' name='image'></div></div>";
 			
 			
-		echo "<br/><br/><input type='submit' name='saveID' value='Save Changes' /><input type='submit' name='cancel' value='Cancel' />";
+		echo "<input type='submit' name='saveID' value='Save Changes' /><input type='submit' name='cancel' value='Cancel' />";
 		echo "</form>";
 	}
 	function savemyinfo(){
@@ -310,7 +305,7 @@
 	
 	include 'includes/profile_0_header.php';
 	include 'includes/siteheader.php';
-	echo '<body id="profile">';
+	echo '<body>';
 	include 'includes/siteheader2.php';
 	
 	echo '		<div id="page">' . "\n";
