@@ -41,7 +41,7 @@
 		$picURL = pictureurl();
 		echo '							<form id="defaultform" action="" method="post" >';
 		echo"
-			<div><input type='hidden' value='{$person}' id='person' name='person' />
+			<div class='hide'><input type='hidden' value='{$person}' id='person' name='person' />
 			<input type='hidden' value='{$myinfoFirstName}' id='myinfoFirstName' name='myinfoFirstName' />
 			<input type='hidden' value='{$myinfoLastName}' id='myinfoLastName' name='myinfoLastName' />
 			<input type='hidden' value='{$myinfoNetID}' id='myinfoNetID' name='myinfoNetID' />

@@ -178,6 +178,10 @@
 		display: none;
 }
 
+.hide {
+	display: none;
+}
+
 /* Dashbaord message header */
 .header {
 	font-size: 20px;
