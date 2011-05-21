@@ -43,7 +43,7 @@
 	
 	include 'includes/submitbug_0_header.php';
 	include 'includes/siteheader.php';
-	echo '<body id="submitbug">';
+	echo '<body>';
 	include 'includes/siteheader2.php';
 	
 	echo '		<div id="page">' . "\n";

@@ -272,7 +272,7 @@
 	
 	include 'includes/bookdetails_0_header.php';
 	include 'includes/siteheader.php';
-	echo '<body id="mybooks">';
+	echo '<body>';
 	include 'includes/siteheader2.php';
 	
 	# Request method of GET means that the user followed a link to get to this page.

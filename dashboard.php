@@ -356,7 +356,7 @@
 	}
 	include 'includes/dashboard_0_header.php';
 	include 'includes/siteheader.php';
-	echo '<body id="dashboard">';
+	echo '<body>';
 	include 'includes/siteheader2.php';
 	
 	echo '		<div id="page">' . "\n";

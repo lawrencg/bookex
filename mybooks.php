@@ -122,7 +122,7 @@
 	## MAIN SITE DISPLAY
 	include 'includes/mybooks_0_header.php';
 	include 'includes/siteheader.php';
-	echo '<body id="mybooks">';
+	echo '<body>';
 	include 'includes/siteheader2.php';
 	echo '		<div id="page">' . "\n";
 	echo '			<div id="maincontent">' . "\n";
