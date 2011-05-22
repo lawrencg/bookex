@@ -419,7 +419,7 @@
 			}
 			# Check the title, empty means that BookEx did not return any results.
 			if($title == '' && $_POST['isbn'] != ''){
-				
+				initialsearch();
 			}
 
 			# The search from ISBNDB truned up nothing as well. Manual entry is necessary.
