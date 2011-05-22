@@ -28,34 +28,34 @@
 		$rows = pg_num_rows($results);
 		echo "<div class=\"pageSubTitle\">Found {$rows} books with the {$type}&nbsp;<span id='searchterm'><i>\"" . $searchTerm . "\"</i></span></div>";	
 		while ($row = pg_fetch_array($results)) {
-			
-			if(strlen($row[0]) > 30){
-				$temp = substr($row[0],0,30) . '...';
-			} else {
-				$temp = $row[0];
-			}
-
 			echo "<table id='booksearchresultstable'>";
 			echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN</td><td class=\"header\">Owner</td><td class=\"header\"></td></tr></thead><tbody>";
-			echo "<tr><td class=\"booktitle\"><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($temp) . "</a></td><td class=\"bookauthor\">" . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\"><a href=\"profile.php?id=".$row[5]."\">".htmlspecialchars($row[5])."</a></td><td class=\"requestbutton\">";
-			if( $owner != $row[5]){
+			echo "<tr><td class=\"booktitle\" id=\"bookresultsbooktitle\"><div><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></div></td><td class=\"bookauthor\" id=\"bookresultsauthorlastname\"><div>" . htmlspecialchars($row[2]) . "</div></td><td class=\"bookisbn\" id=\"bookresultsbookisbn\"><div>";
+				if ($row[4] != ''){
+					echo htmlspecialchars($row[4]);
+				} else {
+					echo htmlspecialchars($row[3]);
+				}
+				echo "</div></td><td class=\"bookowner\" id=\"bookresultsbookowner\"><div><a href=\"profile.php?id=".$row[7]."\">".htmlspecialchars($row[5])."</a></div></td><td class=\"requestbutton\">";
+			if( $owner != $row[7]){
 				request_button($row[6]);
 			}else{
 				echo "&nbsp;";
 			}
 			echo "</td></tr>";
 			while ($row = pg_fetch_array($results)) {
-				if(strlen($row[0]) > 30){
-					$temp = substr($row[0],0,30) . '...';
+			echo "<tr><td class=\"booktitle\" id=\"bookresultsbooktitle\"><div><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></div></td><td class=\"bookauthor\" id=\"bookresultsauthorlastname\"><div>" . htmlspecialchars($row[2]) . "</div></td><td class=\"bookisbn\" id=\"bookresultsbookisbn\"><div>";
+				if ($row[4] != ''){
+					echo htmlspecialchars($row[4]);
 				} else {
-					$temp = $row[0];
+					echo htmlspecialchars($row[3]);
 				}
-				echo "<tr><td class=\"booktitle\"><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($temp) . "</a></td><td class=\"bookauthor\">" . htmlspecialchars($row[2]) . "</td><td class=\"bookisbn\">" . htmlspecialchars($row[4]) . "</td><td class=\"bookowner\"><a href=\"profile.php?id=".$row[5]."\">".htmlspecialchars($row[5])."</a></td><td class=\"requestbutton\">";
-				if( $owner != $row[5]){
-					request_button($row[6]);
-				}else {
-					echo "&nbsp;";
-				}
+				echo "</div></td><td class=\"bookowner\" id=\"bookresultsbookowner\"><div><a href=\"profile.php?id=".$row[7]."\">".htmlspecialchars($row[5])."</a></div></td><td class=\"requestbutton\">";
+			if( $owner != $row[7]){
+				request_button($row[6]);
+			}else{
+				echo "&nbsp;";
+			}
 				echo "</td></tr>";
 			} 
 			echo "</tbody></table>";
@@ -98,7 +98,7 @@
 			if (trim($searchTerm) == "") {
 				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
 			} else {
-				$searchTitleSQL = "SELECT * FROM searchbytitle('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id integer)";
+				$searchTitleSQL = "SELECT * FROM searchbytitle('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id integer, netid varchar)";
 				$results = pg_query($searchTitleSQL);
 				if (!$results) {
 					//die("Error in SQL query: " . pg_last_error());
@@ -111,7 +111,7 @@
 			if (trim($searchTerm) == "") {
 				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
 			} else {
-			$searchTitleSQL2 = "SELECT * FROM searchbyisbn('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int)";
+			$searchTitleSQL2 = "SELECT * FROM searchbyisbn('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int, netid varchar)";
 			$results = pg_query($searchTitleSQL2);
 			if (!$results) {
 				//die("Error in SQL query: " . pg_last_error());
@@ -123,7 +123,7 @@
 			if (trim($searchTerm) == "") {
 				echo "<div class=\"pageSubTitle\">You didn&#39;t enter a search term.</div>";	
 			} else {
-			$searchAuthorSQL = "SELECT * FROM searchbyauthorname('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int)";
+			$searchAuthorSQL = "SELECT * FROM searchbyauthorname('" . $searchTerm . "') AS results(title varchar, author_first_name varchar, author_last_name varchar, isbn10 numeric, isbn13 numeric, owner_name varchar, book_id int, netid varchar)";
 			$results = pg_query($searchAuthorSQL);
 			if (!$results) {
 				//die("Error in SQL query: " . pg_last_error());

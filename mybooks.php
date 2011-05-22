@@ -44,8 +44,8 @@
 	function displaybooks(){
 		global $user;
 		$books = pg_query("SELECT * FROM getmybooks('{$user}') VALUES (bookid int, owner varchar, 
-			date timestamp, title varchar, borrower varchar, available varchar, transstatus varchar)") ;
-			//or die('Query failed: ' . pg_last_error()); 
+			date timestamp, title varchar, borrower varchar, available varchar, transstatus varchar, requestor varchar)")
+			or die('Query failed: ' . pg_last_error()); 
 		# Used a a flag to see if there are actually any books to display. Create a header if yes, and at the end
 		# only close the table if we created one.
 		$firsttime = true;
@@ -53,12 +53,13 @@
 		# Hopefully this was a good choice over alphabetical. Good: if a user has 500 books, most likely they are going to
 		# want to see the books they most recently added. Bad: The have 500 books and want to find a book with a title 
 		# that starts with "B"
+		$total = pg_num_rows($books);
 		while($records = pg_fetch_array($books)) {
 			# Create a blank space for the borrower column if the book is not currently loaned
 			if($records[4] == "")
 				$borrow = '&nbsp;';
 			else 
-				$borrow = $records[4];
+				$borrow = '<a href="profile.php?id='.$records[7].'">'.$records[4].'</a>';
 			if ($firsttime) {
 				echo '						<table id="mybooklisttable">' . "\n";
 				echo '							<thead>' . "\n";
@@ -75,24 +76,19 @@
 			
 			echo '								<tr>' . "\n";
 			# Book title is a link to book details for that book
-			if(strlen($records[3]) > 30){
-				$temp = substr($records[3],0,30) . '...';
-			} else {
-				$temp = $records[3];
-			}
-			echo '									<td class="booktitle"><div><a href="bookdetails.php?id='.$records[0].'">'.$temp.'</a></div></td>' . "\n";
-			echo '									<td class="booklender">'.$borrow.'</td>' . "\n";
+			echo '									<td class="booktitle" id="mybooksbooktitle"><div><a href="bookdetails.php?id='.$records[0].'">'.$records[3].'</a></div></td>' . "\n";
+			echo '									<td class="booklender" id="mybooksborrower"><div>'.$borrow.'</div></td>' . "\n";
 			# Decides what status to display. For loaned books we need to display the transaction status,
 			# for books that are not loaned out, we need to show the availability status.
 			if($records[6] == ''){
-				echo '									<td class="bookduedate">&nbsp;</td>' . "\n";
-				echo '									<td class="bookstatus">'.$records[5].'</td>' . "\n";				
+				echo '									<td class="bookduedate" id="mybooksduedate"><div>&nbsp;</div></td>' . "\n";
+				echo '									<td class="bookstatus" id="mybooksstatus"><div>'.$records[5].'</div></td>' . "\n";				
 			} else {
-				echo '									<td class="bookduedate">'.date("F j, Y").'</td>' . "\n";
+				echo '									<td class="bookduedate" id="mybooksduedate"><div>'.date("F j, Y").'</div></td>' . "\n";
 				if($records[6] == 'Received'){
-					echo '									<td class="bookstatus">Loaned Out</td>' . "\n";
+					echo '									<td class="bookstatus" id="mybooksstatus"><div>Loaned Out</div></td>' . "\n";
 				} else {
-					echo '									<td class="bookstatus">'.$records[6].'</td>' . "\n";
+					echo '									<td class="bookstatus" id="mybooksstatus"><div>'.$records[6].'</div></td>' . "\n";
 				}
 			}
 			echo '								</tr>';
@@ -108,23 +104,21 @@
 
 		echo '							</tbody>' . "\n";
 		echo '						</table>' . "\n";
-
+		echo '						<div class="pageSubTitle">Total: '.$total.' books</div>' . "\n";
 
 	}
 	function addbooksbutton(){		
 		echo'				<form action="addbook.php" method="get">' . "\n";
-		echo'					<div><input type="submit" class="actionButton" value="Add New Book" /></div>' . "\n";
+		echo'					<div><input type="submit" class="actionButton" value="Add Book" /></div>' . "\n";
 		echo'				</form>' . "\n";
-		echo'			</div>' . "\n";
-		echo'		</div>' . "\n";
-		echo'	</div>' . "\n";
+
 	}
 	## MAIN SITE DISPLAY
 	include 'includes/mybooks_0_header.php';
 	include 'includes/siteheader.php';
 	echo '		<div id="page">' . "\n";
 	echo '			<div id="maincontent">' . "\n";
-	echo '				<div class="pageTitle">My Books</div>' . "\n";
+	echo '				<div class="pageTitle">My Books<span id="addbookplussign"><a href="addbook.php">[+]</a></span></div>' . "\n";
 	
 	if($errormessage != ''){
 		echo '				<div id="notification" class="show">'.$errormessage.'</div>' . "\n";
@@ -132,11 +126,12 @@
 	
 	echo '			<div id="mybooklistarea" class="contentarea">' . "\n";
 	echo '					<div id="mybooklist">' . "\n";
-	echo '						<div class="pageSubTitle">Books I Own</div>' . "\n";
-	
 	displaybooks();
 	echo '				</div>' . "\n";
 	addbooksbutton();
+	echo'			</div>' . "\n";
+	echo'		</div>' . "\n";
+	echo'	</div>' . "\n";
 	include 'includes/sitefooter.php';
 	# Close the database
 	pg_close($dbconn);
