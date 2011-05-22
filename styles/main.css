@@ -6,18 +6,23 @@
 	border: 0px red solid;
 }
 
+	#registrationtitle{
+		text-align:center;
+	}
 
+	/*FRONT PAGE*/
+	#frontpagetopnavigationlist {
+		float: right;
+		margin-right: 10px;
+		margin-bottom: 25px;
 
-#registrationtitle{
-	text-align:center;
-}
+	}
+	#frontpagecontent {
+		margin-top: 100px;
+		margin-bottom: 100px;
+	}
+	
 
-
-#frontpagetopnavigationlist {
-	float: right;
-	margin-right: 10px;
- 	margin-bottom: 25px;
-}
 /*#1 TOP STARTS*/
 /*HEAD THAT INCLUDE THE LOGO*/
 #header {
@@ -122,7 +127,7 @@
 	margin-right: auto;
 	min-height: 700px;
 	padding: 0px 0px 0px;
-}
+	}
 	.pageTitle {
 		font-size: 30px;
 		margin: 10px;
@@ -134,116 +139,126 @@
 		margin: 10px;
 		margin-left: 20px;
 	}
-
+		
+	.contentarea  {
 	
-	
-	#mybooklist .pageSubTitle {
-		margin-left: 5px;
-	}
-	#searchresults .pageSubTitle {
-		margin-left: 5px;
-	}
-
-	
-	/*
-	#booksearchresults .pageSubTitle {
-		margin-left: 5px;
-	}
-	*/
-	/*.booktitle div{   
-     	white-space: nowrap;  
-     	overflow: hidden;  
-     	text-overflow: ellipsis;   
-     	-o-text-overflow: ellipsis;  
-		-moz-binding: url('xml/ellipsis.xml#ellipsis');  
-		width: 400px;
-	}*/
-
-/*A space to notify , give feedback to user what they just did, eg. have just deleted a book */	
-#notification{
-	width: 800px;
-	margin-left:auto;
-	margin-right:auto;
+	/*border-radius: 5px;*/
+	border: solid 1px #aaa;
+	margin: 10px;
 	padding: 5px;
-	border: 0px gray solid;
-	background-color: #FFFFE0;
-	display: none;	
-}
-	#notification.show{
-		display: block;
+	background: white;
+	width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	/*overflow: hidden;*/
+	
 	}
-	#notification.hide{
-		display: none;
-}
 
-.hide {
-	display: none;
-}
+	.contentarea table {
+		width: 98%;
+		border-spacing: 0px 3px;
+		margin-left: 1%;
+		margin-right: 1%;
+	}
 
-/* Dashbaord message header */
-.header {
-	font-size: 20px;
-	margin:10px;
-}
+	.contentarea table thead tr {
+		background: #ddd;
+	}
 
-#yourrequests p {
-	color: #1E90FF; /**/	
-}
+	.contentarea table tbody tr {
+		background: #eee;
+		border-spacing: 5px;
+	}
 
-#othersrequests p{
-	color: red;
-}
-#deliveryconfirmations p{
-	color: 	#DAA520; /*goldrod*/
-}
-#receiveconfirmations p {
-	color: #DAA520;
-}
-#returnconfirmations p {
-	color: orange;
-}
-#notificationmessagearea p {
-	color: #9ACD32;
-}
-#booksborrowedlist p {
-	color: green;
-}
+	.contentarea table tbody tr {
+		background: #eee;
+		border-spacing: 5px;
+	}
+	
+		
+	/*DASHBOARD STARTS*/	
+		/*A space to notify , give feedback to user what they just did, eg. have just deleted a book */	
+		#notification{
+			width: 800px;
+			margin-left:auto;
+			margin-right:auto;
+			padding: 5px;
+			border: 0px gray solid;
+			background-color: #FFFFE0;
+			display: none;	
+		}
+			#notification.show{
+				display: block;
+			}
+			#notification.hide{
+				display: none;
+		}
+
+		.hide {
+			display: none;
+		}
+
+		/* Dashbaord message header */
+		.header {
+			font-size: 20px;
+			margin:10px;
+		}
+
+		#yourrequests p {
+			color: #1E90FF; /**/	
+		}
+
+		#othersrequests p{
+			color: red;
+		}
+		#deliveryconfirmations p{
+			color: 	#DAA520; /*goldrod*/
+		}
+		#receiveconfirmations p {
+			color: #DAA520;
+		}
+		#returnconfirmations p {
+			color: orange;
+		}
+		#notificationmessagearea p {
+			color: #9ACD32;
+		}
+		#booksborrowedlist p {
+			color: green;
+		}
+	
+		
+	
+	/*DASHBOARD ENDS*/	
+	
+	
+	
+	/*MY BOOKS*/
+	
+		#mybooklist .pageSubTitle {
+			margin-left: 5px;
+		}
+		#searchresults .pageSubTitle {
+			margin-left: 5px;
+		}
+
+		
+		/*
+		#booksearchresults .pageSubTitle {
+			margin-left: 5px;
+		}
+		*/
 
 
 
 
 
-/* footer */
-#footer {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#footernavigation {
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-	margin: 0px;
-	padding: 0px;
-	list-style-type: none;
-}
-
-#footernavigation li {
-	display: inline;	
-	/*background-color: #ccc;*/
-	padding-left: 15px;
-	padding-right: 15px;
-}
 
 
-
-#copyrightstatement {
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-}
-
-
+	
 /*
 #confirmationmessagearea.contentarea{
 	overflow: hidden;
@@ -260,49 +275,42 @@
 	overflow:hidden;
 }
 */
-.contentarea  {
+
+	/*Truncate book list in other's profile */
+
+	#profilebooktitle div{   
+     	white-space: nowrap;  
+     	overflow: hidden;  
+     	text-overflow: ellipsis;   
+     	-o-text-overflow: ellipsis;  
+		-moz-binding: url('xml/ellipsis.xml#ellipsis');  
+		width: 350px;
+	}
 	
-	/*border-radius: 5px;*/
-	border: solid 1px #aaa;
-	margin: 10px;
-	padding: 5px;
-	background: white;
-	width: 800px;
-	margin-right: auto;
-	margin-left: auto;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	/*overflow: hidden;*/
+	#profilebookauthor div{   
+     	white-space: nowrap;  
+     	overflow: hidden;  
+     	text-overflow: ellipsis;   
+     	-o-text-overflow: ellipsis;  
+		-moz-binding: url('xml/ellipsis.xml#ellipsis');  
+		width: 150px;
+	}
+	/*belong to a td*/
+	#profilebooktitle {
+		width: 350px;
+	}
 	
-}
+	#profilebookauthor {
+		width: 150px;
+	}
+	
+	#profileisbn {
+		width: 100px;
+	}
 
-.contentarea table {
-	width: 98%;
-	border-spacing: 0px 3px;
-	margin-left: 1%;
-	margin-right: 1%;
-}
-
-.contentarea table thead tr{
-	background: #ddd;
-}
-
-.contentarea table tbody tr{
-	background: #eee;
-	border-spacing: 5px;
-}
-
-.contentarea table tbody tr{
-	background: #eee;
-	border-spacing: 5px;
-}
-
-
-#frontpagecontent {
-	margin-top: 100px;
-	margin-bottom: 100px;
-}
+	/*Truncate book list in other's profile */
+	
+	
 
 /* These are the button columns, they are all the same width */
 .yourrequestsbutton , .othersrequestsacceptbutton, .othersrequestsdenybutton, 
@@ -476,31 +484,73 @@ button {
 }
 
 /*Larry*/
-.button-container form,
-.button-container form div#firstbutton, form div#secondbutton {
-    display: inline;
-}
 
-.button-container input {
-    display: inline;
 
-}
-/**/
-#searchterm {
-	color: green;
-}
- a {
-	text-decoration:none;
- }
+	
+	/* SEARCH STARTS */
+		#searchterm {
+			color: green;
+		}
+	
+	/* SEARCH ENDS */
 
- /*TRUNCATE TEXT*/
+	/* FOOTER STARTS */
+		#footer {
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		#footernavigation {
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+			margin: 0px;
+			padding: 0px;
+			list-style-type: none;
+		}
+
+		#footernavigation li {
+			display: inline;	
+			/*background-color: #ccc;*/
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+
+
+
+		#copyrightstatement {
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+
+	/*FOOTER ENDS*/
+	
+	/*GERNERAL STARTS*/
+		 a {
+			text-decoration:none;
+		}
+
+		.button-container form,
+		.button-container form div#firstbutton, form div#secondbutton {
+			display: inline;
+		}
+
+		.button-container input {
+			display: inline;
+		}
+
+	/*GERNERAL STARTS*/
+	
+	
+ /*TRUNCATE TEXT
     .ellipsis {  
         white-space: nowrap;  
         overflow: hidden;  
         text-overflow: ellipsis;  
-        -o-text-overflow: ellipsis;  /*opera*/
-		-ms-text-overflow: ellipsis; /*microsoft*/
-      /*  -moz-binding: url('xml/ellipsis.xml#ellipsis');  /*mozilla*/
-    }  
+        -o-text-overflow: ellipsis;  
+		-ms-text-overflow: ellipsis; 
+        -moz-binding: url('ellipsis.xml#ellipsis');  
+    }  */
 
 	

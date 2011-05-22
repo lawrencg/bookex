@@ -270,9 +270,9 @@
 			$rows = pg_num_rows($available);
 			while($records = pg_fetch_array($available)) {
 				echo '										<tr>';
-				echo '											<td class="booktitle"><a href="bookdetails.php?id=' .$records[0]. '">' .$records[1]. '</a></td>';
-				echo '											<td class="bookauthor">' . $records[4] .'</td>';
-				echo '											<td class="bookisbn">'; 
+				echo '											<td class="booktitle ellipsis" id="profilebooktitle"><div><a href="bookdetails.php?id=' .$records[0]. '">' .$records[1]. '</a></div></td>';
+				echo '											<td class="bookauthor" id="profilebookauthor"><div>' . $records[4] .'</div></td>';
+				echo '											<td class="bookisbn" id="profileisbn">'; 
 				if ($records[2] != ''){
 					echo $records[2];
 				} else {
@@ -285,9 +285,9 @@
 				echo '										</tr>';			
 				while($records = pg_fetch_array($available)){
 					echo '										<tr>';
-					echo '											<td class="booktitle"><a href="bookdetails.php?id=' .$records[0]. '">' .$records[1]. '</a></td>';
-					echo '											<td class="bookauthor">' . $records[4] .'</td>';
-					echo '											<td class="bookisbn">' . $records[2] . '</td>';
+					echo '											<td class="booktitle ellipsis" id="profilebooktitle"><div><a href="bookdetails.php?id=' .$records[0]. '">' .$records[1]. '</a></div></td>';
+					echo '											<td class="bookauthor" id="profilebookauthor"><div>' . $records[4] .'</div></td>';
+					echo '											<td class="bookisbn" id="profileisbn">' . $records[2] . '</td>';
 					echo '											<td class="requestbutton">';
 					request_button($records[0]);
 					echo '</td>';
