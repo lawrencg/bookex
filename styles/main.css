@@ -13,44 +13,41 @@
 }
 
 
-
 #frontpagetopnavigationlist {
 	float: right;
 	margin-right: 10px;
  	margin-bottom: 25px;
 }
-
-
+/*#1 TOP STARTS*/
+/*HEAD THAT INCLUDE THE LOGO*/
 #header {
 	width: 300px;
 	float:left;
 }
 
-#bookexlogo {
-	font-size: 72px;
-	width: 300px;
-	float: left;
-	height: 85px;
-	margin-top: 15px;
-	
-	
-}
+	#bookexlogo {
+		font-size: 72px;
+		width: 300px;
+		float: left;
+		height: 85px;
+		margin-top: 15px;
+	}
 
-#bookexlogo img{
-	height: 70px;
-}
+	#bookexlogo img{
+		height: 70px;
+	}
 
-#bookexlogo.frontpageonly {
-	text-align:center;
-	width:848px;
-	height: 110px;	
-}
+	#bookexlogo.frontpageonly {
+		text-align:center;
+		width:848px;
+		height: 110px;	
+	}
 
-#bookexlogo.frontpageonly img{
-	height: 100px;
-}
+	#bookexlogo.frontpageonly img{
+		height: 100px;
+	}
 
-/* search */
+/* SEARCH */
 #search {
 	float: right;
 	margin-left: 0px;
@@ -60,9 +57,7 @@
 	select {
 		width: 100px;
 	}
-	
-	
-	
+/*NAVIGATION*/	
 #navigation {
 	float: right;
 	margin-right: 0px;
@@ -74,7 +69,6 @@
 		padding: 0px;
 		list-style-type: none;
 	}
-
 
 	#navigation ul li {
 		display: inline;
@@ -107,7 +101,7 @@
 		text-decoration: none;
 		color: #aaaaaa;
 	}
-	
+	/*IN THE PHP*/
 	#activenavmenu {
 		color: black;	
 	}
@@ -115,9 +109,9 @@
 	ul li a:visited {
 		color: blue;
 	}
-	
-	
-/*Page start*/
+/*#1 TOP ENDS*/
+		
+/*#2 PAGE STARTS*/
 #page {
 	clear: both;
 	margin: 10px;
@@ -141,7 +135,6 @@
 		margin-left: 20px;
 	}
 
-/*Page end*/
 	
 	
 	#mybooklist .pageSubTitle {
@@ -300,6 +293,10 @@
 	border-spacing: 5px;
 }
 
+.contentarea table tbody tr{
+	background: #eee;
+	border-spacing: 5px;
+}
 
 
 #frontpagecontent {
@@ -496,5 +493,14 @@ button {
 	text-decoration:none;
  }
 
+ /*TRUNCATE TEXT*/
+    .ellipsis {  
+        white-space: nowrap;  
+        overflow: hidden;  
+        text-overflow: ellipsis;  
+        -o-text-overflow: ellipsis;  /*opera*/
+		-ms-text-overflow: ellipsis; /*microsoft*/
+      /*  -moz-binding: url('xml/ellipsis.xml#ellipsis');  /*mozilla*/
+    }  
 
-
+	
