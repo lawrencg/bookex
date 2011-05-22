@@ -96,7 +96,7 @@
 		displaybookimage();
 		echo "
 		<form action='' id='defaultform' name='book' method='post'>
-			<div><input type='hidden' value='{$bookex_id}' id='book_id' name='book_id' />
+			<div class=\"hide\"><input type='hidden' value='{$bookex_id}' id='book_id' name='book_id' />
 			<input type='hidden' value='{$owner_id}' id='ownerid' name='ownerid' />	
 			<input type='hidden' value='{$title}' id='title' name='title' />	
 			<input type='hidden' value='{$authorfirst}' id='authorfirst' name='authorfirst' />	
@@ -105,10 +105,10 @@
 			<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />	
 			<input type='hidden' value='{$course}' id='course' name='course' />	
 			<input type='hidden' value='{$cond}' id='condition' name='condition' />					
-			<div><label>Title:</label><div>{$title}</div></div>
 			<input type='hidden' value='{$note}' id='description' name='description' />
 			<input type='hidden' id='available' name='available' value='{$status}' /></div>
-
+			
+			<div><label>Title:</label><div>{$title}</div></div>
 			<div><label>Author First Name:</label><div>{$authorfirst}</div></div>		
 			<div><label>Author Last Name:</label><div>{$authorlast}</div></div>		
 			<div><label>ISBN-10:</label><div>{$isbn10}</div></div>
