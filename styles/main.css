@@ -111,6 +111,11 @@
 		color: black;	
 	}
 	
+	#specialnav:hover{
+		text-decoration: none;
+		color: #aaaaaa;
+	}
+	
 	ul li a:visited {
 		color: blue;
 	}
@@ -529,6 +534,7 @@ button {
 	/*GERNERAL STARTS*/
 		 a {
 			text-decoration:none;
+			color: blue;
 		}
 
 		.button-container form,
