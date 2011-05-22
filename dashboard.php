@@ -132,7 +132,7 @@
 				$firsttime = false;
 			}
 			echo '									<tr>' . "\n";
-			echo '										<td class="yourrequestsmessage">'.$records[5].' has requested to borrow "'.$records[3]."</td>\n";
+			echo '										<td class="yourrequestsmessage">'.$records[5].' has requested to borrow "'.$records[3]."\"</td>\n";
 			echo '										<td class="othersrequestsacceptbutton">' . "\n";
 			createbutton('acceptbookrequest','Accept',$records[0]);
 			echo '										</td>' . "\n";
