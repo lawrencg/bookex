@@ -111,7 +111,19 @@
 		color: black;	
 	}
 	
-	#specialnav:hover{
+	#dashboardhover:hover{
+		text-decoration: none;
+		color: #aaaaaa;
+	}
+	#mybookshover:hover{
+		text-decoration: none;
+		color: #aaaaaa;
+	}
+	#profilehover:hover{
+		text-decoration: none;
+		color: #aaaaaa;
+	}
+	#bughover:hover{
 		text-decoration: none;
 		color: #aaaaaa;
 	}
@@ -145,6 +157,35 @@
 		margin-left: 20px;
 	}
 		
+	#addbookplussign {
+		font-size: 20px;
+		vertical-align: middle;
+		padding: 0px 10px 3px;
+		
+	}	
+	#addbookplussign a {
+		color: gray;
+		font-weight: bold;
+	}
+	#addbookplussign a span{
+		display: none;
+	}
+	
+	#addbookplussign a:hover  span{
+		font-size: 12px;
+		display: inline;
+		position: absolute;
+		font-weight: normal;
+		color: #5A5A5A;	
+		background-color: #FAFAD2;
+		border: 1px gray solid;
+		padding: 3px;
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		border-radius: 3px;
+		font-family: arial, sanserif;
+	}
+	
 	.contentarea  {
 	
 	/*border-radius: 5px;*/
@@ -198,9 +239,10 @@
 			#notification.show{
 				display: block;
 			}
+			
 			#notification.hide{
 				display: none;
-		}
+			}
 
 		.hide {
 			display: none;
@@ -235,8 +277,15 @@
 			color: green;
 		}
 	
+		.notificationsmessageclose {
+			width: 70px;
+			text-align: center;			
+		}
+		.notificationsmessageclose  a {
+			color: gray;
+			
+		}
 		
-	
 	/*DASHBOARD ENDS*/	
 	
 	
@@ -257,7 +306,7 @@
 		}
 		*/
 
-
+		
 
 
 
@@ -469,29 +518,33 @@ button {
 	margin: 10px;
 }
 
-#defaultform div {
-	min-height: 2em;
-} 
+	#defaultform div {
+		min-height: 2em;
+	} 
 
-/* For the details screen, the details are wrapped in a div.. so float it */
-#defaultform div  div{
-	/*float: left;*/
-} 
-#defaultform label {
-	clear: left;
-	float: left;
-	width: 10em;
-}
+	/* For the details screen, the details are wrapped in a div.. so float it */
+	/*the value after label*/
+	#defaultform div  div{
+		float: left;
+		font-size: 20px;
+		width: 380px;
+	} 
 
-#defaultform input[type='text'] {
-	width: 28em;
-}
+	#defaultform label {
+		clear: left;
+		float: left;
+		width: 10em;
+	}
 
-#defaultform textarea {
-	width: 41em;
-	height: 6em;
-	
-}
+	#defaultform input[type='text'] {
+		width: 28em;
+	}
+
+	#defaultform textarea {
+		width: 380px;
+		height: 6em;
+		
+	}
 
 .bookDescription {
 	max-width: 500px;
@@ -585,7 +638,14 @@ button {
 		#searchterm {
 			color: green;
 		}
-	
+		
+		#personsbooknumber {
+			width: 80px;
+			text-align: left;
+			margin-right: 30px;
+		}
+		
+		
 	/* SEARCH ENDS */
 
 	/* FOOTER STARTS */

@@ -118,7 +118,7 @@
 	include 'includes/siteheader.php';
 	echo '		<div id="page">' . "\n";
 	echo '			<div id="maincontent">' . "\n";
-	echo '				<div class="pageTitle">My Books<span id="addbookplussign"><a href="addbook.php">[+]</a></span></div>' . "\n";
+	echo '				<div class="pageTitle">My Books<span id="addbookplussign"><a href="addbook.php">[+]<span>Add a Book</span></a> </span></div>' . "\n";
 	
 	if($errormessage != ''){
 		echo '				<div id="notification" class="show">'.$errormessage.'</div>' . "\n";

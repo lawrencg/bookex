@@ -54,11 +54,11 @@
 		</div>
 		<div id="navigation">
 			<ul id="topnavigationlist">
-				<li id="dashboard"><a <?php if($page == 'dashboard'): ?> id="activenavmenu"<?php else: ?> id="specialnav"<?php endif ?> href="dashboard.php">Dashboard</a></li>
-				<li id="mybooks"><a <?php if($page == 'mybooks' || $page == 'addbook'): ?> id="activenavmenu"<?php else: ?> id="specialnav"<?php endif ?> href="mybooks.php">My Books</a></li>
-				<li id="profile"><a <?php if($page == 'profile' && $person == $user): ?> id="activenavmenu"<?php else: ?> id="specialnav"<?php endif ?> href="profile.php">My Profile</a></li>
+				<li id="dashboard"><a <?php if($page == 'dashboard'): ?> id="activenavmenu"<?php else: ?> id="dashboardhover"<?php endif ?> href="dashboard.php">Dashboard</a></li>
+				<li id="mybooks"><a <?php if($page == 'mybooks' || $page == 'addbook'): ?> id="activenavmenu"<?php else: ?> id="mybookshover"<?php endif ?> href="mybooks.php">My Books</a></li>
+				<li id="profile"><a <?php if($page == 'profile' && $person == $user): ?> id="activenavmenu"<?php else: ?> id="profilehover"<?php endif ?> href="profile.php">My Profile</a></li>
 				<li id="logout"><a href="https://weblogin.washington.edu/logout/">Logout</a></li>
-				<li id="submitbug"><a <?php if($page == 'submitbug'): ?> id="activenavmenu"<?php else: ?> id="specialnav"<?php endif ?> href="submitbug.php">Submit a Bug</a></li>
+				<li id="submitbug"><a <?php if($page == 'submitbug'): ?> id="activenavmenu"<?php else: ?> id="bughover"<?php endif ?> href="submitbug.php">Submit a Bug</a></li>
 			</ul>
 		</div>
 	</div>

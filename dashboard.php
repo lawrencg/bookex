@@ -295,7 +295,7 @@
 			if($message != ''){
 				echo '									<tr>' . "\n";
 				echo '										<td class="notificationsmessage">'.$message.'</td>' . "\n";
-				echo '										<td class="notificationsmessageclose"><a href="?type=confirm&notification='.$records[0].'">[close]</a></td>' . "\n";
+				echo '										<td class="notificationsmessageclose"><a href="?type=confirm&notification='.$records[0].'">[ok]</a></td>' . "\n";
 				echo '									</tr>' . "\n";
 				$messages = true;
 			}

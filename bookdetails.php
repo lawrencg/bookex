@@ -113,7 +113,7 @@
 			<div><label>Author Last Name:</label><div>{$authorlast}</div></div>		
 			<div><label>ISBN-10:</label><div>{$isbn10}</div></div>
 			<div><label>ISBN-13:</label><div>{$isbn13}</div></div>			
-			<div><label>Course:</label><div></div></div>			
+			<div><label>Course:</label><div>{$course}</div></div>			
 			<div><label>Condition:</label><div><select name='dropdown' disabled='disabled'><option value='{$cond}' selected='selected'>{$cond}</option></select></div></div>	
 			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='description' style='vertical-align:text-top;' disabled='disabled'>{$note}</textarea></div></div>
 			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' checked='{$status}' disabled='disabled' /></div></div>" ;
