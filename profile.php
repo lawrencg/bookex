@@ -58,7 +58,7 @@
 		}
 		echo '							</form>';
 		
-		if($person != $_SERVER['REMOTE_USER']){
+		if($person != $user){
 			userbooks();
 		}
 	}
@@ -273,10 +273,10 @@
 				echo '											<td class="booktitle ellipsis" id="profilebooktitle"><div><a href="bookdetails.php?id=' .$records[0]. '">' .$records[1]. '</a></div></td>';
 				echo '											<td class="bookauthor" id="profilebookauthor"><div>' . $records[4] .'</div></td>';
 				echo '											<td class="bookisbn" id="profileisbn">'; 
-				if ($records[2] != ''){
-					echo $records[2];
-				} else {
+				if ($records[3] != ''){
 					echo $records[3];
+				} else {
+					echo $records[2];
 				}
 				echo '</td>';
 				echo '											<td class="requestbutton">';
@@ -287,7 +287,13 @@
 					echo '										<tr>';
 					echo '											<td class="booktitle ellipsis" id="profilebooktitle"><div><a href="bookdetails.php?id=' .$records[0]. '">' .$records[1]. '</a></div></td>';
 					echo '											<td class="bookauthor" id="profilebookauthor"><div>' . $records[4] .'</div></td>';
-					echo '											<td class="bookisbn" id="profileisbn">' . $records[2] . '</td>';
+					echo '											<td class="bookisbn" id="profileisbn">';
+					if ($records[3] != ''){
+						echo $records[3];
+					} else {
+						echo $records[2];
+					}					
+					echo '</td>';
 					echo '											<td class="requestbutton">';
 					request_button($records[0]);
 					echo '</td>';
@@ -307,7 +313,12 @@
 	
 	echo '		<div id="page">' . "\n";
 	echo '			<div id="maincontent">' . "\n";
-	echo '				<div class="pageTitle">Profile</div>' . "\n";
+	if($person == $user){
+			echo '				<div class="pageTitle">My Profile</div>' . "\n";
+	} else {
+			echo '				<div class="pageTitle">Profile</div>' . "\n";
+	}
+	
 	if($errormessage != '')
 		echo '				<div id="notification" class="show">' . $errormessage . '</div>' . "\n";
 	
