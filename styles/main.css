@@ -281,8 +281,97 @@
 }
 */
 
-	/*Truncate book list in other's profile */
 
+	#mybooksbooktitle div{   
+     	white-space: nowrap;  
+     	overflow: hidden;  
+     	text-overflow: ellipsis;   
+     	-o-text-overflow: ellipsis;  
+		-moz-binding: url('xml/ellipsis.xml#ellipsis');  
+		width: 350px;
+	}
+
+	#mybooksbooktitle {
+		width: 350px;
+	}
+
+	#mybooksborrower div {
+		white-space: nowrap;  
+     	overflow: hidden;  
+     	text-overflow: ellipsis;   
+     	-o-text-overflow: ellipsis;  
+		-moz-binding: url('xml/ellipsis.xml#ellipsis');  
+		width: 150px;
+	}
+	#mybooksborrower {
+		width: 150px;
+	}
+	
+	#mybooksduedate {
+		width: 100px;
+	}	
+	
+	#mybooksstatus {
+		width: 110px;
+	}
+	
+	/*Book Results truncate*/
+	
+	#bookresultsbooktitle div {
+		white-space: nowrap;  
+     	overflow: hidden;  
+     	text-overflow: ellipsis;   
+     	-o-text-overflow: ellipsis;  
+		-moz-binding: url('xml/ellipsis.xml#ellipsis');  
+		width: 310px;
+	}
+	#bookresultsbooktitle {
+		width: 320px;
+	}
+	
+	#bookresultsauthorlastname div {
+		white-space: nowrap;  
+     	overflow: hidden;  
+     	text-overflow: ellipsis;   
+     	-o-text-overflow: ellipsis;  
+		-moz-binding: url('xml/ellipsis.xml#ellipsis');  
+		width: 100px;
+	}
+	
+	#bookresultsauthorlastname {
+		width: 100px;
+	}
+	
+	#bookresultsbookisan div {
+		white-space: nowrap;  
+     	overflow: hidden;  
+     	text-overflow: ellipsis;   
+     	-o-text-overflow: ellipsis;  
+		-moz-binding: url('xml/ellipsis.xml#ellipsis');  
+		width: 105px;
+	}
+	
+	#bookresultsbookisan {
+		width: 105px;
+	}
+	
+	#bookresultsbookowner  div {
+		white-space: nowrap;  
+     	overflow: hidden;  
+     	text-overflow: ellipsis;   
+     	-o-text-overflow: ellipsis;  
+		-moz-binding: url('xml/ellipsis.xml#ellipsis');  
+		width: 130px;
+	}
+		
+	#bookresultsbookowner {
+		width: 130px;
+	}
+	
+	
+	
+	
+	/*Truncate book list in other's profile */
 	#profilebooktitle div{   
      	white-space: nowrap;  
      	overflow: hidden;  
@@ -300,7 +389,7 @@
 		-moz-binding: url('xml/ellipsis.xml#ellipsis');  
 		width: 150px;
 	}
-	/*belong to a td*/
+	
 	#profilebooktitle {
 		width: 350px;
 	}
@@ -310,7 +399,7 @@
 	}
 	
 	#profileisbn {
-		width: 100px;
+		width: 110px;
 	}
 
 	/*Truncate book list in other's profile */
