@@ -257,10 +257,12 @@
 		while($records = pg_fetch_array($returned)) {
 			echo '									<tr>' . "\n";
 			echo '										<td class="notificationsmessage">'.$records[1].'</td>' . "\n";
+			echo '										<td class="notificationsmessage">&nbsp;</td>' . "\n";
 			echo '									</tr>' . "\n";
 			$notifications = true;
 		}
-		if(!$notifications && !borrowloanupdates()){
+		$update = borrowloanupdates();
+		if(!$notifications && !$update){
 			echo '									<tr>' . "\n";
 			echo '										<td class="notificationsmessage">No Notifications.</td>' . "\n";
 			echo '									</tr>' . "\n";
@@ -270,27 +272,33 @@
 		echo '				</div>' . "\n";
 	}
 	function borrowloanupdates(){
+		global $user;
 		$messages = false;
-		$returned = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND viewed = 'FALSE'") ;
+		$returned = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = '" . $user . "' AND viewed = 'FALSE'"); 
 			//or die('Query failed: ' . pg_last_error()); 
 		while($records = pg_fetch_array($returned)) {
 			$message = '';
 			switch ($records[4]) {
-				case 'Denied' || 'Already Loaned':
+				case 'Denied':
+					$message = "{$records[6]} has either denied your request to borrow \"{$records[3]}\" or loaned it to someone else.";
+					break;
+				case 'Already Loaned':
 					$message = "{$records[6]} has either denied your request to borrow \"{$records[3]}\" or loaned it to someone else.";
 					break;
 				case 'Awaiting Delivery':
 					$message = "{$records[6]} has accepted your request to borrow \"{$records[3]}\". Please contact them for delivery details.";
 					break;
 				default:
-					$message = "Transaction ID: {$records[0]}";
+					//$message = "Transaction ID: {$records[0]}";
 					break;	
 			}
-			
-			echo '									<tr>' . "\n";
-			echo '										<td class="notificationsmessage">'.$message.'</td>' . "\n";
-			echo '									</tr>' . "\n";
-			$messages = true;
+			if($message != ''){
+				echo '									<tr>' . "\n";
+				echo '										<td class="notificationsmessage">'.$message.'</td>' . "\n";
+				echo '										<td class="notificationsmessageclose"><a href="?type=confirm&notification='.$records[0].'">[close]</a></td>' . "\n";
+				echo '									</tr>' . "\n";
+				$messages = true;
+			}
 		}
 		return $messages;
 	}
@@ -359,27 +367,27 @@
 		} else if (isset($_POST['ourstory'])){
 			ourstory();
 		} else if (isset($_POST['delivered'])){
-			pg_query("SELECT deliverbook('{$_POST['transid']}'::integer,'{$user}'::varchar)") ;
+			pg_query("SELECT deliverbook('".pg_escape_string($_POST['transid'])."'::integer,'{$user}'::varchar)") ;
 				//or die('Query failed: ' . pg_last_error()); 
 		# The requestor now has the book			
 		} else if (isset($_POST['confirmdelivery'])){
-			pg_query("SELECT confirmdelivery('{$_POST['transid']}'::integer,'{$user}'::varchar)") ;
+			pg_query("SELECT confirmdelivery('".pg_escape_string($_POST['transid'])."'::integer,'{$user}'::varchar)") ;
 				//or die('Query failed: ' . pg_last_error()); 
 		# The user returned the book to the owner
 		} else if (isset($_POST['return'])){
-			pg_query("SELECT returnbooktoowner('{$_POST['transid']}'::integer,'{$user}'::varchar)") ;
+			pg_query("SELECT returnbooktoowner('".pg_escape_string($_POST['transid'])."'::integer,'{$user}'::varchar)") ;
 				//or die('Query failed: ' . pg_last_error()); 
 		# The user confirmed that the book was returned to them.				
 		} else if (isset($_POST['confirmreturnedbook'])){
-			pg_query("SELECT confirmreturnedbook('{$_POST['transid']}'::integer,'{$user}'::varchar)") ;
+			pg_query("SELECT confirmreturnedbook('".pg_escape_string($_POST['transid'])."'::integer,'{$user}'::varchar)") ;
 				//or die('Query failed: ' . pg_last_error()); 
 		# The user canceled a book request.			
 		} else if (isset($_POST['cancelrequest'])){
-			pg_query("SELECT cancelrequest('{$_POST['transid']}'::integer,'{$user}'::varchar)") ;
+			pg_query("SELECT cancelrequest('".pg_escape_string($_POST['transid'])."'::integer,'{$user}'::varchar)") ;
 				//or die('Query failed: ' . pg_last_error()); 
 		# The user denied a book request.			
 		} else if (isset($_POST['deny'])){
-			pg_query("SELECT denybookrequest('{$_POST['transid']}'::integer,'{$user}'::varchar)") ;
+			pg_query("SELECT denybookrequest('".pg_escape_string($_POST['transid'])."'::integer,'{$user}'::varchar)") ;
 				//or die('Query failed: ' . pg_last_error()); 
 		} else if (isset($_POST['register'])){
 			register_user();
@@ -390,7 +398,14 @@
 		} else if (isset($_POST['sendbug'])){
 			submitbug();
 		}
+	} else if ($_SERVER['REQUEST_METHOD'] == 'GET') {	
+		if (isset($_GET['type'])){
+			if($_GET['type'] == 'confirm'){
+				pg_query("SELECT closenotificationmessage('".pg_escape_string($_GET['notification'])."'::integer,'{$user}'::varchar)"); 
+			}
+		}
 	}
+	
 	include 'includes/dashboard_0_header.php';
 	include 'includes/siteheader.php';
 	
