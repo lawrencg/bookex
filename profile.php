@@ -52,7 +52,7 @@
 		echo '								<div><label>UW NetID:</label><div>' . $myinfoNetID . '</div></div>';
 		
 		if($myEmail == ''){
-			$myEmail = $user . '@uw.edu';
+			$myEmail = $myinfoNetID . '@uw.edu';
 		}
 		
 		echo '								<div><label>E-mail:</label><div>' . $myEmail . '</div></div>';
