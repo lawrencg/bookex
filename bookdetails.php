@@ -91,8 +91,8 @@
 		# Convert the POST value of a checkbox.
 		# Unnecessary??
 		if($status == 'on'){
-			$status	= 'checked';
-		}
+			$status	= 'checked="checked"';
+		} 
 		displaybookimage();
 		echo "
 		<form action='' id='defaultform' name='book' method='post'>
@@ -116,7 +116,7 @@
 			<div><label>Course:</label><div>{$course}</div></div>			
 			<div><label>Condition:</label><div><select name='dropdown' disabled='disabled'><option value='{$cond}' selected='selected'>{$cond}</option></select></div></div>	
 			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='description' style='vertical-align:text-top;' disabled='disabled'>{$note}</textarea></div></div>
-			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' checked='{$status}' disabled='disabled' /></div></div>" ;
+			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' {$status} disabled='disabled' /></div></div>" ;
 			
 		# Security feature. Check to see if the owner is the UW NetID that is logged in.
 		$user = $_SERVER['REMOTE_USER'];
@@ -139,8 +139,8 @@
 		# Convert the POST value of a checkbox.
 		# Unnecessary??
 		if($status == 'on'){
-			$status	= 'checked';
-		}
+			$status	= 'checked="checked"';
+		} 
 		displaybookimage();	
 		echo " 
 		<form action='' id='defaultform' name='book' method='POST'>
@@ -157,7 +157,7 @@
 			<div><label>ISBN-13:</label><div>{$isbn13}</div></div>
 			<input type='hidden' value='{$isbn13}' id='isbn13' name='isbn13' />
 			
-			<div><label>Course:</label><div><input type='text' value='{$course}' id='course' name='course' /></div></div>
+			<div><label>Course:</label><div><input type='text' value='{$course}' id='course' name='course' maxlength='8' size='8' /></div></div>
 						
 			<div><label>Condition:</label><div><select name='condition'>";
 					
@@ -197,7 +197,7 @@
 		# Convert the POST value of a checkbox.
 		# Unnecessary??
 		if($status == 'on'){
-			$status	= 'checked';
+			$status	= 'checked="checked"';
 		}
 		echo "
 		<div id='page'>
@@ -235,7 +235,7 @@
 			<input type='hidden' value='{$cond}' id='condition' name='condition' />			
 			<div><label>Description:</label><div class='bookDescription'><textarea cols='40' rows='5' id='frame' name='description' style='vertical-align:text-top;' virtual disabled='disabled'>{$note}</textarea></div></div>
 			<input type='hidden' value='{$note}' id='description' name='description' />
-			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' checked='{$status}' disabled='disabled' /></div></div>
+			<div><label>Available for loan?:</label><div><input type='checkbox' id='box' name='box' {$status} disabled='disabled' /></div></div>
 			<input type='hidden' id='available' name='available' value='{$status}' />" ;
 		
 		# Security feature. Check to see if the owner is the UW NetID that is logged in.
