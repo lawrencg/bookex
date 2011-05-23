@@ -50,6 +50,11 @@
 		echo '								<div><label>First Name:</label><div>'. $myinfoFirstName . '</div></div>';
 		echo '								<div><label>Last Name:</label><div>' . $myinfoLastName . '</div></div>';
 		echo '								<div><label>UW NetID:</label><div>' . $myinfoNetID . '</div></div>';
+		
+		if($myEmail == ''){
+			$myEmail = $user . '@uw.edu';
+		}
+		
 		echo '								<div><label>E-mail:</label><div>' . $myEmail . '</div></div>';
 		echo '								<div><label>Major:</label><div>' . $myMajor . '</div></div>';
 
