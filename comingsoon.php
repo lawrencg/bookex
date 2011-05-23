@@ -11,10 +11,24 @@
 	require 'includes/valid_user.php';
 
 	function features(){
-		echo "<div></div>";
+		echo "<div><p>First of all, we would like to thank everyone who has given us input on our project so far. To give you a view of things to come,
+				we have the following list of features we are planning to add. Many of the great ideas have come our User Testing with UW students. Keep 
+				logging into BookEx to see how we are coming along.<br /><br />Thanks,<br /><i>The BookEx Team</i></p><ul>
+				<li>User ratings</li>
+				<li>User messaging from within BookEx for delivery coordination</li>
+				<li>Add books by title</li>
+				<li>Add books with a smartphone barcode scanner</li>
+				<li>Transaction history for your books</li>
+				<li>Transaction history individual users</li>
+				<li>Search for books by course</li>
+				<li>&quot;You have saved $&quot; messages</li>
+				<li>Remove your BookEx account instantly</li>
+				<li>Remove your profile picture without uploading a new one</li>
+				<li>Dashboard customization</li>
+				</ul></div><br />";
 	}
 	
-	include 'includes/commingsoon_0_header.php';
+	include 'includes/comingsoon_0_header.php';
 	include 'includes/siteheader.php';
 	
 	echo '		<div id="page">' . "\n";
