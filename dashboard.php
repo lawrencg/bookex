@@ -346,7 +346,7 @@
 		if($firsttime){
 			echo '						<table id="booksborrowingtable">' . "\n";
 			echo '							<tr>' . "\n";
-			echo '								<td class="booktitle">You are currently not borrwing any books.</td>' . "\n";
+			echo '								<td class="booktitle">You are currently not borrowing any books.</td>' . "\n";
 			echo '							</tr>' . "\n";
 		} 
 		echo '						</table>' . "\n";
