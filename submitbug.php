@@ -17,7 +17,7 @@
 		<p>The following information will also be sent:</p>
 		<input type='hidden' id='data' name='data' />
 		<textarea cols='80' rows='12' id='display' 
-			name='display' style='vertical-align:text-top;resize:none;' virtual disabled /></textarea><br /><br />";
+			name='display' style='vertical-align:text-top;resize:none;' virtual disabled /></textarea><br /><br />" . "\n";
 		$user = $_SERVER['REMOTE_USER'];
 		echo "<script type=\"text/javascript\">
 		txt = \"Browser CodeName: \" + navigator.appCodeName + \"\\n\";
@@ -33,12 +33,12 @@
 		txt+= \"User Domain: {$_SERVER['REMOTE_HOST']}\" + \"\\n\";
 		document.getElementById(\"display\").innerHTML=txt;
 		document.getElementById(\"data\").value=txt;
-		</script>";
+		</script>" . "\n";
 		echo "
-		<div id='firstbutton'><input type='submit' name='sendbug' value='Submit' style='margin-left:10px' /></div>";
-		echo "</form>";
+		<div id='firstbutton'><input type='submit' name='sendbug' value='Submit' style='margin-left:10px' /></div>" . "\n";
+		echo "</form>" . "\n";
 		echo "<form action='dashboard.php' id='nothing' name='nothing' method='POST'><div id='secondbutton'>
-		<input type='submit' name='cancelbug' value='Cancel' style='margin-left:10px' /></div></form></div><br /><br />";
+		<input type='submit' name='cancelbug' value='Cancel' style='margin-left:10px' /></div></form></div><br /><br />" . "\n";
 	}
 	
 	include 'includes/submitbug_0_header.php';
@@ -53,10 +53,10 @@
 	if(!isset($_POST['sendbug'])){
 		bugform();
 	} 
-	echo '			</div>';
-	echo '		</div>';
-	echo '	</div>';
-	echo '	</div>';
+	echo '			</div>' . "\n";
+	echo '		</div>' . "\n";
+	echo '	</div>' . "\n";
+	echo '	</div>' . "\n";
 		
 	include 'includes/sitefooter.php';
 ?>
