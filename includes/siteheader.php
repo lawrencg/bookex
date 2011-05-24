@@ -27,11 +27,11 @@
 			</div>
 		</div>
 		<div id="search">
-		Search by:
 			<form id="searchbox" method="get" action="searchresults.php">
 				<div>
-				<select name="type">
 				<?php 
+				echo '<select name="type">';
+
 						$options = pg_query("SELECT * FROM searchoptions ORDER BY rank") ;
 						//or die('Query failed: ' . pg_last_error()); 
 						while($records = pg_fetch_array($options)) {
