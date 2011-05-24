@@ -27,6 +27,7 @@
 			</div>
 		</div>
 		<div id="search">
+		Search by:
 			<form id="searchbox" method="get" action="searchresults.php">
 				<div>
 				<select name="type">
