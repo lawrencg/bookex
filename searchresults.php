@@ -18,6 +18,24 @@
 	$user = $_SERVER['REMOTE_USER'];
 	$searchTerm = trim(pg_escape_string($_GET['value']));
 	$searchOption = pg_escape_string($_GET['type']);
+	$errormessage;
+	$rbook;
+	$rperson;
+	
+	
+	if(isset($_POST['request'])){
+		requested();
+		$errormessage = "You have requested <b><i>$rbook</i></b> from <b><i>$rperson</i></b>.";
+	}
+	
+	function requested(){
+		global $user, $rbook, $rperson;
+		$yourequested = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = 'cheungm' AND transstatus = 'Requested' ORDER BY transid DESC LIMIT 1");
+		while($records = pg_fetch_array($yourequested)) {
+			$rbook = $records[3];
+			$rperson = $records[6];
+		}
+	}
 	
 	function remove_non_numeric($string) {
 		return preg_replace('/\D/', '', $string);
@@ -103,6 +121,9 @@
 				if (!$results) {
 					//die("Error in SQL query: " . pg_last_error());
 				}
+				if($errormessage != '') {
+					echo '<div id="notification" class="show">' . $errormessage . '</div>' . "\n";
+					}
 				displaybookresults($results, 'title containing', $name);
 			}
 		break;
