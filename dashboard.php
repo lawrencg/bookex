@@ -99,7 +99,8 @@
 				$firsttime = false;
 			} 
 			echo '									<tr>' . "\n";
-			echo '										<td class="yourrequestsmessage">' . "\"{$records[3]}\" from {$records[6]}.</td>\n";
+			echo '										<td class="yourrequestsmessage">' . "\"{$records[3]}\" from <a href='profile.php?id={$records[7]}'\">{$records[6]}</a>.</td>\n";
+																													
 			echo '										<td class="yourrequestsbutton">' . "\n";
 			createbutton('cancelrequest','Cancel',$records[0]);
 			echo '										</td>' . "\n";

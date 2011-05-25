@@ -21,19 +21,21 @@
 	$errormessage;
 	$rbook;
 	$rperson;
+	$rUser;
 	
 	
 	if(isset($_POST['request'])){
 		requested();
-		$errormessage = "You have requested <b><i>$rbook</i></b> from <b><i>$rperson</i></b>.";
+		$errormessage = "You have requested \"<b>$rbook</b>\" from <a href=\"profile.php?id=".$rUser."\">$rperson</a>.";
 	}
 	
 	function requested(){
-		global $user, $rbook, $rperson;
+		global $user, $rbook, $rperson, $rUser;
 		$yourequested = pg_query("SELECT * FROM detailedtransactions WHERE recipientid = 'cheungm' AND transstatus = 'Requested' ORDER BY transid DESC LIMIT 1");
 		while($records = pg_fetch_array($yourequested)) {
 			$rbook = $records[3];
 			$rperson = $records[6];
+			$rUser = $records[7];
 		}
 	}
 	

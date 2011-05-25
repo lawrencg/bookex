@@ -218,7 +218,7 @@
 		echo "</select></div>		
 		<div><label>Description:</label>&nbsp;<textarea cols='40' rows='5' id='description' name='description' style='vertical-align:text-top;' virtual /> " . $note . " </textarea></div>		
 		<div>Make book available for others to borrow.</b>&nbsp;<input type='checkbox' id='available' name='available' checked/></div>";
-		echo "<input type='submit' name='standardadd' value='Add to My Books' style='margin-left:200px' />";
+		echo "<input type='submit' name='standardadd' value='Add to My Books' action='mybooks.php' style='margin-left:200px' />";
 		echo "<input type='submit' name='edit' value='Edit Information' style='margin-left:10px' /><input type='submit' name='cancel' value='Cancel' style='margin-left:10px' />";
 	}
 	# HTML used to edit a form populated with book information.
