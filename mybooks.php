@@ -40,10 +40,6 @@
 			}
 		}
 	}
-	
-	if(isset($_POST['standardadd'])){
-		$errormessage = 'Your book has been added sucessfully.';
-	}
 
 	function displaybooks(){
 		global $user;
