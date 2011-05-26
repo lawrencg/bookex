@@ -330,7 +330,7 @@
 }
 */
 
-
+	/*My Book*/
 	#mybooksbooktitle div{   
      	white-space: nowrap;  
      	overflow: hidden;  
@@ -364,6 +364,40 @@
 		width: 110px;
 	}
 	
+	/*I am borrowing*/
+		.borrowingbooktitle div{   
+			white-space: nowrap;  
+			overflow: hidden;  
+			text-overflow: ellipsis;   
+			-o-text-overflow: ellipsis;  
+			-moz-binding: url('xml/ellipsis.xml#ellipsis');  
+			width: 350px;
+		}
+
+		.borrowingbooktitle {
+			width: 350px;
+		}
+
+		.borrowinglender div {
+			white-space: nowrap;  
+			overflow: hidden;  
+			text-overflow: ellipsis;   
+			-o-text-overflow: ellipsis;  
+			-moz-binding: url('xml/ellipsis.xml#ellipsis');  
+			width: 150px;
+		}
+		.borrowinglender {
+			width: 150px;
+		}
+		
+		.borrowingduedate {
+			width: 100px;
+		}	
+		
+		.borrowingbutton {
+			width: 110px;
+		}
+		
 	/*Book Results truncate*/
 	
 	#bookresultsbooktitle div {

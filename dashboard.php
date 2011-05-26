@@ -324,7 +324,7 @@
 				echo '							<thead>' . "\n";
 				echo '								<tr>' . "\n";
 				echo '									<td class="booktitle header">Title</td>' . "\n";
-				echo '									<td class="booklender header">Lender</td>' . "\n";
+				echo '									<td class="booklender header" >Lender</td>' . "\n";
 				echo '									<td class="bookduedate header">Due</td>' . "\n";
 				echo '									<td class="bookreturnbutton"></td>' . "\n";
 				echo '								</tr>' . "\n";
@@ -333,12 +333,12 @@
 			} 
 			echo '							<tr>' . "\n";
 			# Book title
-			echo '								<td class="booktitle"><a href="bookdetails.php?id='.$records[1].'">' . $records[3] . '</a></td>' . "\n";
+			echo '								<td class="booktitle borrowingbooktitle"><div><a href="bookdetails.php?id='.$records[1].'">' . $records[3] . '</a></div></td>' . "\n";
 			# Book owner
-			echo '								<td class="booklender"><a href="profile.php?id='.$records[7].'">'.$records[6].'</a></td>' . "\n";
+			echo '								<td class="booklender borrowinglender"><div><a href="profile.php?id='.$records[7].'">'.$records[6].'</a></div></td>' . "\n";
 			# BookEx does not currently store a 'Due' date
-			echo '								<td class="bookduedate">' . date("F j, Y"). '</td>' . "\n";
-			echo '								<td class="bookreturnbutton">' . "\n";
+			echo '								<td class="bookduedate borrowingduedate">' . date("F j, Y"). '</td>' . "\n";
+			echo '								<td class="bookreturnbutton borrowingbutton">' . "\n";
 			createbutton('return','Return',$records[0]);
 			echo '								</td>' . "\n";
 			echo '							</tr>' . "\n";
