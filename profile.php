@@ -257,7 +257,7 @@
 			echo '						</div>';
 			echo '						<div class="clear"></div>';
 			echo '					</div>';
-			echo '					<div id="maincontent">';
+			echo '					<div>';
 			echo '						<div id="searchresultsarea" class="contentarea">';
 			echo '							<div id="booksearchresults">';
 			echo '								<div class="pageSubTitle">Books List for ' . $real_name . '</div>';
@@ -275,9 +275,9 @@
 			$rows = pg_num_rows($available);
 			while($records = pg_fetch_array($available)) {
 				echo '										<tr>';
-				echo '											<td class="booktitle ellipsis" id="profilebooktitle"><div><a href="bookdetails.php?id=' .$records[0]. '">' .$records[1]. '</a></div></td>';
-				echo '											<td class="bookauthor" id="profilebookauthor"><div>' . $records[4] .'</div></td>';
-				echo '											<td class="bookisbn" id="profileisbn">'; 
+				echo '											<td class="booktitle ellipsis profilebooktitle"><div><a href="bookdetails.php?id=' . $records[0] . '">' . htmlspecialchars ($records[1]) . '</a></div></td>';
+				echo '											<td class="bookauthor profilebookauthor"><div>' . $records[4] .'</div></td>';
+				echo '											<td class="bookisbn profileisbn">'; 
 				if ($records[3] != ''){
 					echo $records[3];
 				} else {
@@ -290,9 +290,9 @@
 				echo '										</tr>';			
 				while($records = pg_fetch_array($available)){
 					echo '										<tr>';
-					echo '											<td class="booktitle ellipsis" id="profilebooktitle"><div><a href="bookdetails.php?id=' .$records[0]. '">' .$records[1]. '</a></div></td>';
-					echo '											<td class="bookauthor" id="profilebookauthor"><div>' . $records[4] .'</div></td>';
-					echo '											<td class="bookisbn" id="profileisbn">';
+					echo '											<td class="booktitle ellipsis profilebooktitle"><div><a href="bookdetails.php?id=' . $records[0] . '">' . htmlspecialchars($records[1]) . '</a></div></td>';
+					echo '											<td class="bookauthor profilebookauthor"><div>' . $records[4] .'</div></td>';
+					echo '											<td class="bookisbn profileisbn">';
 					if ($records[3] != ''){
 						echo $records[3];
 					} else {

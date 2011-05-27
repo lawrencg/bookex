@@ -50,13 +50,13 @@
 		while ($row = pg_fetch_array($results)) {
 			echo "<table id='booksearchresultstable'>";
 			echo "<thead><tr><td class=\"header\">Book Title</td><td class=\"header\">Author</td><td class=\"header\">ISBN</td><td class=\"header\">Owner</td><td class=\"header\"></td></tr></thead><tbody>";
-			echo "<tr><td class=\"booktitle\" id=\"bookresultsbooktitle\"><div><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></div></td><td class=\"bookauthor\" id=\"bookresultsauthorlastname\"><div>" . htmlspecialchars($row[2]) . "</div></td><td class=\"bookisbn\" id=\"bookresultsbookisbn\"><div>";
+			echo "<tr><td class=\"booktitle bookresultsbooktitle\"><div><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></div></td><td class=\"bookauthor bookresultsauthorlastname\"><div>" . htmlspecialchars($row[2]) . "</div></td><td class=\"bookisbn bookresultsbookisbn\"><div>";
 				if ($row[4] != ''){
 					echo htmlspecialchars($row[4]);
 				} else {
 					echo htmlspecialchars($row[3]);
 				}
-				echo "</div></td><td class=\"bookowner\" id=\"bookresultsbookowner\"><div><a href=\"profile.php?id=".$row[7]."\">".htmlspecialchars($row[5])."</a></div></td><td class=\"requestbutton\">";
+				echo "</div></td><td class=\"bookowner bookresultsbookowner\"><div><a href=\"profile.php?id=".$row[7]."\">".htmlspecialchars($row[5])."</a></div></td><td class=\"requestbutton\">";
 			if( $owner != $row[7]){
 				request_button($row[6]);
 			}else{
@@ -64,13 +64,13 @@
 			}
 			echo "</td></tr>";
 			while ($row = pg_fetch_array($results)) {
-			echo "<tr><td class=\"booktitle\" id=\"bookresultsbooktitle\"><div><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></div></td><td class=\"bookauthor\" id=\"bookresultsauthorlastname\"><div>" . htmlspecialchars($row[2]) . "</div></td><td class=\"bookisbn\" id=\"bookresultsbookisbn\"><div>";
+			echo "<tr><td class=\"booktitle bookresultsbooktitle\"><div><a href='bookdetails.php?id={$row[6]}'>" . htmlspecialchars($row[0]) . "</a></div></td><td class=\"bookauthor bookresultsauthorlastname\"><div>" . htmlspecialchars($row[2]) . "</div></td><td class=\"bookisbn bookresultsbookisbn\"><div>";
 				if ($row[4] != ''){
 					echo htmlspecialchars($row[4]);
 				} else {
 					echo htmlspecialchars($row[3]);
 				}
-				echo "</div></td><td class=\"bookowner\" id=\"bookresultsbookowner\"><div><a href=\"profile.php?id=".$row[7]."\">".htmlspecialchars($row[5])."</a></div></td><td class=\"requestbutton\">";
+				echo "</div></td><td class=\"bookowner bookresultsbookowner\"><div><a href=\"profile.php?id=".$row[7]."\">".htmlspecialchars($row[5])."</a></div></td><td class=\"requestbutton\">";
 			if( $owner != $row[7]){
 				request_button($row[6]);
 			}else{
@@ -95,7 +95,7 @@
 				} else {
 					echo htmlspecialchars($row[2]);
 				}				
-				echo "</td><td class=\"personsbooknumber\" id=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>";
+				echo "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>";
 			while ($row = pg_fetch_array($results)) {
 				echo "<tr><td class=\"personsname\"><a href='profile.php?id={$row[3]}'>" . htmlspecialchars($row[1]) . "</a></td><td class=\"personsnetid\">" . htmlspecialchars($row[3]) . "  </td><td class=\"personsemail\">";
 				if(htmlspecialchars($row[2]) == ''){
@@ -103,7 +103,7 @@
 				} else {
 					echo htmlspecialchars($row[2]);
 				}				
-				echo "</td><td class=\"personsbooknumber\" id=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>";
+				echo "</td><td class=\"personsbooknumber\">" . htmlspecialchars($row[0]) . "</td></tr>";
 			} 
 			echo "</tbody></table>";
 		}

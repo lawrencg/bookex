@@ -76,19 +76,19 @@
 			
 			echo '								<tr>' . "\n";
 			# Book title is a link to book details for that book
-			echo '									<td class="booktitle" id="mybooksbooktitle"><div><a href="bookdetails.php?id='.$records[0].'">'.$records[3].'</a></div></td>' . "\n";
-			echo '									<td class="booklender" id="mybooksborrower"><div>'.$borrow.'</div></td>' . "\n";
+			echo '									<td class="booktitle mybooksbooktitle"><div><a href="bookdetails.php?id='.$records[0].'">'. htmlspecialchars($records[3]) .'</a></div></td>' . "\n";
+			echo '									<td class="booklender mybooksborrower"><div>'.$borrow.'</div></td>' . "\n";
 			# Decides what status to display. For loaned books we need to display the transaction status,
 			# for books that are not loaned out, we need to show the availability status.
 			if($records[6] == ''){
-				echo '									<td class="bookduedate" id="mybooksduedate"><div>&nbsp;</div></td>' . "\n";
-				echo '									<td class="bookstatus" id="mybooksstatus"><div>'.$records[5].'</div></td>' . "\n";				
+				echo '									<td class="bookduedate mybooksduedate"><div>&nbsp;</div></td>' . "\n";
+				echo '									<td class="bookstatus mybooksstatus"><div>'.$records[5].'</div></td>' . "\n";				
 			} else {
-				echo '									<td class="bookduedate" id="mybooksduedate"><div>'.date("F j, Y").'</div></td>' . "\n";
+				echo '									<td class="bookduedate mybooksduedate"><div>'.date("F j, Y").'</div></td>' . "\n";
 				if($records[6] == 'Received'){
-					echo '									<td class="bookstatus" id="mybooksstatus"><div>Loaned Out</div></td>' . "\n";
+					echo '									<td class="bookstatus mybooksstatus"><div>Loaned Out</div></td>' . "\n";
 				} else {
-					echo '									<td class="bookstatus" id="mybooksstatus"><div>'.$records[6].'</div></td>' . "\n";
+					echo '									<td class="bookstatus mybooksstatus"><div>'.$records[6].'</div></td>' . "\n";
 				}
 			}
 			echo '								</tr>';

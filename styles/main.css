@@ -331,7 +331,7 @@
 */
 
 	/*My Book*/
-	#mybooksbooktitle div{   
+	.mybooksbooktitle div{   
      	white-space: nowrap;  
      	overflow: hidden;  
      	text-overflow: ellipsis;   
@@ -340,11 +340,11 @@
 		width: 350px;
 	}
 
-	#mybooksbooktitle {
+	.mybooksbooktitle {
 		width: 350px;
 	}
 
-	#mybooksborrower div {
+	.mybooksborrower div {
 		white-space: nowrap;  
      	overflow: hidden;  
      	text-overflow: ellipsis;   
@@ -352,15 +352,15 @@
 		-moz-binding: url('xml/ellipsis.xml#ellipsis');  
 		width: 150px;
 	}
-	#mybooksborrower {
+	.mybooksborrower {
 		width: 150px;
 	}
 	
-	#mybooksduedate {
+	.mybooksduedate {
 		width: 115px;
 	}	
 	
-	#mybooksstatus {
+	.mybooksstatus {
 		width: 110px;
 	}
 	
@@ -400,7 +400,7 @@
 		
 	/*Book Results truncate*/
 	
-	#bookresultsbooktitle div {
+	.bookresultsbooktitle div {
 		white-space: nowrap;  
      	overflow: hidden;  
      	text-overflow: ellipsis;   
@@ -408,11 +408,11 @@
 		-moz-binding: url('xml/ellipsis.xml#ellipsis');  
 		width: 310px;
 	}
-	#bookresultsbooktitle {
+	.bookresultsbooktitle {
 		width: 320px;
 	}
 	
-	#bookresultsauthorlastname div {
+	.bookresultsauthorlastname div {
 		white-space: nowrap;  
      	overflow: hidden;  
      	text-overflow: ellipsis;   
@@ -421,11 +421,11 @@
 		width: 100px;
 	}
 	
-	#bookresultsauthorlastname {
+	.bookresultsauthorlastname {
 		width: 100px;
 	}
 	
-	#bookresultsbookisan div {
+	.bookresultsbookisan div {
 		white-space: nowrap;  
      	overflow: hidden;  
      	text-overflow: ellipsis;   
@@ -434,11 +434,11 @@
 		width: 105px;
 	}
 	
-	#bookresultsbookisan {
+	.bookresultsbookisan {
 		width: 105px;
 	}
 	
-	#bookresultsbookowner  div {
+	.bookresultsbookowner  div {
 		white-space: nowrap;  
      	overflow: hidden;  
      	text-overflow: ellipsis;   
@@ -447,7 +447,7 @@
 		width: 130px;
 	}
 		
-	#bookresultsbookowner {
+	.bookresultsbookowner {
 		width: 130px;
 	}
 	
@@ -455,7 +455,7 @@
 	
 	
 	/*Truncate book list in other's profile */
-	#profilebooktitle div{   
+	.profilebooktitle div{   
      	white-space: nowrap;  
      	overflow: hidden;  
      	text-overflow: ellipsis;   
@@ -463,8 +463,11 @@
 		-moz-binding: url('xml/ellipsis.xml#ellipsis');  
 		width: 350px;
 	}
+	.profilebooktitle {
+		width: 350px;
+	}
 	
-	#profilebookauthor div{   
+	.profilebookauthor div{   
      	white-space: nowrap;  
      	overflow: hidden;  
      	text-overflow: ellipsis;   
@@ -473,15 +476,11 @@
 		width: 150px;
 	}
 	
-	#profilebooktitle {
-		width: 350px;
-	}
-	
-	#profilebookauthor {
+	.profilebookauthor {
 		width: 150px;
 	}
 	
-	#profileisbn {
+	.profileisbn {
 		width: 110px;
 	}
 
@@ -673,7 +672,7 @@ button {
 			color: green;
 		}
 		
-		#personsbooknumber {
+		.personsbooknumber {
 			width: 80px;
 			text-align: left;
 			margin-right: 30px;

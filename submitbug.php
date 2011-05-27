@@ -11,13 +11,13 @@
 	require 'includes/valid_user.php';
 
 	function bugform(){
-		echo "<div class='button-container'><form action='dashboard.php' id='book' name='book' method='POST'>
+		echo "<div class='button-container'><form action='dashboard.php' id='book' name='book' method='post'>
 		<p>Description of bug:</p><textarea cols='80' rows='5' id='description' 
-			name='description' style='vertical-align:text-top;resize:none;' virtual /></textarea><br /><br />
+			name='description' style='vertical-align:text-top;resize:none;' /></textarea><br /><br />
 		<p>The following information will also be sent:</p>
 		<input type='hidden' id='data' name='data' />
 		<textarea cols='80' rows='12' id='display' 
-			name='display' style='vertical-align:text-top;resize:none;' virtual disabled /></textarea><br /><br />" . "\n";
+			name='display' style='vertical-align:text-top;resize:none;' disabled='disabled' /></textarea><br /><br />" . "\n";
 		$user = $_SERVER['REMOTE_USER'];
 		echo "<script type=\"text/javascript\">
 		txt = \"Browser CodeName: \" + navigator.appCodeName + \"\\n\";
@@ -37,7 +37,7 @@
 		echo "
 		<div id='firstbutton'><input type='submit' name='sendbug' value='Submit' style='margin-left:10px' /></div>" . "\n";
 		echo "</form>" . "\n";
-		echo "<form action='dashboard.php' id='nothing' name='nothing' method='POST'><div id='secondbutton'>
+		echo "<form action='dashboard.php' id='nothing' name='nothing' method='post'><div id='secondbutton'>
 		<input type='submit' name='cancelbug' value='Cancel' style='margin-left:10px' /></div></form></div><br /><br />" . "\n";
 	}
 	
@@ -48,7 +48,7 @@
 	echo '			<div id="maincontent">' . "\n";
 	echo '				<div class="pageTitle">Submit a Bug</div>' . "\n";	
 	echo '			<div id="submitbugarea" class="contentarea">' . "\n";
-	echo '					<div id="submitbug">' . "\n";
+	echo '					<div >' . "\n";
 	
 	if(!isset($_POST['sendbug'])){
 		bugform();
