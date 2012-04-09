@@ -1,0 +1,222 @@
+<HTML><HEAD><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /><link href="Resources/axurerpprototype.css" type="text/css" rel="stylesheet"></HEAD>
+<BODY>
+<A href=# onclick='parent.CloseSitemap()' style='font-size:8pt'>Close Frames</A><br><br>
+
+<SCRIPT LANGUAGE="JavaScript">
+image1 = new Image();
+image1.src = 'Resources/plus.gif';
+
+function CloseSitemap()
+{
+	parent.URL = parent.mainFrame.URL
+}
+
+function ToggleDiv(node, id)
+{
+	sibling = document.getElementById(id);
+	if (sibling.style.display == 'none')
+	{
+		if (node.childNodes.length > 0)
+		{
+			if (node.childNodes[0].tagName == "IMG")
+			{
+				node.childNodes[0].src = "Resources/minus.gif";
+			}
+		}
+
+		sibling.style.display = '';
+	}
+	else
+	{
+		if (node.childNodes.length > 0)
+		{
+			if (node.childNodes[0].tagName == "IMG")
+			{
+				node.childNodes[0].src = "Resources/plus.gif";
+			}
+		}
+		sibling.style.display = 'none';
+	}
+}
+
+var currentPage = null;
+
+function highlight(id)
+{
+	if (currentPage != null)
+	{
+		currentPage.style.backgroundColor = '#EEEEFF';
+		currentPage.style.paddingLeft = '0px';
+		currentPage.style.paddingRight = '0px';
+		currentPage.style.border = '0px solid #666666';
+	}
+	
+	currentPage = document.getElementById(id);
+    if (currentPage) {
+	    currentPage.style.backgroundColor = '#DDDDDD';
+	    currentPage.style.paddingLeft = '3px';
+	    currentPage.style.paddingRight = '3px';
+	    currentPage.style.border = '1px solid #666666';
+    }
+}
+
+</SCRIPT>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD nowrap><A onclick="ToggleDiv(this, 'd5de5bf160de04c0bb8651817d66adad2')"><IMG SRC="Resources/minus.gif"></A>&nbsp;&nbsp;<A onclick="parent.mainFrame.location='Home.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="p5de5bf160de04c0bb8651817d66adad2">Home</SPAN></A><DIV id="d5de5bf160de04c0bb8651817d66adad2">
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Login.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="p8f283442e2e64c1db2da8a68945f1121">Login</SPAN></A><DIV id="td8f283442e2e64c1db2da8a68945f1121">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Agreement.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="p3f749bb0964a45db9225879f1305d886">Agreement</SPAN></A><DIV id="td3f749bb0964a45db9225879f1305d886">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Dashboard.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="p459a31a5125244c0b7269be6ac9ac97d">Dashboard</SPAN></A><DIV id="td459a31a5125244c0b7269be6ac9ac97d">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='My_Book.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pc8ef9bbb49b44307a94e82ffd662dd4c">My Book</SPAN></A><DIV id="tdc8ef9bbb49b44307a94e82ffd662dd4c">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Add_Book.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pf2ea890ea7524df2897ad8eeb04895d4">Add Book</SPAN></A><DIV id="tdf2ea890ea7524df2897ad8eeb04895d4">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Book_Detail_Intro_JavaScript_Programming.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="p5067c0079e7b4abb881ca24057841c37">Book Detail Intro JavaScript Programming</SPAN></A><DIV id="td5067c0079e7b4abb881ca24057841c37">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Book_Detail_Advance_Calculus_for_Dummies.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pb2500814f6d740609283788cd26c6410">Book Detail Advance Calculus for Dummies</SPAN></A><DIV id="tdb2500814f6d740609283788cd26c6410">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Book_Detail_Intro_Public_Speaking.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="p4310318a16664259bc70cb16ae51debd">Book Detail Intro Public Speaking</SPAN></A><DIV id="td4310318a16664259bc70cb16ae51debd">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Book_Detail_Intro_Public_Speaking_Edit.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pc654c21cff834afe85180457fe329097">Book Detail Intro Public Speaking Edit</SPAN></A><DIV id="tdc654c21cff834afe85180457fe329097">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Book_Detail_Intro_Public_Speaking_after_edit.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pdd282361bd4d4847a3c773431749c14d">Book Detail Intro Public Speaking after edit</SPAN></A><DIV id="tddd282361bd4d4847a3c773431749c14d">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Kaven_Smith_Profile.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pa584da8838634034a34ae655ec155487">Kaven Smith Profile</SPAN></A><DIV id="tda584da8838634034a34ae655ec155487">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Book_Detail_Intro_to_Politic.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="p46a11aec6232414d9f013b960ebc40e8">Book Detail Intro to Politic</SPAN></A><DIV id="td46a11aec6232414d9f013b960ebc40e8">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Alex_John_Profile.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pda29ff66818e40ecbac7a22ae47f4da7">Alex John Profile</SPAN></A><DIV id="tdda29ff66818e40ecbac7a22ae47f4da7">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='My_Profile.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pe5f4d5a6be874d0aa3bebabd898b22eb">My Profile</SPAN></A><DIV id="tde5f4d5a6be874d0aa3bebabd898b22eb">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='My_Profile_Edit.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pd18effd42e184ecabfc6138b1f95715a">My Profile Edit</SPAN></A><DIV id="tdd18effd42e184ecabfc6138b1f95715a">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Search_People_Results.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pc908519627a64d3b82c89b53752c0d3d">Search People Results</SPAN></A><DIV id="tdc908519627a64d3b82c89b53752c0d3d">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Search_Book_Results.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="p67f44cafb5104db7a01e2e221eedabfd">Search Book Results</SPAN></A><DIV id="td67f44cafb5104db7a01e2e221eedabfd">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Logout.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pf523b873aa4a409ca84c101d254d3bd6">Logout</SPAN></A><DIV id="tdf523b873aa4a409ca84c101d254d3bd6">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='Site_Map.html'"><IMG class="plusminus" SRC="Resources/flow.gif" border=0><SPAN id="p008ad178aff34c4786db7c71c3188732">Site Map</SPAN></A><DIV id="td008ad178aff34c4786db7c71c3188732">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+			</DIV>
+		</TD>
+	</TR>
+</TABLE></BODY></HTML>
